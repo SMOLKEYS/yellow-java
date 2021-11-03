@@ -1,6 +1,10 @@
 package jvt.content;
 
+//i have no idea what im doing lmfao
+import mindustry.*;
 import mindustry.content.*;
+import mindustry.ctype.*;
+import mindustry.type.*;
 import mindustry.gen.*;
 import mindustry.ai.types.DefenderAI;
 
@@ -13,6 +17,7 @@ public class JvtUnitTypes implements ContentList{
     @Override
     public void load(){
         yellow = new UnitType("yellow"){{
+            AIControlller = DefenderAI;
             flying = true;
             health = 2147483647f;
             armor = 2147483647f;

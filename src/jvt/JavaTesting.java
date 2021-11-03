@@ -22,7 +22,7 @@ public class JavaTesting extends Mod{
         });
     };
     
-    public final ContentList[] JvtContent = {
+    private static final ContentList[] JvtContent = {
         new JvtUnitTypes(),
     };
     
