@@ -54,8 +54,8 @@ public class JvtUnitTypes implements ContentList{
                         width = 8f;
                         length = 240f;
                         lifetime = 60f;
-                    }}
-                }};
+                    }};
+                }}
             );
         }};
     }
