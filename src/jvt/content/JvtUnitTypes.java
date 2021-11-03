@@ -72,11 +72,10 @@ public class JvtUnitTypes implements ContentList{
             
             weapons.add(
                 new Weapon("anti-moth-spray"){{
-                    reload = 100f;
+                    reload = 2f;
                     x = 3f;
                     mirror = true;
-                    shots = 300;
-                    burst = 2f;
+                    shots = 25;
                     inaccuracy = 15f;
                     bullet = new BasicBulletType(){{
                         damage = 1f;
