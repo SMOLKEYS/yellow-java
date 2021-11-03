@@ -25,7 +25,7 @@ public class JvtUnitTypes implements ContentList{
     public static UnitType
     
     //yellow units
-    yellowAir;
+    yellowAir, yellowGround;
     
     @Override
     public void load(){
@@ -57,8 +57,37 @@ public class JvtUnitTypes implements ContentList{
                         lifetime = 60f;
                     }};
                 }}
+                /*new Weapon("bullethell"){{}}*/
             );
         }};
         
+        yellowGround = new UnitType("yellowGround"){{
+            health = 2147483647f;
+            armor = 2147483647f;
+            speed = 1f;
+            range = 400f;
+            maxRange = 400f;
+            
+            constructor = MechUnit::create;
+            
+            weapons.add(
+                new Weapon("anti-moth-spray"){{
+                    reload = 100f;
+                    x = 3f;
+                    mirror = true;
+                    shots = 300;
+                    burstSpacing = 2f;
+                    inaccuracy = 15f;
+                    bullet = new BasicBulletType(){{
+                        damage = 1f;
+                        lifetime = 60f;
+                        speed = 4f;
+                        width = 8f;
+                        height = 8f;
+                        knockback = 5f;
+                    }};
+                }}
+            );
+        }};
     }
 }
