@@ -29,6 +29,7 @@ public class JvtUnitTypes implements ContentList{
     
     @Override
     public void load(){
+        
         yellowAir = new UnitType("yellowAir"){{
             flying = true;
             health = 2147483647f;
@@ -39,7 +40,7 @@ public class JvtUnitTypes implements ContentList{
             range = 240f;
             maxRange = 240f;
             
-            constructor = UnitEntity::new;
+            constructor = UnitEntity::create;
             defaultController = DefenderAI::new;
             
             weapons.add(
@@ -58,5 +59,6 @@ public class JvtUnitTypes implements ContentList{
                 }}
             );
         }};
+        
     }
 }
