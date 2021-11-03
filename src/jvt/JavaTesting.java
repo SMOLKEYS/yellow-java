@@ -23,13 +23,13 @@ public class JavaTesting extends Mod{
         });
     };
     
-    private static final ContentList[] JvtContent = {
+    private final ContentList[] jvtContent = {
         new JvtUnitTypes()
     };
     
     @Override
     public void loadContent(){
-        for(ContentList list : JvtContent){
+        for(ContentList list : jvtContent){
             list.load();
         };
     }
