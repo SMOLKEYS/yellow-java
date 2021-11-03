@@ -1,17 +1,17 @@
 #the mod name as displayed in-game
-displayName: "javatesting"
+displayName: "yellow"
 
 #the internal name of your mod
-name: "javatesting"
+name: "Yellow (Java)"
 
 #your name
 author: "SMOLKEYS"
 
 #the fully qualified main class of the mod
-main: "jvt.JavaTesting"
+main: "yellow.Yellow"
 
 #the mod description as seen in the mod dialog
-description: "testing some things"
+description: "fiery"
 
 #the mod version
 version: 0.01

@@ -22,7 +22,7 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class JvtUnitTypes implements ContentList{
+public class YellowUnitTypes implements ContentList{
     public static UnitType
     
     //yellow units
