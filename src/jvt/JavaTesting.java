@@ -20,11 +20,17 @@ public class JavaTesting extends Mod{
             sus.cont.button("haha no", sus::hide).size(300f, 250f);
             sus.show();
         });
-    }
+    };
+    
+    public final ContentList[] JvtContent = {
+        new JvtUnitTypes(),
+    };
     
     @Override
     public void loadContent(){
-        Log.info("smol: hi");
+        for(ContentList list : JvtContent){
+            list.load()
+        };
     }
     
 }
