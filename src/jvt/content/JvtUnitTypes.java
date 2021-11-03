@@ -76,7 +76,7 @@ public class JvtUnitTypes implements ContentList{
                     x = 3f;
                     mirror = true;
                     shots = 300;
-                    burstSpacing = 2f;
+                    burst = 2f;
                     inaccuracy = 15f;
                     bullet = new BasicBulletType(){{
                         damage = 1f;
