@@ -23,7 +23,7 @@ public class Yellow extends Mod{
     
     @Override
     public void loadContent(){
-        for(ContentList list : jvtContent){
+        for(ContentList list : yellowContent){
             list.load();
         };
     }
