@@ -39,8 +39,8 @@ public class JvtUnitTypes implements ContentList{
             range = 240f;
             maxRange = 240f;
             
-            constructor = UnitEntity::new
-            defaultController = DefenderAI::new
+            constructor = UnitEntity::new;
+            defaultController = DefenderAI::new;
             
             weapons.add(
                 new Weapon("meltdown-shotgun"){{
@@ -55,8 +55,8 @@ public class JvtUnitTypes implements ContentList{
                         length = 240f;
                         lifetime = 60f;
                     }}
-                }}
-            )
+                }};
+            );
         }};
     }
 }
