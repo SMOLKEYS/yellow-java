@@ -21,6 +21,6 @@ public class JvtUnitTypes implements ContentList{
             drag = 0.01;
             range = 240;
             maxRange = 240;
-        }}
+        }};
     }
 }

@@ -29,7 +29,7 @@ public class JavaTesting extends Mod{
     @Override
     public void loadContent(){
         for(ContentList list : JvtContent){
-            list.load()
+            list.load();
         };
     }
     
