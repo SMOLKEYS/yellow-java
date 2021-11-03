@@ -1,0 +1,27 @@
+package jvt;
+
+import arc.util.Log.*;
+import mindustry.game.EventType.*;
+import mindustry.gen.*;
+import mindustry.mod.*;
+import mindustry.ui.dialogs.*;
+
+public class JavaTesting extends Mod{
+    
+    public JavaTesting(){
+        Log.info("amogus");
+        
+        Events.on(ClientLoadEvent.class, e -> {
+            BaseDialog sus = new BaseDialog("sussy baka");
+            sus.cont.add("you have downloaded a curse\ndelete me now").row();
+            sus.cont.button("haha no", sus::hide).size(300f, 250f);
+            sus.show();
+        });
+    }
+    
+    @Override
+    public void loadContent(){
+        Log.info("smol: hi");
+    }
+    
+}
