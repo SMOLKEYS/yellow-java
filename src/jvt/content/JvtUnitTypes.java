@@ -18,9 +18,6 @@ import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 
-import static arc.graphics.g2d.Draw.*;
-import static arc.graphics.g2d.Lines.*;
-import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
 public class JvtUnitTypes implements ContentList{
@@ -35,11 +32,11 @@ public class JvtUnitTypes implements ContentList{
             flying = true;
             health = 2147483647f;
             armor = 2147483647f;
-            speed = 3;
-            accel = 0.08;
-            drag = 0.01;
-            range = 240;
-            maxRange = 240;
+            speed = 3f;
+            accel = 0.08f;
+            drag = 0.01f;
+            range = 240f;
+            maxRange = 240f;
         }};
     }
 }
