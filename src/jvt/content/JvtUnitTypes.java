@@ -38,6 +38,25 @@ public class JvtUnitTypes implements ContentList{
             drag = 0.01f;
             range = 240f;
             maxRange = 240f;
+            
+            constructor = UnitEntity::new
+            defaultController = DefenderAI::new
+            
+            weapons.add(
+                new Weapon("meltdown-shotgun"){{
+                    reload = 60f;
+                    x = 56f;
+                    mirror = true;
+                    shots = 15f;
+                    inaccuracy = 30f;
+                    bullet = new ContinuousLaserBulletType(){{
+                        damage = 100f;
+                        width = 8f;
+                        length = 240f;
+                        lifetime = 60f;
+                    }}
+                }}
+            )
         }};
     }
 }
