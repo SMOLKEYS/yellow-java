@@ -47,7 +47,7 @@ public class JvtUnitTypes implements ContentList{
                     reload = 60f;
                     x = 56f;
                     mirror = true;
-                    shots = 15f;
+                    shots = 15;
                     inaccuracy = 30f;
                     bullet = new ContinuousLaserBulletType(){{
                         damage = 100f;
