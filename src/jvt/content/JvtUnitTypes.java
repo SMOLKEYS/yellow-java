@@ -1,6 +1,7 @@
 package jvt.content;
 
 //a
+import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -20,7 +21,6 @@ import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
-import static arc.Core.*;
 
 public class JvtUnitTypes implements ContentList{
     public static UnitType
