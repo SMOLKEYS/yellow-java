@@ -1,4 +1,4 @@
-# javatesting
+# Yellow (Java)
 
 Just me, this repo, and a lot of chaos.
 
