@@ -11,6 +11,7 @@ import mindustry.entities.*;
 import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
+import mindustry.mod.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
