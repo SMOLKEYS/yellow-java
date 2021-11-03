@@ -8,6 +8,7 @@ import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
+import jvt.content.*;
 
 public class JavaTesting extends Mod{
     
@@ -23,7 +24,7 @@ public class JavaTesting extends Mod{
     };
     
     private static final ContentList[] JvtContent = {
-        new JvtUnitTypes(),
+        new JvtUnitTypes()
     };
     
     @Override
