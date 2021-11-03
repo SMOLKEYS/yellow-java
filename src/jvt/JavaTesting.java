@@ -12,6 +12,10 @@ import mindustry.ui.dialogs.*;
 import jvt.content.*;
 
 public class JavaTesting extends Mod{
+    public String[] bannedNameCriteria = new String[]{
+        "SMOLKEYS",
+        "someone else",
+    };
     
     public JavaTesting(){
         Log.info("amogus");

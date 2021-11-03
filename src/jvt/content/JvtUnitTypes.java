@@ -19,6 +19,7 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
+import jvt.entites.units.*;
 
 import static mindustry.Vars.*;
 
@@ -31,19 +32,14 @@ public class JvtUnitTypes implements ContentList{
     @Override
     public void load(){
         
-        yellowAir = new UnitType("yellowAir"){{
-            flying = true;
-            health = 2147483647f;
-            armor = 2147483647f;
+        yellowAir = new YellowUnitType("yellowAir"){{
             speed = 3f;
             accel = 0.08f;
             drag = 0.01f;
             range = 240f;
             maxRange = 240f;
             
-            constructor = UnitEntity::create;
             defaultController = DefenderAI::new;
-            region = Core.atlas.find("yellow");
             
             weapons.add(
                 new Weapon("meltdown-shotgun"){{
@@ -63,9 +59,8 @@ public class JvtUnitTypes implements ContentList{
             );
         }};
         
-        yellowGround = new UnitType("yellowGround"){{
-            health = 2147483647f;
-            armor = 2147483647f;
+        yellowGround = new YellowUnitType("yellowGround"){{
+            flying = false;
             speed = 1f;
             range = 400f;
             maxRange = 400f;
