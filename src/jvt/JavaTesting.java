@@ -1,6 +1,9 @@
 package jvt;
 
+import arc.*;
+import arc.util.*;
 import arc.util.Log.*;
+import mindustry.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
