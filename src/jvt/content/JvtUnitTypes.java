@@ -1,6 +1,7 @@
 package jvt.content;
 
 //a
+import arc.Core.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -42,6 +43,7 @@ public class JvtUnitTypes implements ContentList{
             
             constructor = UnitEntity::create;
             defaultController = DefenderAI::new;
+            region = Core.atlas.find("yellow");
             
             weapons.add(
                 new Weapon("meltdown-shotgun"){{
