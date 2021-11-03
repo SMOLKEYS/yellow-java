@@ -1,12 +1,28 @@
 package jvt.content;
 
-//i have no idea what im doing lmfao
-import mindustry.*;
-import mindustry.content.*;
+//a
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.struct.*;
+import mindustry.ai.types.*;
+import mindustry.annotations.Annotations.*;
 import mindustry.ctype.*;
-import mindustry.type.*;
+import mindustry.entities.*;
+import mindustry.entities.abilities.*;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
 import mindustry.gen.*;
-import mindustry.ai.types.DefenderAI;
+import mindustry.graphics.*;
+import mindustry.type.*;
+import mindustry.type.ammo.*;
+import mindustry.type.weapons.*;
+import mindustry.world.meta.*;
+
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
+import static mindustry.Vars.*;
 
 public class JvtUnitTypes implements ContentList{
     public static UnitType
@@ -17,7 +33,6 @@ public class JvtUnitTypes implements ContentList{
     @Override
     public void load(){
         yellow = new UnitType("yellow"){{
-            AIControlller = DefenderAI;
             flying = true;
             health = 2147483647f;
             armor = 2147483647f;
