@@ -15,7 +15,6 @@ public class Yellow extends Mod{
     
     public Yellow(){
         Log.info("amogus");
-        });
     };
     
     private final ContentList[] yellowContent = {
