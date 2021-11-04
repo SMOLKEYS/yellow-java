@@ -61,6 +61,11 @@ public class YellowUnitTypes implements ContentList{
                 }}
                 /*new Weapon("bullethell"){{}}*/
             );
+            /*
+            draw(){
+                hhh what do i use here
+            }
+            */
         }};
         
         yellowGround = new UnitType("yellowGround"){{
@@ -90,5 +95,5 @@ public class YellowUnitTypes implements ContentList{
                 }}
             );
         }};
-    }
+    };
 }
