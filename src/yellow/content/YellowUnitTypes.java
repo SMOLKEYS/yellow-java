@@ -61,8 +61,9 @@ public class YellowUnitTypes implements ContentList{
                 }}
                 /*new Weapon("bullethell"){{}}*/
             );
-            /*Code by Emanuel G.*/
-            draw(Unit unit){
+            
+            /*Code by Emanuel G.
+            public void draw(Unit unit){
                 int circles = 8; 
                 Draw.color(Tmp.c1.set(Color.yellow).lerp(Color.white,Mathf.absin(Time.time, 10,1)));
                 for(let i = 0; i < circles; i++){Draw.z(Layer.effect + 0.001);
@@ -70,6 +71,7 @@ public class YellowUnitTypes implements ContentList{
                 Draw.rect(Core.atlas.find("alpha"), this.x + x * Math.sin(Time.time * 0.001) * y * x / y * x, this.y + y * Math.sin(Time.time * 0.001) * y * x / y * x, x, y, Mathf.angle(x, y))
                 }
             };
+            */
         }};
         
         yellowGround = new UnitType("yellowGround"){{
