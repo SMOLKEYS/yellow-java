@@ -2,8 +2,9 @@ package yellow.content;
 
 //a
 import arc.*;
+import arc.flabel.*;
 import arc.graphics.*;
-import aec.graphics.Color.*;
+import arc.graphics.Color.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
@@ -79,7 +80,7 @@ public class YellowUnitTypes implements ContentList{
                 super.setStats();
                 stats.remove(Stat.health);
                 
-                stats.add(Stat.health, l -> l.add(new FLabel("{wave}{rainbow}ALLPOWER")));
+                stats.add(Stat.health, l -> l.add(new FLabel("{wave}{yellow}ALLPOWER")));
             }
         };
         
