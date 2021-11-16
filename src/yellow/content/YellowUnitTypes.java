@@ -62,14 +62,6 @@ public class YellowUnitTypes implements ContentList{
                 }}
             );
             
-            /** From PM */
-            @Override
-            public void setStats(){
-                super.setStats();
-                stats.remove(Stat.health);
-                
-                stats.add(Stat.health, l -> l.add(new FLabel("{wave}{rainbow}ALLPOWER")));
-            };
             
             /*Code by Emanuel G.
             public void draw(Unit unit){
@@ -81,7 +73,15 @@ public class YellowUnitTypes implements ContentList{
                 }
             };
             */
-        }};
+        }
+            @Override
+            public void setStats(){
+                super.setStats();
+                stats.remove(Stat.health);
+                
+                stats.add(Stat.health, l -> l.add(new FLabel("{wave}{rainbow}ALLPOWER")));
+            }
+        };
         
         yellowGround = new UnitType("yellowGround"){{
             health = 2147483647f;
