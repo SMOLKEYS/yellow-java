@@ -3,6 +3,7 @@ package yellow.content;
 //a
 import arc.*;
 import arc.graphics.*;
+import aec.graphics.Color.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
@@ -59,8 +60,16 @@ public class YellowUnitTypes implements ContentList{
                         lifetime = 60f;
                     }};
                 }}
-                /*new Weapon("bullethell"){{}}*/
             );
+            
+            /** From PM */
+            @Override
+            public void setStats(){
+                super.setStats();
+                stats.remove(Stat.health);
+                
+                stats.add(Stat.health, l -> l.add(new FLabel("{wave}{rainbow}ALLPOWER")));
+            }
             
             /*Code by Emanuel G.
             public void draw(Unit unit){
@@ -82,6 +91,7 @@ public class YellowUnitTypes implements ContentList{
             maxRange = 400f;
             
             constructor = MechUnit::create;
+            region = Core.atlas.find("panama");
             
             weapons.add(
                 new Weapon("anti-moth-spray"){{
