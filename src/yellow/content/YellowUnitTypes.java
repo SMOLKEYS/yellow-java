@@ -69,7 +69,7 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.health);
                 
                 stats.add(Stat.health, l -> l.add(new FLabel("{wave}{rainbow}ALLPOWER")));
-            }
+            };
             
             /*Code by Emanuel G.
             public void draw(Unit unit){
