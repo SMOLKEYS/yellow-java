@@ -78,9 +78,10 @@ public class YellowUnitTypes implements ContentList{
             @Override
             public void setStats(){
                 super.setStats();
-                stats.remove(Stat.health, Stat.size);
+                stats.remove(Stat.health);
                 stats.remove(Stat.armor);
-                
+                stats.remove(Stat.size);
+                /** FLabel soam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
