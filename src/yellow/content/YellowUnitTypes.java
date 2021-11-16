@@ -79,8 +79,10 @@ public class YellowUnitTypes implements ContentList{
             public void setStats(){
                 super.setStats();
                 stats.remove(Stat.health);
+                stats.remove(Stat.armor);
                 
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
+                stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
             }
         };
         
