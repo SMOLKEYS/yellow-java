@@ -42,6 +42,9 @@ public class YellowUnitTypes implements ContentList{
             drag = 0.01f;
             range = 240f;
             maxRange = 240f;
+            mineSpeed = 5000f;
+            mineTier = 5000f;
+            itemCapacity = 850000f;
             commandLimit = 85000;
             
             constructor = UnitEntity::create;
@@ -73,6 +76,11 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.commandLimit);
                 stats.remove(Stat.speed);
                 stats.remove(Stat.weapons);
+                stats.remove(Stat.itemCapacity);
+                stats.remove(Stat.mineSpeed);
+                stats.remove(Stat.mineTier);
+                stats.remove(Stat.flying);
+                stats.remove(Stat.range);
                 /** FLabel soam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
@@ -80,7 +88,11 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOOOOOOOOOOOOOOS")));
                 stats.add(Stat.speed, "flar");
                 stats.add(Stat.weapons, l -> l.add(new FLabel("{shake}[red]Meltdown Shotgun")));
-                
+                stats.add(Stat.itemCapacity, l -> l.add(new FLabel("{shake}[cyan]EVEN MORE ZEROOOOOOOOOOOOOOOOOOOOS")));
+                stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
+                stats.add(Stat.mineTier, "[red]Everything");
+                stats.add(Stat.flying, "yep.");
+                stats.add(Stat.range, l -> l.add(new FLabel("{shake}3540 blocks")));
             }
         };
         
