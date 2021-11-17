@@ -71,11 +71,16 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.armor);
                 stats.remove(Stat.size);
                 stats.remove(Stat.commandLimit);
+                stats.remove(Stat.speed);
+                stats.remove(Stat.weapons);
                 /** FLabel soam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOOOOOOOOOOOOOOS")));
+                stats.add(Stat.speed, "flar");
+                stats.add(Stat.weapons, l -> l.add(new FLabel("{shake}[red]Meltdown Shotgun")));
+                
             }
         };
         
