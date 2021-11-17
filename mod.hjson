@@ -1,8 +1,8 @@
 #the mod name as displayed in-game
-displayName: "yellow"
+displayName: "Yellow (Java)"
 
 #the internal name of your mod
-name: "Yellow (Java)"
+name: "yellow"
 
 #your name
 author: "SMOLKEYS"
@@ -14,7 +14,7 @@ main: "yellow.Yellow"
 description: "fiery"
 
 #the mod version
-version: 0.01
+version: 0.1
 
 #the minimum game build required to run this mod
 minGameVersion: 129
