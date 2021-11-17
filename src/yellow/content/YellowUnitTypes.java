@@ -87,7 +87,7 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
-                stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOS")))
+                stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOS")));
 
             }
         };
