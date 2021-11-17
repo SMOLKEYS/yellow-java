@@ -77,17 +77,6 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOOOOOOOOOOOOOOS")));
             }
-            
-            @Override
-            public void draw(Unit unit){
-                int circles = 8; 
-                Draw.color(Tmp.c1.set(Color.yellow).lerp(Color.white,Mathf.absin(Time.time, 10,1)));
-                for(let i = 0; i < circles; i++){Draw.z(Layer.effect + 0.001);
-                let x = Angles.trnsx(Time.time + i * (360 / circles), 3), y = Angles.trnsy(Time.time + i * (360 / circles), 15);
-                Draw.rect(Core.atlas.find("alpha"), this.x + x * Math.sin(Time.time * 0.001) * y * x / y * x, this.y + y * Math.sin(Time.time * 0.001) * y * x / y * x, x, y, Mathf.angle(x, y));
-                }
-            }
-            
         };
         
         yellowGround = new UnitType("yellowGround"){{
