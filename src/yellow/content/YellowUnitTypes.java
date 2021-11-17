@@ -43,8 +43,8 @@ public class YellowUnitTypes implements ContentList{
             range = 240f;
             maxRange = 240f;
             mineSpeed = 5000f;
-            mineTier = 5000f;
-            itemCapacity = 850000f;
+            mineTier = 5000;
+            itemCapacity = 850000;
             commandLimit = 85000;
             
             constructor = UnitEntity::create;
