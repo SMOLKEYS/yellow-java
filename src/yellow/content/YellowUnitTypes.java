@@ -42,6 +42,7 @@ public class YellowUnitTypes implements ContentList{
             drag = 0.01f;
             range = 240f;
             maxRange = 240f;
+            commandLimit = 85000;
             
             constructor = UnitEntity::create;
             defaultController = DefenderAI::new;
@@ -81,10 +82,12 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.health);
                 stats.remove(Stat.armor);
                 stats.remove(Stat.size);
+                stats.remove(Stat.commandLimit);
                 /** FLabel soam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
+                stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOS")))
 
             }
         };
