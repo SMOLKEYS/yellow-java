@@ -19,7 +19,8 @@ public class YellowWeapons implements ContentList{
     meltdownShotgun; /*bullethell, gigaDiamond, stopSign,
     deleter, pingIncreaser*/
     
-    public static void init(){
+    @Override
+    public void load(){
         meltdownShotgun = new Weapon("meltdown-shotgun"){{
             reload = 60f;
             x = 56f;
