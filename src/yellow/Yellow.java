@@ -18,7 +18,6 @@ public class Yellow extends Mod{
     };
     
     private final ContentList[] yellowContent = {
-        new YellowWeapons(),
         new YellowUnitTypes()
     };
     

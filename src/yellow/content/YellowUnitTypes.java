@@ -21,8 +21,8 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
-import yellow.content.*;
 
+import static yellow.weapons.*;
 import static mindustry.Vars.*;
 
 public class YellowUnitTypes implements ContentList{
