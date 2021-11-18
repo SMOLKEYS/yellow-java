@@ -21,6 +21,7 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
+import yellow.weapons.*;
 
 import static mindustry.Vars.*;
 
@@ -35,6 +36,7 @@ public class YellowUnitTypes implements ContentList{
         
         yellowAir = new UnitType("yellowAir"){{
             flying = true;
+            hideDetails = false; //god why
             health = 2147483647f;
             armor = 2147483647f;
             speed = 3f;
@@ -51,21 +53,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = DefenderAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(
-                new Weapon("meltdown-shotgun"){{
-                    reload = 60f;
-                    x = 56f;
-                    mirror = true;
-                    shots = 15;
-                    inaccuracy = 30f;
-                    bullet = new ContinuousLaserBulletType(){{
-                        damage = 100f;
-                        width = 8f;
-                        length = 240f;
-                        lifetime = 60f;
-                    }};
-                }}
-            );
+            weapons.add(meltdownShotgun.copy());
         }
             @Override
             public void setStats(){
