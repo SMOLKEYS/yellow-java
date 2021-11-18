@@ -21,7 +21,6 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
-import yellow.weapons.*;
 
 import static mindustry.Vars.*;
 
@@ -53,7 +52,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = DefenderAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(meltdown-shotgun.copy());
+            weapons.add(meltdownShotgun.copy());
         }
             @Override
             public void setStats(){

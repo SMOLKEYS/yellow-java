@@ -1,4 +1,4 @@
-package yellow.weapons;
+package yellow.content;
 
 import arc.*;
 import arc.flabel.*;
@@ -13,7 +13,7 @@ import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 
-public class YellowWeapons{
+public class YellowWeapons implements ContentList{
     public static Weapon
     
     meltdownShotgun; /*bullethell, gigaDiamond, stopSign,
