@@ -53,7 +53,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = DefenderAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add("meltdown-shotgun" + .copy());
+            weapons.add(meltdown-shotgun.copy());
         }
             @Override
             public void setStats(){
