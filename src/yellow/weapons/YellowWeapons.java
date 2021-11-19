@@ -16,7 +16,7 @@ import mindustry.world.meta.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownShotgun; /*bullethell, gigaDiamond, stopSign,
+    meltdownShotgun, bullethell; /*gigaDiamond, stopSign,
     deleter, pingIncreaser*/
     
     public static void init(){
@@ -34,6 +34,23 @@ public class YellowWeapons{
                 length = 240f;
                 lifetime = 60f;
             }};
+        }};
+        
+        bullethell = new Weapon("bullethell"){{
+            reload = 900f;
+            x = 0f;
+            y = 0f;
+            mirror = false;
+            shots = 660;
+            shotDelay = 1f;
+            spacing = 10f;
+            bullet = new BasicBulletType(){{
+                damage = 20f;
+                width = 16f;
+                height = 16f;
+                lifetime = 300f;
+                speed = 3f;
+            }},
         }};
     }
 }
