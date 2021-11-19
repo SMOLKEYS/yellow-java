@@ -25,6 +25,8 @@ public class YellowWeapons{
             x = 56f;
             mirror = true;
             shots = 15;
+            shotDelay = 5f;
+            shootSound = Sounds.explosionbig;
             inaccuracy = 30f;
             bullet = new ContinuousLaserBulletType(){{
                 damage = 100f;
