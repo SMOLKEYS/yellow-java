@@ -10,6 +10,7 @@ import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
+import yellow.weapons.*;
 
 public class Yellow extends Mod{
     
@@ -23,6 +24,8 @@ public class Yellow extends Mod{
     
     @Override
     public void loadContent(){
+        YellowWeapons.init();
+        
         for(ContentList list : yellowContent){
             list.load();
         };
