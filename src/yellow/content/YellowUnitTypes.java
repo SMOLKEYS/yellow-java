@@ -69,17 +69,17 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.mineTier);
                 stats.remove(Stat.flying);
                 stats.remove(Stat.range);
-                /** FLabel soam might not be a good idea, performance-wise */
+                /** FLabel spam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{wave}{rainbow}ALLLL THE ZEROOOOOOOOOOOOOOOOOOOOOOS")));
-                stats.add(Stat.speed, "flar");
+                stats.add(Stat.speed, l -> l.add(new FLabel("{sick}flar")));
                 stats.add(Stat.weapons, l -> l.add(new FLabel("{shake}[red]Meltdown Shotgun")));
                 stats.add(Stat.itemCapacity, l -> l.add(new FLabel("{shake}[cyan]EVEN MORE ZEROOOOOOOOOOOOOOOOOOOOS")));
                 stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
-                stats.add(Stat.mineTier, "[red]Everything");
-                stats.add(Stat.flying, "yep.");
+                stats.add(Stat.mineTier, l -> l.add(new FLabel("{rainbow}{sick}ONE AND THIRTY ZEROS")));
+                stats.add(Stat.flying, l -> l.add(new FLabel("{rainbow}YES")));
                 stats.add(Stat.range, l -> l.add(new FLabel("{shake}3540 blocks")));
             }
         };
