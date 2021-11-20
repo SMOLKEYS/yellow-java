@@ -50,7 +50,7 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 3f;
-            }},
+            }};
         }};
     }
 }

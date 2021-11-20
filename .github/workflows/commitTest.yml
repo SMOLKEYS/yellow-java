@@ -20,5 +20,5 @@ jobs:
     - name: Upload built jar file
       uses: actions/upload-artifact@v2
       with:
-        name: local yellow
+        name: yellow in a box
         path: build/libs/${{ github.event.repository.name }}.jar
