@@ -3,6 +3,7 @@ package yellow.weapons;
 import arc.*;
 import arc.flabel.*;
 import mindustry.*;
+import mindustry.graphics.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
