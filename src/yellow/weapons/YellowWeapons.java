@@ -16,11 +16,10 @@ import mindustry.world.meta.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownShotgun, bullethell; /*gigaDiamond, stopSign,
-    deleter, pingIncreaser*/
+    meltdownBurstAttack, bullethellAttack;
     
     public static void init(){
-        meltdownShotgun = new Weapon("meltdown-shotgun"){{
+        meltdownBurstAttack = new Weapon("meltdown-burst"){{
             reload = 60f;
             x = 56f;
             mirror = true;
@@ -36,7 +35,7 @@ public class YellowWeapons{
             }};
         }};
         
-        bullethell = new Weapon("bullethell"){{
+        bullethellAttack = new Weapon("bullethell"){{
             reload = 900f;
             x = 0f;
             y = 0f;
@@ -50,6 +49,8 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 3f;
+                trailColor = Pal.remove;
+                trailEffect = Fx.placeBlock;
             }};
         }};
     }
