@@ -36,6 +36,13 @@ public class YellowWeapons{
                 width = 8f;
                 length = 240f;
                 lifetime = 60f;
+                colors = {
+                    Color.yellow,
+                    Color.yellow,
+                    Color.yellow,
+                    Color.yellow
+                }
+                lightColor = Color.yellow;
             }};
         }};
         
