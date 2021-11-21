@@ -1,7 +1,7 @@
 package yellow.weapons;
 
 import arc.*;
-import arc.graphics.*:
+import arc.graphics.*;
 import arc.graphics.Color.*;
 import arc.flabel.*;
 import mindustry.*;

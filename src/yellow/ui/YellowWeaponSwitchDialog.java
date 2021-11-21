@@ -1,7 +1,7 @@
 package yellow.ui;
 
 import arc.*;
-import arc.scene.*
+import arc.scene.*;
 import arc.scene.ui.*;
 import arc.scene.ui.Button.*;
 import arc.scene.ui.layout.*;
