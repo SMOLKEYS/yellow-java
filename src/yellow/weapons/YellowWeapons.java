@@ -1,6 +1,8 @@
 package yellow.weapons;
 
 import arc.*;
+import arc.graphics.*:
+import arc.graphics.Color.*;
 import arc.flabel.*;
 import mindustry.*;
 import mindustry.content.*;
@@ -51,8 +53,8 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 3f;
-                trailColor = Pal.remove;
-                trailEffect = Fx.placeBlock;
+                trailEffect = Fx.trailFade;
+                trailLength = 25;
             }};
         }};
     }
