@@ -44,15 +44,15 @@ public class YellowWeapons{
             x = 0f;
             y = 0f;
             mirror = false;
-            shots = 660;
+            shots = 690;
             shotDelay = 1f;
-            spacing = 10f;
+            spacing = 5f;
             bullet = new BasicBulletType(){{
-                damage = 20f;
+                damage = 150f;
                 width = 16f;
                 height = 16f;
                 lifetime = 300f;
-                speed = 3f;
+                speed = 6f;
                 trailEffect = Fx.trailFade;
                 trailLength = 25;
             }};
