@@ -1,3 +1,4 @@
+/**
 package yellow.ui;
 
 import arc.*;
@@ -21,3 +22,4 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         
     }
 }
+*/
