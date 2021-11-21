@@ -53,6 +53,9 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 6f;
+                backColor = Color.yellow;
+                frontColor = Color.yellow;
+                trailColor = Color.yellow;
                 trailEffect = Fx.trailFade;
                 trailLength = 25;
             }};
