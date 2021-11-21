@@ -16,9 +16,9 @@ jobs:
       with:
         java-version: 16
     - name: Build mod jar
-      run: ./gradlew deploy
+      run: chmod +x ./gradlew; ./gradlew deploy
     - name: Upload built jar file
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ github.event.repository.name }} Pull Request
+        name: yellow pr in a box
         path: build/libs/${{ github.event.repository.name }}.jar
