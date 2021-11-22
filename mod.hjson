@@ -14,7 +14,7 @@ main: "yellow.Yellow"
 description: "fiery"
 
 #the mod version
-version: 0.11
+version: 0.12
 
 #the minimum game build required to run this mod
 minGameVersion: 129
