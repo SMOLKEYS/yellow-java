@@ -11,10 +11,10 @@ author: "SMOLKEYS"
 main: "yellow.Yellow"
 
 #the mod description as seen in the mod dialog
-description: "fiery"
+description: "[yellow]Comeback."
 
 #the mod version
-version: 0.12
+version: 0.2
 
 #the minimum game build required to run this mod
 minGameVersion: 129

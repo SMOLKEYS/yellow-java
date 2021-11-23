@@ -17,6 +17,8 @@ import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 
+import static arc.Core.*;
+
 public class YellowWeapons{
     public static Weapon
     
@@ -32,7 +34,7 @@ public class YellowWeapons{
             shootSound = Sounds.explosionbig;
             inaccuracy = 30f;
             bullet = new ContinuousLaserBulletType(){{
-                damage = 100f;
+                damage = 150f;
                 width = 8f;
                 length = 240f;
                 lifetime = 60f;
@@ -49,17 +51,24 @@ public class YellowWeapons{
             shotDelay = 1f;
             spacing = 5f;
             bullet = new BasicBulletType(){{
-                damage = 150f;
+                damage = 300f;
                 width = 16f;
                 height = 16f;
                 lifetime = 300f;
                 speed = 6f;
-                backColor = Color.yellow;
-                frontColor = Color.yellow;
+                backRegion = Core.atlas.find("flare");
+                frontRegion = Core.atlas.find("flare");
+                sprite = Core.atlas.find("flare");
+                backColor = Color.white;
+                frontColor = Color.white;
                 trailColor = Color.yellow;
                 trailChance = 1f;
-                trailEffect = Fx.commandSend;
+                trailEffect = Fx.trailFade;
                 trailLength = 25;
+                shrinkX = 0f;
+                shrinkY = 0f;
+                weaveMag = 1.205f;
+                weaveScale = 4000f;
             }};
         }};
     }
