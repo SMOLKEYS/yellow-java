@@ -45,13 +45,12 @@ public class YellowWeapons{
                 lightColor = Color.yellow;
             }};
         }
-            
-            @Override
-            public void draw(WeaponMount w){
+        
+            public void draw(Weapon w){
                 super.draw(w);
                 
-                int rot = Time.time;
-                int invrot = -Time.time;
+                float rot = Time.time;
+                float invrot = -Time.time;
                 
                 Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 25, 25, rot);
                 Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 65, 65, invrot);
