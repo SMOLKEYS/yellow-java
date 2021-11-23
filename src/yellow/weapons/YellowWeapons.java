@@ -46,8 +46,8 @@ public class YellowWeapons{
             }};
         }
         
-            public void draw(Weapon w){
-                super.draw(w);
+            public void draw(Unit u, WeaponMount w){
+                super.draw(u, w);
                 
                 float rot = Time.time;
                 float invrot = -Time.time;
