@@ -58,7 +58,6 @@ public class YellowWeapons{
                 speed = 6f;
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
-                sprite = Core.atlas.find("flare");
                 backColor = Color.white;
                 frontColor = Color.white;
                 trailColor = Color.yellow;
