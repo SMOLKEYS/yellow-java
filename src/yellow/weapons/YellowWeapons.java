@@ -1,7 +1,11 @@
 package yellow.weapons;
 
 import arc.*;
+import arc.util.*;
+import arc.util.Time.*;
 import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.graphics.g2d.Draw.*;
 import arc.graphics.Color.*;
 import arc.flabel.*;
 import mindustry.*;
@@ -40,7 +44,20 @@ public class YellowWeapons{
                 lifetime = 60f;
                 lightColor = Color.yellow;
             }};
-        }};
+        }
+            
+            @Override
+            public void draw(WeaponMount w){
+                super.draw(w);
+                
+                int rot = Time.time;
+                int invrot = -Time.time;
+                
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 25, 25, rot);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 65, 65, invrot);
+0
+            }
+        };
         
         bullethellAttack = new Weapon("bullethell"){{
             reload = 900f;
