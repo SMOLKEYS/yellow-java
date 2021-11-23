@@ -55,7 +55,6 @@ public class YellowWeapons{
                 
                 Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 25, 25, rot);
                 Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 65, 65, invrot);
-0
             }
         };
         
