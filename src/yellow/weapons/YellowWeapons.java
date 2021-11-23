@@ -13,6 +13,8 @@ import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
+import mindustry.entities.units.*;
+import mindustry.entities.units.WeaponMount.*;
 import mindustry.entities.bullet.*;
 import mindustry.mod.*;
 import mindustry.gen.*;
