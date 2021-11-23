@@ -90,7 +90,7 @@ public class YellowUnitTypes implements ContentList{
             
             @Override
             public void draw(Unit u){
-                super.draw();
+                super.draw(u);
                 
                 float rot = Time.time * 2f;
                 
