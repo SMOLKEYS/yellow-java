@@ -22,7 +22,7 @@ import static arc.Core.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethellAttack;
+    meltdownBurstAttack, bullethellAttack, antiMothSpray;
     
     public static void init(){
         meltdownBurstAttack = new Weapon("meltdown-burst"){{
@@ -65,11 +65,27 @@ public class YellowWeapons{
                 trailColor = Color.yellow;
                 trailChance = 1f;
                 trailEffect = Fx.trailFade;
-                trailLength = 25;
+                trailLength = 10;
                 shrinkX = 0f;
                 shrinkY = 0f;
                 weaveMag = 1.205f;
                 weaveScale = 4000f;
+            }};
+        }};
+        
+        antiMothSpray = new Weapon("anti-moth-spray"){{
+            reload = 2f;
+            x = 3f;
+            mirror = true;
+            shots = 25;
+            inaccuracy = 15f;
+            bullet = new BasicBulletType(){{
+                damage = 20f;
+                lifetime = 60f;
+                speed = 4f;
+                width = 8f;
+                height = 8f;
+                knockback = 5f;
             }};
         }};
     }

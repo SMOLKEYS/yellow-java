@@ -2,12 +2,15 @@ package yellow.content;
 
 //a
 import arc.*;
+import arc.util.*;
+import arc.util.Time.*;
 import arc.flabel.*;
 import arc.graphics.*;
 import arc.graphics.Color.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
+import mindustry.graphics.*;
 import mindustry.ai.types.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
@@ -84,6 +87,17 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.flying, l -> l.add(new FLabel("{rainbow}YES")));
                 stats.add(Stat.range, l -> l.add(new FLabel("{shake}380729 + 125211 blocks")));
             }
+            
+            @Override
+            public void draw(Unit u){
+                float rot = Time.time * 2f;
+                
+                Draw.z(Layer.effect);
+                Draw.rect(Core.atlas.find("rotato"), u.x, u.y, 20, 20, 0, 0, rot);
+                Draw.rect(Core.atlas.find("rotato"), u.x, u.y, 20, 20, 20, 20, rot);
+                Draw.rect(Core.atlas.find("rotato"), u.x, u.y, 20, 20, 30, 30, rot);
+                Draw.rect(Core.atlas.find("rotato"), u.x, u.y, 20, 20, -10, -10, rot);
+            }
         };
         
         yellowGround = new UnitType("yellowGround"){{
@@ -96,23 +110,7 @@ public class YellowUnitTypes implements ContentList{
             constructor = MechUnit::create;
             region = Core.atlas.find("panama");
             
-            weapons.add(
-                new Weapon("anti-moth-spray"){{
-                    reload = 2f;
-                    x = 3f;
-                    mirror = true;
-                    shots = 25;
-                    inaccuracy = 15f;
-                    bullet = new BasicBulletType(){{
-                        damage = 50f;
-                        lifetime = 60f;
-                        speed = 4f;
-                        width = 8f;
-                        height = 8f;
-                        knockback = 5f;
-                    }};
-                }}
-            );
+            weapons.add(YellowWeapons.antiMothSpray);
         }};
     };
 }
