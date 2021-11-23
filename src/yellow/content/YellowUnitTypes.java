@@ -82,7 +82,7 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
                 stats.add(Stat.mineTier, l -> l.add(new FLabel("{rainbow}{sick}ONE AND THIRTY ZEROS")));
                 stats.add(Stat.flying, l -> l.add(new FLabel("{rainbow}YES")));
-                stats.add(Stat.range, l -> l.add(new FLabel("{shake}380729 blocks")));
+                stats.add(Stat.range, l -> l.add(new FLabel("{shake}380729 + 125211 blocks")));
             }
         };
         

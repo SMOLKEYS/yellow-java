@@ -56,6 +56,7 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 6f;
+                hitEffect = Fx.none;
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
                 backColor = Color.white;
