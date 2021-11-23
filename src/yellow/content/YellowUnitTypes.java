@@ -104,7 +104,7 @@ public class YellowUnitTypes implements ContentList{
                     shots = 25;
                     inaccuracy = 15f;
                     bullet = new BasicBulletType(){{
-                        damage = 1f;
+                        damage = 50f;
                         lifetime = 60f;
                         speed = 4f;
                         width = 8f;
