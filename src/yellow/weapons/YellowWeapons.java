@@ -59,6 +59,7 @@ public class YellowWeapons{
                 hitEffect = Fx.none;
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
+                sprite = "flare";
                 backColor = Color.white;
                 frontColor = Color.white;
                 trailColor = Color.yellow;
