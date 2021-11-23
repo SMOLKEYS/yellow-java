@@ -50,7 +50,7 @@ public class YellowUnitTypes implements ContentList{
             commandLimit = 85000;
             
             constructor = UnitEntity::create;
-            defaultController = DefenderAI::new;
+            defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
             weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethellAttack);
