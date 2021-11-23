@@ -2,6 +2,8 @@
 
 Just me, this repo, and a lot of chaos.
 
+[SMOLHome Discord Server](https://discord.gg/uAddT46bFx)
+
 ## Building for Desktop Testing
 
 1. Install JDK **16**.
