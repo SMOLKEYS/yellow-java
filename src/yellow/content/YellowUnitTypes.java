@@ -40,8 +40,8 @@ public class YellowUnitTypes implements ContentList{
         yellowAir = new UnitType("yellowAir"){{
             flying = true;
             hideDetails = false; //god why
-            health = Float.MAX_VALUE;
-            armor = Float.MAX_VALUE;
+            health = Number.MAX_VALUE;
+            armor = Number.MAX_VALUE;
             speed = 3f;
             accel = 0.08f;
             drag = 0.01f;
@@ -103,8 +103,8 @@ public class YellowUnitTypes implements ContentList{
         };
         
         yellowGround = new UnitType("yellowGround"){{
-            health = Float.MAX_VALUE;
-            armor = Float.MAX_VALUE;
+            health = Number.MAX_VALUE;
+            armor = Number.MAX_VALUE;
             speed = 1f;
             range = 400f;
             maxRange = 400f;
