@@ -51,11 +51,11 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
-                float rot2 = Time.time;
+                float rot = Time.time;
                 
-                Draw.z(Layer.effect)
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 25, 25, rot2);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 65, 65, -rot2);
+                Draw.z(Layer.effect);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 25, 25, rot);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 65, 65, -rot);
             }
         };
         
