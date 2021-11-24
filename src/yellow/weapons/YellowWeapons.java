@@ -52,8 +52,8 @@ public class YellowWeapons{
                 super.draw(u, w);
                 
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 25, 25, Time.time);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 30, 30, Time.time);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + w.weapon.x, u.y + w.weapon.y, 25, 25, Time.time);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + w.weapon.x, u.y + w.weapon.y, 30, 30, Time.time);
             }
         };
         
