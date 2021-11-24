@@ -52,10 +52,9 @@ public class YellowWeapons{
                 super.draw(u, w);
                 
                 float rot = Time.time;
-                float invrot = -Time.time;
                 
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 25, 25, rot);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.x, w.y, 65, 65, invrot);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 25, 25, rot);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), w.weapon.x, w.weapon.y, 65, 65, -rot);
             }
         };
         
