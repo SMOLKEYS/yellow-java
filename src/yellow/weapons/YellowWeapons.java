@@ -1,6 +1,8 @@
 package yellow.weapons;
 
 import arc.*;
+import arc.math.*;
+import arc.math.Angles.*;
 import arc.util.*;
 import arc.util.Time.*;
 import arc.graphics.*;
@@ -51,9 +53,11 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
+                float rotation = u.rotation - 90;
+                
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + w.weapon.x, u.y + w.weapon.y, 25, 25, Time.time);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + w.weapon.x, u.y + w.weapon.y, 30, 30, Time.time);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 25, 25, Time.time);
+                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, Time.time);
             }
         };
         
