@@ -85,11 +85,14 @@ public class YellowWeapons{
                 trailColor = Color.yellow;
                 trailChance = 1f;
                 trailEffect = Fx.trailFade;
-                trailLength = 10;
+                trailLength = 3;
                 shrinkX = 0f;
                 shrinkY = 0f;
                 weaveMag = 1.205f;
                 weaveScale = 4000f;
+                pierce = true;
+                pierceBuilding = true;
+                pierceCap = 12;
             }};
         }};
         
