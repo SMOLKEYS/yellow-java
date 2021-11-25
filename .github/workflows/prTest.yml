@@ -1,4 +1,4 @@
-name: Pull Request Testing
+name: pr push and build innit
 
 on: [pull_request]
 

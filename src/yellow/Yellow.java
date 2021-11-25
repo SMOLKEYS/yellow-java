@@ -19,6 +19,7 @@ public class Yellow extends Mod{
     };
     
     private final ContentList[] yellowContent = {
+        new YellowFx(),
         new YellowUnitTypes()
     };
     

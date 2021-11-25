@@ -24,6 +24,7 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
+import yellow.content.*;
 
 import static arc.Core.*;
 
@@ -76,7 +77,8 @@ public class YellowWeapons{
                 height = 16f;
                 lifetime = 300f;
                 speed = 6f;
-                hitEffect = Fx.none;
+                hitEffect = YellowFx.ghostDespawn;
+                despawnEffect = YellowFx.ghostDespawn;
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
                 sprite = "flare";

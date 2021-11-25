@@ -1,6 +1,5 @@
 package yellow.content;
 
-//a
 import arc.*;
 import arc.util.*;
 import arc.util.Time.*;
@@ -39,7 +38,7 @@ public class YellowUnitTypes implements ContentList{
         
         yellowAir = new UnitType("yellowAir"){{
             flying = true;
-            hideDetails = false; //god why
+            hideDetails = false;
             health = Float.MAX_VALUE;
             armor = Float.MAX_VALUE;
             speed = 3f;

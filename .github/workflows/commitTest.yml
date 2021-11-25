@@ -1,4 +1,4 @@
-name: Commit Testing
+name: push and build innit
 
 on: [push]
 
