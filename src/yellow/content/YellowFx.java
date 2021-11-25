@@ -28,7 +28,7 @@ public class YellowFx{
     /** A circle effect that expands with opacity. Used by the bullethell attack. */
     ghostDespawn = new Effect(10f, e -> {
         Draw.z(Layer.effect);
-        Draw.alpha(e.fout * 3);
+        Draw.alpha(e.fout() * 3);
         Lines.stroke(e.fout() * 7);
         Lines.circle(e.x, e.y, e.fin() * 10);
     });
