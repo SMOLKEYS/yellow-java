@@ -25,7 +25,7 @@ import static mindustry.Vars.*;
 public class YellowFx{
     public static final Effect
     
-    /** A circle effect that expands with opacity. Used by the bullethell attack. */
+    /** A circle effect that expands and slowly fades. Used by the bullethell attack. */
     ghostDespawn = new Effect(10f, e -> {
         Draw.z(Layer.effect);
         Draw.alpha(e.fout() * 3);

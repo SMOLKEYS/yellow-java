@@ -50,6 +50,7 @@ public class YellowUnitTypes implements ContentList{
             mineTier = 5000;
             itemCapacity = 850000;
             commandLimit = 85000;
+            buildSpeed = 95000f;
             
             constructor = UnitEntity::create;
             defaultController = FlyingAI::new;
@@ -73,6 +74,7 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.mineTier);
                 stats.remove(Stat.flying);
                 stats.remove(Stat.range);
+                stats.remove(Stat.buildSpeed);
                 /** FLabel spam might not be a good idea, performance-wise */
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
@@ -85,6 +87,7 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.mineTier, l -> l.add(new FLabel("{rainbow}{sick}ONE AND THIRTY ZEROS")));
                 stats.add(Stat.flying, l -> l.add(new FLabel("{rainbow}YES")));
                 stats.add(Stat.range, l -> l.add(new FLabel("{shake}380729 + 125211 blocks")));
+                stats.add(Stat.buildSpeed, l -> l.add(new Flabel("{rainbow}MANY ZEROS")));
             }
             
             @Override
