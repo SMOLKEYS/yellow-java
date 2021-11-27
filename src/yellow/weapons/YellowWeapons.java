@@ -115,7 +115,7 @@ public class YellowWeapons{
         }};
         
         decimation = new Weapon("decimation"){{
-            reload = 900f;
+            reload = 300f;
             x = 48f;
             mirror = true;
             shots = 1;
