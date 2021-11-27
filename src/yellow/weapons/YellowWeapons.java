@@ -128,9 +128,9 @@ public class YellowWeapons{
                 speed = 2f;
                 width = 8f;
                 height = 8f;
-                hitEffect = YellowFx.yellowDeath;
-                despawnEffect = YellowFx.yellowDeath;
-            }}
+                hitEffect = YellowFx.yellowExplosionOut;
+                despawnEffect = YellowFx.yellowExplosionOut;
+            }};
         }};
     }
 }

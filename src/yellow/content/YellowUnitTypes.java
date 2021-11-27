@@ -52,7 +52,7 @@ public class YellowUnitTypes implements ContentList{
             itemCapacity = 850000;
             commandLimit = 85000;
             buildSpeed = 95000f;
-            deathExplosionEffect = YellowFx.yellowDeath;
+            deathExplosionEffect = YellowFx.yellowExplosionOutIn;
             
             constructor = UnitEntity::create;
             defaultController = FlyingAI::new;
@@ -115,7 +115,7 @@ public class YellowUnitTypes implements ContentList{
             maxRange = 400f;
             
             constructor = MechUnit::create;
-            region = Core.atlas.find("yellow")
+            region = Core.atlas.find("yellow");
             
             weapons.add(YellowWeapons.antiMothSpray, YellowWeapons.decimation);
         }};
