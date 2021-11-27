@@ -24,6 +24,7 @@ import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 import yellow.weapons.*;
+import yellow.content.YellowFx.*;
 
 import static mindustry.Vars.*;
 
@@ -51,6 +52,7 @@ public class YellowUnitTypes implements ContentList{
             itemCapacity = 850000;
             commandLimit = 85000;
             buildSpeed = 95000f;
+            deathExplosionEffect = YellowFx.yellowDeath;
             
             constructor = UnitEntity::create;
             defaultController = FlyingAI::new;
@@ -102,6 +104,14 @@ public class YellowUnitTypes implements ContentList{
                 Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 20, 20, -rot);
                 Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
             }
+            
+            @Override
+            public void killed(Unit u){
+                super.killed(u);
+                
+                u.spawn(u.team, u.x, u.y);
+            }
+            
         };
         
         yellowGround = new UnitType("yellowGround"){{

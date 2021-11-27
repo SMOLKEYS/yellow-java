@@ -31,6 +31,25 @@ public class YellowFx{
         Draw.alpha(e.fout() * 3);
         Lines.stroke(e.fout() * 7);
         Lines.circle(e.x, e.y, e.fin() * 10);
+    }),
+    
+    /** Yellow's "death" effect. */
+    yellowDeath = new Effect(120f, e -> {
+        Draw.color(Color.yellow);
+        Lines.stroke(e.fout() * 15);
+        Lines.circle(e.x, e.y, e.fin() * 25);
+        Lines.square(e.x, e.y, e.fin() * 50, Time.time * 9);
+        Lines.circle(e.x, e.y, e.fin() * 50);
+        Lines.square(e.x, e.y, e.fin() * 100, Time.time * 9);
+        Lines.circle(e.x, e.y, e.fin() * 25);
+        Lines.square(e.x, e.y, e.fin() * 50, -Time.time * 9);
+        Lines.circle(e.x, e.y, e.fin() * 50);
+        Lines.square(e.x, e.y, e.fin() * 100, -Time.time * 9);
+        Lines.stroke(e.fin() * 15);
+        Lines.circle(e.x, e.y, e.fout() * 50);
+        Lines.square(e.x, e.y, e.fout() * 100, Time.time * 9);
+        Lines.circle(e.x, e.y, e.fout() * 75);
+        Lines.square(e.x, e.y, e.fout() * 150, -Time.time * 9);
     });
     
 }
