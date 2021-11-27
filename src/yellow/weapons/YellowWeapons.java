@@ -31,7 +31,7 @@ import static arc.Core.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethellAttack, antiMothSpray;
+    meltdownBurstAttack, bullethellAttack, antiMothSpray, decimation;
     
     public static void init(){
         meltdownBurstAttack = new Weapon("meltdown-burst"){{
@@ -112,6 +112,25 @@ public class YellowWeapons{
                 height = 8f;
                 knockback = 5f;
             }};
+        }};
+        
+        decimation = new Weapon("decimation"){{
+            reload = 900f;
+            x = 48f;
+            mirror = true;
+            shots = 1;
+            inaccuracy = 0f;
+            bullet = new BasicBulletType(){{
+                damage = 8500f;
+                splashDamage = 7000f;
+                splashDamageRadius = 192f;
+                lifetime = 420f;
+                speed = 2f;
+                width = 8f;
+                height = 8f;
+                hitEffect = YellowFx.yellowDeath;
+                despawnEffect = YellowFx.yellowDeath;
+            }}
         }};
     }
 }
