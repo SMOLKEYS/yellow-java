@@ -105,13 +105,6 @@ public class YellowUnitTypes implements ContentList{
                 Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
             }
             
-            @Override
-            public void killed(Unit u){
-                super.killed(u);
-                
-                u.spawn(u.team, u.x, u.y);
-            }
-            
         };
         
         yellowGround = new UnitType("yellowGround"){{
