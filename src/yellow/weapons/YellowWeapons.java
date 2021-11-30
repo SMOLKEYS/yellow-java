@@ -31,7 +31,7 @@ import static arc.Core.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethellAttack, antiMothSpray, decimation;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation;
     
     public static void init(){
         meltdownBurstAttack = new Weapon("meltdown-burst"){{
@@ -41,7 +41,7 @@ public class YellowWeapons{
             shots = 15;
             shotDelay = 5f;
             shootSound = Sounds.explosionbig;
-            inaccuracy = 30f;
+            spacing = 5f;
             continuous = true;
             bullet = new ContinuousLaserBulletType(){{
                 damage = 150f;
@@ -63,7 +63,7 @@ public class YellowWeapons{
             }
         };
         
-        bullethellAttack = new Weapon("bullethell"){{
+        bullethell = new Weapon("bullethell"){{
             reload = 900f;
             x = 0f;
             y = 0f;
@@ -132,5 +132,7 @@ public class YellowWeapons{
                 despawnEffect = YellowFx.yellowExplosionOut;
             }};
         }};
+        
+        //endregion
     }
 }

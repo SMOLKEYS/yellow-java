@@ -23,6 +23,7 @@ import static mindustry.Vars.*;
  * All effects are sorted by oldest-top, newest-bottom.
  */
 public class YellowFx{
+    
     public static final Effect
     
     /** A circle effect that expands and slowly fades. Used by the bullethell attack. */

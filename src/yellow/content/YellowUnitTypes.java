@@ -58,7 +58,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethellAttack);
+            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell);
         }
         
             /** readability 0 */
@@ -110,7 +110,7 @@ public class YellowUnitTypes implements ContentList{
         yellowGround = new UnitType("yellowGround"){{
             health = Float.MAX_VALUE;
             armor = Float.MAX_VALUE;
-            speed = 1f;
+            speed = 1.5f;
             range = 400f;
             maxRange = 400f;
             
