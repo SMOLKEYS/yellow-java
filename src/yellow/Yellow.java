@@ -14,6 +14,7 @@ import yellow.weapons.*;
 
 public class Yellow extends Mod{
     
+    
     public Yellow(){
         Log.info("amogus");
     };
