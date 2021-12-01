@@ -5,6 +5,7 @@ import arc.*;
 import arc.scene.*;
 import arc.scene.ui.*;
 import arc.scene.ui.Button.*;
+import arc.scene.ui.CheckBox.*;
 import arc.scene.ui.layout.*;
 import arc.scene.ui.layout.Table.*;
 import arc.struct.*;
@@ -20,12 +21,17 @@ import static arc.Core.*;
 import static mindustry.Vars.*;
 
 public class YellowWeaponSwitchDialog extends BaseDialog{
-    Table handler = new Table();
-    Weapon weapons = YellowWeapons.meltdownBurstAttack;
-    
     
     public YellowWeaponSwitchDialog(){
+        super("@yellow-weapon-switch.name");
         
+        cont.add("Weapon Switch");
+        addCloseButton();
+        
+        for(Weapon weapons : YellowWeapons){
+            cont.row();
+            cont.add(new CheckBox(weapons));
+        };
     }
 }
 */

@@ -119,5 +119,7 @@ public class YellowUnitTypes implements ContentList{
             
             weapons.add(YellowWeapons.antiMothSpray, YellowWeapons.decimation);
         }};
+        
+        //endregion
     };
 }

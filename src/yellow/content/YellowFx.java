@@ -89,4 +89,6 @@ public class YellowFx{
         Lines.circle(e.x, e.y, e.fout() * 50);
         Lines.square(e.x, e.y, e.fout() * 100, -Time.time * 9);
         });
+        
+        //endregion
 }

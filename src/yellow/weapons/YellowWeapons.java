@@ -8,6 +8,7 @@ import arc.util.Time.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.graphics.g2d.Draw.*;
+import arc.graphics.g2d.Lines.*;
 import arc.graphics.Color.*;
 import arc.flabel.*;
 import mindustry.*;
@@ -58,8 +59,8 @@ public class YellowWeapons{
                 float rotation = u.rotation - 90;
                 
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-java-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, Time.time);
-                Draw.rect(Core.atlas.find("yellow-java-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, -Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30,-Time.time);
             }
         };
         
@@ -130,7 +131,20 @@ public class YellowWeapons{
                 height = 8f;
                 hitEffect = YellowFx.yellowExplosionOut;
                 despawnEffect = YellowFx.yellowExplosionOut;
-            }};
+            }
+                @Override
+                public void draw(Bullet b){
+                    super.draw(b);
+                    
+                    Draw.z(Layer.effect);
+                    Draw.color(Color.yellow);
+                    Lines.square(b.x, b.y, 15, Time.time * 2);
+                    Lines.spikes(b.x, b.y, 10, 5, 10, -Time.time);
+                    Lines.spikes(b.x, b.y, 15, 5, 10, Time.time);
+                    Lines.spikes(b.x, b.y, 20, 5, 10, -Time.time);
+                    Fill.circle(b.x, b.y, Mathf.sin(Time.time * 0.1) * 1 + 4);
+                }
+            };
         }};
         
         //endregion

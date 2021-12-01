@@ -16,7 +16,9 @@ public class Yellow extends Mod{
     
     
     public Yellow(){
-        Log.info("amogus");
+        String yellow = "yellow";
+        for(int i = 0; i < 5; i++) yellow += yellow;
+        Log.info(yellow);
     };
     
     public final ContentList[] yellowContent = {
