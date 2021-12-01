@@ -142,7 +142,7 @@ public class YellowWeapons{
                     Lines.spikes(b.x, b.y, 10, 5, 10, -Time.time);
                     Lines.spikes(b.x, b.y, 15, 5, 10, Time.time);
                     Lines.spikes(b.x, b.y, 20, 5, 10, -Time.time);
-                    Fill.circle(b.x, b.y, Mathf.sin(Time.time * 0.1) * 1 + 4);
+                    Fill.circle(b.x, b.y, Mathf.sin(Time.time * 0.1f) * 1 + 4);
                 }
             };
         }};
