@@ -58,8 +58,8 @@ public class YellowWeapons{
                 float rotation = u.rotation - 90;
                 
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, Time.time);
-                Draw.rect(Core.atlas.find("yellow-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, -Time.time);
+                Draw.rect(Core.atlas.find("yellow-java-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, Time.time);
+                Draw.rect(Core.atlas.find("yellow-java-yellow-square"), u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, 30, -Time.time);
             }
         };
         

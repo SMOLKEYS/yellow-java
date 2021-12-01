@@ -99,10 +99,10 @@ public class YellowUnitTypes implements ContentList{
                 float rot = Time.time * 2f;
                 
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 0, 0, rot);
-                Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 20, 20, rot);
-                Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 20, 20, -rot);
-                Draw.rect(Core.atlas.find("yellow-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
+                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, rot);
+                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 20, 20, rot);
+                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 20, 20, -rot);
+                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
             }
             
         };
