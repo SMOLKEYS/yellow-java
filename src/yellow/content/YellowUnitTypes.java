@@ -24,6 +24,7 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
+import mindustry.Vars.ui.*;
 import yellow.weapons.*;
 import yellow.content.YellowFx.*;
 
@@ -106,9 +107,8 @@ public class YellowUnitTypes implements ContentList{
                 Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
             }
             
-            @Override
-            public void create(Team team){
-                super.create(team);
+            public void create(Unit u){
+                super.create(u);
                 
                 Vars.ui.hudfrag.showToast(Icon.power, "[yellow]Yellow (Air)[] has been spawned!");
             }
