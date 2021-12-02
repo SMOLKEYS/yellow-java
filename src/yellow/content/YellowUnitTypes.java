@@ -24,7 +24,6 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
-import mindustry.Vars.ui.*;
 import yellow.weapons.*;
 import yellow.content.YellowFx.*;
 
