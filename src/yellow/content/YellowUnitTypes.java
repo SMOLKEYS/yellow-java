@@ -9,6 +9,7 @@ import arc.graphics.Color.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
+import mindustry.game.Team.*;
 import mindustry.graphics.*;
 import mindustry.ai.types.*;
 import mindustry.ctype.*;
@@ -105,6 +106,12 @@ public class YellowUnitTypes implements ContentList{
                 Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
             }
             
+            @Override
+            public void create(Team team){
+                super.create(team);
+                
+                Vars.ui.hudfrag.showToast(Icon.power, "[yellow]Yellow (Air)[] has been spawned!");
+            }
         };
         
         yellowGround = new UnitType("yellowGround"){{
