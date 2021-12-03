@@ -1,5 +1,6 @@
 package yellow;
 
+import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
 import arc.util.Log.*;
@@ -19,6 +20,10 @@ public class Yellow extends Mod{
         String yellow = "yellow";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
+        
+        Events.run(ClientLoadEvent.class, () -> {
+        	Updater.checkUpdates(this);
+        });
     };
     
     public final ContentList[] yellowContent = {
