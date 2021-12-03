@@ -1,7 +1,7 @@
 #!REPO "SMOLKEYS/yellow-java" 
 #!BRANCH "master"
 #!VERSION 0.31
-#         ^^^^ only update this right before a new release
+#         ^^^^ only update this right before a new release.
 
 #the mod name as displayed in-game
 displayName: "Yellow (Java)"
