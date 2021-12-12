@@ -6,8 +6,7 @@ import mindustry.graphics.*;
 import mindustry.graphics.g3d.*;
 import mindustry.maps.planet.*;
 import mindustry.type.*;
-
-import static mindustry.content.Planets.*;
+import mindustry.content.Planets.*;
 
 public class YellowPlanets implements ContentList{
     public static Planet
@@ -16,7 +15,7 @@ public class YellowPlanets implements ContentList{
     
     @Override
     public void load(){
-        azeno = new Planet("azeno", sun, 3.2f, 3){{
+        azeno = new Planet("azeno", Planets.sun, 3.2f, 3){{
             
         }};
     }
