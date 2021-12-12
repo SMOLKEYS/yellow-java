@@ -28,7 +28,8 @@ public class Yellow extends Mod{
     
     public final ContentList[] yellowContent = {
         new YellowUnitTypes(),
-        new YellowStatusEffects()
+        new YellowStatusEffects(),
+        new YellowPlanets()
     };
     
     @Override
