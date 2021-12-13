@@ -19,6 +19,12 @@ public class YellowPlanets implements ContentList{
         azeno = new Planet("azeno", sun, 3.2f, 3){{
             accessible = true;
             alwaysUnlocked = true;
+            atmosphereColor = Color.orange;
+            orbitTime = 60*10;
+            startSector = 27;
+            
+            generator = new SerpuloPlanetGenerator();
+            landCloudColor = Color.yellow.cpy().a(0.3f);
         }};
     }
 }
