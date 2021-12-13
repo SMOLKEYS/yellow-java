@@ -20,6 +20,8 @@ public class YellowPlanets implements ContentList{
             accessible = true;
             alwaysUnlocked = true;
             atmosphereColor = Color.orange;
+            atmosphereRadIn = 0.01f;
+            atmosphereRadOut = 0.28f;
             orbitTime = 60*10;
             startSector = 27;
             
