@@ -1,6 +1,6 @@
 #!REPO "SMOLKEYS/yellow-java" 
 #!BRANCH "master"
-#!VERSION 0.32
+#!VERSION 0.4
 #         ^^^^ only update this right before a new release.
 
 #the mod name as displayed in-game
@@ -19,7 +19,7 @@ main: "yellow.Yellow"
 description: "[yellow]Comeback."
 
 #the mod version
-version: 0.32
+version: 0.4
 
 #the minimum game build required to run this mod
 minGameVersion: 129

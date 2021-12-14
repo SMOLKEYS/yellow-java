@@ -86,10 +86,6 @@ public class YellowWeapons{
                 sprite = "flare";
                 backColor = Color.white;
                 frontColor = Color.white;
-                trailColor = Color.yellow;
-                trailChance = 1f;
-                trailEffect = Fx.trailFade;
-                trailLength = 3;
                 shrinkX = 0f;
                 shrinkY = 0f;
                 weaveMag = 1.205f;
