@@ -115,8 +115,7 @@ public class YellowUnitTypes implements ContentList{
                 Tmp.v1.trns(Time.time, -r2, -r2);
                 Fill.circle(u.x + Tmp.v1.x, u.y + Tmp.v1.y, 2 + s * 8);
                 Tmp.c1.set(Color.white);
-                Tmp.c1.a = 0;
-                Fill.light(u.x, u.y, 5, 50 - r1, Color.yellow, Tmp.c1); 
+                Fill.light(u.x, u.y, 5, 50 - r1, Color.yellow, Color.valueOf("ffffff00")); 
             }
             
         };
