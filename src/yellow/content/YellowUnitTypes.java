@@ -97,14 +97,26 @@ public class YellowUnitTypes implements ContentList{
             public void draw(Unit u){
                 super.draw(u);
                 
-                float rot = Time.time * 2f;
+                /**
+                 * @author MEEPOfFaith
+                 * god help me
+                 */
+                float s = Mathf.absin(Time.time, 16, 1);
+                float r1 = s * 25f;
+                float r2 = s * 20f;
                 
-                Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
-                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, rot);
-                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 20, 20, rot);
-                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 20, 20, -rot);
-                Draw.rect(Core.atlas.find("yellow-java-rotato"), u.x, u.y, 20, 20, 0, 0, -rot);
+                Draw.color(Color.yellow);
+                Lines.circle(u.x, u.y, 20 + r1);
+                Lines.square(u.x, u.y, 20 + r1, Time.time);
+                Lines.square(u.x, u.y, 20 + r1, -Time.time);
+                Tmp.v1.trns(Time.time, r2, r2);
+                Fill.circle(u.x + Tmp.v1.x, u.y + Tmp.v1.y, 2 + s * 8);
+                Tmp.v1.trns(Time.time, -r2, -r2);
+                Fill.circle(u.x + Tmp.v1.x, u.y + Tmp.v1.y, 2 + s * 8);
+                Tmp.c1.set(Color.white);
+                Tmp.c1.a = 0;
+                Fill.light(u.x, u.y, 5, 50 - r1, Color.yellow, Tmp.c1); 
             }
             
         };
