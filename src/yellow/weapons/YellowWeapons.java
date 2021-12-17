@@ -92,7 +92,7 @@ public class YellowWeapons{
                 weaveScale = 4000f;
                 pierce = true;
                 pierceBuilding = true;
-                pierceCap = 12;
+                pierceCap = 15;
             }};
         }};
         
