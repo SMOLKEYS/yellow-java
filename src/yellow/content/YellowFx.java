@@ -88,7 +88,25 @@ public class YellowFx{
         Lines.square(e.x, e.y, e.fout() * 50, -Time.time * 9);
         Lines.circle(e.x, e.y, e.fout() * 50);
         Lines.square(e.x, e.y, e.fout() * 100, -Time.time * 9);
+    }),
+    
+    /** clEan! */
+    yellowDeathEffect = new Effect(230f, e -> {
+        Draw.color(Color.yellow, Color.orange, e.finpow());
+        Lines.stroke(e.fout() * 5);
+        Lines.square(e.x, e.y, e.finpow() * 90, e.finpow() * 180);
+        Lines.square(e.x, e.y, e.finpow() * 90, e.foutpow() * 180);
+        Lines.circle(e.x, e.y, e.finpow() * 130);
+        Lines.circle(e.x, e.y, e.finpow() * 120);
+        Lines.circle(e.x, e.y, e.finpow() * 110);
+        Angles.randLenVectors(e.id, 50, e.finpow() * 100, (x, y) => {
+        Lines.stroke(1);
+        Draw.color(Color.yellow, Color.orange, e.finpow());
+        Fill.circle(e.x + x, e.y + y, e.fout() * 10);
         });
+        Draw.alpha(e.fout() * 4);
+        Draw.rect("yellow-java-yellowAir", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
+    })
         
         //endregion
 }

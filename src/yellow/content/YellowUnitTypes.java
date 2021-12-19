@@ -53,7 +53,7 @@ public class YellowUnitTypes implements ContentList{
             itemCapacity = 850000;
             commandLimit = 85000;
             buildSpeed = 95000f;
-            deathExplosionEffect = YellowFx.yellowExplosionOutIn;
+            deathExplosionEffect = YellowFx.yellowDeathEffect;
             
             constructor = UnitEntity::create;
             defaultController = FlyingAI::new;
