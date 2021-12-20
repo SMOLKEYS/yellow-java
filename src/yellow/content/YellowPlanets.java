@@ -22,7 +22,7 @@ public class YellowPlanets implements ContentList{
             atmosphereColor = Color.orange;
             atmosphereRadIn = 0.01f;
             atmosphereRadOut = 0.28f;
-            orbitTime = 60*10;
+            orbitTime = 60 * 10;
             startSector = 27;
             
             generator = new SerpuloPlanetGenerator();
