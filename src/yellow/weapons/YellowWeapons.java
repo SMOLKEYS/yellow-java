@@ -136,9 +136,7 @@ public class YellowWeapons{
                     Draw.z(Layer.effect);
                     Draw.color(Color.yellow);
                     Lines.square(b.x, b.y, 15, Time.time * 2);
-                    Lines.spikes(b.x, b.y, 10, 5, 10, -Time.time);
-                    Lines.spikes(b.x, b.y, 15, 5, 10, Time.time);
-                    Lines.spikes(b.x, b.y, 20, 5, 10, -Time.time);
+                    Lines.square(b.x, b.y, 15, -Time.time * 2);
                     Fill.circle(b.x, b.y, Mathf.sin(Time.time * 0.1f) * 1 + 4);
                 }
             };
