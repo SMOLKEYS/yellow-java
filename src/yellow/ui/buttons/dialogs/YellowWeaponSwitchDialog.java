@@ -1,4 +1,3 @@
-/*
 package yellow.buttons.dialogs;
 
 import arc.*;
@@ -15,7 +14,7 @@ import mindustry.content.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.BaseDialog.*;
-import yellow.weapons.*;
+import yellow.content.*
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -28,10 +27,9 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         cont.add("Weapon Switch");
         addCloseButton();
         
-        for(Weapon weapons : YellowWeapons){
+        for(int i = 0; i < YellowUnitTypes.yellowAir.weapons.size; i++){
             cont.row();
-            cont.add(new CheckBox(weapons));
+            cont.add(new CheckBox(YellowUnitTypes.yellowAir.weapons.get(i).name));
         };
     }
 }
-*/
