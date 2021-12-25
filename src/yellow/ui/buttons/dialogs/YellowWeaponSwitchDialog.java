@@ -14,7 +14,7 @@ import mindustry.content.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.dialogs.BaseDialog.*;
-import yellow.content.*
+import yellow.content.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
