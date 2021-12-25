@@ -25,7 +25,7 @@ public class Yellow extends Mod{
         Events.run(ClientLoadEvent.class, () -> {
         	Updater.checkUpdates(this);
         	
-        	YellowWeaponSwitchDialog.show();
+        	YellowWeaponSwitchDialog().show();
         });
     };
     
