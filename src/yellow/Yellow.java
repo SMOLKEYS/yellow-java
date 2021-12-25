@@ -12,6 +12,7 @@ import mindustry.mod.Mods.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
 import yellow.weapons.*;
+import yellow.dialogs.*;
 
 public class Yellow extends Mod{
     
@@ -23,6 +24,8 @@ public class Yellow extends Mod{
         
         Events.run(ClientLoadEvent.class, () -> {
         	Updater.checkUpdates(this);
+        	
+        	YellowWeaponSwitchDialog.show();
         });
     };
     

@@ -1,4 +1,4 @@
-package yellow.buttons.dialogs;
+package yellow.dialogs;
 
 import arc.*;
 import arc.scene.*;
