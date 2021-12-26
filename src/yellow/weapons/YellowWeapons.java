@@ -67,7 +67,7 @@ public class YellowWeapons{
         
         bullethell = new Weapon("bullethell"){{
             reload = 900f;
-            shootEffect = YellowFx.bullethellShootEffect;
+            ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
             y = 0f;
             mirror = false;
@@ -104,10 +104,10 @@ public class YellowWeapons{
                 
                 Draw.z(Layer.effect);
                 Draw.color(Color.yellow);
-                Lines.square(w.x, w.y, 40, Time.time * 6);
-                Lines.square(w.x, w.y, 40, -Time.time * 6);
-                Lines.square(w.x, w.y, 80, Time.time * 6);
-                Lines.square(w.x, w.y, 80, -Time.time * 6);
+                Lines.square(u.x, u.y, 40, Time.time * 6);
+                Lines.square(u.x, u.y, 40, -Time.time * 6);
+                Lines.square(u.x, u.y, 80, Time.time * 6);
+                Lines.square(u.x, u.y, 80, -Time.time * 6);
             }
         };
         
