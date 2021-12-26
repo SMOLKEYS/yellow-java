@@ -100,7 +100,7 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
-                Draw.alpha(w.reload / 690);
+                Draw.alpha(w.reload / this.reload);
                 
                 Draw.z(Layer.effect);
                 Draw.color(Color.yellow);
