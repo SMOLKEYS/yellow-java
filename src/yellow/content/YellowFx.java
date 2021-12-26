@@ -114,7 +114,7 @@ public class YellowFx{
     }),
     
     bullethellShootEffect = new Effect(60f, e -> {
-        Draw.z(Layer.effect + 0.001);
+        Draw.z(Layer.effect + 0.001f);
         Draw.color(Color.white);
         Draw.alpha(e.fout());
         
