@@ -30,6 +30,7 @@ public class YellowFx{
     ghostDespawn = new Effect(10f, e -> {
         Draw.z(Layer.effect);
         Draw.alpha(e.fout() * 3);
+        
         Lines.stroke(e.fout() * 7);
         Lines.circle(e.x, e.y, e.fin() * 10);
     }),
@@ -40,6 +41,7 @@ public class YellowFx{
      */
     yellowExplosionOutIn = new Effect(120f, e -> {
         Draw.color(Color.yellow);
+        
         Lines.stroke(e.fout() * 15);
         Lines.circle(e.x, e.y, e.fin() * 25);
         Lines.square(e.x, e.y, e.fin() * 50, Time.time * 7);
@@ -62,6 +64,7 @@ public class YellowFx{
      */
     yellowExplosionOut = new Effect(120f, e -> {
         Draw.color(Color.yellow);
+        
         Lines.stroke(e.fout() * 15);
         Lines.circle(e.x, e.y, e.fin() * 25);
         Lines.square(e.x, e.y, e.fin() * 50, Time.time * 9);
@@ -79,6 +82,7 @@ public class YellowFx{
      */
     yellowExplosionIn = new Effect(120f, e -> {
         Draw.color(Color.yellow);
+        
         Lines.stroke(e.fin() * 15);
         Lines.circle(e.x, e.y, e.fout() * 25);
         Lines.square(e.x, e.y, e.fout() * 50, Time.time * 9);
@@ -93,6 +97,7 @@ public class YellowFx{
     /** clEan! */
     yellowDeathEffect = new Effect(230f, e -> {
         Draw.color(Color.yellow, Color.orange, e.finpow());
+        
         Lines.stroke(e.fout() * 5);
         Lines.square(e.x, e.y, e.finpow() * 90, e.finpow() * 180);
         Lines.square(e.x, e.y, e.finpow() * 90, e.foutpow() * 180);
@@ -106,6 +111,17 @@ public class YellowFx{
         });
         Draw.alpha(e.fout() * 4);
         Draw.rect("yellow-java-yellowAir", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
+    }),
+    
+    bullethellShootEffect = new Effect(60f, e -> {
+        Draw.z(Layer.effect + 0.001);
+        Draw.color(Color.white);
+        Draw.alpha(e.fout());
+        
+        Lines.square(e.x, e.y, 40, Time.time * 6);
+        Lines.square(e.x, e.y, 40, -Time.time * 6);
+        Lines.square(e.x, e.y, 80, Time.time * 6);
+        Lines.square(e.x, e.y, 80, -Time.time * 6);
     });
         
         //endregion

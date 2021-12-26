@@ -67,6 +67,7 @@ public class YellowWeapons{
         
         bullethell = new Weapon("bullethell"){{
             reload = 900f;
+            shootEffect = YellowFx.bullethellShootEffect;
             x = 0f;
             y = 0f;
             mirror = false;
@@ -94,7 +95,21 @@ public class YellowWeapons{
                 pierceBuilding = true;
                 pierceCap = 35;
             }};
-        }};
+        }
+            @Override
+            public void draw(Unit u, WeaponMount w){
+                super.draw(u, w);
+                
+                Draw.alpha(w.reload / 690);
+                
+                Draw.z(Layer.effect);
+                Draw.color(Color.yellow);
+                Lines.square(w.x, w.y, 40, Time.time * 6);
+                Lines.square(w.x, w.y, 40, -Time.time * 6);
+                Lines.square(w.x, w.y, 80, Time.time * 6);
+                Lines.square(w.x, w.y, 80, -Time.time * 6);
+            }
+        };
         
         antiMothSpray = new Weapon("anti-moth-spray"){{
             reload = 2f;
