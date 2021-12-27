@@ -30,6 +30,6 @@ public class ImmortalAbility extends Ability{
     
     @Override
     public String localized(){
-        return​Core.bundle.get("ability."​+​getClass().getSimpleName().replace("Ability",​"").toLowerCase());
+        return Core.bundle.get("ability." + getClass().getSimpleName().replace("Ability", "").toLowerCase());
     }
 }
