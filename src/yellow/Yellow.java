@@ -10,9 +10,11 @@ import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
 
+import static mindustry.Vars.*;
+
 public class Yellow extends Mod{
     
-    public static YellowWeaponSwitch weaponSwitch;
+    public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     
     public Yellow(){
         String yellow = "yellow";
@@ -22,7 +24,7 @@ public class Yellow extends Mod{
         Events.run(ClientLoadEvent.class, () -> {
         	Updater.checkUpdates(this);
 
-            weaponSwitch = new YellowWeaponSwitch();
+            weaponSwitch.build(ui.hudGroup);
         });
     };
     

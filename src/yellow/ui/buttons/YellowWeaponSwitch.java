@@ -1,7 +1,6 @@
 package yellow.ui.buttons;
 
 import arc.scene.*;
-import arc.scene.ui.layout.*;
 import arc.scene.style.*;
 import yellow.ui.buttons.dialogs.*;
 import mindustry.ui.fragments.*;
@@ -19,7 +18,9 @@ public class YellowWeaponSwitch extends Fragment{
         parent.fill(cont -> {
             cont.name = "weapons switch";
             cont.defaults().size(minimapWidth / 2f);
-            cont.marginRight(Scl.scl(minimapWidth));
+
+            cont.top().right();
+            cont.marginRight(minimapWidth);
 
             Drawable icon = atlas.drawable("status-disarmed");
             cont.button(icon, dialog::show);
