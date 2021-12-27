@@ -102,13 +102,18 @@ public class YellowWeapons{
                 
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
-                Draw.alpha(1 - w.reload / this.reload);
+                Draw.alpha(reloadf(w));
                 
                 Lines.square(u.x, u.y, 40, Time.time * 6);
                 Lines.square(u.x, u.y, 40, -Time.time * 6);
                 Lines.square(u.x, u.y, 80, Time.time * 6);
                 Lines.square(u.x, u.y, 80, -Time.time * 6);
             }
+            
+            public float reloadf(WeaponMount w){
+              return w.reload/this.reload;
+            }
+            
         };
         
         antiMothSpray = new Weapon("anti-moth-spray"){{
