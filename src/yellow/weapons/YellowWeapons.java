@@ -87,6 +87,8 @@ public class YellowWeapons{
                 sprite = "flare";
                 backColor = Color.white;
                 frontColor = Color.white;
+                trailEffect = Fx.trailFade;
+                trailLength = 3f;
                 shrinkX = 0f;
                 shrinkY = 0f;
                 weaveMag = 1.205f;
@@ -94,7 +96,13 @@ public class YellowWeapons{
                 pierce = true;
                 pierceBuilding = true;
                 pierceCap = 35;
-            }};
+            }
+                @Override
+                public void draw(Bullet b){
+                    super.draw(b);
+                    Draw.z(Layer.flyingUnit);
+                }
+            };
         }
             @Override
             public void draw(Unit u, WeaponMount w){
