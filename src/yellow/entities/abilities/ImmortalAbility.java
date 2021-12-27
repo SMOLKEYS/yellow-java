@@ -26,6 +26,6 @@ public class ImmortalAbility extends Ability{
     
     @Override
     public void death(Unit unit){
-        System.out.print("Remember, dying is gay.");
+        unit.type.spawn(unit.team, unit.x, unit.y);
     }
 }
