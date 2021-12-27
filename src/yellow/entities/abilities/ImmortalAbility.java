@@ -27,9 +27,4 @@ public class ImmortalAbility extends Ability{
     public void death(Unit unit){
         unit.type.spawn(unit.team, unit.x, unit.y);
     }
-    
-    @Override
-    public String localized(){
-        return Core.bundle.get("ability." + getClass().getSimpleName().replace("Ability", "").toLowerCase());
-    }
 }
