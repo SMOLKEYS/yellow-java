@@ -114,6 +114,10 @@ public class YellowWeapons{
                 Lines.square(u.x, u.y, 40, -Time.time * 6);
                 Lines.square(u.x, u.y, 80, Time.time * 6);
                 Lines.square(u.x, u.y, 80, -Time.time * 6);
+                
+                Lines.stroke(10);
+                Lines.poly(u.x, u.y, 3, 130, Time.time * 6);
+                Lines.poly(u.x, u.y, 3, 130, Time.time * 6 - 180);
             }
             
             public float reloadf(WeaponMount w){
