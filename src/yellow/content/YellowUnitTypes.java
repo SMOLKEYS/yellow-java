@@ -2,33 +2,18 @@ package yellow.content;
 
 import arc.*;
 import arc.util.*;
-import arc.util.Time.*;
 import arc.flabel.*;
 import arc.graphics.*;
-import arc.graphics.Color.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.struct.*;
-import mindustry.game.Team.*;
 import mindustry.graphics.*;
 import mindustry.ai.types.*;
 import mindustry.ctype.*;
-import mindustry.entities.*;
-import mindustry.entities.abilities.*;
-import mindustry.entities.bullet.*;
-import mindustry.entities.effect.*;
-import mindustry.mod.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
 import mindustry.type.*;
-import mindustry.type.ammo.*;
-import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 import yellow.weapons.*;
-import yellow.content.YellowFx.*;
 import yellow.entities.abilities.*;
-
-import static mindustry.Vars.*;
 
 public class YellowUnitTypes implements ContentList{
     public static UnitType

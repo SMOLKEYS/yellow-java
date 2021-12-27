@@ -3,19 +3,16 @@ package yellow;
 import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
-import arc.util.Log.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
-import mindustry.mod.Mods.*;
-import mindustry.ui.dialogs.*;
 import yellow.content.*;
 import yellow.weapons.*;
-import yellow.dialogs.*;
+import yellow.ui.buttons.*;
 
 public class Yellow extends Mod{
     
+    public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     
     public Yellow(){
         String yellow = "yellow";
