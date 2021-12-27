@@ -100,10 +100,10 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
+                Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
                 Draw.alpha(1 - w.reload / this.reload);
                 
-                Draw.color(Color.yellow);
                 Lines.square(u.x, u.y, 40, Time.time * 6);
                 Lines.square(u.x, u.y, 40, -Time.time * 6);
                 Lines.square(u.x, u.y, 80, Time.time * 6);
