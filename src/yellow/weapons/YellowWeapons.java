@@ -85,8 +85,6 @@ public class YellowWeapons{
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
                 sprite = "flare";
-                backColor = Color.white;
-                frontColor = Color.white;
                 trailEffect = Fx.trailFade;
                 trailLength = 3;
                 shrinkX = 0f;
