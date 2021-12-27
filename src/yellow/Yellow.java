@@ -12,7 +12,7 @@ import yellow.ui.buttons.*;
 
 public class Yellow extends Mod{
     
-    public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
+    public static YellowWeaponSwitch weaponSwitch;
     
     public Yellow(){
         String yellow = "yellow";
@@ -21,6 +21,8 @@ public class Yellow extends Mod{
         
         Events.run(ClientLoadEvent.class, () -> {
         	Updater.checkUpdates(this);
+
+            weaponSwitch = new YellowWeaponSwitch();
         });
     };
     

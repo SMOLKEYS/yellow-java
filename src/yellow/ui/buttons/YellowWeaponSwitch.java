@@ -12,9 +12,10 @@ public class YellowWeaponSwitch extends Fragment{
 
     private static final float minimapWidth = 150f;
 
-    private YellowWeaponSwitchDialog dialog = new YellowWeaponSwitchDialog();
+    private YellowWeaponSwitchDialog dialog;
 
     public void build(Group parent){
+        dialog = new YellowWeaponSwitchDialog(); // do not create new ones until the client loads
         parent.fill(cont -> {
             cont.name = "weapons switch";
             cont.defaults().size(minimapWidth / 2f);
