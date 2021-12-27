@@ -124,8 +124,8 @@ public class YellowFx{
         Lines.square(e.x, e.y, 80, -Time.time * 6);
         
         Lines.stroke(10);
-        Lines.poly(u.x, u.y, 3, 40, Time.time * 6);
-        Lines.poly(u.x, u.y, 3, 40, Time.time * 6 - 180);
+        Lines.poly(e.x, e.y, 3, 40, Time.time * 6);
+        Lines.poly(e.x, e.y, 3, 40, Time.time * 6 - 180);
     });
         
         //endregion
