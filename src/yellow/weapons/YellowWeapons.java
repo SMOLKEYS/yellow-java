@@ -88,7 +88,7 @@ public class YellowWeapons{
                 backColor = Color.white;
                 frontColor = Color.white;
                 trailEffect = Fx.trailFade;
-                trailLength = 3f;
+                trailLength = 3;
                 shrinkX = 0f;
                 shrinkY = 0f;
                 weaveMag = 1.205f;
