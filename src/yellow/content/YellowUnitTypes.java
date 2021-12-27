@@ -26,6 +26,7 @@ import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 import yellow.weapons.*;
 import yellow.content.YellowFx.*;
+import yellow.entities.abilities.*;
 
 import static mindustry.Vars.*;
 
@@ -60,6 +61,8 @@ public class YellowUnitTypes implements ContentList{
             region = Core.atlas.find("yellow");
             
             weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell);
+            
+            abilities.add(new ImmortalAbility());
         }
         
             /** readability 0 */
