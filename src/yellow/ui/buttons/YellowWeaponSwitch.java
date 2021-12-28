@@ -14,7 +14,7 @@ public class YellowWeaponSwitch extends Fragment{
     /** minimap width, not scaled */
     private static final float width = 150f;
     private static final float padding = 4f;
-    private static final float isize = 74f;
+    private static final float isize = 48f;
 
     private YellowWeaponSwitchDialog dialog;
 
