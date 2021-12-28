@@ -1,9 +1,12 @@
 package yellow.ui.buttons;
 
 import arc.scene.*;
+import arc.scene.ui.ImageButton.*;
 import arc.scene.style.*;
 import yellow.ui.buttons.dialogs.*;
+import mindustry.ui.*;
 import mindustry.ui.fragments.*;
+import mindustry.gen.*;
 
 import static arc.Core.*;
 
@@ -23,7 +26,14 @@ public class YellowWeaponSwitch extends Fragment{
             cont.marginRight(minimapWidth);
 
             Drawable icon = atlas.drawable("status-disarmed");
-            cont.button(icon, dialog::show);
+            ImageButtonStyle style = new ImageButtonStyle(){{
+                up = Tex.pane;
+                down = Styles.flatDown;
+                over = Styles.flatOver;
+            }};
+
+            cont.button(icon, style, dialog::show).row();
+            cont.button(icon, style, dialog::show);
         });
     }
 
