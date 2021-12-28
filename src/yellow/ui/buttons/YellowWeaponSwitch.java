@@ -11,8 +11,10 @@ import mindustry.gen.*;
 import static arc.Core.*;
 
 public class YellowWeaponSwitch extends Fragment{
-
-    private static final float minimapWidth = 150f;
+    /** minimap width, not scaled */
+    private static final float width = 150f;
+    private static final float padding = 4f;
+    private static final float isize = 74f;
 
     private YellowWeaponSwitchDialog dialog;
 
@@ -20,10 +22,10 @@ public class YellowWeaponSwitch extends Fragment{
         dialog = new YellowWeaponSwitchDialog(); // do not create new ones until the client loads
         parent.fill(cont -> {
             cont.name = "weapons switch";
-            cont.defaults().size(minimapWidth / 2f);
+            cont.defaults().size(width / 2f);
 
             cont.top().right();
-            cont.marginRight(minimapWidth);
+            cont.marginRight(width - padding);
 
             Drawable icon = atlas.drawable("status-disarmed");
             ImageButtonStyle style = new ImageButtonStyle(){{
@@ -32,8 +34,8 @@ public class YellowWeaponSwitch extends Fragment{
                 over = Styles.flatOver;
             }};
 
-            cont.button(icon, style, dialog::show).row();
-            cont.button(icon, style, dialog::show);
+            cont.button(icon, style, isize, dialog::show).row();
+            cont.button(icon, style, isize, dialog::show);
         });
     }
 
