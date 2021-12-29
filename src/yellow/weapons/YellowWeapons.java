@@ -2,32 +2,16 @@ package yellow.weapons;
 
 import arc.*;
 import arc.math.*;
-import arc.math.Angles.*;
 import arc.util.*;
-import arc.util.Time.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
-import arc.graphics.g2d.Draw.*;
-import arc.graphics.g2d.Lines.*;
-import arc.graphics.Color.*;
-import arc.flabel.*;
-import mindustry.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
-import mindustry.ctype.*;
-import mindustry.entities.*;
 import mindustry.entities.units.*;
-import mindustry.entities.units.WeaponMount.*;
 import mindustry.entities.bullet.*;
-import mindustry.mod.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.type.ammo.*;
-import mindustry.type.weapons.*;
-import mindustry.world.meta.*;
 import yellow.content.*;
-
-import static arc.Core.*;
 
 public class YellowWeapons{
     public static Weapon

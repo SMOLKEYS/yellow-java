@@ -1,23 +1,8 @@
-package yellow.dialogs;
+package yellow.ui.buttons.dialogs;
 
-import arc.*;
-import arc.scene.*;
 import arc.scene.ui.*;
-import arc.scene.ui.Button.*;
-import arc.scene.ui.CheckBox.*;
-import arc.scene.ui.layout.*;
-import arc.scene.ui.layout.Table.*;
-import arc.struct.*;
-import arc.util.*;
-import mindustry.*;
-import mindustry.content.*;
-import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
-import mindustry.ui.dialogs.BaseDialog.*;
 import yellow.content.*;
-
-import static arc.Core.*;
-import static mindustry.Vars.*;
 
 public class YellowWeaponSwitchDialog extends BaseDialog{
     

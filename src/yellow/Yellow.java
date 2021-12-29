@@ -3,19 +3,18 @@ package yellow;
 import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
-import arc.util.Log.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
-import mindustry.mod.Mods.*;
-import mindustry.ui.dialogs.*;
 import yellow.content.*;
 import yellow.weapons.*;
-import yellow.dialogs.*;
+import yellow.ui.buttons.*;
+
+import static mindustry.Vars.*;
 
 public class Yellow extends Mod{
     
+    public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     
     public Yellow(){
         String yellow = "yellow";
@@ -24,6 +23,8 @@ public class Yellow extends Mod{
         
         Events.run(ClientLoadEvent.class, () -> {
         	Updater.checkUpdates(this);
+
+            weaponSwitch.build(ui.hudGroup);
         });
     };
     
