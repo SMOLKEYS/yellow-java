@@ -4,11 +4,13 @@ import arc.scene.*;
 import arc.scene.ui.ImageButton.*;
 import arc.scene.style.*;
 import yellow.ui.buttons.dialogs.*;
+import yellow.content.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.*;
 import mindustry.gen.*;
 
 import static arc.Core.*;
+import static mindustry.Vars.*;
 
 public class YellowWeaponSwitch extends Fragment{
     /** minimap width, not scaled */
@@ -36,6 +38,9 @@ public class YellowWeaponSwitch extends Fragment{
 
             cont.button(icon, style, isize, dialog::show).row();
             cont.button(icon, style, isize, dialog::show);
+
+            // show buttons only when player controls yellow air
+            cont.visible(() -> player.unit().type == YellowUnitTypes.yellowAir);
         });
     }
 
