@@ -10,6 +10,10 @@ import mindustry.gen.*;
 
 import static arc.Core.*;
 
+    /**
+     * Adds a button anchored to the minimap.
+     * @author xzxADIxzx
+     */
 public class YellowWeaponSwitch extends Fragment{
     /** minimap width, not scaled */
     private static final float width = 150f;
@@ -33,8 +37,7 @@ public class YellowWeaponSwitch extends Fragment{
                 down = Styles.flatDown;
                 over = Styles.flatOver;
             }};
-
-            cont.button(icon, style, isize, dialog::show).row();
+            
             cont.button(icon, style, isize, dialog::show);
         });
     }

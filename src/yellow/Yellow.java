@@ -22,8 +22,8 @@ public class Yellow extends Mod{
         Log.info(yellow);
         
         Events.run(ClientLoadEvent.class, () -> {
-        	Updater.checkUpdates(this);
-
+            Updater.checkUpdates(this);
+            
             weaponSwitch.build(ui.hudGroup);
         });
     };

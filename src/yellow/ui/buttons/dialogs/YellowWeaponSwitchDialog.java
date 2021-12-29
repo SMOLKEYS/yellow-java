@@ -7,7 +7,7 @@ import yellow.content.*;
 public class YellowWeaponSwitchDialog extends BaseDialog{
     
     public YellowWeaponSwitchDialog(){
-        super("@yellow-weapon-switch.name");
+        super("Weapon Switch");
         
         cont.add("Weapon Switch");
         addCloseButton();

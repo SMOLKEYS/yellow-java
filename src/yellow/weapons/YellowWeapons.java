@@ -19,7 +19,7 @@ public class YellowWeapons{
     meltdownBurstAttack, bullethell, antiMothSpray, decimation;
     
     public static void init(){
-        meltdownBurstAttack = new Weapon("meltdown-burst"){{
+        meltdownBurstAttack = new Weapon("Meltdown Burst"){{
             reload = 60f;
             x = 56f;
             mirror = true;
@@ -49,7 +49,7 @@ public class YellowWeapons{
             }
         };
         
-        bullethell = new Weapon("bullethell"){{
+        bullethell = new Weapon("Bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
@@ -110,7 +110,7 @@ public class YellowWeapons{
             
         };
         
-        antiMothSpray = new Weapon("anti-moth-spray"){{
+        antiMothSpray = new Weapon("Anti Moth Spray"){{
             reload = 2f;
             x = 3f;
             mirror = true;
@@ -126,7 +126,7 @@ public class YellowWeapons{
             }};
         }};
         
-        decimation = new Weapon("decimation"){{
+        decimation = new Weapon("Decimation"){{
             reload = 300f;
             x = 48f;
             mirror = true;
