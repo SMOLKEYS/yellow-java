@@ -15,7 +15,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         
         for(int i = 0; i < YellowUnitTypes.yellowAir.weapons.size; i++){
             cont.row();
-            cont.add(new CheckBox(YellowWeapons.get(i)));
+            cont.add(new CheckBox(YellowWeapons.getChildren(i)));
         };
     }
 }
