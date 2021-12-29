@@ -1,6 +1,7 @@
 package yellow.ui.buttons.dialogs;
 
-import arc.util.Log.*;
+import arc.util.*;
+import arc.util.Log.info;
 import arc.scene.ui.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
