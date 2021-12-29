@@ -1,7 +1,6 @@
 package yellow.ui.buttons.dialogs;
 
 import arc.util.*;
-import arc.util.Log.info;
 import arc.scene.ui.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
@@ -23,7 +22,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             
             weapon.update(() -> {
                 if(weapon.isChecked() == true){
-                    Log.info("no");
+                    print("no");
                 }
             });
             
