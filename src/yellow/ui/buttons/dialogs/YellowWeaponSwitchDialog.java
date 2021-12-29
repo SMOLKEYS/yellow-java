@@ -22,7 +22,6 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             
             weapon.update(() -> {
                 if(weapon.isChecked() == true){
-                    print("no");
                 }
             });
             
