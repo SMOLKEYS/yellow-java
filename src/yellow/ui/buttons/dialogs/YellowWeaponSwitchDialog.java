@@ -21,7 +21,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             cont.row();
             cont.add(weapon);
             
-            weapon.update(() -> {
+            weapon.changed(() -> {
                 if(weapon.isChecked() == true){
                     Log.info("amogus");
                 }
