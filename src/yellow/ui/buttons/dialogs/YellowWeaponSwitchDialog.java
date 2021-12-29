@@ -1,5 +1,6 @@
 package yellow.ui.buttons.dialogs;
 
+import arc.util.Log.*;
 import arc.scene.ui.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
@@ -14,8 +15,18 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         addCloseButton();
         
         for(int i = 0; i < YellowUnitTypes.yellowAir.weapons.size; i++){
+            var weapon = new CheckBox(YellowUnitTypes.yellowAir.weapons.get(i).name);
+            
             cont.row();
-            cont.add(new CheckBox(YellowWeapons.getChildren(i)));
+            cont.add(weapon);
+            
+            weapon.update(() -> {
+                if(weapon.isChecked() == true){
+                    Log.info("no");
+                }
+            });
+            
+            };
         };
     }
 }
