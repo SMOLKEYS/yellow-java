@@ -1,6 +1,6 @@
 #!REPO "SMOLKEYS/yellow-java" 
 #!BRANCH "master"
-#!VERSION 0.42
+#!VERSION 0.43
 #         ^^^^ only update this right before a new release.
 
 #the mod name as displayed in-game
@@ -19,7 +19,7 @@ main: "yellow.Yellow"
 description: "Very pog."
 
 #the mod version
-version: 0.42
+version: 0.43
 
 #the minimum game build required to run this mod
 minGameVersion: 129
