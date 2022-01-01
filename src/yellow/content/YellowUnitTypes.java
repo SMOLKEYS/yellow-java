@@ -133,7 +133,6 @@ public class YellowUnitTypes implements ContentList{
             maxRange = 400f;
             
             constructor = MechUnit::create;
-            region = Core.atlas.find("yellow");
             
             weapons.add(YellowWeapons.antiMothSpray, YellowWeapons.decimation);
         }};
