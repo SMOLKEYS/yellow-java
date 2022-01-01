@@ -119,7 +119,7 @@ public class YellowUnitTypes implements ContentList{
                 //normal method uses kill(), and Yellow is immune to that
                 if(realityCheck > state.rules.unitCap - 2){
                     Fx.unitCapKill.at(unit.x, unit.y);
-                    unit.remove()
+                    unit.remove();
                 };
             }
             
