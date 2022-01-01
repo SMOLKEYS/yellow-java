@@ -6,14 +6,18 @@ import arc.flabel.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.ai.types.*;
 import mindustry.ctype.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
+import mindustry.game.*;
 import yellow.weapons.*;
 import yellow.entities.abilities.*;
+
+import static mindustry.Vars.*;
 
 public class YellowUnitTypes implements ContentList{
     public static UnitType
@@ -105,6 +109,18 @@ public class YellowUnitTypes implements ContentList{
                 Tmp.c1.set(Color.white);
                 Tmp.c1.a = 0;
                 Fill.light(u.x, u.y, 5, 50f - r1, Color.yellow, Tmp.c1);
+            }
+            
+            @Override
+            public void update(Unit unit){
+                super.update(unit);
+                int realityCheck = Team.sharded.data().countType(unit.type);
+                
+                //normal method uses kill(), and Yellow is immune to that
+                if(realityCheck > state.rules.unitCap - 2){
+                    Fx.unitCapKill.at(unit.x, unit.y);
+                    unit.remove()
+                };
             }
             
         };
