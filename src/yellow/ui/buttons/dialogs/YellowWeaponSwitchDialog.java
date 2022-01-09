@@ -3,6 +3,8 @@ package yellow.ui.buttons.dialogs;
 import arc.util.*;
 import arc.util.Log.*;
 import arc.scene.ui.*;
+import mindustry.*;
+import mindustry.gen.*;
 import mindustry.ui.dialogs.*;
 import yellow.content.*;
 import yellow.weapons.*;
@@ -12,24 +14,17 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
     public YellowWeaponSwitchDialog(){
         super("Weapon Switch");
         
-        cont.add("Weapon Switch");
+        cont.add("Weapon Switch").row();
         addCloseButton();
         
         for(int i = 0; i < YellowUnitTypes.yellowAir.weapons.size; i++){
-            var weapon = new CheckBox(YellowUnitTypes.yellowAir.weapons.get(i).name);
+            final int id = i;
             
-            cont.row();
-            cont.add(weapon);
-            
-            // enable them by default
-            weapon.setChecked(true);
-            
-            weapon.changed(() -> {
-                if(weapon.isChecked() == true){
-                    Log.info("amogus");
-                }
-            });
-            
-            };
+            cont.check(YellowUnitTypes.yellowAir.weapons.get(id).name, true, it -> {
+            	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
+                var mount = unit.mounts[id];
+                mount.reload = it ? mount.weapon.reload : Float.MAX_VALUE;
+            }).row();
         };
-    }
+    };
+}
