@@ -40,6 +40,8 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
+                if(w.reload > this.reload) return;
+                
                 float rotation = u.rotation - 90;
                 
                 Draw.color(Color.yellow);
@@ -90,6 +92,8 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
+                if(w.reload > this.reload) return;
+                
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
                 Draw.alpha(reloadf(w));
@@ -98,6 +102,10 @@ public class YellowWeapons{
                 Lines.square(u.x, u.y, 40, -Time.time * 6);
                 Lines.square(u.x, u.y, 80, Time.time * 6);
                 Lines.square(u.x, u.y, 80, -Time.time * 6);
+                
+                Lines.stroke(10);
+                Lines.poly(u.x, u.y, 3, 130, Time.time * 6);
+                Lines.poly(u.x, u.y, 3, 130, Time.time * 6 - 180);
             }
             
             public float reloadf(WeaponMount w){
