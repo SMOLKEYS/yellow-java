@@ -24,7 +24,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
                 var mount = unit.mounts[id];
                 mount.reload = it ? mount.weapon.reload : Float.MAX_VALUE;
-            });
+            }).row();
         };
     };
 }
