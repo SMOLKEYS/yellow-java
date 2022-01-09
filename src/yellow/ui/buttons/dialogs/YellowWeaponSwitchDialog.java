@@ -25,7 +25,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             }).update(check -> {
             	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
             	if (!check.isChecked()) unit.mounts[id].reload = 60f;
-            });
+            }).row();
         };
     };
 }
