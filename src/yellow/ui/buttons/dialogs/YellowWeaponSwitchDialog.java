@@ -21,11 +21,10 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             final int id = i;
             
             cont.check(YellowUnitTypes.yellowAir.weapons.get(id).name, true, it -> {
-                //some sussy stuff 	
-            }).update(check -> {
             	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
-            	if (!check.isChecked()) unit.mounts[id].reload = 60f;
-            }).row();
+                var mount = unit.mounts[id];
+                mount.reload = it ? mount.weapon.reload : Float.MAX_VALUE;
+            });
         };
     };
 }
