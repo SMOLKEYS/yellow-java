@@ -59,7 +59,7 @@ public class YellowWeapons{
             mirror = false;
             shots = 690;
             shotDelay = 1f;
-            spacing = 5f;
+            spacing = 60f;
             bullet = new BasicBulletType(){{
                 damage = 300f;
                 width = 16f;
