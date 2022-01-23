@@ -6,4 +6,4 @@ global.YellowPlanets = Reflect.get(Vars.mods.getMod("yellow-java").main, "yellow
 
 //setup mod desc
 let meta = Vars.mods.getMod("yellow-java").meta;
-meta.description = "A random piece of chaos. Android/PC only."
+meta.description = "A random piece of chaos. Android/PC only.";
