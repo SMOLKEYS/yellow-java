@@ -25,6 +25,8 @@ public class Yellow extends Mod{
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
+            
+            global.YellowWeapons = YellowWeapons;
         });
     };
     
