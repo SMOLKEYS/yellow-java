@@ -18,7 +18,7 @@ public class YellowWeapons{
     
     meltdownBurstAttack, bullethell, antiMothSpray, decimation;
     
-    public void init(){
+    public static void init(){
         meltdownBurstAttack = new Weapon("Meltdown Burst"){{
             reload = 60f;
             x = 56f;
