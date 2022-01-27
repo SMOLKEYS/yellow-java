@@ -83,7 +83,7 @@ public class YellowFx{
     }),
     
     /** clEan! */
-    yellowDeathEffect = new Effect(230f, e -> {
+    yellowDeathEffect = new Effect(210f, e -> {
         Draw.color(Color.yellow, Color.orange, e.finpow());
         
         Lines.stroke(e.fout() * 5);
