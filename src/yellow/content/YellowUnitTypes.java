@@ -31,8 +31,8 @@ public class YellowUnitTypes implements ContentList{
         yellowAir = new UnitType("yellowAir"){{
             flying = true;
             hideDetails = false;
-            health = Float.MAX_VALUE;
-            armor = Float.MAX_VALUE;
+            health = 230000f;
+            armor = 5f;
             speed = 3f;
             accel = 0.08f;
             drag = 0.01f;
@@ -71,12 +71,12 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.range);
                 stats.remove(Stat.buildSpeed);
                 /** FLabel spam might not be a good idea, performance-wise */
-                stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]very high")));
-                stats.add(Stat.armor, l -> l.add(new FLabel("{wind}[red]many")));
+                stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]230000")));
+                stats.add(Stat.armor, l -> l.add(new FLabel("{wind}5")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{shake}[navy]no other survived.")));
                 stats.add(Stat.speed, l -> l.add(new FLabel("{sick}flar")));
-                stats.add(Stat.weapons, l -> l.add(new FLabel("{shake}[red]Meltdown Shotgun")));
+                stats.add(Stat.weapons, "Meltdown Burst + Bullethell MK1");
                 stats.add(Stat.itemCapacity, l -> l.add(new FLabel("{shake}[cyan]EVEN MORE ZEROOOOOOOOOOOOOOOOOOOOS")));
                 stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
                 stats.add(Stat.mineTier, l -> l.add(new FLabel("{rainbow}{sick}ONE AND THIRTY ZEROS")));
