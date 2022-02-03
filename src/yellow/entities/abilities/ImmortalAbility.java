@@ -4,8 +4,9 @@ import arc.util.*;
 import arc.util.Timer.*;
 import mindustry.content.*;
 import mindustry.content.Fx.*;
-import mindustry.entities.abilities.*;
+import mindustry.entities.*;
 import mindustry.entities.Effect.*;
+import mindustry.entities.abilities.*;
 import mindustry.gen.*;
 
 public class ImmortalAbility extends Ability{
