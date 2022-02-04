@@ -51,7 +51,7 @@ public class YellowUnitTypes implements ContentList{
             
             weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell);
             
-            abilities.add(new ImmortalAbility());
+            abilities.add(new RespawnAbility());
         }
         
             /** readability 0 */
