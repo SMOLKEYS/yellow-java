@@ -41,7 +41,7 @@ public class RespawnAbility extends Ability{
         this.respawnEffectCallTime = respawnEffectCallTime;
     }
     
-    public RespawnAbility(float respawnTime, Effect effectOffsetPos, float respawnEffectCallTime, Vec2 respawnOffsetPos, Vec2 effectOffsetPos¹){
+    public RespawnAbility(float respawnTime, Effect effectOffsetPos, float respawnEffectCallTime, Vec2 respawnOffsetPos, Vec2 effectOffsetPos){
         this.respawnTime = respawnTime;
         this.effectOnRespawn = effectOnRespawn;
         this.respawnEffectCallTime = respawnEffectCallTime;
