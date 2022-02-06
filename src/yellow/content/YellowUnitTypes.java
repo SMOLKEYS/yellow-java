@@ -16,6 +16,8 @@ import mindustry.world.meta.*;
 import mindustry.game.*;
 import yellow.weapons.*;
 import yellow.entities.abilities.*;
+import yellow.entities.units.*;
+import yellow.entities.units.entity.*;
 
 import static mindustry.Vars.*;
 
@@ -23,12 +25,15 @@ public class YellowUnitTypes implements ContentList{
     public static UnitType
     
     //yellow units
-    yellowAir, yellowGround;
+    yellowAir, yellowGround,
+    
+    //ghost units
+    ghostFlare;
     
     @Override
     public void load(){
         
-        yellowAir = new UnitType("yellowAir"){{
+        yellowAir = new UnitType("yellow"){{
             flying = true;
             hideDetails = false;
             health = 230000f;
@@ -119,7 +124,7 @@ public class YellowUnitTypes implements ContentList{
             
         };
         
-        yellowGround = new UnitType("yellowGround"){{
+        yellowGround = new UnitType("yellow-ground"){{
             health = Float.MAX_VALUE;
             armor = Float.MAX_VALUE;
             speed = 1.5f;
@@ -129,6 +134,18 @@ public class YellowUnitTypes implements ContentList{
             constructor = MechUnit::create;
             
             weapons.add(YellowWeapons.antiMothSpray, YellowWeapons.decimation);
+        }};
+        
+        ghostFlare = new GhostUnitType("ghost-flare"){{
+            health = 37.5f;
+            armor = 5f;
+            speed = 3f;
+            accel = 0.08f;
+            drag = 0.01f;
+            
+            constructor = GhostUnitEntity::new;
+            defaultController = FlyingAI::new;
+            region = Core.atlas.find("flare");
         }};
         
         //endregion
