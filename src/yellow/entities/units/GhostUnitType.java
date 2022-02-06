@@ -31,10 +31,9 @@ public class GhostUnitType extends UnitType{
     
     @Override
     public void update(Unit unit){
-        //WORK GODDAMNIT
+        
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;
-        ghost.clampLifetime();
         if(ghost.lifetime <= 0){
             ghost.remove();
             despawnEffect.at(unit.x + despawnEffectOffset.x, unit.y + despawnEffectOffset.y);

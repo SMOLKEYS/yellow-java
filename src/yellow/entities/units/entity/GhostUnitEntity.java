@@ -14,10 +14,6 @@ public class GhostUnitEntity extends UnitEntity{
         return lifetime / ((GhostUnitType)type).lifetime;
     }
     
-    public void clampLifetime(){
-        lifetime = Mathf.clamp(lifetime, 0f, ((GhostUnitType)type).lifetime);
-    }
-    
     @Override
     public void write(Writes write){
         super.write(write);
