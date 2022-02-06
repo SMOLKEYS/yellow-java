@@ -98,7 +98,7 @@ public class YellowFx{
         Fill.circle(e.x + x, e.y + y, e.fout() * 10);
         });
         Draw.alpha(e.fout() * 4);
-        Draw.rect("yellow-java-yellowAir", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
+        Draw.rect("yellow-java-yellow", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
     }),
     
     bullethellShootEffect = new Effect(60f, e -> {
