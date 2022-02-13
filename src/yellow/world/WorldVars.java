@@ -6,7 +6,6 @@ import arc.util.*;
 import arc.util.Timer.*;
 import mindustry.*;
 import mindustry.game.*;
-import java.lang.Integer;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -30,9 +29,9 @@ public class WorldVars{
         
         if(settings.get("prepared", "").toString() == ""){
             settings.put("prepared", true);
-            settings.put("current-session-menu-time", Integer(0));
-            settings.put("all-sessions-menu-times", Integer(0));
-            settings.put("kill-count", Integer(0));
+            settings.put("current-session-menu-time", 0);
+            settings.put("all-sessions-menu-times", 0);
+            settings.put("kill-count", 0);
             settings.put("horny", false);
         };
     }
@@ -41,15 +40,15 @@ public class WorldVars{
     public void start(){
         Timer.schedule(() -> {
             if(!state.isGame()){
-                settings.put("current-session-menu-time", Integer(currentSessionMenuTime + 1));
+                settings.put("current-session-menu-time", currentSessionMenuTime + 1);
             } else {
-                settings.put("current-session-menu-time", Integer(0));
+                settings.put("current-session-menu-time", 0);
             };
             
-            settings.put("all-sessions-menu-times", Integer(allSessionsMenuTimes + 1));
+            settings.put("all-sessions-menu-times", allSessionsMenuTimes + 1);
         }, 1f, 1f);
         
-        Events.on(UnitDestroyEvent.class, () -> settings.put("kill-count", Integer(killCount + 1)));
-        Events.on(UnitDrownEvent.class, () -> settings.put("kill-count", Integer(killCount - 1))); //thats their skill issue, not yours
+        Events.on(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount + 1));
+        Events.on(UnitDrownEvent.class, () -> settings.put("kill-count", killCount - 1)); //thats their skill issue, not yours
     }
 }
