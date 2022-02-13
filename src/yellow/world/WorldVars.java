@@ -25,7 +25,7 @@ public class WorldVars{
     public boolean horny = settings.getBool("horny");
     
     //Prepares all variables *once*.
-    public void prepare(){
+    public static void prepare(){
         
         if(settings.get("prepared", "").toString() == ""){
             settings.put("prepared", true);
@@ -37,7 +37,7 @@ public class WorldVars{
     }
     
     //Starts functionality of all variables. (Timer, Events, etc.)
-    public void start(){
+    public static void start(){
         Timer.schedule(() -> {
             if(!state.isGame()){
                 settings.put("current-session-menu-time", currentSessionMenuTime + 1);
