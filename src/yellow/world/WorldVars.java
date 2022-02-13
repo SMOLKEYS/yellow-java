@@ -16,13 +16,13 @@ public class WorldVars{
     
     //Menu time. Resets whenever you leave the game or enter a world.
     //Unlocks an achivement once 1 hour has passed.
-    public int currentSessionMenuTime = settings.getInt("current-session-menu-time");
+    public static int currentSessionMenuTime = settings.getInt("current-session-menu-time");
     //Menu time from all sessions.
-    public int allSessionsMenuTimes = settings.getInt("all-sessions-menu-times");
+    public static int allSessionsMenuTimes = settings.getInt("all-sessions-menu-times");
     //Kill count.
-    public int killCount = settings.getInt("kill-count");
+    public static int killCount = settings.getInt("kill-count");
     //........ehehehe.
-    public boolean horny = settings.getBool("horny");
+    public static boolean horny = settings.getBool("horny");
     
     //Prepares all variables *once*.
     public static void prepare(){
