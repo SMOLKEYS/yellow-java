@@ -9,6 +9,7 @@ import mindustry.mod.*;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
+import yellow.world.*;
 
 import static mindustry.Vars.*;
 
@@ -37,6 +38,8 @@ public class Yellow extends Mod{
     @Override
     public void loadContent(){
         YellowWeapons.init();
+        WorldVars.prepare();
+        WorldVars.start()
         
         for(ContentList list : yellowContent){
             list.load();

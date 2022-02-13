@@ -41,11 +41,11 @@ public class WorldVars{
         Timer.schedule(() -> {
             if(!state.isGame()){
                 settings.put("current-session-menu-time", currentSessionMenuTime + 1);
+                settings.put("all-sessions-menu-times", allSessionsMenuTimes + 1);
             } else {
                 settings.put("current-session-menu-time", 0);
             };
             
-            settings.put("all-sessions-menu-times", allSessionsMenuTimes + 1);
         }, 1f, 1f);
         
         Events.run(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount + 1));
