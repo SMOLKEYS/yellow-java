@@ -6,6 +6,7 @@ import arc.util.*;
 import arc.util.Timer.*;
 import mindustry.*;
 import mindustry.game.*;
+import java.lang.Integer;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
