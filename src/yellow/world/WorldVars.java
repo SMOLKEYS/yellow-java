@@ -48,7 +48,7 @@ public class WorldVars{
             settings.put("all-sessions-menu-times", allSessionsMenuTimes + 1);
         }, 1f, 1f);
         
-        Events.on(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount + 1));
-        Events.on(UnitDrownEvent.class, () -> settings.put("kill-count", killCount - 1)); //thats their skill issue, not yours
+        Events.run(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount + 1));
+        Events.run(UnitDrownEvent.class, () -> settings.put("kill-count", killCount - 1)); //thats their skill issue, not yours
     }
 }
