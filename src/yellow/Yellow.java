@@ -39,7 +39,7 @@ public class Yellow extends Mod{
     public void loadContent(){
         YellowWeapons.init();
         WorldVars.prepare();
-        WorldVars.start()
+        WorldVars.start();
         
         for(ContentList list : yellowContent){
             list.load();
