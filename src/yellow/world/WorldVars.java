@@ -48,15 +48,15 @@ public class WorldVars{
     public static void start(){
         Timer.schedule(() -> {
             if(!state.isGame()){
-                settings.put("current-session-menu-time", currentSessionMenuTime + 1);
-                settings.put("all-sessions-menu-times", allSessionsMenuTimes + 1);
+                settings.put("current-session-menu-time", currentSessionMenuTime() + 1);
+                settings.put("all-sessions-menu-times", allSessionsMenuTimes() + 1);
             } else {
                 settings.put("current-session-menu-time", 0);
             };
             
-        }, 1f, 1f, -1f);
+        }, 1f, 1f, -1);
         
-        Events.run(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount + 1));
-        Events.run(UnitDrownEvent.class, () -> settings.put("kill-count", killCount - 1)); //thats their skill issue, not yours
+        Events.run(UnitDestroyEvent.class, () -> settings.put("kill-count", killCount() + 1));
+        Events.run(UnitDrownEvent.class, () -> settings.put("kill-count", killCount() - 1)); //thats their skill issue, not yours
     }
 }

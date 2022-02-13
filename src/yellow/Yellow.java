@@ -12,6 +12,7 @@ import yellow.ui.buttons.*;
 import yellow.world.*;
 
 import static mindustry.Vars.*;
+import static arc.Core.*;
 
 public class Yellow extends Mod{
     
@@ -26,6 +27,8 @@ public class Yellow extends Mod{
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
+            
+            settings.put("current-session-menu-time", 0);
         });
     };
     
