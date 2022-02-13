@@ -10,6 +10,7 @@ import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
 import yellow.world.*;
+import yellow.world.WorldVars.*;
 
 import static mindustry.Vars.*;
 
