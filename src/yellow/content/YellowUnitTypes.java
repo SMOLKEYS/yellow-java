@@ -25,15 +25,19 @@ public class YellowUnitTypes implements ContentList{
     public static UnitType
     
     //yellow units
-    yellowAir, yellowGround,
+    yellow, yellowMech,
     
     //ghost units
     ghostFlare;
     
+    //adios
+    @Deprecated
+    public static UnitType yellowAir, yellowGround;
+    
     @Override
     public void load(){
         
-        yellowAir = new UnitType("yellow"){{
+        yellow = new UnitType("yellow"){{
             flying = true;
             hideDetails = false;
             health = 230000f;
@@ -124,7 +128,7 @@ public class YellowUnitTypes implements ContentList{
             
         };
         
-        yellowGround = new UnitType("yellow-ground"){{
+        yellowMech = new UnitType("yellow-mech"){{
             health = Float.MAX_VALUE;
             armor = Float.MAX_VALUE;
             speed = 1.5f;
@@ -148,6 +152,8 @@ public class YellowUnitTypes implements ContentList{
             region = Core.atlas.find("flare");
         }};
         
+        yellowAir = yellow;
+        yellowGround = yellowMech;
         //endregion
     };
 }
