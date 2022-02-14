@@ -20,7 +20,7 @@ public class YellowUtils{
         settings.put("yellow-java-achievement-" + achievementName + "-unlocked", true);
     }
     
-    public static void showAchivementComplete(String quote, String achievementNonInternalName){
+    public static void showAchievementComplete(String quote, String achievementNonInternalName){
         ui.showInfo(quote + "\n\nUnlocked Achievement: " + achievementNonInternalName);
     }
     
