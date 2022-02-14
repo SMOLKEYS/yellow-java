@@ -52,7 +52,7 @@ public class WorldVars{
     public static void start(){
         Timer.schedule(() -> {
             if(!state.isGame()){
-                settings.put("yellow-javacurrent-session-menu-time", currentSessionMenuTime() + 1);
+                settings.put("yellow-java-current-session-menu-time", currentSessionMenuTime() + 1);
                 settings.put("yellow-java-all-sessions-menu-times", allSessionsMenuTimes() + 1);
             } else {
                 settings.put("current-session-menu-time", 0);
