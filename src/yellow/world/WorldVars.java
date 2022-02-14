@@ -58,12 +58,12 @@ public class WorldVars{
                 settings.put("yellow-java-current-session-menu-time", 0);
             };
             
-            if(currentSessionMenuTime() < 3600 && !isComplete("menu-man")){
+            if(currentSessionMenuTime() > 3600 && !isComplete("menu-man")){
                 showAchievementComplete("Uhhh... you've been in this menu for an hour now. Are you ok or just bored?", "Menu Man");
                 completeAchievement("menu-man");
             };
             
-            if(currentSessionMenuTime() < 10800 && !isComplete("menu-man-2")){
+            if(currentSessionMenuTime() > 10800 && !isComplete("menu-man-2")){
                 showAchievementComplete("...it's been 3 hours, did you just leave the game open?", "Menu Man 2");
                 completeAchievement("menu-man-2");
             };
