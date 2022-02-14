@@ -55,7 +55,7 @@ public class WorldVars{
                 settings.put("yellow-java-current-session-menu-time", currentSessionMenuTime() + 1);
                 settings.put("yellow-java-all-sessions-menu-times", allSessionsMenuTimes() + 1);
             } else {
-                settings.put("current-session-menu-time", 0);
+                settings.put("yellow-java-current-session-menu-time", 0);
             };
             
             if(currentSessionMenuTime() < 3600 && !isComplete("menu-man")){
