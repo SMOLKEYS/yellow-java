@@ -96,7 +96,7 @@ public class WorldVars{
             };
             
             if(currentSessionMenuTime() > allSessionsMenuTimes() && anticheat() == true){
-                Threads.throwAppException(new IllegalStateException("Noooo! Don't do that! (CSMT value higher than ASMT value: " + currentSessionMenuTime() + " > " + allSessionsMenuTimes() + ")");
+                Threads.throwAppException(new IllegalStateException("Noooo! Don't do that! (CSMT value higher than ASMT value: " + currentSessionMenuTime() + " > " + allSessionsMenuTimes() + ")"));
             };
         }, 1f, 1f, -1);
         
