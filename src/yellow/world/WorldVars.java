@@ -86,7 +86,7 @@ public class WorldVars{
                 YellowAchievements.check("menu-man-3");
             };
             
-            if(currentSessionMenuTime() > 1814400 && !YellowAchievements.isCompelete("menu-man-4")){
+            if(currentSessionMenuTime() > 1814400 && !YellowAchievements.isComplete("menu-man-4")){
                 YellowAchievements.showDialogue("...", "Menu Man 4");
                 YellowAchievements.check("menu-man-4");
             };
