@@ -4,9 +4,13 @@ import arc.*;
 import arc.Events.*;
 import arc.util.*;
 import arc.util.Timer.*;
+import arc.util.Threads.*;
 import mindustry.*;
 import mindustry.game.*;
 import yellow.util.*;
+import yellow.content.*;
+import yellow.content.YellowAchievements.*;
+
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -29,22 +33,24 @@ public class WorldVars{
     public static int killCount(){
         return settings.getInt("yellow-java-kill-count");
     }
-    //........ehehehe.
-    public static boolean horny(){
-        return settings.getBool("yellow-java-horny");
+    
+    public static boolean anticheat(){
+        return settings.getBool("yellow-java-anticheat");
     }
     
-    //Prepares all variables *once*.
+    //Prepares all variables *once*. Also acts as a reset trigger.
     public static void prepare(){
         
         if(settings.getBool("yellow-java-prepared") != true){
             settings.put("yellow-java-prepared", true);
+            settings.put("yellow-java-anticheat", true)
             settings.put("yellow-java-current-session-menu-time", 0);
             settings.put("yellow-java-all-sessions-menu-times", 0);
             settings.put("yellow-java-kill-count", 0);
-            settings.put("yellow-java-horny", false);
-            createAchievement("menu-man");
-            createAchievement("menu-man-2");
+            YellowAchievements.achievements.forEach(ach -> YellowAchievements.create(ach.toString()));
+            YellowAchievements.modAchievements.forEach(ach -> YellowAchievements.create(ach.toString()));
+            YellowAchievements.optionalAchievements.forEach(ach -> YellowAchievements.create(ach.toString()));
+
         };
     }
     
@@ -58,14 +64,33 @@ public class WorldVars{
                 settings.put("yellow-java-current-session-menu-time", 0);
             };
             
-            if(currentSessionMenuTime() > 3600 && !isComplete("menu-man")){
-                showAchievementComplete("Uhhh... you've been in this menu for an hour now. Are you ok or just bored?", "Menu Man");
-                completeAchievement("menu-man");
+            if(currentSessionMenuTime() > 3600 && !YellowAchievements.isComplete("menu-man")){
+                YellowAchievements.showDialogue("Uhhh... you've been in this menu for an hour now. Are you ok or just bored?", "Menu Man");
+                YellowAchievements.check("menu-man");
             };
             
-            if(currentSessionMenuTime() > 10800 && !isComplete("menu-man-2")){
-                showAchievementComplete("...it's been 3 hours, did you just leave the game open?", "Menu Man 2");
-                completeAchievement("menu-man-2");
+            if(currentSessionMenuTime() > 10800 && !YellowAchievements.isComplete("menu-man-2")){
+                YellowAchievements.showDialogue("...it's been 3 hours, did you just leave the game open?", "Menu Man 2");
+                YellowAchievements.check("menu-man-2");
+            };
+            
+            if(currentSessionMenuTime() > 43200 && !YellowAchievements.isComplete("menu-man-3")){
+                YellowAchievements.showDialogue("...it's been 12 hours... are you even on your device right now?", "Menu Man 3");
+                YellowAchievements.check("menu-man-3");
+            };
+            
+            if(currentSessionMenuTime() > 1814400 && !isCompelete("menu-man-4")){
+                YellowAchievements.showDialogue("...", "Menu Man 4");
+                YellowAchievements.check("menu-man-4");
+            };
+            
+            if(killCount() > 500 && !YellowAchievements.isComplete("homicide") && state.isCampaign()){
+                YellowAchievements.showDialogue("You mad fuck.", "Homicide");
+                YellowAchievements.check("homicide");
+            };
+            
+            if(currentSessionMenuTime() > allSessionsMenuTimes() && anticheat() == true){
+                Threads.throwAppException(new IllegalStateException("Noooo! Don't do that! (CSMT value higher than ASMT value: @ > @", currentSessionMenuTime(), allSessionsMenuTimes()));
             };
         }, 1f, 1f, -1);
         
