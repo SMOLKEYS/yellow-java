@@ -43,7 +43,7 @@ public class WorldVars{
         
         if(settings.getBool("yellow-java-prepared") != true){
             settings.put("yellow-java-prepared", true);
-            settings.put("yellow-java-anticheat", true)
+            settings.put("yellow-java-anticheat", true);
             settings.put("yellow-java-current-session-menu-time", 0);
             settings.put("yellow-java-all-sessions-menu-times", 0);
             settings.put("yellow-java-kill-count", 0);

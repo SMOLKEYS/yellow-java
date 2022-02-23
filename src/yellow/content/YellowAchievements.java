@@ -28,7 +28,7 @@ public class YellowAchievements{
         "menu-man-4"
     };
     
-    public static void check(String achievement){8 
+    public static void check(String achievement){
         settings.put("yellow-java-achievement-" + achievement + "-unlocked", true);
     }
     
