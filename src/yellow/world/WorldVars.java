@@ -47,10 +47,16 @@ public class WorldVars{
             settings.put("yellow-java-current-session-menu-time", 0);
             settings.put("yellow-java-all-sessions-menu-times", 0);
             settings.put("yellow-java-kill-count", 0);
-            YellowAchievements.achievements.forEach(ach -> YellowAchievements.create(ach.toString()));
-            YellowAchievements.modAchievements.forEach(ach -> YellowAchievements.create(ach.toString()));
-            YellowAchievements.optionalAchievements.forEach(ach -> YellowAchievements.create(ach.toString()));
-
+            //garbage code, god help me
+            for(int i = 0; i < YellowAchievements.achivements.length; i++){
+                YellowAchievements.create(YellowAchievements.achievements[i]);
+            };
+            for(int i = 0; i < YellowAchievements.modAchivements.length; i++){
+                YellowAchievements.create(YellowAchievements.modAchivements[i]);
+            };
+            for(int i = 0; i < YellowAchievements.optionalAchivements.length; i++){
+                YellowAchievements.create(YellowAchievements.optionalAchievements[i]);
+            };
         };
     }
     
@@ -79,7 +85,7 @@ public class WorldVars{
                 YellowAchievements.check("menu-man-3");
             };
             
-            if(currentSessionMenuTime() > 1814400 && !isCompelete("menu-man-4")){
+            if(currentSessionMenuTime() > 1814400 && !YellowAchievements.isCompelete("menu-man-4")){
                 YellowAchievements.showDialogue("...", "Menu Man 4");
                 YellowAchievements.check("menu-man-4");
             };
@@ -90,7 +96,7 @@ public class WorldVars{
             };
             
             if(currentSessionMenuTime() > allSessionsMenuTimes() && anticheat() == true){
-                Threads.throwAppException(new IllegalStateException("Noooo! Don't do that! (CSMT value higher than ASMT value: @ > @", currentSessionMenuTime(), allSessionsMenuTimes()));
+                Threads.throwAppException(new IllegalStateException("Noooo! Don't do that! (CSMT value higher than ASMT value: " + currentSessionMenuTime() + " > " + allSessionsMenuTimes() + ")");
             };
         }, 1f, 1f, -1);
         
