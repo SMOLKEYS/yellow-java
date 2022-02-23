@@ -49,13 +49,13 @@ public class WorldVars{
             settings.put("yellow-java-all-sessions-menu-times", 0);
             settings.put("yellow-java-kill-count", 0);
             //garbage code, god help me
-            for(int i = 0; i < YellowAchievements.achivements.length; i++){
+            for(int i = 0; i < YellowAchievements.achievements.length; i++){
                 YellowAchievements.create(YellowAchievements.achievements[i]);
             };
-            for(int i = 0; i < YellowAchievements.modAchivements.length; i++){
-                YellowAchievements.create(YellowAchievements.modAchivements[i]);
+            for(int i = 0; i < YellowAchievements.modAchievements.length; i++){
+                YellowAchievements.create(YellowAchievements.modAchievements[i]);
             };
-            for(int i = 0; i < YellowAchievements.optionalAchivements.length; i++){
+            for(int i = 0; i < YellowAchievements.optionalAchievements.length; i++){
                 YellowAchievements.create(YellowAchievements.optionalAchievements[i]);
             };
         };
