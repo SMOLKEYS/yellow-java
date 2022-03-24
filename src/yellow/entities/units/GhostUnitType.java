@@ -13,7 +13,7 @@ import yellow.content.YellowFx.*;
 import yellow.entities.units.entity.*;
 
 public class GhostUnitType extends UnitType{
-    /** Unit lifetime. */
+    /** Unit lifetime in ticks. */
     public float lifetime = 900f;
     /** Despawn effect. */
     public Effect despawnEffect = YellowFx.ghostDespawn;
@@ -22,11 +22,7 @@ public class GhostUnitType extends UnitType{
     
     public GhostUnitType(String name){
         super(name);
-    }
-    
-    public GhostUnitType(float lifetime, String name){
-        super(name);
-        this.lifetime = lifetime;
+        constructor = GhostUnitEntity::new;
     }
     
     @Override
@@ -34,7 +30,8 @@ public class GhostUnitType extends UnitType{
         
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;
-        if(ghost.lifetime <= 0){
+        ghost.lifetimef();
+        if(ghost.lifetime <= 0f){
             ghost.remove();
             despawnEffect.at(unit.x + despawnEffectOffset.x, unit.y + despawnEffectOffset.y);
         };
