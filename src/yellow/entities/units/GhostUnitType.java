@@ -30,7 +30,7 @@ public class GhostUnitType extends UnitType{
         
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;
-        ghost.lifetimef();
+        ghost.clampLifetime();
         if(ghost.lifetime <= 0f){
             ghost.remove();
             despawnEffect.at(unit.x + despawnEffectOffset.x, unit.y + despawnEffectOffset.y);
