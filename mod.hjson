@@ -26,3 +26,6 @@ minGameVersion: 129
 
 #this is a java mod
 java: true
+
+#i have a reason for this
+hideBrowser: true
