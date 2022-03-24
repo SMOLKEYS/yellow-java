@@ -38,4 +38,12 @@ public class GhostUnitType extends UnitType{
         
         super.update(unit);
     }
+    
+    @Override
+    public Unit create(Team team){
+        Unit unit = super.create(team);
+        unit.health = unit.maxHealth;
+        ((GhostUnitEntity)unit).lifetime = lifetime;
+        return unit;
+    }
 }
