@@ -35,5 +35,7 @@ public class GhostUnitType extends UnitType{
             ghost.remove();
             despawnEffect.at(unit.x + despawnEffectOffset.x, unit.y + despawnEffectOffset.y);
         };
+        
+        super.update(unit);
     }
 }

@@ -22,6 +22,11 @@ public class GhostUnitEntity extends UnitEntity{
     }
     
     @Override
+    public int cap(){
+        return count() + 1;
+    }
+    
+    @Override
     public void write(Writes write){
         super.write(write);
         write.f(lifetime);
