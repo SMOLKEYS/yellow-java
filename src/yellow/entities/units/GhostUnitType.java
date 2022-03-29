@@ -1,8 +1,12 @@
 package yellow.entities.units;
 
+import arc.math.*;
+import arc.math.Mathf.*;
 import arc.util.*;
 import arc.util.Time.*;
 import arc.math.geom.Vec2;
+import arc.graphics.*;
+import arc.graphics.g2d.TextureRegion;
 import mindustry.type.UnitType;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
@@ -12,14 +16,28 @@ import mindustry.content.Fx.*;
 import yellow.content.*;
 import yellow.content.YellowFx.*;
 import yellow.entities.units.entity.*;
+import yellow.interactions.*;
+import yellow.interactions.Responses.*;
+import yellow.interactions.ChatBubble.*;
 
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */
     public float lifetime = 900f;
     /** Despawn effect. */
     public Effect despawnEffect = YellowFx.ghostDespawn;
-    /** Despawn effect offswt. */
+    /** Despawn effect offset. */
     public Vec2 despawnEffectOffset = new Vec2(0, 0);
+    
+    /** Whether to enable crack textures or glow effects. */
+    public boolean cracks = false, glow = false;
+    /** Crack texture that appears on the unit as it gets closer to the end of its lifetime. */
+    public TextureRegion crackRegion;
+    
+    /**
+     * TODO? shard regions on unit despawn?
+     * public TextureRegion[] shardRegions;
+     */
+    
     
     public GhostUnitType(String name){
         super(name);
@@ -28,6 +46,10 @@ public class GhostUnitType extends UnitType{
     
     @Override
     public void update(Unit unit){
+        
+        if(Mathf.chance(0.05)){
+            ChatBubble.createBubble(unit, Responses.responses[Mathf.floor(Mathf.random() * 1)]);
+        };
         
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;
