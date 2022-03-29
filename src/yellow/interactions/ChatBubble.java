@@ -36,6 +36,6 @@ public class ChatBubble{
         
         Core.scene.root.addChildAt(0, table);
         
-        table.getChildren.first().act(0f);
+        table.getChildren().first().act(0f);
     }
 }

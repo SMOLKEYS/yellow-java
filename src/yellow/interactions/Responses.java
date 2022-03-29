@@ -2,7 +2,7 @@ package yellow.interactions;
 
 public class Responses{
     
-    public String[] responses = {
+    public static String[] responses = {
         "Hi!",
         "Hello!"
     };
