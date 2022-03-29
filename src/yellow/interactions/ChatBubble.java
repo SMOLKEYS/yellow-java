@@ -28,7 +28,7 @@ public class ChatBubble{
         table.update(() -> {
             if(state.isMenu()) table.remove();
             table.setPosition(unit.x, unit.y + 24, Align.center);
-        )};
+        });
         table.actions(Actions.delay(5f), Actions.fadeOut(7f));
         table.add(text).style(Styles.outlineLabel);
         table.pack();
