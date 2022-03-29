@@ -27,9 +27,10 @@ public class ChatBubble{
         table.touchable = Touchable.disabled;
         table.update(() -> {
             if(state.isMenu()) table.remove();
-            table.setPosition(unit.x, unit.y + 24, Align.center);
+            Vec2 a = Core.camera.project(unit.x, unit.y + 24);
+            table.setPosition(a.x, a.y, Align.center);
         });
-        table.actions(Actions.delay(5f), Actions.fadeOut(7f));
+        table.actions(Actions.delay(5f), Actions.fadeOut(2f));
         table.add(text).style(Styles.outlineLabel);
         table.pack();
         table.act(0f);
