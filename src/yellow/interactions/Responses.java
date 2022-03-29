@@ -3,7 +3,11 @@ package yellow.interactions;
 public class Responses{
     
     public static String[] responses = {
-        "Hi!",
-        "Hello!"
+        "cope",
+        "ratio",
+        "L",
+        "get real",
+        "sus",
+        "amogus"
     };
 }
