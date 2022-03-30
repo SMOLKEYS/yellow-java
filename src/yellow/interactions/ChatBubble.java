@@ -40,7 +40,7 @@ public class ChatBubble{
         table.getChildren().first().act(0f);
     }
     
-    public static void createBubble(Unit unit, String text, float holdTime, , float fadeTime){
+    public static void createBubble(Unit unit, String text, float holdTime, float fadeTime){
         var table = new Table(Styles.black3).margin(4);
         table.touchable = Touchable.disabled;
         table.update(() -> {
