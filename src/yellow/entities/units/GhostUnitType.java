@@ -47,7 +47,7 @@ public class GhostUnitType extends UnitType{
     @Override
     public void update(Unit unit){
         
-        if(Mathf.chance(0.02)){
+        if(Mathf.chance(0.009)){
             ChatBubble.createBubble(unit, Responses.responses[Mathf.floor(Mathf.random() * Responses.responses.length)]);
         };
         
