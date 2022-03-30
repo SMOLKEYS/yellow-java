@@ -39,4 +39,22 @@ public class ChatBubble{
         
         table.getChildren().first().act(0f);
     }
+    
+    public static void createBubble(Unit unit, String text, float holdTime, , float fadeTime){
+        var table = new Table(Styles.black3).margin(4);
+        table.touchable = Touchable.disabled;
+        table.update(() -> {
+            if(state.isMenu()) table.remove();
+            Vec2 a = Core.camera.project(unit.x, unit.y + 16);
+            table.setPosition(a.x, a.y, Align.center);
+        });
+        table.actions(Actions.delay(holdTime), Actions.fadeOut(fadeTime));
+        table.add(text).style(Styles.outlineLabel);
+        table.pack();
+        table.act(0f);
+        
+        Core.scene.root.addChildAt(0, table);
+        
+        table.getChildren().first().act(0f);
+    }
 }
