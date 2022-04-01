@@ -48,7 +48,7 @@ public class GhostUnitType extends UnitType{
     public void update(Unit unit){
         
         if(Mathf.chance(0.009)){
-            ChatBubble.createBubble(unit, Responses.responses[Mathf.floor(Mathf.random() * Responses.responses.length)]);
+            ChatBubble.createBubble(unit, "[red]" + Responses.responses[Mathf.floor(Mathf.random() * Responses.responses.length)]);
         };
         
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);

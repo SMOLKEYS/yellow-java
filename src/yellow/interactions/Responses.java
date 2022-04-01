@@ -30,6 +30,11 @@ public class Responses{
         "damn smolkeys",
         "damn dryehm",
         "damn anuke",
-        "damn ilya"
+        "damn ilya",
+        "rule 4",
+        "no cryo",
+        "no cryo?",
+        "you have been warned too many times",
+        "/votekick is an among us reference"
     };
 }
