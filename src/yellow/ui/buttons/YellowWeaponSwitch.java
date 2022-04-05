@@ -1,7 +1,9 @@
 package yellow.ui.buttons;
 
+import arc.flabel.*;
 import arc.scene.*;
 import arc.scene.ui.ImageButton.*;
+import arc.scene.ui.layout.*;
 import arc.scene.style.*;
 import yellow.ui.buttons.dialogs.*;
 import yellow.content.*;
@@ -13,7 +15,7 @@ import static arc.Core.*;
 import static mindustry.Vars.*;
 
     /**
-     * Adds a button anchored to the minimap.
+     * Adds a button anchored to the minimap & FLables.
      * @author xzxADIxzx
      */
 public class YellowWeaponSwitch extends Fragment{
@@ -22,9 +24,18 @@ public class YellowWeaponSwitch extends Fragment{
     private static final float padding = 4f;
     private static final float isize = 48f;
 
+    private float height = -Scl.scl(width);
+
     private YellowWeaponSwitchDialog dialog;
 
     public void build(Group parent){
+        Drawable icon = atlas.drawable("status-disarmed");
+        ImageButtonStyle style = new ImageButtonStyle(){{
+            up = Tex.pane;
+            down = Styles.flatDown;
+            over = Styles.flatOver;
+        }};
+
         dialog = new YellowWeaponSwitchDialog(); // do not create new ones until the client loads
         parent.fill(cont -> {
             cont.name = "weapons switch";
@@ -32,18 +43,33 @@ public class YellowWeaponSwitch extends Fragment{
 
             cont.top().right();
             cont.marginRight(width - padding);
-
-            Drawable icon = atlas.drawable("status-disarmed");
-            ImageButtonStyle style = new ImageButtonStyle(){{
-                up = Tex.pane;
-                down = Styles.flatDown;
-                over = Styles.flatOver;
-            }};
             
             cont.button(icon, style, isize, dialog::show);
 
             // show buttons only when player controls yellow air
             cont.visible(() -> player.unit().type == YellowUnitTypes.yellowAir);
+        });
+
+        // idk what is it, so I put it here
+        parent.fill(cont -> {
+            cont.name = "rename it";
+            cont.top().right();
+
+            cont.table(table -> {
+                table.table(content -> {
+                    content.background(Styles.black6);
+                    content.add(new FLabel("some text goes here")).pad(16f).fill();
+                }).top().fill().update(content -> {
+                    content.setHeight(height);
+                    content.setTranslation(0, Scl.scl(width) + 1f);
+                });
+
+                table.table(btns -> {
+                    btns.defaults().size(width / 2f);
+                    btns.button(Icon.upOpen, style, isize, () -> height += 5f).row();
+                    btns.button(Icon.downOpen, style, isize, () -> height -= 5f);
+                });
+            }).padRight(width * 1.5f - padding * 2f);
         });
     }
 
