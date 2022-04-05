@@ -10,6 +10,7 @@ import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
 import yellow.world.*;
+import yellow.interactions.ui.*;
 
 import static mindustry.Vars.*;
 import static arc.Core.*;
@@ -27,6 +28,7 @@ public class Yellow extends Mod{
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
+            DialogueBox.build(ui.hudGroup);
             
             settings.put("current-session-menu-time", 0);
         });
