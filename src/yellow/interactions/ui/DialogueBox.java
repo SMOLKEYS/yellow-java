@@ -12,7 +12,7 @@ import static mindustry.Vars.*;
 public class DialogueBox extends Fragment{
     private Table table = new Table();
     private Label name = new Label("<none>");
-    private Label dialogue = new Label("...")
+    private Label dialogue = new Label("...");
     private float width = 425f, height = 470f, x = 655f, y = 1490f;
     
     public void build(Group parent){
