@@ -1,6 +1,7 @@
 package yellow.interactions.ui;
 
 import arc.scene.*;
+import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.scene.actions.*;
 import arc.flabel.*;
