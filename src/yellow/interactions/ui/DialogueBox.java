@@ -19,7 +19,7 @@ public class DialogueBox{
         ((Table) ui.hudGroup.find("minimap/position")).table(t -> {
             t.name = "dialogue box";
             t.setSize(width, height);
-            t.background(Styles.black6)
+            t.background(Styles.black6);
             
             t.add(new FLabel("{wave}....."));
         });
