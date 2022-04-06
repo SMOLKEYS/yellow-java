@@ -18,7 +18,7 @@ public class DialogueBox extends Fragment{
     public void build(Group parent){
         ((Table) parent).addChild(table);
         
-        table.name = "dialoguebox"
+        table.name = "dialoguebox";
         
         table.setSize(width, height);
         table.setPosition(x, y);
