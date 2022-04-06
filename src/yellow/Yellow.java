@@ -30,9 +30,12 @@ public class Yellow extends Mod{
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
-            box.build();
             
             settings.put("current-session-menu-time", 0);
+        });
+        
+        Time.runTask(60f, () -> {
+            box.build();
         });
     };
     
