@@ -19,7 +19,6 @@ import static arc.Core.*;
 public class Yellow extends Mod{
     
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
-    public static DialogueBox box = new DialogueBox();
     
     public Yellow(){
         String yellow = "yellow";
@@ -34,7 +33,7 @@ public class Yellow extends Mod{
             settings.put("current-session-menu-time", 0);
             
             Time.runTask(60f, () -> {
-                box.build(ui.hudGroup);
+                DialogueBox.build();
             });
         });
         

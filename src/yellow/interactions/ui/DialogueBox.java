@@ -10,12 +10,12 @@ import mindustry.ui.fragments.Fragment;
 
 import static mindustry.Vars.*;
 
-public class DialogueBox extends Fragment{
+public class DialogueBox{
     private Table table = new Table();
     private float width = 425f, height = 470f, x = 655f, y = 1490f;
     
-    public void build(Group parent){
-        ((Table) parent).addChild(table);
+    public static void build(){
+        ui.hudGroup.addChild(table);
         
         table.name = "dialoguebox";
         
