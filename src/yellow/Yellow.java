@@ -32,11 +32,13 @@ public class Yellow extends Mod{
             weaponSwitch.build(ui.hudGroup);
             
             settings.put("current-session-menu-time", 0);
+            
+            Time.runTask(60f, () -> {
+                box.build();
+            });
+            
         });
         
-        Time.runTask(60f, () -> {
-            box.build();
-        });
     };
     
     public final ContentList[] yellowContent = {
