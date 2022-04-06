@@ -19,10 +19,11 @@ public class DialogueBox extends Fragment{
         
         ((Table) parent.find("minimap/position")).table(t -> {
             t.name = "dialogue box";
-            t.setSize(width, height);
+            t.setHeight(height);
+            t.setWidth(width);
             t.background(Styles.black6);
             
-            t.add(new FLabel("{wave}....."));
+            t.add("...");
         });
     }
 }
