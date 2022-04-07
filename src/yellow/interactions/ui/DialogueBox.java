@@ -48,7 +48,7 @@ public class DialogueBox{
     }
     
     public static void dialogueStart(String[] input){
-        this.n = input;
+        a = input;
         table.getChildren().get(0).remove();
         table.add(new Label(input[cd]));
         buttonTable.getChildren().get(0).touchable = Touchable.enabled;
@@ -58,16 +58,16 @@ public class DialogueBox{
         table.getChildren().get(0).remove();
         table.add(new Label("..."));
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
-        this.n = null;
-        this.cd = 0;
+        a = null;
+        cd = 0;
     }
     
     public static void next(){
-        if(this.n.length < this.cd){
+        if(a.length < cd){
             dialogueEnd();
         };
-        this.cd += 1;
+        cd += 1;
         table.getChildren().get(0).remove();
-        table.add(new Label(this.n[this.cd]));
+        table.add(new Label(a[cd]));
     }
 }
