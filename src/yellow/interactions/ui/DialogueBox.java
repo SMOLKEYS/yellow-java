@@ -31,7 +31,7 @@ public class DialogueBox{
         table.setPosition(x, y);
         table.background(Styles.flatDown);
         table.add(new Label("..."));
-        table.cells.get(1).grow().wrap();
+        table.getCells().get(1).grow().wrap();
         
         buttonTable.name = "dialoguebox/button";
         
