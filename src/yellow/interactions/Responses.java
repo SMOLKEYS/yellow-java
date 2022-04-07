@@ -60,4 +60,3 @@ public class Responses{
         scriptedResponses.of(objects);
     }
 }
-1
