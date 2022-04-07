@@ -65,6 +65,7 @@ public class DialogueBox{
     public static void next(){
         if(a.length < cd){
             dialogueEnd();
+            return;
         };
         cd += 1;
         table.getChildren().get(0).remove();
