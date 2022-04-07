@@ -31,7 +31,7 @@ public class DialogueBox{
         table.setPosition(x, y);
         table.background(Styles.flatDown);
         table.add(new Label("..."));
-        Time.runTask(20f, () -> {
+        Time.runTask(600f, () -> {
             table.getCells().get(1).grow().wrap();
         });
         
