@@ -10,6 +10,7 @@ import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
 import yellow.world.*;
+import yellow.interactions.*;
 import yellow.interactions.ui.*;
 import yellow.interactions.ui.DialogueBox.*;
 
@@ -34,6 +35,9 @@ public class Yellow extends Mod{
             
             Time.runTask(60f, () -> {
                 DialogueBox.build();
+            });
+            Time.runTask(120f, () -> {
+                DialogueBox.startDialogue(Responses.responses);
             });
         });
         
