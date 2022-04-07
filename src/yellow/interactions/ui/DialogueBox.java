@@ -70,7 +70,7 @@ public class DialogueBox{
     }
     
     public static void next(){
-        if(a.length - 2 <= cd){
+        if(a.length - 2 < cd){
             dialogueEnd();
             return;
         };
