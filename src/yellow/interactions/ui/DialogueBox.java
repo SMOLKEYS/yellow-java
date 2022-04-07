@@ -40,15 +40,15 @@ public class DialogueBox{
     }
     
     public static void hide(){
-        table.actions(Actions.fadeOut(2));
+        table.actions(Actions.fadeOut(2f));
     }
     
     public static void show(){
-        table.actions(Actions.fadeIn(0.4));
+        table.actions(Actions.fadeIn(0.4f));
     }
     
     public static void dialogueStart(String[] input){
-        n = input;
+        this.n = input;
         table.getChildren().get(0).remove();
         table.add(new Label(input[cd]));
         buttonTable.getChildren().get(0).touchable = Touchable.enabled;
@@ -58,16 +58,16 @@ public class DialogueBox{
         table.getChildren().get(0).remove();
         table.add(new Label("..."));
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
-        n = null;
-        cd = 0;
+        this.n = null;
+        this.cd = 0;
     }
     
     public static void next(){
-        if(n.length < cd){
+        if(this.n.length < this.cd){
             dialogueEnd();
         };
-        cd += 1;
+        this.cd += 1;
         table.getChildren().get(0).remove();
-        table.add(new Label(n[cd]));
+        table.add(new Label(this.n[this.cd]));
     }
 }
