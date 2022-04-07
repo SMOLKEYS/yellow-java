@@ -56,13 +56,13 @@ public class DialogueBox{
             return;
         };
         a = input;
-        ((Label) table.getChildren.get(0)).setText(input[cd]);
+        ((Label) table.getChildren().get(0)).setText(input[cd]);
         buttonTable.getChildren().get(0).touchable = Touchable.enabled;
         dialoguePlaying = true;
     }
     
     public static void dialogueEnd(){
-        ((Label) table.getChildren.get(0)).setText("...");
+        ((Label) table.getChildren().get(0)).setText("...");
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
         a = null;
         cd = 0;
@@ -75,6 +75,6 @@ public class DialogueBox{
             return;
         };
         cd += 1;
-        ((Label) table.getChildren.get(0)).setText(a[cd]);
+        ((Label) table.getChildren().get(0)).setText(a[cd]);
     }
 }
