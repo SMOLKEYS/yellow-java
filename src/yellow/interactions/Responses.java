@@ -1,6 +1,10 @@
 package yellow.interactions;
 
+import arc.struct.*;
+
 public class Responses{
+    
+    public static ObjectMap<String, Runnable> scriptedResponses = new ObjectMap<>();
     
     public static String[] responses = {
         "cope",
@@ -37,4 +41,23 @@ public class Responses{
         "you have been warned too many times",
         "/votekick is an among us reference"
     };
+    
+    public static String[][] secrets = {
+        {"UWOOOOOOGH", "SEEEEEEGS"}
+    };
+    //testing
+    public static String[] screams = {
+        "a",
+        "aaaaa",
+        "aaaaaaaaaa",
+        "aaaaaaaaaaaaaaaaaaaa",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    };
+    
+    public static void put(Object... objects){
+        scriptedResponses.of(objects);
+    }
 }
+1

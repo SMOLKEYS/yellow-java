@@ -1,5 +1,6 @@
 package yellow.interactions.ui;
 
+import arc.util.*;
 import arc.scene.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
@@ -18,6 +19,7 @@ public class DialogueBox{
     private static float width = 425f, height = 470f, x = 655f, y = 1490f;
     private static String[] a;
     private static int cd = 0;
+    private static boolean dialoguePlaying = false;
     
     public static void build(){
         ui.hudGroup.addChild(table);
@@ -29,6 +31,7 @@ public class DialogueBox{
         table.setPosition(x, y);
         table.background(Styles.flatDown);
         table.add(new Label("..."));
+        table.cells.get(1).grow().wrap();
         
         buttonTable.name = "dialoguebox/button";
         
@@ -48,18 +51,22 @@ public class DialogueBox{
     }
     
     public static void dialogueStart(String[] input){
+        if(dialoguePlaying){
+            Log.warn("Dialogue attempted to play despite one currently playing now. Ignoring.");
+            return;
+        };
         a = input;
-        table.getChildren().get(0).remove();
-        table.add(new Label(input[cd]));
+        table.getChildren().get(0).setText(input[cd]);
         buttonTable.getChildren().get(0).touchable = Touchable.enabled;
+        dialoguePlaying = true;
     }
     
     public static void dialogueEnd(){
-        table.getChildren().get(0).remove();
-        table.add(new Label("..."));
+        table.getChildren().get(0).setText("...");
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
         a = null;
         cd = 0;
+        dialoguePlaying = false;
     }
     
     public static void next(){
@@ -68,7 +75,6 @@ public class DialogueBox{
             return;
         };
         cd += 1;
-        table.getChildren().get(0).remove();
-        table.add(new Label(a[cd]));
+        table.getChildren().get(0).setText(a[cd]);
     }
 }

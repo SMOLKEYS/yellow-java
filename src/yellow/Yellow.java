@@ -37,7 +37,7 @@ public class Yellow extends Mod{
                 DialogueBox.build();
             });
             Time.runTask(120f, () -> {
-                DialogueBox.dialogueStart(Responses.responses);
+                DialogueBox.dialogueStart(Responses.screams);
             });
         });
         
