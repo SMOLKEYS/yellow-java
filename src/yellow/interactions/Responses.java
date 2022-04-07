@@ -47,13 +47,13 @@ public class Responses{
     };
     //testing
     public static String[] screams = {
-        "a",
-        "aaaaa",
-        "aaaaaaaaaa",
-        "aaaaaaaaaaaaaaaaaaaa",
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
     };
     
     public static void put(Object... objects){
