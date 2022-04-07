@@ -33,7 +33,7 @@ public class DialogueBox{
         buttonTable.name = "dialoguebox/button";
         
         buttonTable.setPosition(x, y);
-        buttonTable.button(Icon.next, () -> {
+        buttonTable.button(Icon.right, () -> {
             next();
         });
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
