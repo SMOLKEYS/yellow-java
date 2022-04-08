@@ -45,7 +45,7 @@ public class DialogueBoxEditorDialog extends BaseDialog{
         
         cont.add("Text Size (def 0.67):");
         cont.area("", txtsize -> {
-            ((Label) dBox.getChildren().get(0)).setFontScale(Strings.parseFloat(txtsize))
+            ((Label) dBox.getChildren().get(0)).setFontScale(Strings.parseFloat(txtsize));
         }).row();;
         
     }
