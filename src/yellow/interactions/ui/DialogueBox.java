@@ -10,6 +10,8 @@ import arc.flabel.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.Fragment;
 import mindustry.gen.*;
+import yellow.ui.*;
+import yellow.ui.DialogueBoxEditorDialog.*;
 
 import static mindustry.Vars.*;
 
@@ -20,6 +22,7 @@ public class DialogueBox{
     private static String[] a;
     private static int cd = 0;
     private static boolean dialoguePlaying = false;
+    private static DialogueBoxEditorDialog editor;
     
     public static void build(){
         ui.hudGroup.addChild(table);
@@ -27,17 +30,22 @@ public class DialogueBox{
         
         table.name = "dialoguebox";
         
+        editor = new DialogueBoxEditorDialog();
+        
         table.setSize(width, height);
         table.setPosition(x, y);
         table.background(Styles.flatDown);
         table.add(new Label("..."));
         table.getCells().get(0).grow().wrap();
+        table.margin(8f);
+        table.getChildren().get(0).setFontScale(0.67f);
         
         buttonTable.name = "dialoguebox/button";
         
         buttonTable.setPosition(x, y);
         buttonTable.button(Icon.right, () -> {
             next();
+            editor.show();
         });
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
     }

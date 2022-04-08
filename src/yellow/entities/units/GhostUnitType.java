@@ -16,9 +16,6 @@ import mindustry.content.Fx.*;
 import yellow.content.*;
 import yellow.content.YellowFx.*;
 import yellow.entities.units.entity.*;
-import yellow.interactions.*;
-import yellow.interactions.Responses.*;
-import yellow.interactions.ChatBubble.*;
 
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */
@@ -46,10 +43,6 @@ public class GhostUnitType extends UnitType{
     
     @Override
     public void update(Unit unit){
-        
-        if(Mathf.chance(0.009)){
-            ChatBubble.createBubble(unit, "[red]" + Responses.responses[Mathf.floor(Mathf.random() * Responses.responses.length)]);
-        };
         
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;

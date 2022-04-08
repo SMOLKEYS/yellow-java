@@ -1,4 +1,4 @@
-package yellow.interactions;
+package yellow.interactions.ui;
 
 import arc.*;
 import arc.Core.*;
