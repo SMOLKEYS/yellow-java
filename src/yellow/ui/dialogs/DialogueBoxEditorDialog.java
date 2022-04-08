@@ -16,7 +16,7 @@ public class DialogueBoxEditorDialog extends BaseDialog{
         
         addCloseButton();
         
-        cont.add("[scarlet]Attempting to use letters or double-periods (..) on most (or all) of the input fields can potentially crash the game![]").row();
+        cont.add("[scarlet]Attempting to use letters or double-periods (..) on\n most (or all) of the input fields can\n potentially crash the game![]").row();
         
         cont.add("Box X Position (def 655): ");
         cont.area("", xbox -> {
