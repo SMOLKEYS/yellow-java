@@ -10,8 +10,8 @@ import arc.flabel.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.Fragment;
 import mindustry.gen.*;
-import yellow.ui.*;
-import yellow.ui.DialogueBoxEditorDialog.*;
+import yellow.ui.dialogs*;
+import yellow.ui.dialogs.DialogueBoxEditorDialog.*;
 
 import static mindustry.Vars.*;
 
@@ -38,7 +38,7 @@ public class DialogueBox{
         table.add(new Label("..."));
         table.getCells().get(0).grow().wrap();
         table.margin(8f);
-        table.getChildren().get(0).setFontScale(0.67f);
+        ((Label) table.getChildren().get(0)).setFontScale(0.67f);
         
         buttonTable.name = "dialoguebox/button";
         

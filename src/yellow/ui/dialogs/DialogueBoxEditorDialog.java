@@ -2,6 +2,7 @@ package yellow.ui.dialogs;
 
 import arc.util.*;
 import arc.scene.ui.*;
+import arc.scene.ui.layout.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
 
