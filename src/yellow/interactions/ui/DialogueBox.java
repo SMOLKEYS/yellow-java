@@ -18,6 +18,7 @@ import static mindustry.Vars.*;
 public class DialogueBox{
     private static Table table = new Table();
     private static Table buttonTable = new Table();
+    private static Table secret = new Table();
     private static float width = 425f, height = 470f, x = 655f, y = 1490f;
     private static String[] a;
     private static int cd = 0;
@@ -27,6 +28,7 @@ public class DialogueBox{
     public static void build(){
         ui.hudGroup.addChild(table);
         ui.hudGroup.addChild(buttonTable);
+        ui.hudGroup.addChild(secret);
         
         table.name = "dialoguebox";
         
@@ -45,9 +47,15 @@ public class DialogueBox{
         buttonTable.setPosition(x, y);
         buttonTable.button(Icon.right, () -> {
             next();
-            editor.show();
         });
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
+        
+        secret.name = "dialoguebox/editor";
+        
+        secret.setPosition(8000f, 8000f);
+        secret.button(Icon.admin, () -> {
+            editor.show();
+        });
     }
     
     public static void hide(){

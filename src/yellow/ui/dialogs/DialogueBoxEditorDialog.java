@@ -16,44 +16,37 @@ public class DialogueBoxEditorDialog extends BaseDialog{
         
         addCloseButton();
         
-        cont.area("Box X", xbox -> {
-            if(xbox.replaceAll("\\s", "") == ""){
-                dBox.x = 655f;
-                return;
-            };
-            dBox.x = Strings.parseFloat(xbox.replaceAll("[^0-9]", ""));
+        cont.add("[scarlet]Attempting to use letters or double-periods (..) can potentially crash the game![]").row();
+        
+        cont.add("Box X Position (def 655): ");
+        cont.area("", xbox -> {
+            dBox.x = Strings.parseFloat(xbox);
         }).row();
         
-        cont.area("Box Y", ybox -> {
-            if(ybox.replaceAll("\\s", "") == ""){
-                dBox.y = 655f;
-                return;
-            };
-            dBox.y = Strings.parseFloat(ybox.replaceAll("[^0-9]", ""));
+        cont.add("Box Y Position (def 1490): ");
+        cont.area("", ybox -> {
+            dBox.y = Strings.parseFloat(ybox);
         }).row();
         
-        cont.area("Box Margin", boxmargin -> {
-            if(boxmargin.replaceAll("\\s", "") == ""){
-                dBox.margin(8f);
-                return;
-            };
-            dBox.margin(Strings.parseFloat(boxmargin.replaceAll("[^0-9]", "")));
+        cont.add("Box Margin (def 8): ");
+        cont.area("", boxmargin -> {
+            dBox.margin(Strings.parseFloat(boxmargin));
         }).row();
         
-        cont.area("Box Width", boxwidth -> {
-            if(boxwidth.replaceAll("\\s", "") == ""){
-                dBox.setWidth(425f);
-                return;
-            };
-            dBox.setWidth(Strings.parseFloat(boxwidth.replaceAll("[^0-9]", "")));
+        cont.add("Box Width (def 425): ");
+        cont.area("", boxwidth -> {
+            dBox.setWidth(Strings.parseFloat(boxwidth));
         }).row();
         
-        cont.area("Box Height", boxheight -> {
-            if(boxheight.replaceAll("\\s", "") == ""){
-                dBox.setHeight(470f);
-                return;
-            };
-            dBox.setHeight(Strings.parseFloat(boxheight.replaceAll("[^0-9]", "")));
+        cont.add("Box Height (def 470): ");
+        cont.area("", boxheight -> {
+            dBox.setHeight(Strings.parseFloat(boxheight));
         }).row();
+        
+        cont.add("Text Size (def 0.67):");
+        cont.area("", txtsize -> {
+            ((Label) dBox.getChildren().get(0)).setFontScale(Strings.parseFloat(txtsize))
+        }).row();;
+        
     }
 }
