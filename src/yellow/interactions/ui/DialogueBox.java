@@ -10,7 +10,7 @@ import arc.flabel.*;
 import mindustry.ui.*;
 import mindustry.ui.fragments.Fragment;
 import mindustry.gen.*;
-import yellow.ui.dialogs*;
+import yellow.ui.dialogs.*;
 import yellow.ui.dialogs.DialogueBoxEditorDialog.*;
 
 import static mindustry.Vars.*;
