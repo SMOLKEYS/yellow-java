@@ -10,7 +10,7 @@ import yellow.content.*;
 
 public class AirstrikeFlare extends ArtilleryBulletType{
     //The bullet that the flare can call.
-    public Bullet missile = YellowBullets.standardMissile.type;
+    public BulletType missile = YellowBullets.standardMissile;
     //The total amount of missiles that will be called.
     public int missileCount = 8;
     //The minimum amount of missiles that will be called. Does nothing if randomizeMissileCount is set to false.
