@@ -1,9 +1,11 @@
 package yellow.content;
 
-import mindustry.*;
+import arc.*;
 import mindustry.ctype.*;
 import mindustry.entities.bullet.*;
 import yellow.entities.bullet.*;
+
+
 
 public class YellowBullets implements ContentList{
     public static BulletType
