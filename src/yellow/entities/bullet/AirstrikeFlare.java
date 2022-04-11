@@ -10,7 +10,7 @@ import yellow.content.*;
 
 public class AirstrikeFlare extends ArtilleryBulletType{
     //The bullet that the flare can call.
-    public Bullet missile = YellowBullets.standardMissile;
+    public Bullet missile = ((Bullet) YellowBullets.standardMissile);
     //The total amount of missiles that will be called.
     public int missileCount = 8;
     //The minimum amount of missiles that will be called. Does nothing if randomizeMissileCount is set to false.
@@ -44,7 +44,7 @@ public class AirstrikeFlare extends ArtilleryBulletType{
         
         for(int i = 0; i < missileCount; i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
-                BulletType.createBullet(((Bullet) missile), b.team, x + Mathf.range(posRandomization), y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
+                BulletType.createBullet(missile, b.team, x + Mathf.range(posRandomization), y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
             });
         };
     }
