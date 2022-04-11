@@ -4,7 +4,7 @@ import arc.struct.*;
 
 public class Responses{
     
-    public String[] test = {
+    public static String[] test = {
         "1",
         "2",
         "3",

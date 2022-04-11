@@ -1,5 +1,6 @@
 package yellow.content;
 
+import mindustry.*;
 import mindustry.ctype.*;
 import mindustry.entities.bullet.*;
 import yellow.entities.bullet.*;
