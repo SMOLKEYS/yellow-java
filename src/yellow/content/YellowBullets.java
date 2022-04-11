@@ -24,7 +24,7 @@ public class YellowBullets implements ContentList{
             damage = 350f;
             spin = 7f;
             
-            sprite = Core.atlas.find("standard-missile");
+            sprite = "standard-missile";
         }};
         
         standardMissileCaller = new AirstrikeFlare(){{}}; 
