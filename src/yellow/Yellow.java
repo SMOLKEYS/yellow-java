@@ -37,7 +37,7 @@ public class Yellow extends Mod{
                 DialogueBox.build();
             });
             Time.runTask(120f, () -> {
-                DialogueBox.dialogueStart(Responses.screams);
+                DialogueBox.dialogueStart(Responses.test);
             });
         });
         
@@ -46,7 +46,8 @@ public class Yellow extends Mod{
     public final ContentList[] yellowContent = {
         new YellowUnitTypes(),
         new YellowStatusEffects(),
-        new YellowPlanets()
+        new YellowPlanets(),
+        new YellowBullets()
     };
     
     @Override
