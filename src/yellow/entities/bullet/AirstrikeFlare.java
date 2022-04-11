@@ -40,11 +40,12 @@ public class AirstrikeFlare extends ArtilleryBulletType{
     }
     
     @Override
-    public void hit(Bullet b, float x, float y){
+    public void hit(Bullet b){
+        super.hit(b, b.x, b.y);
         
         for(int i = 0; i < missileCount; i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
-                BulletType.createBullet(missile, b.team, x + Mathf.range(posRandomization), y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
+                BulletType.createBullet(missile, b.team, b.x + Mathf.range(posRandomization), b.y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
             });
         };
     }
