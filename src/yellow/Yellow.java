@@ -39,6 +39,10 @@ public class Yellow extends Mod{
             Time.runTask(120f, () -> {
                 DialogueBox.dialogueStart(Responses.test);
             });
+            
+            app.post(() -> {
+                int amogus = 20;
+            });
         });
         
     };
