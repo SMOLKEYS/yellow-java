@@ -43,9 +43,9 @@ public class AirstrikeFlare extends ArtilleryBulletType{
     }
     
     @Override
-    public void hit(Bullet b){
+    public void despawned(Bullet b){
         Log.info("hit before super");
-        super.hit(b);
+        super.despawned(b);
         Log.info("hit after super");
         for(int i = 0; i < missileCount; i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
