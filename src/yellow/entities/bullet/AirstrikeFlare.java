@@ -37,6 +37,9 @@ public class AirstrikeFlare extends ArtilleryBulletType{
         shrinkY = 0f;
         lifetime = 10f;
         speed = 20f;
+        collides = true;
+        collidesAir = true;
+        collidesGround = true;
     }
     
     @Override
