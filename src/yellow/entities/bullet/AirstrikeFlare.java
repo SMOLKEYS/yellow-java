@@ -43,14 +43,20 @@ public class AirstrikeFlare extends ArtilleryBulletType{
     }
     
     private int misRng(){
-        return missileLifetimeRandomization ? Mathf.random(minMissileCount, missileCount) : missileCount;
+        int yes = 0;
+        if(missileLifetimeRandomization){
+            yes = Mathf.random(minMissileCount, missileCount);
+        } else {
+            yes = missileCount;
+        };
+        return yes;
     }
     
     @Override
     public void despawned(Bullet b){
         super.despawned(b);
-        int x = b.x;
-        int y = b.y;
+        float x = b.x;
+        float y = b.y;
         //if it works, it works
         for(int i = 0; i < misRng(); i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
