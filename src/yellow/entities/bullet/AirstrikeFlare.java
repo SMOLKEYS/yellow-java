@@ -44,7 +44,7 @@ public class AirstrikeFlare extends ArtilleryBulletType{
     
     private int misRng(){
         int yes = 0;
-        if(missileLifetimeRandomization){
+        if(randomizeMissileCount) {
             yes = Mathf.random(minMissileCount, missileCount);
         } else {
             yes = missileCount;
