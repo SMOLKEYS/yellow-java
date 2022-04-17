@@ -45,7 +45,7 @@ public class YellowWeaponSwitch extends Fragment{
             cont.button(icon, style, isize, dialog::show);
 
             // show buttons only when player controls yellow air
-            cont.visible(() -> player.unit().type == YellowUnitTypes.yellowAir);
+            cont.visible(() -> player.unit().type == YellowUnitTypes.yellow);
         });
     }
 

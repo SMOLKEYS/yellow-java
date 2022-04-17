@@ -17,10 +17,10 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         cont.add("Weapon Switch").row();
         addCloseButton();
         
-        for(int i = 0; i < YellowUnitTypes.yellowAir.weapons.size; i++){
+        for(int i = 0; i < YellowUnitTypes.yellow.weapons.size; i++){
             final int id = i;
             
-            cont.check(YellowUnitTypes.yellowAir.weapons.get(id).name, true, it -> {
+            cont.check(YellowUnitTypes.yellow.weapons.get(id).displayName, true, it -> {
             	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
                 var mount = unit.mounts[id];
                 mount.reload = it ? mount.weapon.reload : Float.MAX_VALUE;

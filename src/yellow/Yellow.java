@@ -51,7 +51,8 @@ public class Yellow extends Mod{
         new YellowUnitTypes(),
         new YellowStatusEffects(),
         new YellowPlanets(),
-        new YellowBullets()
+        new YellowBullets(),
+        new YellowBlocks()
     };
     
     @Override

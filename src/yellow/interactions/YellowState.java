@@ -1,4 +1,4 @@
-package yellow.content.emotion;
+package yellow.interactions;
 
 public class YellowState{
     

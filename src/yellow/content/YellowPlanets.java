@@ -16,7 +16,7 @@ public class YellowPlanets implements ContentList{
     
     @Override
     public void load(){
-        azeno = new Planet("azeno", sun, 3.2f, 3){{
+        azeno = new Planet("azeno", sun, 1.3f, 3){{
             accessible = true;
             alwaysUnlocked = true;
             atmosphereColor = Color.orange;

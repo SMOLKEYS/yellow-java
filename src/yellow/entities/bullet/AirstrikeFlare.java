@@ -42,15 +42,19 @@ public class AirstrikeFlare extends ArtilleryBulletType{
         collidesGround = true;
     }
     
+    private int misRng(){
+        return missileLifetimeRandomization ? Mathf.random(minMissileCount, missileCount) : missileCount;
+    }
+    
     @Override
     public void despawned(Bullet b){
-        Log.info("hit before super");
         super.despawned(b);
-        Log.info("hit after super");
-        for(int i = 0; i < missileCount; i++){
+        int x = b.x;
+        int y = b.y;
+        //if it works, it works
+        for(int i = 0; i < misRng(); i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
-                BulletType.createBullet(missile, b.team, b.x + Mathf.range(posRandomization), b.y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
-                Log.info("bullet spawn");
+                BulletType.createBullet(missile, b.team, x + Mathf.range(posRandomization), y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
             });
         };
     }

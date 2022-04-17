@@ -11,6 +11,7 @@ import mindustry.entities.units.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.type.*;
+import yellow.type.*;
 import yellow.content.*;
 
 public class YellowWeapons{
@@ -19,7 +20,7 @@ public class YellowWeapons{
     meltdownBurstAttack, bullethell, antiMothSpray, decimation;
     
     public static void init(){
-        meltdownBurstAttack = new Weapon("Meltdown Burst"){{
+        meltdownBurstAttack = new NameableWeapon("meltdown-burst", "Meltdown Burst"){{
             reload = 60f;
             x = 56f;
             mirror = true;
@@ -51,7 +52,7 @@ public class YellowWeapons{
             }
         };
         
-        bullethell = new Weapon("Bullethell"){{
+        bullethell = new NameableWeapon("bullethell", "Bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
@@ -114,7 +115,7 @@ public class YellowWeapons{
             
         };
         
-        antiMothSpray = new Weapon("Anti Moth Spray"){{
+        antiMothSpray = new NameableWeapon("anti-moth-spray", "Anti Moth Spray"){{
             reload = 2f;
             x = 3f;
             mirror = true;
@@ -130,7 +131,7 @@ public class YellowWeapons{
             }};
         }};
         
-        decimation = new Weapon("Decimation"){{
+        decimation = new NameableWeapon("decimation", "Decimation"){{
             reload = 300f;
             x = 48f;
             mirror = true;
