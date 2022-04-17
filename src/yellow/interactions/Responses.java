@@ -36,7 +36,7 @@ public class Responses{
         "unusual...",
         "can be calm and aggressive at times...",
         "...but i like it.",
-        "And besides, without it, i wouldn't have existed at all."
+        "And besides, without it, i wouldn't have existed at all.",
         "...",
         "It's a bit weird knowing that a discord channel is essentially the main reason i was created...",
         "...but i can live fine knowing that.",
