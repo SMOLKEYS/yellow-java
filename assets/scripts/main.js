@@ -12,7 +12,7 @@ let meta = Vars.mods.getMod("yellow-java").meta;
 meta.description = "A random piece of chaos. [scarlet]Android/PC only.";
 
 //import all mod classes
-
+/*
 iclass("yellow.Yellow");
 iclass("yellow.content.YellowUnitTypes");
 iclass("yellow.content.YellowBlocks");
@@ -38,3 +38,4 @@ iclass("yellow.ui.dialogs.DialogueBoxEditorDialog");
 iclass("yellow.util.YellowUtils");
 iclass("yellow.weapons.YellowWeapons");
 iclass("yellow.world.WorldVars");
+*/
