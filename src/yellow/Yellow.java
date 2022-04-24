@@ -51,12 +51,12 @@ public class Yellow extends Mod{
         new YellowUnitTypes(),
         new YellowStatusEffects(),
         new YellowPlanets(),
-        new YellowBullets(),
         new YellowBlocks()
     };
     
     @Override
     public void loadContent(){
+        YellowBullets.load();
         YellowWeapons.init();
         WorldVars.prepare();
         WorldVars.start();
