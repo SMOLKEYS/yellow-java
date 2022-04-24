@@ -5,14 +5,14 @@ function iclass(name){
     importClass(new NativeJavaClass(Vars.mods.getScripts().scope, Class.forName(name, true, Vars.mods.mainLoader())));
 }
 
-resetPrepared = () => Core.settings.put("yellow-java-prepared", false);
+global.resetPrepared = () => Core.settings.put("yellow-java-prepared", false);
 
 //setup mod desc
 let meta = Vars.mods.getMod("yellow-java").meta;
 meta.description = "A random piece of chaos. [scarlet]Android/PC only.";
 
 //import all mod classes
-/*
+
 iclass("yellow.Yellow");
 iclass("yellow.content.YellowUnitTypes");
 iclass("yellow.content.YellowBlocks");
@@ -38,4 +38,3 @@ iclass("yellow.ui.dialogs.DialogueBoxEditorDialog");
 iclass("yellow.util.YellowUtils");
 iclass("yellow.weapons.YellowWeapons");
 iclass("yellow.world.WorldVars");
-*/
