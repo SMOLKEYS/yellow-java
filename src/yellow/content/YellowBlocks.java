@@ -11,6 +11,7 @@ public class YellowBlocks implements ContentList{
     @Override
     public void load(){
         yellowPropBlock = new Block("yellow-prop-block"){{
+            size = 1;
             solid = false;
         }};
     }
