@@ -54,9 +54,11 @@ public class Yellow extends Mod{
         new YellowBlocks()
     };
     
+    public final ContentList bullets = new YellowBullets();
+    
     @Override
     public void loadContent(){
-        YellowBullets.load();
+        bullets.load();
         YellowWeapons.init();
         WorldVars.prepare();
         WorldVars.start();
