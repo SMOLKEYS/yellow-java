@@ -13,11 +13,12 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.type.*;
 import yellow.content.*;
+import yellow.entities.bullet.*;
 
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher;
     
     public static void init(){
         meltdownBurstAttack = new NameableWeapon("meltdown-burst", "Meltdown Burst"){{
@@ -161,6 +162,12 @@ public class YellowWeapons{
             };
         }};
         
-        //endregion
+        airstrikeFlareLauncher = new NameableWeapon("airstrike-flare-launcher", "Airstrike Flare Launcher"){{
+            reload = 300f;
+            x = 0f;
+            y = 0f;
+            range = 400f;
+            bullet = YellowBullets.standardMissileCaller;
+        }};
     }
 }

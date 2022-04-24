@@ -112,7 +112,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell);
+            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareCaller);
             
             abilities.add(new RespawnAbility());
         }
@@ -126,7 +126,6 @@ public class YellowUnitTypes implements ContentList{
                 stats.remove(Stat.size);
                 stats.remove(Stat.commandLimit);
                 stats.remove(Stat.speed);
-                stats.remove(Stat.weapons);
                 stats.remove(Stat.itemCapacity);
                 stats.remove(Stat.mineSpeed);
                 stats.remove(Stat.mineTier);
@@ -139,7 +138,6 @@ public class YellowUnitTypes implements ContentList{
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
                 stats.add(Stat.commandLimit, l -> l.add(new FLabel("{shake}[navy]no other survived.")));
                 stats.add(Stat.speed, l -> l.add(new FLabel("{sick}flar")));
-                stats.add(Stat.weapons, "Meltdown Burst + Bullethell MK1");
                 stats.add(Stat.itemCapacity, l -> l.add(new FLabel("{shake}[cyan]EVEN MORE ZEROOOOOOOOOOOOOOOOOOOOS")));
                 stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
                 stats.add(Stat.mineTier, l -> l.add(new FLabel("{rainbow}{sick}ONE AND THIRTY ZEROS")));
