@@ -99,8 +99,8 @@ public class YellowUnitTypes implements ContentList{
             speed = 3f;
             accel = 0.08f;
             drag = 0.01f;
-            range = 240f;
-            maxRange = 240f;
+            range = 1250f;
+            maxRange = 1250f;
             mineSpeed = 5000f;
             mineTier = 5000;
             itemCapacity = 850000;
@@ -112,7 +112,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareCaller);
+            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher);
             
             abilities.add(new RespawnAbility());
         }

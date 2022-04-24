@@ -7,8 +7,7 @@ import yellow.entities.units.*;
 public class DisableableWeapon extends NameableWeapon{
     
     public DisableableWeapon(){
-        super("");
-        displayName = "unnamed disableable weapon";
+        super("", "no config name");
         mountType = DisableableWeaponMount::new;
     }
 }

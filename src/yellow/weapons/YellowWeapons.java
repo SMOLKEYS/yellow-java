@@ -166,7 +166,6 @@ public class YellowWeapons{
             reload = 300f;
             x = 0f;
             y = 0f;
-            range = 400f;
             bullet = YellowBullets.standardMissileCaller;
         }};
     }
