@@ -33,6 +33,8 @@ const classes = [
     "yellow.world.WorldVars"
 ];
 
-classes.forEach(cls => {
-    Vars.mods.getScripts().runConsole("importClass(new NativeJavaClass(Vars.mods.getScripts().scope, Class.forName(" + cls + ", true, Vars.mods.mainLoader())));");
+Events.on(ClientLoadEvent, () => {
+    classes.forEach(cls => {
+        Vars.mods.getScripts().runConsole("importClass(new NativeJavaClass(Vars.mods.getScripts().scope, Class.forName(" + cls + ", true, Vars.mods.mainLoader())));");
+    });
 });
