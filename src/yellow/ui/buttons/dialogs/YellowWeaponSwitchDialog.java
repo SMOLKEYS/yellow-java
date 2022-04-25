@@ -25,7 +25,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             cont.check(((NameableWeapon) YellowUnitTypes.yellow.weapons.get(id)).displayName, true, it -> {
                 Unit unit = Vars.player.unit();
                 var m = ((DisableableWeaponMount) unit.mounts[id]);
-                mount.reload = it ? m.disabled = false : m.disabled = true;
+                m.reload = it ? (m.disabled = false) : (m.disabled = true);
             }).row();
         };
     };
