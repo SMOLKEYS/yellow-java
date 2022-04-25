@@ -9,6 +9,7 @@ import mindustry.ui.dialogs.*;
 import yellow.type.*;
 import yellow.content.*;
 import yellow.weapons.*;
+import yellow.entities.units.*;
 
 public class YellowWeaponSwitchDialog extends BaseDialog{
     
@@ -22,9 +23,9 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             final int id = i;
             
             cont.check(((NameableWeapon) YellowUnitTypes.yellow.weapons.get(id)).displayName, true, it -> {
-            	Unit unit = Vars.player.unit(); // !!! PUT SOMETHING ELSE HERE !!!
-                var mount = unit.mounts[id];
-                mount.reload = it ? mount.weapon.reload : Float.MAX_VALUE;
+                Unit unit = Vars.player.unit();
+                var m = ((DisableableWeaponMount) unit.mounts[id]);
+                mount.reload = it ? m.disabled = false : m.disabled = true;
             }).row();
         };
     };

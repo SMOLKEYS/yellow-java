@@ -13,6 +13,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.type.*;
 import yellow.content.*;
+import yellow.entities.units.*;
 import yellow.entities.bullet.*;
 
 public class YellowWeapons{
@@ -21,7 +22,7 @@ public class YellowWeapons{
     meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher;
     
     public static void init(){
-        meltdownBurstAttack = new NameableWeapon("meltdown-burst", "Meltdown Burst"){{
+        meltdownBurstAttack = new DisableableWeapon("meltdown-burst", "Meltdown Burst"){{
             reload = 60f;
             x = 56f;
             mirror = true;
@@ -42,7 +43,7 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
-                if(w.reload > this.reload) return;
+                if(((DisableableWeaponMount) w).disabled) return;
                 
                 float rotation = u.rotation - 90;
                 
@@ -53,7 +54,7 @@ public class YellowWeapons{
             }
         };
         
-        bullethell = new NameableWeapon("bullethell", "Bullethell"){{
+        bullethell = new DisableableWeapon("bullethell", "Bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
@@ -94,7 +95,7 @@ public class YellowWeapons{
             public void draw(Unit u, WeaponMount w){
                 super.draw(u, w);
                 
-                if(w.reload > this.reload) return;
+                if(((DisableableWeaponMount) w).disabled) return;
                 
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
@@ -116,7 +117,7 @@ public class YellowWeapons{
             
         };
         
-        antiMothSpray = new NameableWeapon("anti-moth-spray", "Anti Moth Spray"){{
+        antiMothSpray = new DisableableWeapon("anti-moth-spray", "Anti Moth Spray"){{
             reload = 2f;
             x = 3f;
             mirror = true;
@@ -132,7 +133,7 @@ public class YellowWeapons{
             }};
         }};
         
-        decimation = new NameableWeapon("decimation", "Decimation"){{
+        decimation = new DisableableWeapon("decimation", "Decimation"){{
             reload = 300f;
             x = 48f;
             mirror = true;
@@ -162,7 +163,7 @@ public class YellowWeapons{
             };
         }};
         
-        airstrikeFlareLauncher = new NameableWeapon("airstrike-flare-launcher", "Airstrike Flare Launcher"){{
+        airstrikeFlareLauncher = new DisableableWeapon("airstrike-flare-launcher", "Airstrike Flare Launcher"){{
             reload = 300f;
             x = 0f;
             y = 0f;

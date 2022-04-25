@@ -8,7 +8,7 @@ import static mindustry.Vars.*;
 
 public class YellowUtils{
     
-    public static void isEnabled(String modName){
-        settings.getBool("mod-" + modName + "-enabled");
+    public static boolean isEnabled(String modName){
+        return settings.getBool("mod-" + modName + "-enabled");
     }
 }
