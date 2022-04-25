@@ -112,7 +112,7 @@ public class YellowUnitTypes implements ContentList{
             defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.add(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation);
+            weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation);
             
             abilities.add(new RespawnAbility());
         }
