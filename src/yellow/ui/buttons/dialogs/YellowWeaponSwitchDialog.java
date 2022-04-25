@@ -22,7 +22,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         for(int i = 0; i < YellowUnitTypes.yellow.weapons.size; i++){
             final int id = i;
             
-            cont.check(((NameableWeapon) YellowUnitTypes.yellow.weapons.get(id)).displayName + " Lock", true, it -> {
+            cont.check(((NameableWeapon) YellowUnitTypes.yellow.weapons.get(id)).displayName + " Lock", false, it -> {
                 Unit unit = Vars.player.unit();
                 var m = ((DisableableWeaponMount) unit.mounts[id]);
                 m.disabled = it;
