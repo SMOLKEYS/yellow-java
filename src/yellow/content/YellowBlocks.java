@@ -22,7 +22,7 @@ public class YellowBlocks implements ContentList{
         }};
         
         yellowShrine = new SummoningShrine(yellow){{
-            health = 1685f;
+            health = 1685;
             size = 4;
             summonTime = 180f;
         }};
