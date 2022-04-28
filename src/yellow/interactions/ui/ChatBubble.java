@@ -23,7 +23,7 @@ public class ChatBubble{
     
     
     public static void createBubble(Unit unit, String text){
-        var table = new Table(Styles.black3).margin(4);
+        Table table = new Table(Styles.black3).margin(4);
         table.touchable = Touchable.disabled;
         table.update(() -> {
             if(state.isMenu()) table.remove();
@@ -41,7 +41,7 @@ public class ChatBubble{
     }
     
     public static void createBubble(Unit unit, String text, float holdTime, float fadeTime){
-        var table = new Table(Styles.black3).margin(4);
+        Table table = new Table(Styles.black3).margin(4);
         table.touchable = Touchable.disabled;
         table.update(() -> {
             if(state.isMenu()) table.remove();

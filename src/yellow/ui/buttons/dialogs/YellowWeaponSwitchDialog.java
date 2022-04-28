@@ -6,6 +6,7 @@ import arc.scene.ui.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.ui.dialogs.*;
+import mindustry.entities.units.*;
 import yellow.type.*;
 import yellow.content.*;
 import yellow.weapons.*;
@@ -24,7 +25,7 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
             
             cont.check(((NameableWeapon) YellowUnitTypes.yellow.weapons.get(id)).displayName + " Lock", false, it -> {
                 Unit unit = Vars.player.unit();
-                var m = ((DisableableWeaponMount) unit.mounts[id]);
+                DisableableWeaponMount m = ((DisableableWeaponMount) unit.mounts[id]);
                 m.disabled = it;
             }).row();
         };
