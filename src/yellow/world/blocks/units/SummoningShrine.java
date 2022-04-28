@@ -36,7 +36,7 @@ public class SummoningShrine extends Block{
         public void buildConfiguration(Table table){
             table.table(t -> {
                 t.add("Summoning Shrine (" + unit.localizedName + ")").row();
-                t.button("Summon Unit", () -> {
+                t.button("Summon Unit", () -> { /** TODO button wrappinģ screwery*/
                     requestEffect.at(this);
                     Time.run(summonTime, () -> {
                         unit.spawn(team, this);

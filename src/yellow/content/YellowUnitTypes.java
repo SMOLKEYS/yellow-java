@@ -117,7 +117,10 @@ public class YellowUnitTypes implements ContentList{
             abilities.add(new RespawnAbility());
         }
         
-            /** readability 0 */
+            /**
+             * readability 0 
+             * TODO clean up this mess
+             */
             @Override
             public void setStats(){
                 super.setStats();
@@ -171,7 +174,7 @@ public class YellowUnitTypes implements ContentList{
                 Tmp.c1.a = 0;
                 Fill.light(u.x, u.y, 5, 50f - r1, Color.yellow, Tmp.c1);
             }
-            
+            /** TODO unit check, only one Yellow can exist in one world/map */
             @Override
             public void update(Unit unit){
                 super.update(unit);
@@ -179,7 +182,7 @@ public class YellowUnitTypes implements ContentList{
             }
             
         };
-        
+        /** TODO this entire unit in general */
         yellowMech = new UnitType("yellow-mech"){{
             health = Float.MAX_VALUE;
             armor = Float.MAX_VALUE;

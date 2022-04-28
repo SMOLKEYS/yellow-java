@@ -8,6 +8,7 @@ import static mindustry.Vars.*;
 
 /** 
  * Achievement list.
+ * TODO all of these
  */ 
 public class YellowAchievements{
     

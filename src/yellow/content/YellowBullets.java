@@ -15,7 +15,7 @@ public class YellowBullets implements ContentList{
     @Override
     public void load(){
         
-        
+        /** TODO */
         standardMissile = new BombBulletType(){{
             lifetime = 60f;
             speed = 0f;
