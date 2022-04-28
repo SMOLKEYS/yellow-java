@@ -25,7 +25,9 @@ public class SummoningShrine extends Block{
     public SummoningShrine(UnitType unit){
         super(unit.name + "-shrine");
         this.unit = unit;
-        configurable = true;
+        configurable = true; //set this to false and you basically just have a Block lmao
+        solid = true;
+        update = true;
     }
     
     public class SummoningShrineBuild extends Building{
