@@ -54,7 +54,7 @@ public class SummoningShrine extends Block{
                         summonEffect.at(this);
                         currentlySummoning = false;
                     });
-                });
+                }).get().getLabel().setWrap(false);
             });
         }
         
