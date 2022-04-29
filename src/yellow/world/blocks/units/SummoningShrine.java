@@ -56,7 +56,7 @@ public class SummoningShrine extends Block{
                     });
                 });
             });
-        
+        }
         
         @Override
         public void draw(){
@@ -76,5 +76,6 @@ public class SummoningShrine extends Block{
             Lines.square(this, 25f + sus, Time.time);
             Lines.square(this, 25f + sus, -Time.time);
         }
+        
     }
 }
