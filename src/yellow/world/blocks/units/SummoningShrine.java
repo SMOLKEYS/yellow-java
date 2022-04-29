@@ -3,6 +3,7 @@ package yellow.world.blocks.units;
 import arc.util.*;
 import arc.math.*;
 import arc.scene.ui.layout.*;
+import arc.scene.event.*;
 import arc.flabel.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -46,13 +47,15 @@ public class SummoningShrine extends Block{
         public void buildConfiguration(Table table){
             table.table(t -> {
                 t.add("Summoning Shrine (" + unit.localizedName + ")").row();
-                t.button("Summon Unit", () -> { /** TODO button wrappinģ screwery*/
+                t.button("Summon Unit", () -> {
+                    t.getChildren().get(1).touchable = Touchable.disabled;
                     requestEffect.at(this);
                     currentlySummoning = true;
                     Time.run(summonTime, () -> {
                         unit.spawn(team, this);
                         summonEffect.at(this);
                         currentlySummoning = false;
+                        t.getChildren().get(1).touchable = Touchable.enabled;
                     });
                 }).get().getLabel().setWrap(false);
             });
