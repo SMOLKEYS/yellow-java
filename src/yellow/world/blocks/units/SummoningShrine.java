@@ -60,7 +60,7 @@ public class SummoningShrine extends Block{
         
         @Override
         public void draw(){
-            super.draw();=
+            super.draw();
             float lerpA = summoning() ? 1f : 0f;
             float sus = Mathf.absin(10f, 10f);
             a = Mathf.lerp(a, lerpA, 0.04f);
