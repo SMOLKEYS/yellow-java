@@ -36,12 +36,8 @@ public class SummoningShrine extends Block{
     
     public class SummoningShrineBuild extends Building{
         
-        private boolean currentlySummoning = false;
-        private float a = 0f;
-        
-        public boolean summoning(){
-            return currentlySummoning;
-        }
+        private boolean currentlySummoning = false, placed = false;
+        private float a = 0f, size = 0f;
         
         @Override
         public void buildConfiguration(Table table){
@@ -62,18 +58,29 @@ public class SummoningShrine extends Block{
         }
         
         @Override
+        public void placed(){
+            super.placed();
+            
+            placed = true;
+        }
+        
+        @Override
         public void draw(){
             super.draw();
-            float lerpA = summoning() ? 1f : 0f;
+            
+            float lerpA = currentlySummoning ? 1f : 0f;
             float sus = Mathf.absin(10f, 10f);
             a = Mathf.lerp(a, lerpA, 0.04f);
             
+            float lerpSize = placed ? 20f : 0f;
+            size = Mathf.lerp(size, lerpSize, 0.043f);
+            
             Draw.z(Layer.effect);
             Draw.color(Tmp.c1.set(Color.yellow).lerp(Color.cyan, Mathf.absin(10f, 1f)));
-            Fill.circle(this.x, this.y, 5f + Mathf.absin(10f, 2f));
-            Lines.circle(this.x, this.y, 20f);
-            Lines.square(this.x, this.y, 19f, Time.time);
-            Lines.square(this.x, this.y, 19f, -Time.time);
+            Fill.circle(this.x, this.y, size - 15f + Mathf.absin(10f, 2f));
+            Lines.circle(this.x, this.y, size);
+            Lines.square(this.x, this.y, size - 1f, Time.time);
+            Lines.square(this.x, this.y, size - 1f, -Time.time);
             Draw.alpha(a);
             Lines.circle(this.x, this.y, 25f + sus);
             Lines.square(this.x, this.y, 25f + sus, Time.time);
