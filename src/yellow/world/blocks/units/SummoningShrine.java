@@ -49,7 +49,7 @@ public class SummoningShrine extends Block{
         private float a = 0f, size = 0f;
         
         
-        public void fireListener(){
+        public static void fireListener(){
             Events.on(WorldLoadEvent.class, w -> {
                 currentlySummoning = false;
             });
