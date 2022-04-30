@@ -1,6 +1,8 @@
 package yellow.world.blocks.units;
 
+import arc.*;
 import arc.util.*;
+import arc.util.io.*;
 import arc.math.*;
 import arc.scene.ui.layout.*;
 import arc.scene.event.*;
@@ -15,6 +17,7 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 
 import static mindustry.Vars.*;
+import static mindustry.game.EventType.*;
 
 public class SummoningShrine extends Block{
     /** What unit to summon. */
@@ -40,6 +43,13 @@ public class SummoningShrine extends Block{
         private float a = 0f, size = 0f;
         
         @Override
+        public void load(){
+            Events.on(WorldLoadEvent.class, () -> {
+                currentlySummoning = false;
+            });
+        }
+        
+        @Override
         public void buildConfiguration(Table table){
             table.table(t -> {
                 t.add("Summoning Shrine (" + unit.localizedName + ")").row();
@@ -55,6 +65,10 @@ public class SummoningShrine extends Block{
                     });
                 }).get().getLabel().setWrap(false);
             });
+            
+            if(currentlySummoning){
+                t.getChildren().get(1).touchable = Touchable.disabled;
+            };
         }
         
         @Override
@@ -87,5 +101,18 @@ public class SummoningShrine extends Block{
             Lines.square(this.x, this.y, 25f + sus, -Time.time);
         }
         
+        @Override
+        public void write(Writes write){
+            super.write(write);
+            
+            write.bool(placed);
+        }
+        
+        @Override
+        public void read(Reads read){
+            super.read(read);
+            
+            placed = read.bool();
+        }
     }
 }
