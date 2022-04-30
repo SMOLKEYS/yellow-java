@@ -37,17 +37,18 @@ public class SummoningShrine extends Block{
         update = true;
     }
     
+    @Override
+    public void load(){
+        Events.on(WorldLoadEvent.class, w -> {
+            currentlySummoning = false;
+        });
+    }
+    
     public class SummoningShrineBuild extends Building{
         
         private boolean currentlySummoning = false, placed = false;
         private float a = 0f, size = 0f;
         
-        @Override
-        public void load(){
-            Events.on(WorldLoadEvent.class, () -> {
-                currentlySummoning = false;
-            });
-        }
         
         @Override
         public void buildConfiguration(Table table){
@@ -64,11 +65,11 @@ public class SummoningShrine extends Block{
                         t.getChildren().get(1).touchable = Touchable.enabled;
                     });
                 }).get().getLabel().setWrap(false);
+                
+                if(currentlySummoning){
+                    t.getChildren().get(1).touchable = Touchable.disabled;
+                };
             });
-            
-            if(currentlySummoning){
-                t.getChildren().get(1).touchable = Touchable.disabled;
-            };
         }
         
         @Override
