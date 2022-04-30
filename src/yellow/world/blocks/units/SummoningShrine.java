@@ -39,9 +39,8 @@ public class SummoningShrine extends Block{
     
     @Override
     public void load(){
-        Events.on(WorldLoadEvent.class, w -> {
-            currentlySummoning = false;
-        });
+        super.load();
+        SummoningShrineBuild.fireListener();
     }
     
     public class SummoningShrineBuild extends Building{
@@ -49,6 +48,12 @@ public class SummoningShrine extends Block{
         private boolean currentlySummoning = false, placed = false;
         private float a = 0f, size = 0f;
         
+        
+        public void fireListener(){
+            Events.on(WorldLoadEvent.class, w -> {
+                currentlySummoning = false;
+            });
+        }
         
         @Override
         public void buildConfiguration(Table table){
