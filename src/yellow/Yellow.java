@@ -6,7 +6,7 @@ import arc.util.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import yellow.world.blocks.units.SummoningShrine.*;
+import yellow.world.blocks.units.SummoningShrine.SummoningShrineBuild;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
