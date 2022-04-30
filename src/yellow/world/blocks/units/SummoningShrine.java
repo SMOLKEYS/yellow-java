@@ -38,7 +38,7 @@ public class SummoningShrine extends Block{
     }
     
     
-    public static class SummoningShrineBuild extends Building{
+    public class SummoningShrineBuild extends Building{
         
         private boolean currentlySummoning = false, placed = false;
         private float a = 0f, size = 0f;

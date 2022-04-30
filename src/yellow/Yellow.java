@@ -6,6 +6,7 @@ import arc.util.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
+import yellow.world.blocks.units.SummoningShrine.*;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
@@ -16,7 +17,6 @@ import yellow.interactions.ui.DialogueBox.*;
 
 import static mindustry.Vars.*;
 import static arc.Core.*;
-import static yellow.world.blocks.units.SummoningShrine.*;
 
 public class Yellow extends Mod{
     
