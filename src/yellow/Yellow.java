@@ -16,6 +16,7 @@ import yellow.interactions.ui.DialogueBox.*;
 
 import static mindustry.Vars.*;
 import static arc.Core.*;
+import static yellow.world.blocks.units.SummoningShrine.*;
 
 public class Yellow extends Mod{
     
@@ -30,6 +31,7 @@ public class Yellow extends Mod{
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
+            SummoningShrineBuild.fireListener();
             
             settings.put("current-session-menu-time", 0);
             
