@@ -27,11 +27,12 @@ public class Yellow extends Mod{
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
+        SummoningShrineBuild.fireListener();
+        
         Events.run(ClientLoadEvent.class, () -> {
             Updater.checkUpdates(this);
             
             weaponSwitch.build(ui.hudGroup);
-            SummoningShrineBuild.fireListener();
             
             settings.put("current-session-menu-time", 0);
             
