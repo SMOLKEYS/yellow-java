@@ -60,7 +60,16 @@ public class AirstrikeFlare extends ArtilleryBulletType{
         //if it works, it works
         for(int i = 0; i < misRng(); i++){
             Time.run(Mathf.random(missileLifetimeRandomization), () -> {
-                BulletType.createBullet(missile, b.team, x + Mathf.range(posRandomization), y + Mathf.range(posRandomization), 0f, 350f, 0f, 1f + Mathf.random(missileLifetimeRandomization));
+                BulletType.createBullet(
+                    missile,
+                    b.team,
+                    x + Mathf.range(posRandomization),
+                    y + Mathf.range(posRandomization),
+                    0f,
+                    350f,
+                    0f,
+                    1f + Mathf.random(missileLifetimeRandomization)
+                );
             });
         };
     }

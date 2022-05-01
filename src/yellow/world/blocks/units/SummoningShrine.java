@@ -12,6 +12,7 @@ import arc.graphics.g2d.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.meta.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
@@ -37,18 +38,17 @@ public class SummoningShrine extends Block{
         update = true;
     }
     
+    @Override
+    public void setStats(){
+        super.setStats();
+        
+        stats.add(Stat.abilities, "[lightgray]——————————————————\nUnit Summoner:\nUnit:[accent] " + unit.localizedName + " [lightgray](" + unit.name + ")\nSummon Time Needed:[] " + summonTime / 60f + " Seconds[lightgray]\n——————————————————")
+    }
     
     public class SummoningShrineBuild extends Building{
         
         private boolean currentlySummoning = false, placed = false;
         private float a = 0f, size = 0f;
-        
-        
-        public void fireListener(){
-            Events.on(WorldLoadEvent.class, w -> {
-                currentlySummoning = false;
-            });
-        }
         
         @Override
         public void buildConfiguration(Table table){
@@ -59,8 +59,13 @@ public class SummoningShrine extends Block{
                     requestEffect.at(this);
                     currentlySummoning = true;
                     Time.run(summonTime, () -> {
-                        unit.spawn(team, this);
-                        summonEffect.at(this);
+                        if(!unit.flying && !unit.hovering){
+                            unit.spawn(team, this.x + 8f * 5f, this.y);
+                            summonEffect.at(this.x + 8f * 5f, this.y);
+                        } else {
+                            unit.spawn(team, this);
+                            summonEffect.at(this);
+                        };
                         currentlySummoning = false;
                         t.getChildren().get(1).touchable = Touchable.enabled;
                     });

@@ -27,7 +27,9 @@ public class GhostUnitType extends UnitType{
     
     /** Whether to enable crack textures or glow effects. */
     public boolean cracks = false, glow = false;
-    /** Crack texture that appears on the unit as it gets closer to the end of its lifetime. */
+    /** Crack texture that appears on the unit as it gets closer to the end of its lifetime.
+     * TODO functionality
+     */
     public TextureRegion crackRegion;
     
     /**
@@ -44,6 +46,9 @@ public class GhostUnitType extends UnitType{
     @Override
     public void update(Unit unit){
         
+        /**
+         * @author MEEPofFaith
+         */
         GhostUnitEntity ghost = ((GhostUnitEntity)unit);
         ghost.lifetime -= Time.delta;
         ghost.clampLifetime();
