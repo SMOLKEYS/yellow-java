@@ -42,7 +42,7 @@ public class SummoningShrine extends Block{
     public void setStats(){
         super.setStats();
         
-        stats.add(Stat.abilities, "[lightgray]——————————————————\nUnit Summoner:\nUnit:[accent] " + unit.localizedName + " [lightgray](" + unit.name + ")\nSummon Time Needed:[] " + summonTime / 60f + " Seconds[lightgray]\n——————————————————")
+        stats.add(Stat.abilities, "[lightgray]——————————————————\nUnit Summoner:\nUnit:[accent] " + unit.localizedName + " [lightgray](" + unit.name + ")\nSummon Time Needed:[] " + summonTime / 60f + " Seconds[lightgray]\n——————————————————[]");
     }
     
     public class SummoningShrineBuild extends Building{
