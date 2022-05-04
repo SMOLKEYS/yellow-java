@@ -25,6 +25,8 @@ public class SummoningShrine extends Block{
     public UnitType unit;
     /** Time required for the unit to be summoned. */
     public float summonTime = 60f;
+    /** Whether or not the block sprite should be drawn on the block. */
+    public boolean drawBlock = false;
     /** What effect to call on summon request. */
     public Effect requestEffect = Fx.none;
     /** What effect to call once the unit gets successfully summoned. */
@@ -36,6 +38,7 @@ public class SummoningShrine extends Block{
         configurable = true; //set this to false and you basically just have a Block lmao
         solid = true;
         update = true;
+        rotate = false;
     }
     
     @Override
@@ -59,7 +62,7 @@ public class SummoningShrine extends Block{
                     requestEffect.at(this);
                     currentlySummoning = true;
                     Time.run(summonTime, () -> {
-                        if(!unit.flying && !unit.hovering){
+                        if(!unit.flying && !unit.canBoost){
                             unit.spawn(team, this.x + 8f * 5f, this.y);
                             summonEffect.at(this.x + 8f * 5f, this.y);
                         } else {
@@ -86,7 +89,10 @@ public class SummoningShrine extends Block{
         
         @Override
         public void draw(){
-            super.draw();
+            if(drawBlock){
+                Drawf.shadow(region, x, y, 0f);
+                Draw.rect(region, x, y, 0f);
+            };
             
             float lerpA = currentlySummoning ? 1f : 0f;
             float sus = Mathf.absin(10f, 10f);
