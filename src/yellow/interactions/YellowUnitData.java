@@ -12,10 +12,6 @@ public class YellowUnitData{
         return emotion;
     }
     
-    public void load(){
-        state.rules.tags
-    }
-    
     public enum Emotion{
         happy, 
         sad, 

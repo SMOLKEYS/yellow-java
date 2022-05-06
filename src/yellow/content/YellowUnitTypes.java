@@ -109,7 +109,7 @@ public class YellowUnitTypes implements FallbackContentList{
             buildSpeed = 95000f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             
-            constructor = () -> new UnitEntity(){
+            constructor = () -> new UnitEntity(){{}
                 @Override
                 public void kill(){
                     //no.
@@ -119,12 +119,7 @@ public class YellowUnitTypes implements FallbackContentList{
                 public void destroy(){
                     //also no.
                 }
-                
-                @Override
-                public void remove(){
-                    if()
-                }
-            }
+            };
             defaultController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
