@@ -1,6 +1,6 @@
 package yellow.interactions;
 
-public class YellowState{
+public class YellowUnitData{
     
     private Emotion emotion = Emotion.neutral;
     
@@ -10,6 +10,10 @@ public class YellowState{
     
     public Emotion getEmotion(){
         return emotion;
+    }
+    
+    public void load(){
+        state.rules.tags
     }
     
     public enum Emotion{
