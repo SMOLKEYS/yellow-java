@@ -6,6 +6,7 @@ import arc.util.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
+import yellow.ctype.*;
 import yellow.world.blocks.units.SummoningShrine.SummoningShrineBuild;
 import yellow.content.*;
 import yellow.weapons.*;
@@ -54,14 +55,14 @@ public class Yellow extends Mod{
         }
     };
     
-    public final ContentList[] yellowContent = {
+    public final FallbackContentList[] yellowContent = {
         new YellowUnitTypes(),
         new YellowStatusEffects(),
         new YellowPlanets(),
         new YellowBlocks()
     };
     
-    public final ContentList bullets = new YellowBullets();
+    public final FallbackContentList bullets = new YellowBullets();
     
     @Override
     public void loadContent(){
@@ -70,7 +71,7 @@ public class Yellow extends Mod{
         WorldVars.prepare();
         WorldVars.start();
         
-        for(ContentList list : yellowContent){
+        for(FallbackContentList list : yellowContent){
             list.load();
         };
     }

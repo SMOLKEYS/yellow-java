@@ -17,6 +17,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
 import mindustry.game.*;
+import yellow.ctype.*;
 import yellow.weapons.*;
 import yellow.entities.abilities.*;
 import yellow.entities.units.*;
@@ -24,7 +25,7 @@ import yellow.entities.units.entity.*;
 
 import static mindustry.Vars.*;
 
-public class YellowUnitTypes implements ContentList{
+public class YellowUnitTypes implements FallbackContentList{
     //Steal from Progressed Materials which stole Endless Rusting which stole from Progressed Materials in the past which stole from BetaMindy
     private static final Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] types = new Entry[]{
         prov(GhostUnitEntity.class, GhostUnitEntity::new),

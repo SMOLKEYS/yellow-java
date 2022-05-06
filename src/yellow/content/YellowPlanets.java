@@ -6,10 +6,11 @@ import mindustry.graphics.*;
 import mindustry.graphics.g3d.*;
 import mindustry.maps.planet.*;
 import mindustry.type.*;
+import yellow.ctype.*;
 
 import static mindustry.content.Planets.*;
 
-public class YellowPlanets implements ContentList{
+public class YellowPlanets implements FallbackContentList{
     public static Planet
     
     azeno;

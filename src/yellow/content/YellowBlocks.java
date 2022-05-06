@@ -2,11 +2,12 @@ package yellow.content;
 
 import mindustry.ctype.*;
 import mindustry.world.*;
+import yellow.ctype.*;
 import yellow.world.blocks.units.*;
 
 import static yellow.content.YellowUnitTypes.*;
 
-public class YellowBlocks implements ContentList{
+public class YellowBlocks implements FallbackContentList{
     public static Block
     //props for planets
     yellowPropBlock,
