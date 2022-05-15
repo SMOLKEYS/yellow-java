@@ -8,7 +8,6 @@ import arc.scene.event.*;
 import arc.scene.actions.*;
 import arc.flabel.*;
 import mindustry.ui.*;
-import mindustry.ui.fragments.Fragment;
 import mindustry.gen.*;
 import yellow.ui.dialogs.*;
 import yellow.ui.dialogs.DialogueBoxEditorDialog.*;

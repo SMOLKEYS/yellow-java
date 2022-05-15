@@ -110,7 +110,7 @@ public class YellowUnitTypes implements FallbackContentList{
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             
             constructor = UnitEntity::create;
-            defaultController = FlyingAI::new;
+            aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation);
@@ -206,7 +206,7 @@ public class YellowUnitTypes implements FallbackContentList{
             drag = 0.01f;
             lifetime = 960f;
             
-            defaultController = FlyingAI::new;
+            aiController = FlyingAI::new;
             region = Core.atlas.find("flare");
         }};
         

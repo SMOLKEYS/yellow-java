@@ -4,8 +4,6 @@ import arc.*;
 import arc.Events.*;
 import arc.util.*;
 import arc.util.Timer.*;
-import arc.util.async.*;
-import arc.util.async.Threads.*;
 import mindustry.*;
 import mindustry.game.*;
 import yellow.util.*;

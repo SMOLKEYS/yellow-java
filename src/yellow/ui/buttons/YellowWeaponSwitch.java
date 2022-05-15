@@ -8,7 +8,6 @@ import arc.scene.style.*;
 import yellow.ui.buttons.dialogs.*;
 import yellow.content.*;
 import mindustry.ui.*;
-import mindustry.ui.fragments.*;
 import mindustry.gen.*;
 
 import static arc.Core.*;
@@ -18,7 +17,7 @@ import static mindustry.Vars.*;
      * Adds a button anchored to the minimap
      * @author xzxADIxzx
      */
-public class YellowWeaponSwitch extends Fragment{
+public class YellowWeaponSwitch{
     /** minimap width, not scaled */
     private static final float width = 150f;
     private static final float padding = 4f;

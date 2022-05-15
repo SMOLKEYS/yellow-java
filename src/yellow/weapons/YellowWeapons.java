@@ -9,6 +9,7 @@ import mindustry.content.*;
 import mindustry.graphics.*;
 import mindustry.entities.units.*;
 import mindustry.entities.bullet.*;
+import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.type.*;
@@ -26,11 +27,17 @@ public class YellowWeapons{
             reload = 60f;
             x = 56f;
             mirror = true;
-            shots = 15;
-            shotDelay = 5f;
+            alternate = true;
             shootSound = Sounds.explosionbig;
-            spacing = 5f;
             continuous = true;
+            
+            shoot = new ShootSpread(){{
+                shots = 15;
+                shotDelay = 5f;
+                spread = 5f
+            }};
+            
+            
             bullet = new ContinuousLaserBulletType(){{
                 damage = 150f;
                 width = 8f;
@@ -60,9 +67,13 @@ public class YellowWeapons{
             x = 0f;
             y = 0f;
             mirror = false;
-            shots = 690;
-            shotDelay = 1f;
-            spacing = 60f;
+            
+            shoot = new ShootSpread(){{
+                shots = 690;
+                shotDelay = 1f;
+                spread = 60f;
+            }};
+            
             bullet = new BasicBulletType(){{
                 damage = 300f;
                 width = 16f;
@@ -121,7 +132,7 @@ public class YellowWeapons{
             reload = 2f;
             x = 3f;
             mirror = true;
-            shots = 25;
+            shoot.shots = 25;
             inaccuracy = 15f;
             bullet = new BasicBulletType(){{
                 damage = 20f;
@@ -137,7 +148,7 @@ public class YellowWeapons{
             reload = 300f;
             x = 48f;
             mirror = true;
-            shots = 1;
+            shoot.shots = 1;
             inaccuracy = 0f;
             bullet = new BasicBulletType(){{
                 damage = 8500f;
