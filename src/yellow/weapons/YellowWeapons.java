@@ -194,30 +194,30 @@ public class YellowWeapons{
         
         //region mirrored
         
-        meltdownBurstAttack2 = ((NameableWeapon) meltdownBurstAttack.copy());
-        antiMothSpray2 = ((NameableWeapon) antiMothSpray.copy());
-        decimation2 = ((NameableWeapon) decimation.copy());
-        airstrikeFlareLauncher2 = ((NameableWeapon) airstrikeFlareLauncher.copy());
+        meltdownBurstAttack2 = meltdownBurstAttack.copy();
+        antiMothSpray2 = antiMothSpray.copy();
+        decimation2 = decimation.copy();
+        airstrikeFlareLauncher2 = airstrikeFlareLauncher.copy();
         
         meltdownBurstAttack2.x = meltdownBurstAttack.x - (meltdownBurstAttack.x * 2);
         meltdownBurstAttack2.reload = meltdownBurstAttack.reload * 2;
         meltdownBurstAttack2.name = "meltdown-burst-m";
-        meltdownBurstAttack2.displayNamw = "Meltdown Burst (Inv)";
+        ((NameableWeapon) meltdownBurstAttack2).displayNamw = "Meltdown Burst (Inv)";
         
         antiMothSpray2.x = antiMothSpray.x - (antiMothSpray.x * 2);
         antiMothSpray2.reload = antiMothSpray.reload * 2;
         antiMothSpray2.name = "anti-moth-spray-m";
-        antiMothSpray2.displayNamw = "Anti Moth Spray (Inv)";
+        ((NameableWeapon) antiMothSpray2).displayNamw = "Anti Moth Spray (Inv)";
         
         decimation2.x = decimation.x - (decimation.x * 2);
         decimation2.reload = decimation.reload * 2;
         decimation2.name = "decimation-m";
-        decimation2.displayNamw = "Decimation (Inv)";
+        ((NameableWeapon) decimation2).displayNamw = "Decimation (Inv)";
         
         airstrikeFlareLauncher2.x = airstrikeFlareLauncher.x - (airstrikeFlareLauncher.x * 2);
         airstrikeFlareLauncher2.reload = airstrikeFlareLauncher.reload * 2;
         airstrikeFlareLauncher2.name = "airstrike-flare-launcher-m";
-        airstrikeFlareLauncher2.displayNamw = "Airstrike Flare Launcher (Inv)";
+        ((NameableWeapon) airstrikeFlareLauncher2).displayNamw = "Airstrike Flare Launcher (Inv)";
         
         //endregion mirrored
     }
