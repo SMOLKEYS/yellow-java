@@ -210,7 +210,7 @@ public class YellowWeapons{
         antiMothSpray2.displayNamw = "Anti Moth Spray (Inv)";
         
         decimation2.x = decimation.x - (decimation.x * 2);
-        decimation2.reload = decimation.reload * 2
+        decimation2.reload = decimation.reload * 2;
         decimation2.name = "decimation-m";
         decimation2.displayNamw = "Decimation (Inv)";
         
