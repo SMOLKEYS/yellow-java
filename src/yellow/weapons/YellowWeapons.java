@@ -194,10 +194,10 @@ public class YellowWeapons{
         
         //region mirrored
         
-        meltdownBurstAttack2 = meltdownBurstAttack.copy();
-        antiMothSpray2 = antiMothSpray.copy();
-        decimation2 = decimation.copy();
-        airstrikeFlareLauncher2 = airstrikeFlareLauncher.copy();
+        meltdownBurstAttack2 = ((DisableableWeapon) meltdownBurstAttack.copy());
+        antiMothSpray2 = ((DisableableWeapon) antiMothSpray.copy());
+        decimation2 = ((DisableableWeapon) decimation.copy());
+        airstrikeFlareLauncher2 = ((DisableableWeapon) airstrikeFlareLauncher.copy());
         
         meltdownBurstAttack2.x = meltdownBurstAttack.x - (meltdownBurstAttack.x * 2);
         meltdownBurstAttack2.reload = meltdownBurstAttack.reload * 2;
