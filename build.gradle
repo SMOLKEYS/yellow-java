@@ -29,7 +29,7 @@ allprojects{
 
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:dfcb21ce564a07d9b36c8aead62fc62531dc05ab"
-    compileOnly "com.github.Anuken.MindustryJitpack:core:bc65e636543aa8e5515d6084b20e11226454f258"
+    compileOnly "com.github.Anuken.MindustryJitpack:core:62a21c395b4008478f6ca3640bf9041a724c6c6b"
     implementation files("lib/Autoupdate-lib.jar")
 
     //you may uncomment this dependency to properly use Java 17 features while still targeting Java 8.
