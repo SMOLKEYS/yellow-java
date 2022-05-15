@@ -29,7 +29,7 @@ public class YellowWeapons{
             mirror = true;
             alternate = true;
             shootSound = Sounds.explosionbig;
-            continuous = true;
+            minWarmup = 0.99f;
             
             shoot = new ShootSpread(){{
                 shots = 15;
@@ -67,6 +67,7 @@ public class YellowWeapons{
             x = 0f;
             y = 0f;
             mirror = false;
+            minWarmup = 0.99f;
             
             shoot = new ShootSpread(){{
                 shots = 690;
@@ -134,6 +135,7 @@ public class YellowWeapons{
             mirror = true;
             shoot.shots = 25;
             inaccuracy = 15f;
+            minWarmup = 0.99f;
             bullet = new BasicBulletType(){{
                 damage = 20f;
                 lifetime = 60f;
@@ -150,6 +152,7 @@ public class YellowWeapons{
             mirror = true;
             shoot.shots = 1;
             inaccuracy = 0f;
+            minWarmup = 0.99f;
             bullet = new BasicBulletType(){{
                 damage = 8500f;
                 splashDamage = 7000f;
@@ -178,6 +181,7 @@ public class YellowWeapons{
             reload = 300f;
             x = 0f;
             y = 0f;
+            minWarmup = 0.99f;
             bullet = YellowBullets.standardMissileCaller;
         }};
     }

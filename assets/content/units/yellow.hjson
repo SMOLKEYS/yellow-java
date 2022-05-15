@@ -1,14 +1,68 @@
 parts: [
     {
         type: RegionPart
-        suffix: "-shl"
+        suffix: "-sh-top"
         progress: {
             type: warmup
             delay: {
-                amount: 0.2
+                amount: 0.3
             }
         }
-        moveY: 40
+        moveY: 48
         under: true
+    }
+    {
+        type: RegionPart
+        suffix: "-sh-mid"
+        progress: {
+            type: warmup
+            delay: {
+                amount: 0.6
+            }
+        }
+        moveX: 48
+        under: true
+        mirror: true
+    }
+    {
+        type: RegionPart
+        suffix: "-sh-bottom"
+        progress: {
+            type: warmup
+            delay: {
+                amount: 0.3
+            }
+        }
+        moveY: -48
+        under: true
+        mirror: true
+    }
+    {
+        type: RegionPart
+        suffix: "-sh-topright"
+        progress: {
+            type: warmup
+            delay: {
+                amount: 0.9
+            }
+        }
+        moveX: 32
+        moveY: 32
+        under: true
+        mirror: true
+    }
+    {
+        type: RegionPart
+        suffix: "-sh-bottomright"
+        progress: {
+            type: warmup
+            delay: {
+                amount: 0.9
+            }
+        }
+        moveX: 32
+        moveY: -32
+        under: true
+        mirror: true
     }
 ]
