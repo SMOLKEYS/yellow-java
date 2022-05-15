@@ -39,6 +39,7 @@ public class SummoningShrine extends Block{
         solid = true;
         update = true;
         rotate = false;
+        buildVisibility = BuildVisbility.shown;
     }
     
     @Override

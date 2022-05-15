@@ -2,7 +2,13 @@ parts: [
     {
         type: RegionPart
         suffix: "-shl"
-        progress: warmup
+        progress: {
+            type: warmup
+            delay: {
+                amount: 0.2
+            }
+        }
         moveY: 40
+        under: true
     }
 ]
