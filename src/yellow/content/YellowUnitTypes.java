@@ -105,7 +105,6 @@ public class YellowUnitTypes implements FallbackContentList{
             mineSpeed = 5000f;
             mineTier = 5000;
             itemCapacity = 850000;
-            commandLimit = 85000;
             buildSpeed = 95000f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             
@@ -128,7 +127,6 @@ public class YellowUnitTypes implements FallbackContentList{
                 stats.remove(Stat.health);
                 stats.remove(Stat.armor);
                 stats.remove(Stat.size);
-                stats.remove(Stat.commandLimit);
                 stats.remove(Stat.speed);
                 stats.remove(Stat.itemCapacity);
                 stats.remove(Stat.mineSpeed);
@@ -140,7 +138,6 @@ public class YellowUnitTypes implements FallbackContentList{
                 stats.add(Stat.health, l -> l.add(new FLabel("{shake}[yellow]230000")));
                 stats.add(Stat.armor, l -> l.add(new FLabel("{wind}5")));
                 stats.add(Stat.size, l -> l.add(new FLabel("{jump}shmol")));
-                stats.add(Stat.commandLimit, l -> l.add(new FLabel("{shake}[navy]no other survived.")));
                 stats.add(Stat.speed, l -> l.add(new FLabel("{sick}flar")));
                 stats.add(Stat.itemCapacity, l -> l.add(new FLabel("{shake}[cyan]EVEN MORE ZEROOOOOOOOOOOOOOOOOOOOS")));
                 stats.add(Stat.mineSpeed, l -> l.add(new FLabel("{wave}ULTRA FAST")));
