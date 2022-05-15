@@ -20,14 +20,19 @@ import yellow.entities.bullet.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher,
+    
+    //mirrored variants
+    //why not just mirror = true? well, custom weapon typws with mirror break, and i cannot, for the love of me, find the issue
+    meltdownBurstAttack2, antiMothSpray2, decimation2, airstrikeFlareLauncher2;
     
     public static void init(){
+        
+        //region main
+        
         meltdownBurstAttack = new DisableableWeapon("meltdown-burst", "Meltdown Burst"){{
             reload = 60f;
             x = 56f;
-            mirror = true;
-            alternate = true;
             shootSound = Sounds.explosionbig;
             minWarmup = 0.99f;
             
@@ -184,5 +189,36 @@ public class YellowWeapons{
             minWarmup = 0.99f;
             bullet = YellowBullets.standardMissileCaller;
         }};
+        
+        //endregion main
+        
+        //region mirrored
+        
+        meltdownBurstAttack2 = meltdownBurstAttack.copy();
+        antiMothSpray2 = antiMothSpray.copy();
+        decimation2 = decimation.copy();
+        airstrikeFlareLauncher2 = airstrikeFlareLauncher.copy();
+        
+        meltdownBurstAttack2.x = meltdownBurstAttack.x - (meltdownBurstAttack.x * 2);
+        meltdownBurstAttack2.reload = meltdownBurstAttack.reload * 2;
+        meltdownBurstAttack2.name = "meltdown-burst-m";
+        meltdownBurstAttack2.displayNamw = "Meltdown Burst (Inv)";
+        
+        antiMothSpray2.x = antiMothSpray.x - (antiMothSpray.x * 2);
+        antiMothSpray2.reload = antiMothSpray.reload * 2;
+        antiMothSpray2.name = "anti-moth-spray-m";
+        antiMothSpray2.displayNamw = "Anti Moth Spray (Inv)";
+        
+        decimation2.x = decimation.x - (decimation.x * 2);
+        decimation2.reload = decimation.reload * 2
+        decimation2.name = "decimation-m";
+        decimation2.displayNamw = "Decimation (Inv)";
+        
+        airstrikeFlareLauncher2.x = airstrikeFlareLauncher.x - (airstrikeFlareLauncher.x * 2);
+        airstrikeFlareLauncher2.reload = airstrikeFlareLauncher.reload * 2;
+        airstrikeFlareLauncher2.name = "airstrike-flare-launcher-m";
+        airstrikeFlareLauncher2.displayNamw = "Airstrike Flare Launcher (Inv)";
+        
+        //endregion mirrored
     }
 }

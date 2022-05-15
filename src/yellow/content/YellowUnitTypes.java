@@ -112,7 +112,7 @@ public class YellowUnitTypes implements FallbackContentList{
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
-            weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation);
+            weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.meltdownBurstAttack2, YellowWeapons.airstrikeFlareLauncher2, YellowWeapons.antiMothSpray2, YellowWeapons.decimation2);
             
             abilities.add(new RespawnAbility());
         }
