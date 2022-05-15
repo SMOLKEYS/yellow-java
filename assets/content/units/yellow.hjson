@@ -4,9 +4,8 @@ parts: [
         suffix: "-sh-top"
         progress: {
             type: warmup
-            delay: {
-                amount: 0.3
-            }
+            op: delay
+            amount: 0.3
         }
         moveY: 48
         under: true
@@ -16,9 +15,8 @@ parts: [
         suffix: "-sh-mid"
         progress: {
             type: warmup
-            delay: {
-                amount: 0.6
-            }
+            op: delay
+            amount: 0.6
         }
         moveX: 48
         under: true
@@ -29,9 +27,8 @@ parts: [
         suffix: "-sh-bottom"
         progress: {
             type: warmup
-            delay: {
-                amount: 0.3
-            }
+            op: delay
+            amount: 0.3
         }
         moveY: -48
         under: true
@@ -42,9 +39,8 @@ parts: [
         suffix: "-sh-topright"
         progress: {
             type: warmup
-            delay: {
-                amount: 0.9
-            }
+            op: delay
+            amount: 0.9
         }
         moveX: 32
         moveY: 32
@@ -56,9 +52,8 @@ parts: [
         suffix: "-sh-bottomright"
         progress: {
             type: warmup
-            delay: {
-                amount: 0.9
-            }
+            op: delay
+            amount: 0.9
         }
         moveX: 32
         moveY: -32
