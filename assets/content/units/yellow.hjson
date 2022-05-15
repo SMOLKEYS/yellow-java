@@ -1,0 +1,8 @@
+parts: [
+    {
+        type: RegionPart
+        suffix: "-shl"
+        progress: warmup
+        moveY: 40
+    }
+]
