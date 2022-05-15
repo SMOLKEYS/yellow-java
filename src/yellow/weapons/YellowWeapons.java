@@ -34,7 +34,7 @@ public class YellowWeapons{
             shoot = new ShootSpread(){{
                 shots = 15;
                 shotDelay = 5f;
-                spread = 5f
+                spread = 5f;
             }};
             
             
