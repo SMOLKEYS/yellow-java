@@ -16,7 +16,7 @@ public class YellowUtils{
     }
     
     public static void mirror(Weapon[] in, boolean nameable, boolean alternate, UnitType unit){
-        for(int i = 0; i < in.size; i++){
+        for(int i = 0; i < in.length; i++){
             Weapon mog = in[i].copy();
             mog.x = in[i].x - (in[i].x * 2);
             if(alternate){

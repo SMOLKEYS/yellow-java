@@ -7,6 +7,7 @@ import mindustry.type.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
+import yellow.util.*;
 import yellow.ctype.*;
 import yellow.world.blocks.units.SummoningShrine.SummoningShrineBuild;
 import yellow.content.*;
