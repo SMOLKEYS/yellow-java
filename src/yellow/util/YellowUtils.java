@@ -22,8 +22,7 @@ public class YellowUtils{
         if(nameable){
             ((NameableWeapon) mog).displayName = ((NameableWeapon) in).displayName + " (Inv)";
             return mog;
-        } else {
-            return mog;
         };
+        return mog;
     }
 }
