@@ -3,6 +3,7 @@ package yellow;
 import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
+import mindustry.type.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
@@ -76,7 +77,7 @@ public class Yellow extends Mod{
             list.load();
         };
         
-        YellowUtils.mirror({meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher}, true, true, YellowUnitTypes.yellow);
+        YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher}, true, true, YellowUnitTypes.yellow);
     }
     
 }
