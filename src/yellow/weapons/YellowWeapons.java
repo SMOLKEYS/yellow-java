@@ -44,7 +44,6 @@ public class YellowWeapons{
                 spread = 5f;
             }};
             
-            
             bullet = new ContinuousLaserBulletType(){{
                 damage = 150f;
                 width = 8f;
@@ -52,6 +51,8 @@ public class YellowWeapons{
                 lifetime = 60f;
                 lightColor = Color.yellow;
             }};
+            
+            float drawEffectSize = 30f;
         }
             @Override
             public void draw(Unit u, WeaponMount w){
@@ -63,8 +64,8 @@ public class YellowWeapons{
                 
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30, Time.time);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30,-Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), drawEffectSize, Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), drawEffectSize, -Time.time);
             }
         };
         
