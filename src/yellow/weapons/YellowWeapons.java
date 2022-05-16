@@ -59,6 +59,7 @@ public class YellowWeapons{
                 
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
+                Lines.stroke(1);
                 Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, Time.time);
                 Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, -Time.time);
             }
