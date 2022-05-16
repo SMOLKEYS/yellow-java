@@ -13,11 +13,10 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.type.*;
+import yellow.utils.*;
 import yellow.content.*;
 import yellow.entities.units.*;
 import yellow.entities.bullet.*;
-
-import static yellow.utils.YellowUtils.*;
 
 public class YellowWeapons{
     public static Weapon
@@ -198,10 +197,10 @@ public class YellowWeapons{
         
         //region mirrored
         
-        meltdownBurstAttack2 = mirror(meltdownBurstAttack, true);
-        antiMothSpray2 = mirror(antiMothSpray, true);
-        decimation2 = mirror(decimation, true);
-        airstrikeFlareLauncher2 = mirror(airstrikeFlareLauncher, true);
+        meltdownBurstAttack2 = YellowUtils.mirror(meltdownBurstAttack, true);
+        antiMothSpray2 = YellowUtils.mirror(antiMothSpray, true);
+        decimation2 = YellowUtils.mirror(decimation, true);
+        airstrikeFlareLauncher2 = YellowUtils.mirror(airstrikeFlareLauncher, true);
         
         /*
         meltdownBurstAttack2 = meltdownBurstAttack.copy();
