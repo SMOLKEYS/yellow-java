@@ -27,6 +27,8 @@ public class YellowWeapons{
     //why not just mirror = true? well, custom weapon typws with mirror break, and i cannot, for the love of me, find the issue
     meltdownBurstAttack2, antiMothSpray2, decimation2, airstrikeFlareLauncher2;
     
+    private float drawEffectSize = 30f;
+    
     public static void init(){
         
         //region main
@@ -52,7 +54,6 @@ public class YellowWeapons{
                 lightColor = Color.yellow;
             }};
             
-            float drawEffectSize = 30f;
         }
             @Override
             public void draw(Unit u, WeaponMount w){
