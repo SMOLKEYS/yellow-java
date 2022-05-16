@@ -18,6 +18,7 @@ import yellow.interactions.ui.DialogueBox.*;
 
 import static mindustry.Vars.*;
 import static arc.Core.*;
+import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{
     
@@ -74,6 +75,8 @@ public class Yellow extends Mod{
         for(FallbackContentList list : yellowContent){
             list.load();
         };
+        
+        YellowUtils.mirror({meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher}, true, true, YellowUnitTypes.yellow);
     }
     
 }

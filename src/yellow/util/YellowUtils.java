@@ -1,6 +1,7 @@
 package yellow.util;
 
 import arc.*;
+import arc.util.*;
 import mindustry.*;
 import mindustry.type.*;
 import yellow.type.*;
@@ -14,15 +15,19 @@ public class YellowUtils{
         return settings.getBool("mod-" + modName + "-enabled");
     }
     
-    public static Weapon mirror(Weapon in, boolean nameable){
-        Weapon mog = in.copy();
-        mog.x = in.x - (in.x * 2);
-        mog.reload = in.reload * 2;
-        mog.name = in.name + "-m";
-        if(nameable){
-            ((NameableWeapon) mog).displayName = ((NameableWeapon) in).displayName + " (Inv)";
-            return mog;
+    public static void mirror(Weapon[] in, boolean nameable, boolean alternate, UnitType unit){
+        for(int i = 0; i < in.size; i++){
+            Weapon mog = in[i].copy();
+            mog.x = in[i].x - (in[i].x * 2);
+            if(alternate){
+                mog.reload = in[i].reload * 2;
+            };
+            mog.name = in[i].name + "-m";
+            mog.load();
+            if(nameable){
+                ((NameableWeapon) mog).displayName = ((NameableWeapon) in[i]).displayName + " (Inv)";
+            };
+            unit.weapons.add(mog);
         };
-        return mog;
     }
 }

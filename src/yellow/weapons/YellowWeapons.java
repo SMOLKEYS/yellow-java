@@ -21,13 +21,7 @@ import yellow.entities.bullet.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher,
-    
-    //mirrored variants
-    //why not just mirror = true? well, custom weapon typws with mirror break, and i cannot, for the love of me, find the issue
-    meltdownBurstAttack2, antiMothSpray2, decimation2, airstrikeFlareLauncher2;
-    
-    private static float drawEffectSize = 30f;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher;
     
     public static void init(){
         
@@ -65,8 +59,8 @@ public class YellowWeapons{
                 
                 Draw.color(Color.yellow);
                 Draw.z(Layer.effect);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), drawEffectSize, Time.time);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), drawEffectSize, -Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, Time.time);
+                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, -Time.time);
             }
         };
         
@@ -196,40 +190,5 @@ public class YellowWeapons{
         }};
         
         //endregion main
-        
-        //region mirrored
-        
-        meltdownBurstAttack2 = YellowUtils.mirror(meltdownBurstAttack, true);
-        antiMothSpray2 = YellowUtils.mirror(antiMothSpray, true);
-        decimation2 = YellowUtils.mirror(decimation, true);
-        airstrikeFlareLauncher2 = YellowUtils.mirror(airstrikeFlareLauncher, true);
-        
-        /*
-        meltdownBurstAttack2 = meltdownBurstAttack.copy();
-        antiMothSpray2 = antiMothSpray.copy();
-        decimation2 = decimation.copy();
-        airstrikeFlareLauncher2 = airstrikeFlareLauncher.copy();
-        
-        meltdownBurstAttack2.x = meltdownBurstAttack.x - (meltdownBurstAttack.x * 2);
-        meltdownBurstAttack2.reload = meltdownBurstAttack.reload * 2;
-        meltdownBurstAttack2.name = "meltdown-burst-m";
-        ((NameableWeapon) meltdownBurstAttack2).displayName = "Meltdown Burst (Inv)";
-        
-        antiMothSpray2.x = antiMothSpray.x - (antiMothSpray.x * 2);
-        antiMothSpray2.reload = antiMothSpray.reload * 2;
-        antiMothSpray2.name = "anti-moth-spray-m";
-        ((NameableWeapon) antiMothSpray2).displayName = "Anti Moth Spray (Inv)";
-        
-        decimation2.x = decimation.x - (decimation.x * 2);
-        decimation2.reload = decimation.reload * 2;
-        decimation2.name = "decimation-m";
-        ((NameableWeapon) decimation2).displayName = "Decimation (Inv)";
-        
-        airstrikeFlareLauncher2.x = airstrikeFlareLauncher.x - (airstrikeFlareLauncher.x * 2);
-        airstrikeFlareLauncher2.reload = airstrikeFlareLauncher.reload * 2;
-        airstrikeFlareLauncher2.name = "airstrike-flare-launcher-m";
-        ((NameableWeapon) airstrikeFlareLauncher2).displayName = "Airstrike Flare Launcher (Inv)";
-        */
-        //endregion mirrored
     }
 }
