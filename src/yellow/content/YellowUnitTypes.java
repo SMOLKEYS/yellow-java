@@ -85,10 +85,6 @@ public class YellowUnitTypes implements FallbackContentList{
     //ghost units
     ghostFlare;
     
-    //adios
-    @Deprecated
-    public static UnitType yellowAir, yellowGround;
-    
     @Override
     public void load(){
         
