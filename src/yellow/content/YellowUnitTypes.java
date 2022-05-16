@@ -203,8 +203,6 @@ public class YellowUnitTypes implements FallbackContentList{
             region = Core.atlas.find("flare");
         }};
         
-        yellowAir = yellow;
-        yellowGround = yellowMech;
         //endregion
     };
 }
