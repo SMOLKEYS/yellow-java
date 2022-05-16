@@ -33,6 +33,7 @@ public class YellowWeapons{
         meltdownBurstAttack = new DisableableWeapon("meltdown-burst", "Meltdown Burst"){{
             reload = 60f;
             x = 56f;
+            mirror = false;
             shootSound = Sounds.explosionbig;
             minWarmup = 0.99f;
             
@@ -137,7 +138,7 @@ public class YellowWeapons{
         antiMothSpray = new DisableableWeapon("anti-moth-spray", "Anti Moth Spray"){{
             reload = 2f;
             x = 3f;
-            mirror = true;
+            mirror = false;
             shoot.shots = 25;
             inaccuracy = 15f;
             minWarmup = 0.99f;
@@ -154,7 +155,7 @@ public class YellowWeapons{
         decimation = new DisableableWeapon("decimation", "Decimation"){{
             reload = 300f;
             x = 48f;
-            mirror = true;
+            mirror = false;
             shoot.shots = 1;
             inaccuracy = 0f;
             minWarmup = 0.99f;
@@ -186,6 +187,7 @@ public class YellowWeapons{
             reload = 300f;
             x = 0f;
             y = 0f;
+            mirror = false;
             minWarmup = 0.99f;
             bullet = YellowBullets.standardMissileCaller;
         }};
