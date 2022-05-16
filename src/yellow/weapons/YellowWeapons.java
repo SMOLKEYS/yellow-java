@@ -17,6 +17,8 @@ import yellow.content.*;
 import yellow.entities.units.*;
 import yellow.entities.bullet.*;
 
+import static yellow.utils.YellowUtils.*;
+
 public class YellowWeapons{
     public static Weapon
     
@@ -196,6 +198,12 @@ public class YellowWeapons{
         
         //region mirrored
         
+        meltdownBurstAttack2 = mirror(meltdownBurstAttack, true);
+        antiMothSpray2 = mirror(antiMothSpray, true);
+        decimation2 = mirror(decimation, true);
+        airstrikeFlareLauncher2 = mirror(airstrikeFlareLauncher, true);
+        
+        /*
         meltdownBurstAttack2 = meltdownBurstAttack.copy();
         antiMothSpray2 = antiMothSpray.copy();
         decimation2 = decimation.copy();
@@ -220,7 +228,7 @@ public class YellowWeapons{
         airstrikeFlareLauncher2.reload = airstrikeFlareLauncher.reload * 2;
         airstrikeFlareLauncher2.name = "airstrike-flare-launcher-m";
         ((NameableWeapon) airstrikeFlareLauncher2).displayName = "Airstrike Flare Launcher (Inv)";
-        
+        */
         //endregion mirrored
     }
 }
