@@ -1,7 +1,7 @@
 parts: [
     {
-        type: RegionPart
-        suffix: "-sh-top"
+        type: ShapePart
+        sides: 10
         progress: {
             type: warmup
             op: delay
@@ -9,10 +9,14 @@ parts: [
         }
         moveY: 48
         under: true
+        layer: 110
+        radius: 0
+        radiusTo: 12
+        colorTo: yellow
     }
     {
-        type: RegionPart
-        suffix: "-sh-mid"
+        type: ShapePart
+        sides: 10
         progress: {
             type: warmup
             op: delay
@@ -21,10 +25,14 @@ parts: [
         moveX: 48
         under: true
         mirror: true
+        layer: 110
+        radius: 0
+        radiusTo: 12
+        colorTo: yellow
     }
     {
-        type: RegionPart
-        suffix: "-sh-bottom"
+        type: ShapePart
+        sides: 10
         progress: {
             type: warmup
             op: delay
@@ -33,10 +41,14 @@ parts: [
         moveY: -48
         under: true
         mirror: true
+        layer: 110
+        radius: 0
+        radiusTo: 12
+        colorTo: yellow
     }
     {
-        type: RegionPart
-        suffix: "-sh-topright"
+        type: ShapePart
+        sides: 10
         progress: {
             type: warmup
             op: delay
@@ -46,10 +58,14 @@ parts: [
         moveY: 32
         under: true
         mirror: true
+        layer: 110
+        radius: 0
+        radiusTo: 12
+        colorTo: yellow
     }
     {
-        type: RegionPart
-        suffix: "-sh-bottomright"
+        type: ShapePart
+        sides: 10
         progress: {
             type: warmup
             op: delay
@@ -59,5 +75,9 @@ parts: [
         moveY: -32
         under: true
         mirror: true
+        layer: 110
+        radius: 0
+        radiusTo: 12
+        colorTo: yellow
     }
 ]
