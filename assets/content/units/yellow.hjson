@@ -12,7 +12,7 @@ parts: [
         layer: 110
         radius: 0
         radiusTo: 12
-        colorTo: yellow
+        colorTo: "ffff00ff"
     }
     {
         type: ShapePart
@@ -28,7 +28,7 @@ parts: [
         layer: 110
         radius: 0
         radiusTo: 12
-        colorTo: yellow
+        colorTo: "ffff00ff"
     }
     {
         type: ShapePart
@@ -44,7 +44,7 @@ parts: [
         layer: 110
         radius: 0
         radiusTo: 12
-        colorTo: yellow
+        colorTo: "ffff00ff"
     }
     {
         type: ShapePart
@@ -61,7 +61,7 @@ parts: [
         layer: 110
         radius: 0
         radiusTo: 12
-        colorTo: yellow
+        colorTo: "ffff00ff"
     }
     {
         type: ShapePart
@@ -78,6 +78,6 @@ parts: [
         layer: 110
         radius: 0
         radiusTo: 12
-        colorTo: yellow
+        colorTo: "ffff00ff"
     }
 ]
