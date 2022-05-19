@@ -1,5 +1,6 @@
 package yellow.interactions.ui;
 
+import arc.*;
 import arc.util.*;
 import arc.scene.*;
 import arc.scene.ui.*;
@@ -12,6 +13,7 @@ import mindustry.gen.*;
 import yellow.ui.dialogs.*;
 import yellow.ui.dialogs.DialogueBoxEditorDialog.*;
 
+import static arc.Core.*;
 import static mindustry.Vars.*;
 
 public class DialogueBox{
@@ -23,6 +25,7 @@ public class DialogueBox{
     private static int cd = 0;
     private static boolean dialoguePlaying = false;
     private static DialogueBoxEditorDialog editor;
+    private static Runnable endScript = () -> {};
     
     public static void build(){
         ui.hudGroup.addChild(table);
@@ -76,11 +79,29 @@ public class DialogueBox{
         dialoguePlaying = true;
     }
     
+    public static void dialogueStart(String[] input, Runnable endDialogueScript){
+        if(dialoguePlaying){
+            Log.warn("Dialogue attempted to play despite one currently playing now. Ignoring.");
+            return;
+        };
+        a = input;
+        ((Label) table.getChildren().get(0)).setText(input[cd]);
+        buttonTable.getChildren().get(0).touchable = Touchable.enabled;
+        dialoguePlaying = true;
+        endScript = endDialogueScript;
+    }
+    
     public static void dialogueEnd(){
         ((Label) table.getChildren().get(0)).setText("...");
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
         a = null;
         cd = 0;
+        try {
+            app.post(endScript);
+            endScript = () -> {};
+        } catch(Exception e) {
+            Log.err(e);
+        }
         dialoguePlaying = false;
     }
     

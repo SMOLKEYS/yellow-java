@@ -11,8 +11,13 @@ import yellow.type.*;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.entities.units.*;
+import yellow.interactions.*;
+import yellow.interactions.ui.*;
+
+import static yellow.interactions.Responses.*;
 
 public class YellowWeaponSwitchDialog extends BaseDialog{
+    private static DialogueBox box = new DialogueBox();
     
     public YellowWeaponSwitchDialog(){
         super("Weapon Switch");
@@ -29,5 +34,9 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
                 m.disabled = it;
             }).row();
         };
+        
+        cont.button("Request Leave", () -> {
+            box.dialogueStart(leaveResponse, () -> {});
+        }).row();
     };
 }

@@ -47,4 +47,10 @@ public class Responses{
         "I'm gonna go now.",
         "Thanks for listening to me, " + player.name + "."
     };
+    
+    public static String[] leaveResponse = {
+        "Oh, you want me to leave you alone for a while?",
+        "Well, I'll go ahead.",
+        "Bye, " + player.name + "~\nFeel free summoning me back."
+    };
 }
