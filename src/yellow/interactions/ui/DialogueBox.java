@@ -10,8 +10,6 @@ import arc.scene.actions.*;
 import arc.flabel.*;
 import mindustry.ui.*;
 import mindustry.gen.*;
-import yellow.ui.dialogs.*;
-import yellow.ui.dialogs.DialogueBoxEditorDialog.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -19,23 +17,18 @@ import static mindustry.Vars.*;
 public class DialogueBox{
     private static Table table = new Table();
     private static Table buttonTable = new Table();
-    private static Table secret = new Table();
-    private static float width = 425f, height = 470f, x = 655f, y = 1490f;
+    private static float width = 425f, height = 470f, x = 25f, y = 1490f;
     private static String[] a;
     private static int cd = 0;
     private static boolean dialoguePlaying = false;
-    private static DialogueBoxEditorDialog editor;
     private static Runnable[] scripts;
     private static int[] scriptPositions;
     
     public static void build(){
         ui.hudGroup.addChild(table);
         ui.hudGroup.addChild(buttonTable);
-        ui.hudGroup.addChild(secret);
         
         table.name = "dialoguebox";
-        
-        editor = new DialogueBoxEditorDialog();
         
         table.setSize(width, height);
         table.setPosition(x, y);
@@ -47,18 +40,13 @@ public class DialogueBox{
         
         buttonTable.name = "dialoguebox/button";
         
-        buttonTable.setPosition(x, y);
+        buttonTable.update(() -> {
+            buttonTable.setPosition(x + width - 25f, y),
+        });
         buttonTable.button(Icon.right, () -> {
             next();
         });
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
-        
-        secret.name = "dialoguebox/editor";
-        
-        secret.setPosition(8000f, 8000f);
-        secret.button(Icon.admin, () -> {
-            editor.show();
-        });
     }
     
     public static void hide(){
