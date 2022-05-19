@@ -25,7 +25,8 @@ public class DialogueBox{
     private static int cd = 0;
     private static boolean dialoguePlaying = false;
     private static DialogueBoxEditorDialog editor;
-    private static Runnable endScript = () -> {};
+    private static Runnable[] scripts;
+    private static int[] scriptPositions;
     
     public static void build(){
         ui.hudGroup.addChild(table);
@@ -69,26 +70,26 @@ public class DialogueBox{
     }
     
     public static void dialogueStart(String[] input){
-        if(dialoguePlaying){
-            Log.warn("Dialogue attempted to play despite one currently playing now. Ignoring.");
-            return;
-        };
-        a = input;
-        ((Label) table.getChildren().get(0)).setText(input[cd]);
-        buttonTable.getChildren().get(0).touchable = Touchable.enabled;
-        dialoguePlaying = true;
+        dialogueStart(input, {}, {});
     }
     
-    public static void dialogueStart(String[] input, Runnable endDialogueScript){
+    public static void dialogueStart(String[] input, Runnable[] scriptIn, int[] positions){
+        if(scriptIn.length != positions.length){
+            Log.err(new IndexOutOfBoundsException("Variables scriptIn and positions must have the same length/size."));
+            return;
+        };
         if(dialoguePlaying){
             Log.warn("Dialogue attempted to play despite one currently playing now. Ignoring.");
             return;
         };
         a = input;
+        if(scriptIn.length != 0 || positions.length != 0){
+            scripts = scriptIn;
+            scriptPositions = positions;
+        };
         ((Label) table.getChildren().get(0)).setText(input[cd]);
         buttonTable.getChildren().get(0).touchable = Touchable.enabled;
         dialoguePlaying = true;
-        endScript = endDialogueScript;
     }
     
     public static void dialogueEnd(){
@@ -96,12 +97,8 @@ public class DialogueBox{
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
         a = null;
         cd = 0;
-        try {
-            app.post(endScript);
-            endScript = () -> {};
-        } catch(Exception e) {
-            Log.err(e);
-        }
+        scripts = {};
+        scriptPositions = {};
         dialoguePlaying = false;
     }
     
@@ -112,5 +109,11 @@ public class DialogueBox{
         };
         cd += 1;
         ((Label) table.getChildren().get(0)).setText(a[cd]);
+        if(scripts.length == 0 || scriptPositions.length == 0) return;
+        for(int i = 0; i < scriptPositions; i++){
+            if(cd == scriptPositions[i]){
+                app.post(scripts[i]);
+            };
+        };
     }
 }

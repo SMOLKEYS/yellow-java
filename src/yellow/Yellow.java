@@ -43,7 +43,10 @@ public class Yellow extends Mod{
                 DialogueBox.build();
             });
             Time.runTask(120f, () -> {
-                DialogueBox.dialogueStart(Responses.test);
+                DialogueBox.dialogueStart(Responses.test, {
+                    () -> {ui.showInfo("amogus")},
+                    () -> {ui.showInfo("sus")}
+                }, {2, 5});
             });
             
             app.post(() -> {
