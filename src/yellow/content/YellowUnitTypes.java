@@ -104,7 +104,7 @@ public class YellowUnitTypes implements FallbackContentList{
             buildSpeed = 95000f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             
-            constructor = UnitEntity::create;
+            constructor = YellowUnitEntity::create;
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
             
