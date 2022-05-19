@@ -97,8 +97,8 @@ public class DialogueBox{
         buttonTable.getChildren().get(0).touchable = Touchable.disabled;
         a = null;
         cd = 0;
-        scripts = {};
-        scriptPositions = {};
+        scripts = new Runnable[]{};
+        scriptPositions = new Float[]{};
         dialoguePlaying = false;
     }
     
