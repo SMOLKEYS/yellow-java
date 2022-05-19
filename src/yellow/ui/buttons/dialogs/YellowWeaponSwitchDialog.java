@@ -36,7 +36,9 @@ public class YellowWeaponSwitchDialog extends BaseDialog{
         };
         
         cont.button("Request Leave", () -> {
-            box.dialogueStart(leaveResponse, () -> {});
+            box.dialogueStart(leaveResponse, new Runnable[]{
+                () -> Log.info("To be tested...")
+            }, new int[]{2});
         }).row();
     };
 }
