@@ -19,7 +19,7 @@ public class YellowUnitEntity extends UnitEntity{
     
     @Override
     public void remove(){
-        if(!removeAllowed || !count() > 1) return;
+        if(!removeAllowed || !(count() > 1)) return;
         super.remove();
     }
     
