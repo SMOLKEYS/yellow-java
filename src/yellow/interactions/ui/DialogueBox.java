@@ -70,7 +70,7 @@ public class DialogueBox{
     }
     
     public static void dialogueStart(String[] input){
-        dialogueStart(input, {}, {});
+        dialogueStart(input, new Runnable[]{}, new Float[]{});
     }
     
     public static void dialogueStart(String[] input, Runnable[] scriptIn, int[] positions){
