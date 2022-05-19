@@ -44,8 +44,8 @@ public class Yellow extends Mod{
             });
             Time.runTask(120f, () -> {
                 DialogueBox.dialogueStart(Responses.test, new Runnable[]{
-                    () -> {ui.showInfo("amogus")},
-                    () -> {ui.showInfo("sus")}
+                    () -> ui.showInfo("amogus"),
+                    () -> ui.showInfo("sus")
                 }, new Float[]{2, 5});
             });
             
