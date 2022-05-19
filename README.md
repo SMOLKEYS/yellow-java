@@ -18,5 +18,4 @@ Janssendel - David's Star effect for Bullethell
 
 
 
-
 [SMOLHome Discord Server](https://discord.gg/uAddT46bFx)
