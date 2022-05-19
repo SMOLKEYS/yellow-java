@@ -18,7 +18,7 @@ import static yellow.util.YellowUtils.*;
 public class DialogueBox{
     private static Table table = new Table();
     private static Table buttonTable = new Table();
-    private static float width = 425f, height = 470f, x = 0f, y = isEnabled("mod-test-utils-enabled") ? 1460f : 1490f;
+    private static float width = 425f, height = 470f, x = 0f, y = isEnabled("mod-test-utils-enabled") ? 1490f : 1460f;
     private static String[] a;
     private static int cd = 0;
     private static boolean dialoguePlaying = false;
