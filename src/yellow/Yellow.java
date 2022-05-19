@@ -46,7 +46,7 @@ public class Yellow extends Mod{
                 DialogueBox.dialogueStart(Responses.test, new Runnable[]{
                     () -> ui.showInfo("amogus"),
                     () -> ui.showInfo("sus")
-                }, new Integer[]{2, 5});
+                }, new int[]{2, 5});
             });
             
             app.post(() -> {
