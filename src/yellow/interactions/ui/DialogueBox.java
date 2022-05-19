@@ -41,7 +41,7 @@ public class DialogueBox{
         buttonTable.name = "dialoguebox/button";
         
         buttonTable.update(() -> {
-            buttonTable.setPosition(x + width - 25f, y),
+            buttonTable.setPosition(x + width - 25f, y);
         });
         buttonTable.button(Icon.right, () -> {
             next();
