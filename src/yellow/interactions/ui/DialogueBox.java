@@ -16,8 +16,7 @@ import static mindustry.Vars.*;
 import static yellow.util.YellowUtils.*;
 
 public class DialogueBox{
-    private static Table table = new Table();
-    private static Table buttonTable = new Table();
+    private static Table table = new Table().top().left();
     private static float width = 425f, height = 470f, x = 0f, y = isEnabled("mod-test-utils-enabled") ? 1490f : 1460f;
     private static String[] a;
     private static int cd = 0;
@@ -25,29 +24,22 @@ public class DialogueBox{
     private static Runnable[] scripts;
     private static int[] scriptPositions;
     
-    public static void build(){
+    public void build(){
         ui.hudGroup.addChild(table);
-        ui.hudGroup.addChild(buttonTable);
         
-        table.name = "dialoguebox";
+        table.name = "box";
         
-        table.setSize(width, height);
-        table.setPosition(x, y);
-        table.background(Styles.flatDown);
-        table.add(new Label("..."));
-        table.getCells().get(0).grow().wrap();
-        table.margin(8f);
-        ((Label) table.getChildren().get(0)).setFontScale(0.67f);
-        
-        buttonTable.name = "dialoguebox/button";
-        
-        buttonTable.update(() -> {
-            buttonTable.setPosition(x + width, y);
-        });
-        buttonTable.button(Icon.right, () -> {
-            next();
-        });
-        buttonTable.getChildren().get(0).touchable = Touchable.disabled;
+        table.table(t -> {
+            t.background(Styles.flatDown);
+            t.setSize(width, height);
+            t.add(new Label("<no dialogue>"));
+            t.getCells().get(0).grow().wrap();
+            ((Label) t.getChildren().get(0)).setFontScale(0.67f);
+        }).padBottom(y);
+        table.button(b -> {
+            b.setStyle(Styles.defaultb);
+            b.setSize(24f, 24f);
+        }, () -> next()).padBottom(y).right();
     }
     
     public static void hide(){
@@ -76,14 +68,14 @@ public class DialogueBox{
             scripts = scriptIn;
             scriptPositions = positions;
         };
-        ((Label) table.getChildren().get(0)).setText(input[cd]);
-        buttonTable.getChildren().get(0).touchable = Touchable.enabled;
+        ((Label) table.getChildren().get(0).getChildren().get(0)).setText(input[cd]);
+        buttonTable.getChildren().get(1).touchable = Touchable.enabled;
         dialoguePlaying = true;
     }
     
     public static void dialogueEnd(){
-        ((Label) table.getChildren().get(0)).setText("...");
-        buttonTable.getChildren().get(0).touchable = Touchable.disabled;
+        ((Label) table.getChildren().get(0).getChildren().get(0)).setText("...");
+        table.getChildren().get(1).touchable = Touchable.disabled;
         a = null;
         cd = 0;
         scripts = new Runnable[]{};
@@ -97,7 +89,7 @@ public class DialogueBox{
             return;
         };
         cd += 1;
-        ((Label) table.getChildren().get(0)).setText(a[cd]);
+        ((Label) table.getChildren().get(0).getChildren().get(0)).setText(a[cd]);
         if(scripts.length == 0 || scriptPositions.length == 0) return;
         for(int i = 0; i < scriptPositions.length; i++){
             if(cd == scriptPositions[i]){
