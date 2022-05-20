@@ -89,7 +89,7 @@ public class DialogueBox{
             return;
         };
         cd += 1;
-        ((Label) table.getChildren().get(0).getChildren().get(0)).setText(a[cd]);
+        ((Label) ((Table) table.getChildren().get(0)).getChildren().get(0)).setText(a[cd]);
         if(scripts.length == 0 || scriptPositions.length == 0) return;
         for(int i = 0; i < scriptPositions.length; i++){
             if(cd == scriptPositions[i]){
