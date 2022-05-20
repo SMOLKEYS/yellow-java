@@ -24,7 +24,7 @@ public class DialogueBox{
     private static Runnable[] scripts;
     private static int[] scriptPositions;
     
-    public void build(){
+    public static void build(){
         ui.hudGroup.addChild(table);
         
         table.name = "box";
@@ -68,13 +68,13 @@ public class DialogueBox{
             scripts = scriptIn;
             scriptPositions = positions;
         };
-        ((Label) table.getChildren().get(0).getChildren().get(0)).setText(input[cd]);
-        buttonTable.getChildren().get(1).touchable = Touchable.enabled;
+        ((Label) ((Table) table.getChildren().get(0)).getChildren().get(0)).setText(input[cd]);
+        table.getChildren().get(1).touchable = Touchable.enabled;
         dialoguePlaying = true;
     }
     
     public static void dialogueEnd(){
-        ((Label) table.getChildren().get(0).getChildren().get(0)).setText("...");
+        ((Label) ((Table) table.getChildren().get(0)).getChildren().get(0)).setText("...");
         table.getChildren().get(1).touchable = Touchable.disabled;
         a = null;
         cd = 0;
