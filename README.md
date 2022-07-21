@@ -1,3 +1,10 @@
+---
+
+This repo is no longer being maintained, the mod itself has been merged to my [main project](https://github.com/TeamNeiaron/Ion).
+
+---
+
+
 # Yellow (Java)
 
 A random piece of chaos i made. My second java mod aside Ion, my currently postponed mod. (It's not easy to maintain 2 java mods.)
