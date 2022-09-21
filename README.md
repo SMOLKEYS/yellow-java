@@ -1,13 +1,14 @@
 ---
 
-This repo is no longer being maintained, the mod itself has been merged to my [main project](https://github.com/TeamNeiaron/Ion).
+Repo unarchived, why?
+
+Well, the Kotlin port is NOT cooperating at all, despite all efforts to fix it. (To be specific, the weapon mirror system, which is a core component.)
 
 ---
 
-
 # Yellow (Java)
 
-A random piece of chaos i made. My second java mod aside Ion, my currently postponed mod. (It's not easy to maintain 2 java mods.)
+A random piece of chaos I made. My second java mod aside Ion (prior to the kotlin port of it), my main project.
 
 There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) if you need it for some reason. (Don't use it, it contains the old bullethell configurations which are pieces of absolute batshit.)
 
