@@ -31,8 +31,7 @@ public class Yellow extends Mod{
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
             
-            YellowClassGateway ycg = new YellowClass
-            ();
+            YellowClassGateway ycg = new YellowClassGateway();
             ycg.load();
         });
         
