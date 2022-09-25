@@ -1,6 +1,6 @@
 package yellow.entities.units;
 
-import arc.math.*;
+import arc.math.geom.*;
 import mindustry.type.UnitType;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
