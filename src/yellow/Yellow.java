@@ -14,9 +14,6 @@ import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
 import yellow.world.*;
-import yellow.interactions.*;
-import yellow.interactions.ui.*;
-import yellow.interactions.ui.DialogueBox.*;
 
 import static mindustry.Vars.*;
 import static arc.Core.*;
@@ -33,25 +30,7 @@ public class Yellow extends Mod{
         
         
         Events.run(ClientLoadEvent.class, () -> {
-            Updater.checkUpdates(this);
-            
             weaponSwitch.build(ui.hudGroup);
-            
-            settings.put("current-session-menu-time", 0);
-            
-            Time.runTask(60f, () -> {
-                DialogueBox.build();
-            });
-            Time.runTask(120f, () -> {
-                DialogueBox.dialogueStart(Responses.test, new Runnable[]{
-                    () -> ui.showInfo("amogus"),
-                    () -> ui.showInfo("sus")
-                }, new int[]{2, 5});
-            });
-            
-            app.post(() -> {
-                int amogus = 20;
-            });
         });
         
         if(headless){
@@ -74,8 +53,6 @@ public class Yellow extends Mod{
     public void loadContent(){
         bullets.load();
         YellowWeapons.init();
-        WorldVars.prepare();
-        WorldVars.start();
         
         for(FallbackContentList list : yellowContent){
             list.load();
