@@ -25,18 +25,6 @@ public class GhostUnitType extends UnitType{
     /** Despawn effect offset. */
     public Vec2 despawnEffectOffset = new Vec2(0, 0);
     
-    /** Whether to enable crack textures or glow effects. */
-    public boolean cracks = false, glow = false;
-    /** Crack texture that appears on the unit as it gets closer to the end of its lifetime.
-     * TODO functionality
-     */
-    public TextureRegion crackRegion;
-    
-    /**
-     * TODO? shard regions on unit despawn?
-     * public TextureRegion[] shardRegions;
-     */
-    
     
     public GhostUnitType(String name){
         super(name);
