@@ -28,7 +28,8 @@ public class Yellow extends Mod{
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
-        ModPackageScope.load();
+        ModPackageScope mps = new ModPackageScope();
+        mps.load();
         
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
