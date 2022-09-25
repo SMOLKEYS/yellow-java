@@ -8,6 +8,7 @@ import yellow.type.*;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.entities.units.*;
+import yellow.entities.units.DisableableWeaponMount;
 
 open class WeaponSwitchDialog: BaseDialog("Weapon Switch") {
     init {

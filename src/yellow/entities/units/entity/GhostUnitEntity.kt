@@ -4,7 +4,7 @@ import arc.math.Mathf
 import arc.util.Time
 import arc.util.io.Reads
 import arc.util.io.Writes
-import ion.hierarchy.yellow.entities.units.GhostUnitType
+import yellow.entities.units.GhostUnitType
 import mindustry.content.Fx
 import mindustry.gen.EntityMapping
 import mindustry.gen.UnitEntity
