@@ -37,6 +37,39 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+val genYellowClasspath by tasks.registering {
+    dependsOn("compileKotlin")
+    dependsOn("compileJava")
+
+    inputs.files(configurations.runtimeClasspath.get().files)
+    outputs.dir("$buildDir/gen-assets/")
+
+    doLast {
+        val packages = sourceSets.main.get().output.classesDirs
+            .flatMap {
+                // collect all classes
+                it.walkTopDown().filter { 
+                    !it.isDirectory && it.name.endsWith(".class") && "$" !in it.name 
+                }.toList()
+            }.map {
+                // turn class files pathes into packages
+                it.absolutePath.removeSuffix(".class")
+                    .removePrefix("$buildDir/classes/")
+                    .removePrefix("java/main/").removePrefix("kotlin/main/") // any can be present
+                    .replace('/', '.')
+                    .substringBeforeLast('.') // turining class path into package path
+            }
+            .distinct() // remove duplicate packages
+            .sorted() // because why not
+            .joinToString("\n")
+        
+        File("$buildDir/gen-assets/text/").let {
+            it.mkdirs()
+            it.resolve("yellow-classpath.txt").writeText(packages)
+        }
+    }
+}
+
 tasks.register("jarAndroid") {
     group = "build"
     dependsOn("jar")
@@ -82,6 +115,8 @@ tasks.register("jarAndroid") {
 }
 
 tasks.jar {
+    dependsOn(genYellowClasspath)
+
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName.set("${project.name}Desktop.jar")
 
@@ -92,10 +127,11 @@ tasks.jar {
         include("icon.png")
     }
 
-    from("$rootDir/assets/") {
-        include("**")
-    }
+    from("$rootDir/assets/") { include("**") }
+
+    from("$buildDir/gen-assets/") { include("**") }
 }
+
 task<Jar>("deploy") {
     dependsOn("jarAndroid")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
