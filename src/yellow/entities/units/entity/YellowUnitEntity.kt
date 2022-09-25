@@ -17,7 +17,6 @@ open class YellowUnitEntity: UnitEntity() {
     fun initVars() {
         inited = true
         lives = type().maxLives
-        Utils.logD("initalized $this")
     }
 
     fun invalidateDeath() {
@@ -87,7 +86,6 @@ open class YellowUnitEntity: UnitEntity() {
         write.bool(firstDeath)
         write.i(lives)
 
-        Utils.logD("WRITE: inited ($inited), firstDeath ($firstDeath), lives ($lives)")
         /*
         mounts.forEach{
             val e = it as DisableableWeaponMount

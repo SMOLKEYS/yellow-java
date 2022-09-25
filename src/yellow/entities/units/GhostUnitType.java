@@ -19,7 +19,7 @@ import yellow.entities.units.entity.*;
 
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */
-    public float lifetime = 900f;
+    public float ghostLifetime = 900f;
     /** Despawn effect. */
     public Effect despawnEffect = YellowFx.ghostDespawn;
     /** Despawn effect offset. */
@@ -32,27 +32,10 @@ public class GhostUnitType extends UnitType{
     }
     
     @Override
-    public void update(Unit unit){
-        
-        /**
-         * @author MEEPofFaith
-         */
-        GhostUnitEntity ghost = ((GhostUnitEntity)unit);
-        ghost.lifetime -= Time.delta;
-        ghost.clampLifetime();
-        if(ghost.lifetime <= 0f){
-            ghost.remove();
-            despawnEffect.at(unit.x + despawnEffectOffset.x, unit.y + despawnEffectOffset.y);
-        };
-        
-        super.update(unit);
-    }
-    
-    @Override
     public Unit create(Team team){
         Unit unit = super.create(team);
         unit.health = unit.maxHealth;
-        ((GhostUnitEntity)unit).lifetime = lifetime;
+        ((GhostUnitEntity)unit).ghostLifetime = ghostLifetime;
         return unit;
     }
 }
