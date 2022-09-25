@@ -1,12 +1,5 @@
 package yellow.entities.units;
 
-import arc.math.*;
-import arc.math.Mathf.*;
-import arc.util.*;
-import arc.util.Time.*;
-import arc.math.geom.Vec2;
-import arc.graphics.*;
-import arc.graphics.g2d.TextureRegion;
 import mindustry.type.UnitType;
 import mindustry.game.Team;
 import mindustry.gen.Unit;

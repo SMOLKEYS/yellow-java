@@ -1,6 +1,5 @@
 package yellow;
 
-import io.mnemotechnician.autoupdater.*;
 import arc.*;
 import arc.util.*;
 import mindustry.type.*;
