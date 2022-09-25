@@ -1,7 +1,7 @@
 package yellow.ctype;
 
 /**
- * A temporary version of the {@link ContentList} class that will be removed in v7.
+ * The removed ContentList class.
  */
 public interface FallbackContentList{
     

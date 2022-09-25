@@ -2,7 +2,7 @@ package yellow.entities.units.entity
 
 import arc.util.io.Reads
 import arc.util.io.Writes
-import yellow.game.PermVars
+import yellow.game.YellowPermVars
 import yellow.entities.units.YellowUnitType
 import mindustry.gen.EntityMapping
 import mindustry.gen.UnitEntity
@@ -55,7 +55,7 @@ open class YellowUnitEntity: UnitEntity() {
     }
 
     override fun remove() {
-        if(!PermVars.removeAllowed && lives > 1){
+        if(!YellowPermVars.removeAllowed && lives > 1){
             return
         }
 
@@ -72,10 +72,10 @@ open class YellowUnitEntity: UnitEntity() {
         spawnedByCore = true
 
         if(team.data().countType(type) > 1) {
-            PermVars.removeAllowed = true
+            YellowPermVars.removeAllowed = true
             remove()
         } else {
-            PermVars.removeAllowed = false
+            YellowPermVars.removeAllowed = false
         }
     }
 

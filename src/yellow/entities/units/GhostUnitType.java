@@ -2,12 +2,7 @@ package yellow.entities.units;
 
 import arc.math.geom.*;
 import mindustry.type.UnitType;
-import mindustry.game.Team;
-import mindustry.gen.Unit;
 import mindustry.entities.Effect;
-import mindustry.content.*;
-import mindustry.content.Fx.*;
-import yellow.content.*;
 import yellow.content.YellowFx.*;
 import yellow.entities.units.entity.*;
 

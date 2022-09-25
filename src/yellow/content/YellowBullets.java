@@ -34,6 +34,6 @@ public class YellowBullets implements FallbackContentList{
             backRegion = atlas.find("standard-missile");
         }};
         
-        standardMissileCaller = new AirstrikeFlare(){{}};
+        standardMissileCaller = new AirstrikeFlare(standardMissile){{}};
     }
 }
