@@ -114,8 +114,8 @@ public class YellowWeapons{
             reload = 300f;
             x = 48f;
             mirror = false;
-            shoot.shots = 1;
-            inaccuracy = 0f;
+            shoot.shots = 8;
+            inaccuracy = 35f;
             minWarmup = 0.99f;
             bullet = new BasicBulletType(){{
                 damage = 8500f;
