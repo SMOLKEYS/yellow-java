@@ -6,7 +6,7 @@ import mindustry.Vars
 import mindustry.game.EventType.*
 
 //sh1p you have done it
-open class ModPackageScope{
+open class YellowClassGateway{
 
     fun load(){
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
