@@ -6,12 +6,13 @@ import mindustry.type.*;
 import mindustry.ctype.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import yellow.util.*;
+import yellow.internal.util.*;
 import yellow.ctype.*;
 import yellow.world.blocks.units.SummoningShrine.SummoningShrineBuild;
 import yellow.content.*;
 import yellow.weapons.*;
 import yellow.ui.buttons.*;
+import yellow.internal.*;
 import yellow.world.*;
 
 import static mindustry.Vars.*;
@@ -27,6 +28,7 @@ public class Yellow extends Mod{
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
+        ModPackageScope.load()
         
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);

@@ -1,4 +1,4 @@
-package yellow.util;
+package yellow.internal.util;
 
 import arc.*;
 import arc.util.*;

@@ -13,7 +13,7 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.type.*;
-import yellow.util.*;
+import yellow.internal.util.*;
 import yellow.content.*;
 import yellow.entities.units.*;
 import yellow.entities.bullet.*;
