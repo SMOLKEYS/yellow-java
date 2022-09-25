@@ -15,7 +15,7 @@ open class ModPackageScope{
         
         packages.forEach{
             var p = NativeJavaPackage(it, Vars.mods.mainLoader())
-            p.setParentScope(scope?)
+            p.setParentScope(scope)
             scope.importPackage(p)
         }
     }
