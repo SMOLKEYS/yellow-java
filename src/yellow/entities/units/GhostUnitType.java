@@ -3,7 +3,7 @@ package yellow.entities.units;
 import arc.math.geom.*;
 import mindustry.type.UnitType;
 import mindustry.entities.Effect;
-import yellow.content.YellowFx.*;
+import yellow.content.*;
 import yellow.entities.units.entity.*;
 
 public class GhostUnitType extends UnitType{
