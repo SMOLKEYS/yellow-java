@@ -48,22 +48,7 @@ public class YellowWeapons{
                 lightColor = Color.yellow;
             }};
             
-        }
-            @Override
-            public void draw(Unit u, WeaponMount w){
-                super.draw(u, w);
-                
-                if(((DisableableWeaponMount) w).disabled) return;
-                
-                float rotation = u.rotation - 90;
-                
-                Draw.color(Color.yellow);
-                Draw.z(Layer.effect);
-                Lines.stroke(1);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, Time.time);
-                Lines.square(u.x + Angles.trnsx(rotation, w.weapon.x, w.weapon.y), u.y + Angles.trnsy(rotation, w.weapon.x, w.weapon.y), 30f, -Time.time);
-            }
-        };
+        }};
         
         bullethell = new DisableableWeapon("bullethell", "Bullethell"){{
             reload = 900f;
@@ -106,32 +91,7 @@ public class YellowWeapons{
                     Draw.z(Layer.flyingUnit);
                 }
             };
-        }
-            @Override
-            public void draw(Unit u, WeaponMount w){
-                super.draw(u, w);
-                
-                if(((DisableableWeaponMount) w).disabled) return;
-                
-                Draw.color(Color.yellow);
-                Draw.z(Layer.effect);
-                Draw.alpha(reloadf(w));
-                
-                Lines.square(u.x, u.y, 40, Time.time * 6);
-                Lines.square(u.x, u.y, 40, -Time.time * 6);
-                Lines.square(u.x, u.y, 80, Time.time * 6);
-                Lines.square(u.x, u.y, 80, -Time.time * 6);
-                
-                Lines.stroke(10);
-                Lines.poly(u.x, u.y, 3, 130, Time.time * 6);
-                Lines.poly(u.x, u.y, 3, 130, Time.time * 6 - 180);
-            }
-            
-            public float reloadf(WeaponMount w){
-              return w.reload/this.reload;
-            }
-            
-        };
+        }};
         
         antiMothSpray = new DisableableWeapon("anti-moth-spray", "Anti Moth Spray"){{
             reload = 2f;

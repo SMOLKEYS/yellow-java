@@ -10,7 +10,7 @@ import yellow.weapons.*;
 import yellow.entities.units.*;
 import yellow.entities.units.DisableableWeaponMount;
 
-open class WeaponSwitchDialog: BaseDialog("Weapon Switch") {
+open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
     init {
         addCloseButton()
     }
