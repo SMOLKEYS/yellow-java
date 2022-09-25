@@ -16,13 +16,13 @@ public class DisableableWeapon extends NameableWeapon{
      */
     @Override
     public void update(Unit unit, WeaponMount mount){
-        if(((DisableableWeaponMount) mount).disabled) return;
+        if(!((DisableableWeaponMount) mount).enabled) return;
         super.update(unit, mount);
     }
     
     @Override
     public void draw(Unit unit, WeaponMount mount){
-        if(((DisableableWeaponMount) mount).disabled) return;
+        if(!((DisableableWeaponMount) mount).enabled) return;
         super.draw(unit, mount);
     }
 }
