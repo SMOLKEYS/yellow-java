@@ -24,12 +24,4 @@ public class GhostUnitType extends UnitType{
         super(name);
         constructor = GhostUnitEntity::new;
     }
-    
-    @Override
-    public Unit create(Team team){
-        Unit unit = super.create(team);
-        unit.health = unit.maxHealth;
-        ((GhostUnitEntity)unit).ghostLifetime = ghostLifetime;
-        return unit;
-    }
 }

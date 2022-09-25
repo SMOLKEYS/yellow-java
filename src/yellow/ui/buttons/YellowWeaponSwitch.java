@@ -41,7 +41,7 @@ public class YellowWeaponSwitch{
             cont.top().right();
             cont.marginRight(width - padding);
             
-            cont.button(icon, style, isize, dialog.show(Vars.player.unit().mounts));
+            cont.button(icon, style, isize, dialog.show(player.unit().mounts));
 
             // show buttons only when player controls yellow air
             cont.visible(() -> player.unit().type == YellowUnitTypes.yellow);
