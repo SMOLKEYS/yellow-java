@@ -1,4 +1,4 @@
-package ion.hierarchy.yellow.entities.units.entity
+package yellow.entities.units.entity
 
 import arc.math.Mathf
 import arc.util.Time
