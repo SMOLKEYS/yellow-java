@@ -11,7 +11,7 @@ open class YellowClassGateway{
     fun load(){
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
         
-        val packages = Vars.tree.get("text/yellow-classpath.txt").readString().split('\n')
+        val packages = Vars.tree.get("classpaths/yellow-classpath.txt").readString().split('\n')
         
         packages.forEach{
             var p = NativeJavaPackage(it, Vars.mods.mainLoader())

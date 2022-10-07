@@ -63,7 +63,7 @@ val genYellowClasspath by tasks.registering {
             .sorted() // because why not
             .joinToString("\n")
         
-        File("$buildDir/gen-assets/text/").let {
+        File("$buildDir/gen-assets/classpaths/").let {
             it.mkdirs()
             it.resolve("yellow-classpath.txt").writeText(packages)
         }
