@@ -52,7 +52,8 @@ open class SummoningShrine(
             [lightgray]——————————————————
             Unit Summoner:
             Unit:[accent] ${unit.localizedName} [lightgray](${unit.name})
-            Summon Time Needed:[] ${summonTime / 60f} Seconds[lightgray]\n——————————————————[]
+            Summon Time Needed:[] ${summonTime / 60f} Seconds[lightgray]
+            ——————————————————[]
             """.trimIndent()
         )
     }

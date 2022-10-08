@@ -34,7 +34,7 @@ open class InstantRunnableEffect(life: Float, consRenderer: (EffectContainer) ->
     }
 }
 
-open class TimedRunnableEffect(life: Float, consRenderer: (Effect.EffectContainer) -> Unit, var at: Float, var afterAt: (Float, Float) -> Unit) : Effect(life, consRenderer){
+open class TimedRunnableEffect(life: Float, consRenderer: (EffectContainer) -> Unit, var at: Float, var afterAt: (Float, Float) -> Unit) : Effect(life, consRenderer){
 
     init{
         if(at > lifetime) Log.warn("at > lifetime on effect instance $this. Use RunnableEffect and its delay field instead. afterAt will not be ran.")
