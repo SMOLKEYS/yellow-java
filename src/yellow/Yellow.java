@@ -1,20 +1,22 @@
 package yellow;
 
-import arc.Events;
-import arc.util.Log;
-import mindustry.game.EventType.ClientLoadEvent;
-import mindustry.mod.Mod;
-import mindustry.type.Weapon;
+import arc.*;
+import arc.util.*;
+import mindustry.type.*;
+import mindustry.ctype.*;
+import mindustry.game.EventType.*;
+import mindustry.mod.*;
+import yellow.internal.util.*;
+import yellow.ctype.*;
+import yellow.world.blocks.units.SummoningShrine.SummoningShrineBuild;
 import yellow.content.*;
-import yellow.ctype.FallbackContentList;
-import yellow.internal.YellowClassGateway;
-import yellow.internal.util.YellowUtils;
-import yellow.ui.buttons.YellowWeaponSwitch;
-import yellow.weapons.YellowWeapons;
+import yellow.weapons.*;
+import yellow.ui.buttons.*;
+import yellow.internal.*;
+import yellow.world.*;
 
-import static arc.Core.app;
-import static mindustry.Vars.headless;
-import static mindustry.Vars.ui;
+import static mindustry.Vars.*;
+import static arc.Core.*;
 import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{

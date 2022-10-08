@@ -1,9 +1,14 @@
 package yellow.ui.buttons.dialogs;
 
-import mindustry.entities.units.WeaponMount
-import mindustry.ui.dialogs.BaseDialog
-import yellow.entities.units.DisableableWeaponMount
-import yellow.type.NameableWeapon
+import arc.scene.ui.*;
+import mindustry.*;
+import mindustry.ui.dialogs.*;
+import mindustry.entities.units.*;
+import yellow.type.*;
+import yellow.content.*;
+import yellow.weapons.*;
+import yellow.entities.units.*;
+import yellow.entities.units.DisableableWeaponMount;
 
 open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
     init {

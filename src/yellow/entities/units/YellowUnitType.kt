@@ -2,15 +2,13 @@ package yellow.entities.units
 
 import arc.func.Prov
 import arc.graphics.Color
-import arc.graphics.g2d.Draw
-import arc.graphics.g2d.Fill
-import arc.graphics.g2d.Lines
+import arc.graphics.g2d.*
 import arc.math.Mathf
 import arc.util.Time
 import arc.util.Tmp
+import yellow.entities.units.entity.YellowUnitEntity
 import mindustry.graphics.Layer
 import mindustry.type.UnitType
-import yellow.entities.units.entity.YellowUnitEntity
 
 open class YellowUnitType(name: String): UnitType(name) {
 

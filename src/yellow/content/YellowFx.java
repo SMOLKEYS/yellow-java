@@ -1,14 +1,11 @@
 package yellow.content;
 
-import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Fill;
-import arc.graphics.g2d.Lines;
-import arc.math.Angles;
-import arc.math.Interp;
-import arc.util.Time;
-import mindustry.entities.Effect;
-import mindustry.graphics.Layer;
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.util.*;
+import mindustry.entities.*;
+import mindustry.graphics.*;
 
 /**
  * All effects are sorted by oldest-top, newest-bottom.
@@ -115,8 +112,8 @@ public class YellowFx{
         Lines.square(e.x, e.y, 80, -Time.time * 6);
         
         Lines.stroke(10);
-        Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6);
-        Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6 - 180);
+        Lines.poly(e.x, e.y, 3, 130, Time.time * 6);
+        Lines.poly(e.x, e.y, 3, 130, Time.time * 6 - 180);
     });
         
         //endregion
