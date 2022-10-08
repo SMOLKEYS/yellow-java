@@ -33,7 +33,7 @@ open class YellowUnitEntity: UnitEntity() {
     }
     
     fun outOfWorldBounds(): Boolean{
-        return x > Vars.world.width() || x < 0f || y > Vars.world.height() || y < 0f
+        return x > Vars.world.width() * 8f || x < 0f || y > Vars.world.height() * 8f || y < 0f
     }
 
     fun invalidateDeath() {
