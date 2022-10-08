@@ -3,11 +3,13 @@ package yellow.entities.units.entity
 import arc.math.Mathf
 import arc.util.io.Reads
 import arc.util.io.Writes
+import mindustry.Vars
 import mindustry.gen.EntityMapping
 import mindustry.gen.UnitEntity
 import mindustry.entities.Units
 import yellow.entities.units.YellowUnitType
 import yellow.game.YellowPermVars
+
 
 open class YellowUnitEntity: UnitEntity() {
 
@@ -22,6 +24,10 @@ open class YellowUnitEntity: UnitEntity() {
         lives = type().maxLives
         allowsHealing = Mathf.chance(0.346)
     }
+    
+    fun outOfWorldBounds(): Boolean{
+        return x > Vars.world.width() || x < 0f || y > Vars.world.height() || y < 0f
+    }
 
     fun invalidateDeath() {
         lives -= 1
@@ -33,6 +39,22 @@ open class YellowUnitEntity: UnitEntity() {
             shield = 6780f
             firstDeath = true
         }
+        
+        //sorry, but yellow aint going down to the void
+        if(outOfWorldBounds()){
+            if(team.data().cores.isEmpty()){
+                x = Mathf.random(Vars.world.width()) * 8f
+                y = Mathf.random(Vars.world.height()) * 8f
+            }else{
+                val core = team.data().cores[0]
+                x = core.x
+                y = core.y
+            }
+        }else{
+            x = x + Mathf.range(25f * 8f)
+            y = y + Mathf.range(25f * 8f)
+        }
+        
     }
 
     fun forceKill() {
