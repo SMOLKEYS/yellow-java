@@ -7,7 +7,7 @@ import mindustry.maps.generators.PlanetGenerator
 open class AzenoPlanetGenerator : PlanetGenerator(){
 
     override fun getHeight(position: Vec3?): Float{
-        return 2f
+        return 1.22f
     }
 
     override fun getColor(position: Vec3?): Color{
