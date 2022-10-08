@@ -85,6 +85,7 @@ open class YellowUnitEntity: UnitEntity() {
         //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
         if(allowsHealing){
             Units.nearby(x, y, 15f*8f, 15f*8f){a: mindustry.gen.Unit ->
+                if(a.team != team) return
                 if(!a.isPlayer()){
                     if(Mathf.chanceDelta(0.09)){
                         a.heal(10f)
