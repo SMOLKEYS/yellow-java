@@ -20,7 +20,7 @@ open class YellowUnitEntity: UnitEntity() {
     fun initVars() {
         inited = true
         lives = type().maxLives
-        allowsHealing = Mathf.chance(0.346f)
+        allowsHealing = Mathf.chance(0.346)
     }
 
     fun invalidateDeath() {
@@ -84,14 +84,14 @@ open class YellowUnitEntity: UnitEntity() {
         
         //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
         if(allowsHealing){
-            Units.nearby(x, y, 15*8, 15*8){
-                if(!it.isPlayer()){
-                    if(Mathf.chanceDelta(0.09f)){
-                        it.heal(10f)
+            Units.nearby(x, y, 15f*8f, 15f*8f){a: mindustry.gen.Unit ->
+                if(!a.isPlayer()){
+                    if(Mathf.chanceDelta(0.09)){
+                        a.heal(10f)
                     }
                 }else{
-                    if(Mathf.chanceDelta(0.14f)){
-                        it.heal(Mathf.random() * it.health / 3f)
+                    if(Mathf.chanceDelta(0.14)){
+                        a.heal(Mathf.random() * it.health / 3f)
                     }
                 }
             }
