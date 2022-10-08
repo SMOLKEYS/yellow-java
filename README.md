@@ -26,6 +26,10 @@ Janssendel - David's Star effect for Bullethell
 
 
 
-
-
-[SMOLHome Discord Server](https://discord.gg/uAddT46bFx)
+|Links|
+|---|
+|[SMOLHome Discord Server](https://discord.gg/uAddT46bFx)|
+|[PKChaos Org.](https://github.com/PKChaos)|
+|[Ion (Second Main Project)](https://github.com/PKChaos/Ion)|
+|[The Original Project Repository (JS)](https://github.com/SMOLKEYS/yellow)|
+|**MISSING-LINK**|
