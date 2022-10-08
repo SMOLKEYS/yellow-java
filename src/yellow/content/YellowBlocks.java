@@ -24,7 +24,7 @@ public class YellowBlocks implements FallbackContentList{
         yellowShrine = new SummoningShrine(yellow){{
             health = 1685;
             size = 1;
-            summonTime = 180f;
+            setSummonTime(180f); //kotlin what
         }};
     }
 }
