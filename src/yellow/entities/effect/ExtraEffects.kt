@@ -1,6 +1,7 @@
 package yellow.entities.effect
 
 import arc.graphics.Color
+import arc.util.Log
 import arc.util.Time
 import mindustry.Vars
 import mindustry.entities.Effect
@@ -17,7 +18,7 @@ open class RunnableEffect(life: Float, consRenderer: (EffectContainer) -> Unit, 
         if(!shouldCreate()) return
         super.create(x, y, rotation, color, data)
         
-        Time.run(this.lifetime + extraDelay){
+        Time.run(lifetime + extraDelay){
             afterEffect(x, y)
         }
     }
@@ -30,5 +31,23 @@ open class InstantRunnableEffect(life: Float, consRenderer: (EffectContainer) ->
             super.create(x, y, rotation, color, data)
             
             afterEffect(x, y)
+    }
+}
+
+open class TimedRunnableEffect(life: Float, consRenderer: (Effect.EffectContainer) -> Unit, var at: Float, var afterAt: (Float, Float) -> Unit) : Effect(life, consRenderer){
+
+    init{
+        if(at > lifetime) Log.warn("at > lifetime on effect instance $this. Use RunnableEffect and its delay field instead. afterAt will not be ran.")
+        if(at == 0f) Log.warn("at == 0 on effect instance $this. Use InstantRunnableEffect instead.")
+    }
+
+    override fun create(x: Float, y: Float, rotation: Float, color: Color?, data: Any?) {
+        if(!shouldCreate()) return
+        super.create(x, y, rotation, color, data)
+
+        if(at > lifetime) return
+        Time.run(at){
+            afterAt(x, y)
+        }
     }
 }

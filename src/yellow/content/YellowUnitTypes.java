@@ -57,5 +57,5 @@ public class YellowUnitTypes implements FallbackContentList{
         }};
         
         //endregion
-    };
+    }
 }
