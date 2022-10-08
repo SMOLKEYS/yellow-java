@@ -28,10 +28,11 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
     }
 
     override fun getColor(position: Vec3): Color{
-        return csus.set(getBlock(position)!!.mapColor).a(1f - block.albedo)
+        val block = getBlock(position)
+        return if (block === salt) sand.mapColor else csus.set(block!!.mapColor).a(1f - block!!.albedo)
     }
 
-    open fun getBlock(position: Vec3): Block? {
+    fun getBlock(position: Vec3): Block? {
         var tposition = position
         var height = rawHeight(tposition)
         Tmp.v31.set(tposition)
