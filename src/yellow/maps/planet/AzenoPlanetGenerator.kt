@@ -29,6 +29,7 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
 
     override fun getColor(position: Vec3): Color{
         val block = getBlock(position)
+        @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
         return if (block === salt) sand.mapColor else csus.set(block!!.mapColor).a(1f - block!!.albedo)
     }
 
@@ -59,7 +60,7 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
         return res
     }
     fun rawHeight(position: Vec3): Float {
-        var tposition = v34.set(position).scl(scl)
+        val tposition = v34.set(position).scl(scl)
         return (Mathf.pow(
             Simplex.noise3d(
                 seed,
