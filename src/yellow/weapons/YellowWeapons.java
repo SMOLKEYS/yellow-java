@@ -62,13 +62,13 @@ public class YellowWeapons{
             shoot = new ShootSpread(){{
                 shots = 690;
                 shotDelay = 1f;
-                spread = 60f;
+                spread = 25f;
             }};
             
             bullet = new BasicBulletType(){{
                 damage = 300f;
-                width = 16f;
-                height = 16f;
+                width = 12f;
+                height = 12f;
                 lifetime = 300f;
                 speed = 6f;
                 hitEffect = YellowFx.ghostDespawn;
