@@ -91,7 +91,7 @@ open class YellowUnitEntity: UnitEntity() {
                     }
                 }else{
                     if(Mathf.chanceDelta(0.14)){
-                        a.heal(Mathf.random() * it.health / 3f)
+                        a.heal(Mathf.random() * a.health / 3f)
                     }
                 }
             }
