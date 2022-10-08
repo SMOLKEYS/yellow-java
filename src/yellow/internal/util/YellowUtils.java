@@ -1,13 +1,10 @@
 package yellow.internal.util;
 
-import arc.*;
-import arc.util.*;
-import mindustry.*;
-import mindustry.type.*;
-import yellow.type.*;
+import mindustry.type.UnitType;
+import mindustry.type.Weapon;
+import yellow.type.NameableWeapon;
 
-import static arc.Core.*;
-import static mindustry.Vars.*;
+import static arc.Core.settings;
 
 public class YellowUtils{
     

@@ -1,28 +1,12 @@
 package yellow.content;
 
-import arc.*;
-import arc.func.*;
-import arc.math.*;
-import arc.util.*;
-import arc.flabel.*;
-import arc.struct.*;
-import arc.struct.ObjectMap.*;
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import mindustry.content.*;
-import mindustry.graphics.*;
-import mindustry.ai.types.*;
-import mindustry.ctype.*;
-import mindustry.gen.*;
-import mindustry.type.*;
-import mindustry.world.meta.*;
-import mindustry.game.*;
-import yellow.ctype.*;
-import yellow.weapons.*;
-import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
-
-import static mindustry.Vars.*;
+import arc.Core;
+import mindustry.ai.types.FlyingAI;
+import mindustry.type.UnitType;
+import yellow.ctype.FallbackContentList;
+import yellow.entities.units.GhostUnitType;
+import yellow.entities.units.YellowUnitType;
+import yellow.weapons.YellowWeapons;
 
 public class YellowUnitTypes implements FallbackContentList{
 
@@ -73,5 +57,5 @@ public class YellowUnitTypes implements FallbackContentList{
         }};
         
         //endregion
-    };
+    }
 }

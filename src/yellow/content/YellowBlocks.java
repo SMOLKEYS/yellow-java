@@ -1,11 +1,10 @@
 package yellow.content;
 
-import mindustry.ctype.*;
-import mindustry.world.*;
-import yellow.ctype.*;
-import yellow.world.blocks.units.*;
+import mindustry.world.Block;
+import yellow.ctype.FallbackContentList;
+import yellow.world.blocks.units.SummoningShrine;
 
-import static yellow.content.YellowUnitTypes.*;
+import static yellow.content.YellowUnitTypes.yellow;
 
 public class YellowBlocks implements FallbackContentList{
     public static Block
@@ -21,11 +20,10 @@ public class YellowBlocks implements FallbackContentList{
             size = 1;
             solid = false;
         }};
-        /** TODO */
         yellowShrine = new SummoningShrine(yellow){{
             health = 1685;
             size = 1;
-            summonTime = 180f;
+            setSummonTime(180f); //kotlin what
         }};
     }
 }

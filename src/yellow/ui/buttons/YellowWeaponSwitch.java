@@ -1,17 +1,15 @@
 package yellow.ui.buttons;
 
-import arc.flabel.*;
-import arc.scene.*;
-import arc.scene.ui.ImageButton.*;
-import arc.scene.ui.layout.*;
-import arc.scene.style.*;
-import yellow.ui.buttons.dialogs.*;
-import yellow.content.*;
-import mindustry.ui.*;
-import mindustry.gen.*;
+import arc.scene.Group;
+import arc.scene.style.Drawable;
+import arc.scene.ui.ImageButton.ImageButtonStyle;
+import mindustry.gen.Tex;
+import mindustry.ui.Styles;
+import yellow.content.YellowUnitTypes;
+import yellow.ui.buttons.dialogs.YellowWeaponSwitchDialog;
 
-import static arc.Core.*;
-import static mindustry.Vars.*;
+import static arc.Core.atlas;
+import static mindustry.Vars.player;
 
     /**
      * Adds a button anchored to the minimap

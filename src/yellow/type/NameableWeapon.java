@@ -1,6 +1,6 @@
 package yellow.type;
 
-import mindustry.type.*;
+import mindustry.type.Weapon;
 
     /**
      * A weapon with a configurable display name.

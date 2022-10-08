@@ -1,22 +1,23 @@
 package yellow.weapons;
 
-import arc.*;
-import arc.math.*;
-import arc.util.*;
-import arc.graphics.*;
-import arc.graphics.g2d.*;
-import mindustry.content.*;
-import mindustry.graphics.*;
-import mindustry.entities.units.*;
-import mindustry.entities.bullet.*;
-import mindustry.entities.pattern.*;
-import mindustry.gen.*;
-import mindustry.type.*;
-import yellow.type.*;
-import yellow.internal.util.*;
-import yellow.content.*;
-import yellow.entities.units.*;
-import yellow.entities.bullet.*;
+import arc.Core;
+import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
+import arc.graphics.g2d.Lines;
+import arc.math.Mathf;
+import arc.util.Time;
+import mindustry.content.Fx;
+import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.ContinuousLaserBulletType;
+import mindustry.entities.pattern.ShootSpread;
+import mindustry.gen.Bullet;
+import mindustry.gen.Sounds;
+import mindustry.graphics.Layer;
+import mindustry.type.Weapon;
+import yellow.content.YellowBullets;
+import yellow.content.YellowFx;
+import yellow.type.DisableableWeapon;
 
 public class YellowWeapons{
     public static Weapon
@@ -61,13 +62,13 @@ public class YellowWeapons{
             shoot = new ShootSpread(){{
                 shots = 690;
                 shotDelay = 1f;
-                spread = 60f;
+                spread = 25f;
             }};
             
             bullet = new BasicBulletType(){{
                 damage = 300f;
-                width = 16f;
-                height = 16f;
+                width = 12f;
+                height = 12f;
                 lifetime = 300f;
                 speed = 6f;
                 hitEffect = YellowFx.ghostDespawn;

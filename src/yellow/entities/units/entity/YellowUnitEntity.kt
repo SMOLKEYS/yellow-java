@@ -1,13 +1,11 @@
 package yellow.entities.units.entity
 
-import arc.math.Mathf
 import arc.util.io.Reads
 import arc.util.io.Writes
-import yellow.game.YellowPermVars
-import yellow.entities.units.YellowUnitType
 import mindustry.gen.EntityMapping
 import mindustry.gen.UnitEntity
-import mindustry entities.Units
+import yellow.entities.units.YellowUnitType
+import yellow.game.YellowPermVars
 
 open class YellowUnitEntity: UnitEntity() {
 
@@ -15,12 +13,10 @@ open class YellowUnitEntity: UnitEntity() {
 
     var lives = 0
     var firstDeath = false
-    var allowsHealing = false
 
     fun initVars() {
         inited = true
         lives = type().maxLives
-        allowsHealing = Mathf.chanceDelta(0.346f)
     }
 
     fun invalidateDeath() {
@@ -50,7 +46,7 @@ open class YellowUnitEntity: UnitEntity() {
     }
 
     override fun destroy() {
-        if(lives >= 1) {
+        if(lives > 1) {
             invalidateDeath()
             return
         }
@@ -59,7 +55,7 @@ open class YellowUnitEntity: UnitEntity() {
     }
 
     override fun remove() {
-        if(!YellowPermVars.removeAllowed && lives >= 1){
+        if(!YellowPermVars.removeAllowed && lives > 1){
             return
         }
 
@@ -80,21 +76,6 @@ open class YellowUnitEntity: UnitEntity() {
             remove()
         } else {
             YellowPermVars.removeAllowed = false
-        }
-        
-        //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
-        if(allowsHealing){
-            Units.nearby(x, y, 15*8, 15*8){
-                if(!it.isPlayer()){
-                    if(Mathf.chanceDelta(0.09f)){
-                        it.heal(10f)
-                    }
-                }else{
-                    if(Mathf.chanceDelta(0.14f)){
-                        it.heal(Mathf.random() * it.health / 3f)
-                    }
-                }
-            }
         }
     }
 
