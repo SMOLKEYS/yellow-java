@@ -18,13 +18,17 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
     private var csus = Color()
 
     var arr = arrayOf(
-        arrayOf(stone, stone, redmat, redmat, yellowStone)
+        arrayOf(stone, stone, redmat, redmat, redmat, redmat, stone),
+        arrayOf(stone, sand, grass, water, water, water, grass),
+        arrayOf(grass, water, water, water, sand, sand, grass),
+        arrayOf(grass, sand, water, stone, stone, grass, stone),
+        arrayOf(oreCopper, stone, water, water, stone, oreLead, stone)
     )
 
-    var water: Float = 2f / arr.get(0).size
+    var watera: Float = 2f / arr.get(0).size
 
     override fun getHeight(position: Vec3): Float{
-        return Math.max(rawHeight(position), water)
+        return Math.max(rawHeight(position), watera)
     }
 
     override fun getColor(position: Vec3): Color{
