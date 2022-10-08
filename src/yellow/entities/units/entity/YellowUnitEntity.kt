@@ -2,10 +2,10 @@ package yellow.entities.units.entity
 
 import arc.util.io.Reads
 import arc.util.io.Writes
-import yellow.game.YellowPermVars
-import yellow.entities.units.YellowUnitType
 import mindustry.gen.EntityMapping
 import mindustry.gen.UnitEntity
+import yellow.entities.units.YellowUnitType
+import yellow.game.YellowPermVars
 
 open class YellowUnitEntity: UnitEntity() {
 

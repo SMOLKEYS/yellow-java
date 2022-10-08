@@ -1,11 +1,10 @@
 package yellow.content;
 
-import mindustry.ctype.*;
-import mindustry.world.*;
-import yellow.ctype.*;
-import yellow.world.blocks.units.*;
+import mindustry.world.Block;
+import yellow.ctype.FallbackContentList;
+import yellow.world.blocks.units.SummoningShrine;
 
-import static yellow.content.YellowUnitTypes.*;
+import static yellow.content.YellowUnitTypes.yellow;
 
 public class YellowBlocks implements FallbackContentList{
     public static Block

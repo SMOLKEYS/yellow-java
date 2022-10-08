@@ -1,8 +1,8 @@
 package yellow.type;
 
-import mindustry.gen.*;
-import mindustry.entities.units.*;
-import yellow.entities.units.*;
+import mindustry.entities.units.WeaponMount;
+import mindustry.gen.Unit;
+import yellow.entities.units.DisableableWeaponMount;
 
 public class DisableableWeapon extends NameableWeapon{
     

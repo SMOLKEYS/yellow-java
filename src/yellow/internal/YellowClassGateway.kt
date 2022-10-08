@@ -1,9 +1,8 @@
 package yellow.internal
 
-import arc.struct.*
-import rhino.*
 import mindustry.Vars
-import mindustry.game.EventType.*
+import rhino.ImporterTopLevel
+import rhino.NativeJavaPackage
 
 //sh1p you have done it
 open class YellowClassGateway{

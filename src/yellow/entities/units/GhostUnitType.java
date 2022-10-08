@@ -1,10 +1,10 @@
 package yellow.entities.units;
 
-import arc.math.geom.*;
-import mindustry.type.UnitType;
+import arc.math.geom.Vec2;
 import mindustry.entities.Effect;
-import yellow.content.*;
-import yellow.entities.units.entity.*;
+import mindustry.type.UnitType;
+import yellow.content.YellowFx;
+import yellow.entities.units.entity.GhostUnitEntity;
 
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */

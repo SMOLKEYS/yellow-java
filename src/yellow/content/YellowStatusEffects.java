@@ -1,10 +1,9 @@
 package yellow.content;
 
-import mindustry.ctype.*;
-import mindustry.game.*;
-import mindustry.type.*;
-import mindustry.gen.*;
-import yellow.ctype.*;
+import mindustry.game.Team;
+import mindustry.gen.Unit;
+import mindustry.type.StatusEffect;
+import yellow.ctype.FallbackContentList;
 
 public class YellowStatusEffects implements FallbackContentList{
     public static StatusEffect

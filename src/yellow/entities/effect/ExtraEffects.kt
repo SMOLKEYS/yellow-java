@@ -1,10 +1,9 @@
 package yellow.entities.effect
 
-import arc.util.Time
 import arc.graphics.Color
+import arc.util.Time
 import mindustry.Vars
 import mindustry.entities.Effect
-import mindustry.entities.Effect.EffectContainer
 
 fun Effect.atPlayerPos(){
     this.at(Vars.player.x, Vars.player.y)

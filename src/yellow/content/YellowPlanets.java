@@ -1,14 +1,15 @@
 package yellow.content;
 
-import arc.graphics.*;
-import mindustry.ctype.*;
-import mindustry.graphics.*;
-import mindustry.graphics.g3d.*;
-import mindustry.maps.planet.*;
-import mindustry.type.*;
-import yellow.ctype.*;
+import arc.graphics.Color;
+import mindustry.graphics.Pal;
+import mindustry.graphics.g3d.HexMesh;
+import mindustry.graphics.g3d.HexSkyMesh;
+import mindustry.graphics.g3d.MultiMesh;
+import mindustry.maps.planet.SerpuloPlanetGenerator;
+import mindustry.type.Planet;
+import yellow.ctype.FallbackContentList;
 
-import static mindustry.content.Planets.*;
+import static mindustry.content.Planets.sun;
 
 public class YellowPlanets implements FallbackContentList{
     public static Planet
