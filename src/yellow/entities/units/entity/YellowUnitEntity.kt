@@ -13,18 +13,19 @@ import mindustry.entities.bullet.BulletType
 import yellow.entities.units.YellowUnitType
 import yellow.game.YellowPermVars
 
-open class YellowUnitEntity: UnitEntity() {
+@Suppress("MemberVisibilityCanBePrivate", "unused")
+open class YellowUnitEntity: UnitEntity(){
 
     private var inited = false
     private var franticTeleportTime = 60f
+    private val everywhere = Vec2()
 
     var lives = 0
     var firstDeath = false
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
-
-    fun initVars() {
+    private fun initVars() {
         inited = true
         lives = type().maxLives
         allowsHealing = Mathf.chance(0.346)
@@ -49,7 +50,7 @@ open class YellowUnitEntity: UnitEntity() {
         
         //sorry, but yellow aint going down to the void
         if(outOfWorldBounds()){
-            if(team.data().cores.isEmpty()){
+            if(team.data().cores.isEmpty){
                 x = Mathf.random(Vars.world.width()) * 8f
                 y = Mathf.random(Vars.world.height()) * 8f
             }else{
@@ -58,8 +59,8 @@ open class YellowUnitEntity: UnitEntity() {
                 y = core.y
             }
         }else{
-            x = x + Mathf.range(25f * 8f)
-            y = y + Mathf.range(25f * 8f)
+            x += Mathf.range(25f * 8f)
+            y += Mathf.range(25f * 8f)
         }
     }
 
@@ -114,7 +115,7 @@ open class YellowUnitEntity: UnitEntity() {
         if(allowsHealing){
             Units.nearby(x, y, 15f*8f, 15f*8f){a: mindustry.gen.Unit ->
                 if(a.team == team){
-                    if(!a.isPlayer()){
+                    if(!a.isPlayer){
                         if(Mathf.chanceDelta(0.09)){
                             a.heal(10f)
                         }
@@ -130,13 +131,14 @@ open class YellowUnitEntity: UnitEntity() {
         
         //teleport everywhere and start firing all weapons on last life for a second if panic mode is enabled
         if(panicMode && lives == 1 && !(franticTeleportTime <= 0f)){
-            val locor = Vec2(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
-            x = locor.x
-            y = locor.y
-            mounts.forEach{
-                it.shoot = true
-                it.weapon.update(this, it)
-            }
+            everywhere.set(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
+            x = everywhere.x
+            y = everywhere.y
+
+            val mountus = mounts.random()
+
+            mountus.shoot = true
+            mountus.weapon.update(this, mountus)
             
             //if type two panic mode is enabled, start dropping quad bombs
             if(panicModeTypeTwo){

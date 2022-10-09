@@ -12,7 +12,7 @@ fun Effect.atPlayerPos(){
 
 open class RunnableEffect(life: Float, consRenderer: (EffectContainer) -> Unit, var afterEffect: (Float, Float) -> Unit) : Effect(life, consRenderer){
     
-    var extraDelay: Float = 2.5f
+    var extraDelay: Float = 0.5f
     
     override fun create(x: Float, y: Float, rotation: Float, color: Color, data: Any?){
         if(!shouldCreate()) return

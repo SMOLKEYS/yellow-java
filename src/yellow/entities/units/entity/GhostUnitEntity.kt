@@ -23,7 +23,7 @@ open class GhostUnitEntity: UnitEntity() {
         ghostLifetime = Mathf.clamp(ghostLifetime, 0f, (type as GhostUnitType).ghostLifetime)
     }
 
-    fun initVars() {
+    private fun initVars() {
         inited = true
         ghostLifetime = (type as GhostUnitType).ghostLifetime
         despawnEffect = (type as GhostUnitType).despawnEffect

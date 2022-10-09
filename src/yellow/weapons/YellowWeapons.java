@@ -22,7 +22,7 @@ import yellow.type.DisableableWeapon;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor;
     
     public static void init(){
         
@@ -149,6 +149,30 @@ public class YellowWeapons{
             mirror = false;
             minWarmup = 0.99f;
             bullet = YellowBullets.standardMissileCaller;
+        }};
+
+        disruptor = new DisableableWeapon("disruptor", "Disruptor"){{
+            reload = 600f;
+            x = 0f;
+            y = 0f;
+            mirror = false;
+            minWarmup = 0.99f;
+            inaccuracy = 360f;
+
+            shoot.shots = 350;
+
+            bullet = new BasicBulletType(){{
+               speed = 15f;
+               drag = 0.003f;
+               weaveMag = 3f;
+               weaveScale = 300f;
+               damage = 65f;
+               width = 8f;
+               height = 8f;
+               trailEffect = Fx.trailFade;
+               trailLength = 3;
+
+            }};
         }};
         
         //endregion main
