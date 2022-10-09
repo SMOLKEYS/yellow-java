@@ -8,6 +8,7 @@ import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import arc.util.Time;
 import mindustry.content.Fx;
+import mindustry.entities.part.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.pattern.ShootSpread;
