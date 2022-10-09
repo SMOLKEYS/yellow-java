@@ -162,6 +162,7 @@ public class YellowWeapons{
             shoot.shots = 350;
 
             bullet = new BasicBulletType(){{
+               lifetime = 600f;
                speed = 15f;
                drag = 0.003f;
                weaveMag = 3f;
@@ -171,7 +172,6 @@ public class YellowWeapons{
                height = 8f;
                trailEffect = Fx.trailFade;
                trailLength = 3;
-
             }};
         }};
         
