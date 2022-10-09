@@ -128,16 +128,34 @@ public class YellowWeapons{
                 height = 8f;
                 hitEffect = YellowFx.yellowExplosionOut;
                 despawnEffect = YellowFx.yellowExplosionOut;
+                
+                parts.add(
+                    new ShapePart(){{
+                        sides = 6
+                        radius = 10f
+                        layer = Layer.bullet
+                        rotateSpeed = 4f
+                        color = Color.yellow
+                    }},
+                    new ShapePart(){{
+                        sides = 3
+                        radius = 15f
+                        layer = Layer.bullet
+                        rotateSpeed = 3f
+                        mirror = true
+                    }}
+                );
             }
                 @Override
                 public void draw(Bullet b){
                     super.draw(b);
-                    
+                    /*
                     Draw.z(Layer.effect);
                     Draw.color(Color.yellow);
                     Lines.square(b.x, b.y, 15, Time.time * 2);
                     Lines.square(b.x, b.y, 15, -Time.time * 2);
                     Fill.circle(b.x, b.y, Mathf.sin(Time.time * 0.1f) * 1 + 4);
+                    */
                 }
             };
         }};
@@ -172,6 +190,12 @@ public class YellowWeapons{
                height = 8f;
                trailEffect = Fx.trailFade;
                trailLength = 3;
+               
+               parts.add(new FlarePart(){{
+                   followRotation = true
+                   radius = 50f
+                   sides = 8
+               }});
             }};
         }};
         
