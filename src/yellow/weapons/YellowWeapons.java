@@ -136,14 +136,15 @@ public class YellowWeapons{
                         radius = 10f;
                         layer = Layer.bullet;
                         rotateSpeed = 4f;
-                        color = Color.yellow;
+                        color = colorTo = Color.yellow;
                     }},
                     new ShapePart(){{
                         sides = 3;
                         radius = 15f;
+                        hollow = true;
                         layer = Layer.bullet;
                         rotateSpeed = 3f;
-                        mirror = true;
+                        color = colorTo = Color.yellow
                     }}
                 );
             }
