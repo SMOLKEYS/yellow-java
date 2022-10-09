@@ -9,7 +9,7 @@ open class PainfulPierceBulletType(speed: Float, damage: Float, var damageBenefi
         pierce = true
         pierceBuilding = true
         pierceCap = -1
-    }bror
+    }
     
     override fun hit(b: Bullet){
         super.hit(b)
