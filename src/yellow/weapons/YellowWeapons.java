@@ -131,18 +131,18 @@ public class YellowWeapons{
                 
                 parts.add(
                     new ShapePart(){{
-                        sides = 6
-                        radius = 10f
-                        layer = Layer.bullet
-                        rotateSpeed = 4f
-                        color = Color.yellow
+                        sides = 6;
+                        radius = 10f;
+                        layer = Layer.bullet;
+                        rotateSpeed = 4f;
+                        color = Color.yellow;
                     }},
                     new ShapePart(){{
-                        sides = 3
-                        radius = 15f
-                        layer = Layer.bullet
-                        rotateSpeed = 3f
-                        mirror = true
+                        sides = 3;
+                        radius = 15f;
+                        layer = Layer.bullet;
+                        rotateSpeed = 3f;
+                        mirror = true;
                     }}
                 );
             }
@@ -192,9 +192,9 @@ public class YellowWeapons{
                trailLength = 3;
                
                parts.add(new FlarePart(){{
-                   followRotation = true
-                   radius = 50f
-                   sides = 8
+                   followRotation = true;
+                   radius = 50f;
+                   sides = 8;
                }});
             }};
         }};
