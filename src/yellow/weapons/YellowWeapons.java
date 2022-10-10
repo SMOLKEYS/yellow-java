@@ -145,7 +145,7 @@ public class YellowWeapons{
                         hollow = true;
                         layer = Layer.bullet;
                         rotateSpeed = 3f;
-                        color = colorTo = Color.yellow
+                        color = colorTo = Color.yellow;
                     }}
                 );
             }
