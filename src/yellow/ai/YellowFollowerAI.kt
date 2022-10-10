@@ -7,10 +7,13 @@ import yellow.content.YellowUnitTypes
 open class YellowFollowerAI : AIController(){
     
     override fun updateMovement(){
-        var unitr = null
         
         Groups.unit.each{
-            if(it.type == YellowUnitTypes.yellow) unitr = it
+            if(it.type == YellowUnitTypes.yellow){
+                unit = it
+            }else{
+                unit = null
+            }
         }
         
         if(unit != null){
