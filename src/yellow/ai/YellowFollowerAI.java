@@ -1,6 +1,5 @@
 package yellow.ai;
 
-import arc.Nullable;
 import mindustry.gen.*;
 import mindustry.entities.units.*;
 import yellow.entities.units.entity.YellowUnitEntity;
@@ -11,11 +10,11 @@ public class YellowFollowerAI extends AIController{
     @Override
     public void updateMovement(){
         
-        @Nullable YellowUnitEntity mogu = null;
+        YellowUnitEntity mogu = null;
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow){
-                mogu = e;
+                mogu = ((YellowUnitEntity)e);
             }else{
                 mogu = null;
             };
