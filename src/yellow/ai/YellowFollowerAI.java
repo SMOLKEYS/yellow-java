@@ -2,11 +2,11 @@ package yellow.ai;
 
 import arc.math.Mathf;
 import arc.math.geom.Position;
-import arc.math.geom.Vec2;
-import mindustry.gen.*;
-import mindustry.entities.units.*;
-import yellow.entities.units.entity.YellowUnitEntity;
+import mindustry.entities.units.AIController;
+import mindustry.gen.Building;
+import mindustry.gen.Groups;
 import yellow.content.YellowUnitTypes;
+import yellow.entities.units.entity.YellowUnitEntity;
 
 public class YellowFollowerAI extends AIController{
     
@@ -42,5 +42,10 @@ public class YellowFollowerAI extends AIController{
         }
 
         faceMovement();
+    }
+
+    @Override
+    public void moveTo(Position target, float circleLength){
+        if(Mathf.chance(0.130)) super.moveTo(target, circleLength);
     }
 }
