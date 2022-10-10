@@ -7,10 +7,10 @@ import yellow.content.YellowUnitTypes;
 
 public class YellowFollowerAI extends AIController{
     
+    protected YellowUnitEntity mogu = null;
+    
     @Override
     public void updateMovement(){
-        
-        YellowUnitEntity mogu = null;
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow){
