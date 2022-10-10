@@ -53,7 +53,7 @@ public class YellowUnitTypes implements FallbackContentList{
             drag = 0.01f;
             lifetime = 960f;
             
-            controller = YellowFollowerAI::new;
+            controller = u -> new YellowFollowerAI();
             aiController = YellowFollowerAI::new;
             region = Core.atlas.find("flare");
         }};
