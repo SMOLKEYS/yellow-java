@@ -7,7 +7,6 @@ import yellow.content.YellowUnitTypes;
 
 public class YellowFollowerAI extends AIController{
     
-    protected YellowUnitEntity temu = null;
     protected YellowUnitEntity mogu = null;
     
     @Override
@@ -17,18 +16,12 @@ public class YellowFollowerAI extends AIController{
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow && mogu == null){
-                temu = ((YellowUnitEntity)e);
-                if(e.team == temu.team){
-                    mogu = temu;
-                }else{
-                    mogu = null
-                    temu = null
-                }
+                mogu = ((YellowUnitEntity)e);
             };
         });
         
         if(mogu != null){
-            moveTo(mogu, 12f);
+            if(mogu.team == unit.team) moveTo(mogu, 12f);
         };
         
         faceMovement();
