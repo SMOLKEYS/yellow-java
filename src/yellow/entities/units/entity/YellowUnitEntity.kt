@@ -10,7 +10,7 @@ import mindustry.gen.UnitEntity
 import mindustry.content.UnitTypes
 import mindustry.entities.Units
 import mindustry.entities.bullet.BulletType
-import yellow.entities.units.YellowUnitType
+import yellow.entities.units.*
 import yellow.game.YellowPermVars
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
