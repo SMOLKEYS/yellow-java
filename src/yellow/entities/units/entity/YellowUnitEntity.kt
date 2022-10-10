@@ -169,12 +169,10 @@ open class YellowUnitEntity: UnitEntity(){
         write.i(lives)
         write.f(franticTeleportTime)
 
-        /*
         mounts.forEach{
-            val e = it as DisableableWeaponMount
-            write.bool(e.enabled)
+            val wts = it as DisableableWeaponMount
+            wts.write(write)
         }
-        */
     }
 
     override fun read(read: Reads) {
@@ -186,13 +184,11 @@ open class YellowUnitEntity: UnitEntity(){
         panicModeTypeTwo = read.bool()
         lives = read.i()
         franticTeleportTime = read.f()
-        
-        /*
+
         mounts.forEach{
-            val e = it as DisableableWeaponMount
-            e.enabled = read.bool()
+            val rts = it as DisableableWeaponMount
+            rts.read(read)
         }
-        */
     }
 
     override fun classId() = mappingId

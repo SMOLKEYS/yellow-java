@@ -1,5 +1,6 @@
 package yellow.entities.units;
 
+import arc.util.io.*;
 import mindustry.entities.units.WeaponMount;
 import mindustry.type.Weapon;
 
@@ -9,5 +10,13 @@ public class DisableableWeaponMount extends WeaponMount{
     
     public DisableableWeaponMount(Weapon weapon){
         super(weapon);
+    }
+    
+    public void write(Writes write){
+        write.bool(enabled);
+    }
+    
+    public void read(Reads read){
+        enabled = read.bool();
     }
 }
