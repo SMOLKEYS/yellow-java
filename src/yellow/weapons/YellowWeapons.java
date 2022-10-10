@@ -16,6 +16,7 @@ import mindustry.gen.Bullet;
 import mindustry.gen.Sounds;
 import mindustry.graphics.Layer;
 import mindustry.type.Weapon;
+import yellow.entities.bullet.PainfulPierceBulletType;
 import yellow.content.YellowBullets;
 import yellow.content.YellowFx;
 import yellow.type.DisableableWeapon;
@@ -181,13 +182,11 @@ public class YellowWeapons{
 
             shoot.shots = 350;
 
-            bullet = new BasicBulletType(){{
+            bullet = new PainfulPierceBulletType(15f, 30f, 10f){{
                lifetime = 600f;
-               speed = 15f;
                drag = 0.003f;
                weaveMag = 3f;
                weaveScale = 300f;
-               damage = 65f;
                width = 8f;
                height = 8f;
                trailEffect = Fx.trailFade;

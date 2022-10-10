@@ -9,7 +9,8 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
     init {
         addCloseButton()
     }
-
+    
+    //TODO add more variety control over weapons because why not
     fun show(weapon: Array<WeaponMount>) {
         cont.clear()
 
