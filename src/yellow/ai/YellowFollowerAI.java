@@ -12,8 +12,6 @@ public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
     protected Building locn = null;
-    protected Vec2 dest = new Vec2();
-    
     @Override
     public void updateMovement(){
         
@@ -44,11 +42,5 @@ public class YellowFollowerAI extends AIController{
         }
 
         faceMovement();
-    }
-
-    @Override
-    public void moveTo(Position pos, float circleTarget){
-        dest.set(Mathf.round(pos.getX()), Mathf.round(pos.getY()));
-        if(unit.x == dest.x && unit.y == dest.y) super.moveTo(pos, circleTarget);
     }
 }
