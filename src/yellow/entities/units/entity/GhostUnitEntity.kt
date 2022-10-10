@@ -28,6 +28,16 @@ open class GhostUnitEntity: UnitEntity() {
         ghostLifetime = (type as GhostUnitType).ghostLifetime
         despawnEffect = (type as GhostUnitType).despawnEffect
     }
+    
+    override fun kill(){
+        Fx.unitDespawn.at(x, y, 0f, this)
+        remove()
+    }
+    
+    override fun destroy(){
+        Fx.unitDespawn.at(x, y, 0f, this)
+        remove()
+    }
 
     override fun update() {
         super.update()
