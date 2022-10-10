@@ -24,28 +24,13 @@ public class YellowFollowerAI extends AIController{
         });
         
         if(mogu != null){
-            if(mogu.team == unit.team) moveTo(mogu, 20f);
+            if(mogu.team == unit.team) circle(mogu, 80f);
         }else if(locn == null){
             locn = unit.team.data().core();
         }else{
-            moveTo(new Position(){
-                @Override
-                public float getX(){
-                    return locn.getX() + Mathf.range(50f);
-                }
-
-                @Override
-                public float getY(){
-                    return locn.getY() + Mathf.range(50f);
-                }
-            }, 1f);
+            circle(locn, 70f);
         }
 
         faceMovement();
-    }
-
-    @Override
-    public void moveTo(Position target, float circleLength){
-        if(Mathf.chance(0.130)) super.moveTo(target, circleLength);
     }
 }
