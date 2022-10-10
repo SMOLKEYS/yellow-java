@@ -16,9 +16,9 @@ public class YellowFollowerAI extends AIController{
         if(mogu != null && mogu.dead) mogu = null;
         
         Groups.unit.each(e -> {
-            if(mogu == null){
+            if(e.type == YellowUnitTypes.yellow && mogu == null){
                 temu = ((YellowUnitEntity)e);
-                if(e.type == YellowUnitTypes.yellow && e.team == temu.team) mogu = temu;
+                if(e.team == temu.team) mogu = temu;
             };
         });
         
