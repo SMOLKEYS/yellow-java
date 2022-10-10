@@ -1,5 +1,8 @@
 package yellow.ai;
 
+import arc.math.Mathf;
+import arc.math.geom.Position;
+import arc.math.geom.Vec2;
 import mindustry.gen.*;
 import mindustry.entities.units.*;
 import yellow.entities.units.entity.YellowUnitEntity;
@@ -8,6 +11,8 @@ import yellow.content.YellowUnitTypes;
 public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
+    protected Building locn = null;
+    protected Vec2 dest = new Vec2();
     
     @Override
     public void updateMovement(){
@@ -17,13 +22,33 @@ public class YellowFollowerAI extends AIController{
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow && mogu == null){
                 mogu = ((YellowUnitEntity)e);
-            };
+            }
         });
         
         if(mogu != null){
-            if(mogu.team == unit.team) moveTo(mogu, 12f);
-        };
-        
+            if(mogu.team == unit.team) moveTo(mogu, 20f);
+        }else if(locn == null){
+            locn = unit.team.data().core();
+        }else{
+            moveTo(new Position(){
+                @Override
+                public float getX(){
+                    return locn.getX() + Mathf.range(50f);
+                }
+
+                @Override
+                public float getY(){
+                    return locn.getY() + Mathf.range(50f);
+                }
+            }, 1f);
+        }
+
         faceMovement();
+    }
+
+    @Override
+    public void moveTo(Position pos, float circleTarget){
+        dest.set(Mathf.round(pos.getX()), Mathf.round(pos.getY()));
+        if(unit.x == dest.x && unit.y == dest.y) super.moveTo(pos, circleTarget);
     }
 }
