@@ -187,8 +187,7 @@ public class YellowWeapons{
                drag = 0.003f;
                weaveMag = 3f;
                weaveScale = 300f;
-               width = 8f;
-               height = 8f;
+               hitSize = 12f;
                trailEffect = Fx.trailFade;
                trailLength = 3;
                
