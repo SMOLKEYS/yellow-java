@@ -2,6 +2,7 @@ package yellow.entities.bullet
 
 import arc.util.Log
 import mindustry.gen.Bullet
+import mindustry.gen.Hitboxc
 import mindustry.entities.bullet.BulletType
 
 open class PainfulPierceBulletType(speed: Float, damage: Float, var damageBenefitPerPierce: Float) : BulletType(speed, damage){
@@ -15,8 +16,13 @@ open class PainfulPierceBulletType(speed: Float, damage: Float, var damageBenefi
     override fun hit(b: Bullet){
         super.hit(b)
         
-        Log.info("${b.damage} original")
         b.damage += damageBenefitPerPierce
-        Log.info("${b.damage} new")
+
+    }
+    
+    override fun hitEntity(b: Bullet, entity: Hitboxc, health: Float){
+        super.hitEntity(b, entity, health)
+        
+        b.damage += damageBenefitPerPierce
     }
 }
