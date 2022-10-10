@@ -12,6 +12,7 @@ public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
     protected Building locn = null;
+    
     @Override
     public void updateMovement(){
         
@@ -24,7 +25,7 @@ public class YellowFollowerAI extends AIController{
         });
         
         if(mogu != null){
-            if(mogu.team == unit.team) circle(mogu, 80f);
+            if(mogu.team == unit.team) circle(mogu, 120f);
         }else if(locn == null){
             locn = unit.team.data().core();
         }else{

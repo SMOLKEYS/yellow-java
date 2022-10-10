@@ -48,7 +48,7 @@ public class YellowUnitTypes implements FallbackContentList{
             flying = true;
             health = 37.5f;
             armor = 5f;
-            speed = 3f;
+            speed = 5.5f;
             accel = 0.08f;
             drag = 0.01f;
             lifetime = 960f;
