@@ -4,7 +4,7 @@ import mindustry.gen.*
 import mindustry.entities.units.*
 import yellow.content.YellowUnitTypes
 
-open class YellowFollowerAI : AIController(){
+open class YellowFollowerAI() : AIController(){
     
     override fun updateMovement(){
         
