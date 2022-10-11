@@ -6,6 +6,8 @@ import com.github.mnemotechnician.mkui.delegates.setting
 object YellowPermVars {
     /** The setting string head. DO NOT MODIFY, EVER! */
     val syn = "yellow-"
+
+    var sourceRepo by setting("https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar", syn)
     
     var removeAllowed by setting(false, syn)
 }
