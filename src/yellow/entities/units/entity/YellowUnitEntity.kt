@@ -5,8 +5,7 @@ import arc.math.geom.Vec2
 import arc.util.io.Reads
 import arc.util.io.Writes
 import mindustry.Vars
-import mindustry.gen.EntityMapping
-import mindustry.gen.UnitEntity
+import mindustry.gen.*
 import mindustry.content.UnitTypes
 import mindustry.entities.Units
 import mindustry.entities.bullet.BulletType
@@ -50,7 +49,7 @@ open class YellowUnitEntity: UnitEntity(){
         }
         
         if(isPlayer){
-            Vars.ui.hudfrag.showToast("$lives lives left!")
+            Vars.ui.hudfrag.showToast(Icon.warning, "$lives left!")
         }
         
         //sorry, but yellow aint going down to the void
