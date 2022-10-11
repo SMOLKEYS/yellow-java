@@ -18,8 +18,8 @@ public class YellowFollowerAI extends AIController{
     @Override
     public void updateMovement(){
         
-        if(mogu != null && mogu.dead) mogu = null;
-        if(enem != null && enem.dead) enem = null;
+        if(mogu != null && mogu.isValid()) mogu = null;
+        if(enem != null && enem.isValid()) enem = null;
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow && mogu == null){
@@ -29,21 +29,16 @@ public class YellowFollowerAI extends AIController{
         
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
-        }else if(enem != null){
+        }else if(enem != null && enem.isValid()){
             circle(enem, 45f);
-        }else{
-            searchEnemy();
         }
-
+        
+        searchEnemy();
         faceMovement();
-    }
-    
-    private boolean aChoice(){
-        return Mathf.chanceDelta(0.277);
     }
 
     private void searchEnemy(){
-        if(enem != null && aChoice()) return;
+        if(enem != null) return;
         enem = Groups.unit.find(unor -> unor.team != unit.team);
     }
 }
