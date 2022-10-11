@@ -39,7 +39,7 @@ public class YellowFollowerAI extends AIController{
     }
     
     private boolean aChoice(){
-        return Mathf.chanceDelta(0.277)
+        return Mathf.chanceDelta(0.277);
     }
 
     private void searchEnemy(){
