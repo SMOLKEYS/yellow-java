@@ -25,6 +25,7 @@ open class YellowUnitEntity: UnitEntity(){
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
+    
     private fun initVars() {
         inited = true
         lives = type().maxLives
@@ -46,6 +47,10 @@ open class YellowUnitEntity: UnitEntity(){
         if((lives == type().maxLives - 1) && !firstDeath) {
             shield = 6780f
             firstDeath = true
+        }
+        
+        if(isPlayer){
+            Vars.ui.hudfrag.showToast("$lives lives left!")
         }
         
         //sorry, but yellow aint going down to the void
