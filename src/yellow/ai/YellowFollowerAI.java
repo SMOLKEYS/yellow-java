@@ -12,8 +12,6 @@ import yellow.entities.units.entity.YellowUnitEntity;
 
 public class YellowFollowerAI extends AIController{
     
-    public static Seq<Unit> possessed = new Seq<Unit>();
-    
     protected YellowUnitEntity mogu = null;
     
     @Override
@@ -35,8 +33,6 @@ public class YellowFollowerAI extends AIController{
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
         }
-        
-        if(unit.dead) possessed.remove(unit);
         
         faceMovement();
     }
