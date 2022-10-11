@@ -15,11 +15,6 @@ public class YellowFollowerAI extends AIController{
     protected YellowUnitEntity mogu = null;
     
     @Override
-    public void init(){
-        possessed.add(unit);
-    }
-
-    @Override
     public void updateMovement(){
         
         if(mogu != null && mogu.dead) mogu = null;
