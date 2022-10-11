@@ -12,14 +12,12 @@ import yellow.entities.units.entity.YellowUnitEntity;
 public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
-    protected Unit enem = null;
     
 
     @Override
     public void updateMovement(){
         
         if(mogu != null && mogu.isValid()) mogu = null;
-        if(enem != null && enem.isValid()) enem = null;
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow && mogu == null){
@@ -29,16 +27,8 @@ public class YellowFollowerAI extends AIController{
         
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
-        }else if(enem != null && enem.isValid()){
-            circle(enem, 45f);
         }
         
-        searchEnemy();
         faceMovement();
-    }
-
-    private void searchEnemy(){
-        if(enem != null) return;
-        enem = Groups.unit.find(unor -> unor.team != unit.team);
     }
 }
