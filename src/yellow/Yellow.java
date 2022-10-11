@@ -23,7 +23,7 @@ public class Yellow extends Mod{
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     
     public Yellow(){
-        String yellow = "yellow";
+        String yellow = "yellow suse ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
