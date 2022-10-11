@@ -5,14 +5,15 @@ import arc.math.geom.Position;
 import mindustry.entities.units.AIController;
 import mindustry.gen.Building;
 import mindustry.gen.Groups;
+import mindustry.gen.Unit;
 import yellow.content.YellowUnitTypes;
 import yellow.entities.units.entity.YellowUnitEntity;
 
 public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
-    protected Building locn = null;
-    
+    protected Unit enem = null;
+
     @Override
     public void updateMovement(){
         
@@ -26,12 +27,17 @@ public class YellowFollowerAI extends AIController{
         
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
-        }else if(locn == null){
-            locn = unit.team.data().core();
+        }else if(enem != null && enem.dead){
+            circle(enem, 45f);
         }else{
-            circle(locn, 70f);
+            searchEnemy();
         }
 
         faceMovement();
+    }
+
+    private void searchEnemy(){
+        if(enem != null && enem.dead) return;
+        enem = Groups.unit.find(unor -> unor.team != unit.team && !unor.dead);
     }
 }
