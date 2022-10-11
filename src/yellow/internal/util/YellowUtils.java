@@ -37,6 +37,8 @@ public class YellowUtils{
         try{
             Http.get(link, a -> {
                 Streams.copyProgress(a.getResultAsStream(), file.write(!overwrite), a.getContentLength(), 4096, l -> {});
+
+                cons.get(file);
             });
 
         }catch(Exception e){

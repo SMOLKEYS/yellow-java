@@ -14,7 +14,7 @@ object YellowSettings{
     val tmpDir: Fi = Core.settings.dataDirectory.child("yellow.jar")
 
     fun load(){
-        Vars.ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
+        ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
 
             table.textPref("Source Repo", YellowPermVars.sourceRepo){
                 if(it.isBlank()){
