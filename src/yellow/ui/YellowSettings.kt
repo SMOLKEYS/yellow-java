@@ -14,7 +14,7 @@ object YellowSettings{
     val tmpDir: Fi = Core.settings.dataDirectory.child("yellow.jar")
 
     fun load(){
-        Vars.ui.settings.addCategory("Ion", Icon.right){ table ->
+        Vars.ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
 
             table.textPref("Source Repo", YellowPermVars.sourceRepo){
                 if(it.isBlank()){
@@ -23,6 +23,8 @@ object YellowSettings{
                     YellowPermVars.sourceRepo = it
                 }
             }
+
+            table.row()
 
             table.textButton("Update\n(Do not spam!)", wrap = false){
                 YellowUtils.getAndWrite(YellowPermVars.sourceRepo, tmpDir, true){
