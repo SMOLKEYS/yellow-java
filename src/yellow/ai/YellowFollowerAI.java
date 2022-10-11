@@ -27,7 +27,7 @@ public class YellowFollowerAI extends AIController{
         
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
-        }else if(enem != null && enem.dead){
+        }else if(enem != null && !enem.dead){
             circle(enem, 45f);
         }else{
             searchEnemy();
@@ -37,7 +37,7 @@ public class YellowFollowerAI extends AIController{
     }
 
     private void searchEnemy(){
-        if(enem != null && enem.dead) return;
+        if(enem != null) return;
         enem = Groups.unit.find(unor -> unor.team != unit.team && !unor.dead);
     }
 }
