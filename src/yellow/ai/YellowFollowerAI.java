@@ -13,6 +13,7 @@ public class YellowFollowerAI extends AIController{
     
     protected YellowUnitEntity mogu = null;
     protected Unit enem = null;
+    
 
     @Override
     public void updateMovement(){
@@ -28,7 +29,7 @@ public class YellowFollowerAI extends AIController{
         
         if(mogu != null){
             if(mogu.team == unit.team) circle(mogu, 120f);
-        }else if(enem != null && !enem.dead){
+        }else if(enem != null){
             circle(enem, 45f);
         }else{
             searchEnemy();
@@ -36,9 +37,13 @@ public class YellowFollowerAI extends AIController{
 
         faceMovement();
     }
+    
+    private boolean aChoice(){
+        return Mathf.chanceDelta(0.277)
+    }
 
     private void searchEnemy(){
-        if(enem != null) return;
-        enem = Groups.unit.find(unor -> unor.team != unit.team && !unor.dead);
+        if(enem != null && aChoice()) return;
+        enem = Groups.unit.find(unor -> unor.team != unit.team);
     }
 }
