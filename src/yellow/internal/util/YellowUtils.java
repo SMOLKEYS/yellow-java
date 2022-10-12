@@ -2,12 +2,15 @@ package yellow.internal.util;
 
 import arc.files.Fi;
 import arc.func.Cons;
+import arc.math.Mathf;
 import arc.util.Http;
 import arc.util.io.Streams;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import yellow.type.NameableWeapon;
+
+import java.lang.reflect.Array;
 
 import static arc.Core.settings;
 
@@ -44,5 +47,9 @@ public class YellowUtils{
         }catch(Exception e){
             Vars.ui.showException("HTTP GET ERROR", e);
         }
+    }
+
+    public static Object random(Object[] arr){
+        return arr[Mathf.random(arr.length)];
     }
 }

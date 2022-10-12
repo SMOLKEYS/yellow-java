@@ -7,13 +7,16 @@ import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import arc.util.Time;
+import kotlin.collections.ArraysKt;
 import mindustry.content.Fx;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.pattern.ShootSpread;
 import mindustry.gen.Bullet;
+import mindustry.gen.Hitboxc;
 import mindustry.gen.Sounds;
+import mindustry.gen.Unit;
 import mindustry.graphics.Layer;
 import mindustry.type.Weapon;
 import yellow.entities.bullet.PainfulPierceBulletType;
@@ -24,7 +27,7 @@ import yellow.type.DisableableWeapon;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, stateBreaker;
     
     public static void init(){
         
@@ -198,7 +201,30 @@ public class YellowWeapons{
                }});
             }};
         }};
-        
+
+        stateBreaker = new DisableableWeapon("state-breaker", "State Breaker"){{
+            reload = 120f;
+            x = 24f;
+            y = 0f;
+            mirror = false;
+            minWarmup = 0.99f;
+
+            bullet = new BasicBulletType(){{
+                lifetime = 110f;
+                speed = 3.7f;
+                damage = 20f;
+            }
+
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health) {
+                    super.hitEntity(b, entity, health);
+                    Unit unor = (Unit) entity;
+
+                    unor.mounts[]
+                }
+            };
+        }};
+
         //endregion main
     }
 }

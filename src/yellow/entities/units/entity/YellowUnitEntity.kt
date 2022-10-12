@@ -52,7 +52,7 @@ open class YellowUnitEntity: UnitEntity(){
             Vars.ui.hudfrag.showToast(Icon.warning, "$lives left!")
         }
         
-        //sorry, but yellow aint going down to the void
+        //sorry, but yellow ain't going down to the void
         if(outOfWorldBounds()){
             if(team.data().cores.isEmpty){
                 x = Mathf.random(Vars.world.width()) * 8f
@@ -125,7 +125,7 @@ open class YellowUnitEntity: UnitEntity(){
                         }
                     }else{
                         if(Mathf.chanceDelta(0.14)){
-                            a.heal(Mathf.random() * a.health / 3f)
+                            a.heal(Mathf.random() * a.health.div(3f))
                         }
                     }
                 }
@@ -134,7 +134,7 @@ open class YellowUnitEntity: UnitEntity(){
         
         
         //teleport everywhere and start firing all weapons on last life for a second if panic mode is enabled
-        if(panicMode && lives == 1 && !(franticTeleportTime <= 0f)){
+        if(panicMode && lives == 1 && franticTeleportTime > 0f){
             everywhere.set(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
             x = everywhere.x
             y = everywhere.y
@@ -146,16 +146,7 @@ open class YellowUnitEntity: UnitEntity(){
             
             //if type two panic mode is enabled, start dropping quad bombs
             if(panicModeTypeTwo){
-                BulletType.createBullet(
-                    UnitTypes.quad.weapons[0].bullet,
-                    team,
-                    x,
-                    y,
-                    0f,
-                    256f,
-                    0f,
-                    1f
-                )
+                UnitTypes.quad.weapons[0].bullet.create(this, x, y, 0f)
             }
             
             franticTeleportTime--
