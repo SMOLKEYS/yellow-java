@@ -19,8 +19,7 @@ import mindustry.gen.Unit;
 import mindustry.graphics.Layer;
 import mindustry.type.Weapon;
 import yellow.entities.bullet.PainfulPierceBulletType;
-import yellow.content.YellowBullets;
-import yellow.content.YellowFx;
+import yellow.content.*;
 import yellow.type.DisableableWeapon;
 
 public class YellowWeapons{
@@ -214,7 +213,7 @@ public class YellowWeapons{
         //endregion main
     }
     
-    public static void afterInit(){
+    public staticvoid afterInit(){
         ghostCall.bullet.spawnUnit = YellowUnitTypes.ghostFlare;
     }
 }
