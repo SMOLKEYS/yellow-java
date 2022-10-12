@@ -1,5 +1,6 @@
 package yellow.ai;
 
+import arc.util.Time;
 import arc.math.Mathf;
 import mindustry.entities.units.AIController;
 import mindustry.gen.Building;
@@ -9,7 +10,7 @@ import yellow.entities.units.entity.YellowUnitEntity;
 
 public class YellowFollowerAI extends AIController{
     
-    protected float distus = 80f;
+    protected float distus = 80f, bogtus = 20f;
     protected YellowUnitEntity mogu = null;
     protected Building building = null;
     
@@ -17,6 +18,7 @@ public class YellowFollowerAI extends AIController{
     public void init(){
         //hurricane
         distus = Mathf.random(80f, 680f);
+        bogtus = Mathf.random(20f, 110f);
     }
     
     @Override
@@ -31,13 +33,15 @@ public class YellowFollowerAI extends AIController{
         });
         
         if(mogu != null){
-            if(mogu.team == unit.team) circle(mogu, distus);
+            if(mogu.team == unit.team) circle(mogu, distus + Mathf.absin(Time.time * 0.01f, 20f, bogtus));
         }else if(building != null){
-            circle(building, distus);
+            circle(building, distus + Mathf.absin(Time.time * 0.01f, 20f, bogtus));
         }else{
             building = unit.team.data().core();
         }
         
         faceMovement();
+    
+        
     }
 }
