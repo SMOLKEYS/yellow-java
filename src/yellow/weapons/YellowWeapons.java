@@ -7,7 +7,6 @@ import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import arc.util.Time;
-import kotlin.collections.ArraysKt;
 import mindustry.content.Fx;
 import mindustry.entities.part.*;
 import mindustry.entities.bullet.BasicBulletType;
@@ -27,7 +26,7 @@ import yellow.type.DisableableWeapon;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, stateBreaker;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall;
     
     public static void init(){
         
@@ -202,27 +201,20 @@ public class YellowWeapons{
             }};
         }};
 
-        stateBreaker = new DisableableWeapon("state-breaker", "State Breaker"){{
-            reload = 120f;
+        ghostCall = new DisableableWeapon("ghost-call", "Ghost Call"){{
+            reload = 240f;
             x = 24f;
             y = 0f;
             mirror = false;
             minWarmup = 0.99f;
-
-            bullet = new BasicBulletType(){{
-                lifetime = 110f;
-                speed = 3.7f;
-                damage = 20f;
-            }
-
-                @Override
-                public void hitEntity(Bullet b, Hitboxc entity, float health) {
-                    super.hitEntity(b, entity, health);
-                    Unit unor = (Unit) entity;
-                }
-            };
+            
+            shoot.shots = 35;
         }};
 
         //endregion main
+    }
+    
+    public static void afterInit(){
+        ghostCall.bullet.spawnUnit = YellowUnitTypes.ghostFlare;
     }
 }
