@@ -219,8 +219,6 @@ public class YellowWeapons{
                 public void hitEntity(Bullet b, Hitboxc entity, float health) {
                     super.hitEntity(b, entity, health);
                     Unit unor = (Unit) entity;
-
-                    unor.mounts[]
                 }
             };
         }};
