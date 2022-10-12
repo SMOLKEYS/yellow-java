@@ -18,7 +18,7 @@ public class YellowFollowerAI extends AIController{
     public void init(){
         //hurricane
         distus = Mathf.random(80f, 680f);
-        bogtus = Mathf.random(20f, 110f);
+        bogtus = Mathf.random(20f, 680f);
     }
     
     @Override
@@ -32,10 +32,10 @@ public class YellowFollowerAI extends AIController{
             }
         });
         
-        if(mogu != null){
-            if(mogu.team == unit.team) circle(mogu, distus + Mathf.absin(Time.time * 0.01f, 20f, bogtus));
+        if(mogu != null && mogu.team == unit.team){
+            circle(mogu, distus + Mathf.absin(Time.time * 0.05f, 20f, bogtus));
         }else if(building != null){
-            circle(building, distus + Mathf.absin(Time.time * 0.01f, 20f, bogtus));
+            circle(building, distus + Mathf.absin(Time.time * 0.05f, 20f, bogtus));
         }else{
             building = unit.team.data().core();
         }
