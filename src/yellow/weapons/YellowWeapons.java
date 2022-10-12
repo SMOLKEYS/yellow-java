@@ -213,7 +213,7 @@ public class YellowWeapons{
         //endregion main
     }
     
-    public staticvoid afterInit(){
+    public static void afterInit(){
         ghostCall.bullet.spawnUnit = YellowUnitTypes.ghostFlare;
     }
 }
