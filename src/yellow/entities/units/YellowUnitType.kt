@@ -10,6 +10,7 @@ import arc.util.Time
 import arc.util.Tmp
 import mindustry.graphics.Layer
 import mindustry.type.UnitType
+import yellow.world.meta.YellowStats
 import yellow.entities.units.entity.YellowUnitEntity
 
 open class YellowUnitType(name: String): UnitType(name) {
@@ -42,5 +43,10 @@ open class YellowUnitType(name: String): UnitType(name) {
         Tmp.c1.set(Color.white)
         Tmp.c1.a = 0f
         Fill.light(unit.x, unit.y, 5, 50f - r1, Color.yellow, Tmp.c1)
+    }
+    
+    override fun setStats(){
+        super.setStats()
+        stats.add(YellowStats.humanForm, "[gray]<unimplemented>[]")
     }
 }
