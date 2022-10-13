@@ -9,6 +9,7 @@ import arc.math.Mathf
 import arc.util.Time
 import arc.util.Tmp
 import mindustry.graphics.Layer
+import mindustry.world.meta.Stat
 import mindustry.type.UnitType
 import yellow.world.meta.YellowStats
 import yellow.entities.units.entity.YellowUnitEntity
@@ -47,6 +48,15 @@ open class YellowUnitType(name: String): UnitType(name) {
     
     override fun setStats(){
         super.setStats()
+        stats.remove(Stat.health)
+        stats.add(Stat.health, "${health * maxLives.toFloat()} ($health x $maxLives)")
+        stats.add(YellowStats.maxLives, maxLives)
         stats.add(YellowStats.humanForm, "[gray]<unimplemented>[]")
+        stats.add(YellowStats.extras, """
+        1000-8000 [cyan]shield health[] on first death
+        Random chance of teleporting frantically on last life
+        Random chance of teleporting frantically AND dropping plasma bombs on last life
+        Fourth-wall breaker (Pilot/Human Form)
+        """.trimIndent())
     }
 }

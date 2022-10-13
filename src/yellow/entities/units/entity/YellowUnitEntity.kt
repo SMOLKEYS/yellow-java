@@ -44,7 +44,7 @@ open class YellowUnitEntity: UnitEntity(){
         elevation = 1f
 
         if((lives == type().maxLives - 1) && !firstDeath) {
-            shield = 6780f
+            shield = Mathf.random(1000f, 8000f)
             firstDeath = true
         }
         
