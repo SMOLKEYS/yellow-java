@@ -50,7 +50,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         super.setStats()
         stats.remove(Stat.health)
         stats.add(Stat.health, "${health * maxLives.toFloat()} ($health x $maxLives)")
-        stats.add(YellowStats.maxLives, maxLives)
+        stats.add(YellowStats.maxLives, "$maxLives")
         stats.add(YellowStats.humanForm, "[gray]<unimplemented>[]")
         stats.add(YellowStats.extras, """
         1000-8000 [cyan]shield health[] on first death
