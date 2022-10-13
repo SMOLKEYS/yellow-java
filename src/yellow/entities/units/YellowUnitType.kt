@@ -49,7 +49,7 @@ open class YellowUnitType(name: String): UnitType(name) {
     override fun setStats(){
         super.setStats()
         stats.remove(Stat.health)
-        stats.add(Stat.health, "${health * maxLives.toFloat()} ($health x $maxLives)")
+        stats.add(Stat.health, "${Mathf.round(health * maxLives.toFloat())} (${health.toInt()} x $maxLives)")
         stats.add(YellowStats.maxLives, "$maxLives")
         stats.add(YellowStats.humanForm, "[gray]<unimplemented>[]")
         stats.add(YellowStats.extras, """
