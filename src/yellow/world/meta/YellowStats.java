@@ -8,7 +8,7 @@ public class YellowStats{
     maxLives = new Stat("maxLives"),
     extras = new Stat("extras"),
     gender = new Stat("gender", humanInfo),
-    age = new Stat("age", humanInfo)
+    age = new Stat("age", humanInfo),
     personality = new Stat("personality", humanInfo),
     headpatRating = new Stat("headpatRating", humanInfo),
     loveInterest = new Stat("loveInterest", humanInfo),
