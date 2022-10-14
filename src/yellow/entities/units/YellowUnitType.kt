@@ -58,11 +58,12 @@ open class YellowUnitType(name: String): UnitType(name) {
         Random chance of teleporting frantically AND dropping plasma bombs on last life
         Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
+        
         stats.add(YellowStats.gender, "Female")
         stats.add(YellowStats.age, "23")
         stats.add(YellowStats.personality, "Kind/Friendly")
         stats.add(YellowStats.headpatRating, "High")
-        stats.add(YellowStats.generalAura, FLabel("{shake}Menacing (First Encounter)"))
-        stats.add(YellowStats.loveInterest, FLabel("{wave}....."))
+        stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
+        stats.add(YellowStats.loveInterest, ".....")
     }
 }
