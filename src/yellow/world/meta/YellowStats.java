@@ -1,10 +1,11 @@
 package yellow.world.meta;
 
 import mindustry.world.meta.Stat;
-import static yellow.world.meta.YellowStatCats.*;
 
 public class YellowStats{
-    public static final Stat
+    public static StatCat humanInfo = new StatCat("humanInfo");
+    
+    public static Stat
     maxLives = new Stat("maxLives"),
     extras = new Stat("extras"),
     gender = new Stat("gender", humanInfo),
