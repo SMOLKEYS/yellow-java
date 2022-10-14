@@ -1,6 +1,7 @@
 package yellow.entities.units
 
 import arc.func.Prov
+import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
@@ -51,12 +52,17 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.health)
         stats.add(Stat.health, "${Mathf.round(health * maxLives.toFloat())} (${health.toInt()} x $maxLives)")
         stats.add(YellowStats.maxLives, "$maxLives")
-        stats.add(YellowStats.humanForm, "[gray]<unimplemented>[]")
         stats.add(YellowStats.extras, """
         1000-8000 [cyan]shield health[] on first death
         Random chance of teleporting frantically on last life
         Random chance of teleporting frantically AND dropping plasma bombs on last life
         Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
+        stats.add(YellowStats.gender, "Female")
+        stats.add(YellowStats.age, "23")
+        stats.add(YellowStats.personality, "Kind/Friendly")
+        stats.add(YellowStats.headpatRating, "High")
+        stats.add(YellowStats.generalAura, FLabel("{shake}Menacing (First Encounter)"))
+        stats.add(YellowStats.loveInterest, FLabel("{wave}....."))
     }
 }
