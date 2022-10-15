@@ -58,7 +58,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt, "Many")
         stats.remove(Stat.range)
-        stats.add(YellowStats.rangeAlt, (maxRange / Vars.tilesize).toInt(), StatUnit.blocks)
+        stats.add(YellowStats.rangeAlt, "${(maxRange / Vars.tilesize).toInt()}", StatUnit.blocks)
         
         
         stats.add(YellowStats.maxLives, "$maxLives")
