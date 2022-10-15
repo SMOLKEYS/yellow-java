@@ -69,6 +69,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
         
+        stats.add(YellowStats.name, "Nihara")
         stats.add(YellowStats.gender, "Female")
         stats.add(YellowStats.age, "23", YellowStats.yearsOld)
         stats.add(YellowStats.personality, "Kind/Friendly")

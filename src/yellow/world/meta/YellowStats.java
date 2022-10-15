@@ -10,6 +10,7 @@ public class YellowStats{
     public static final Stat
     maxLives = new Stat("maxLives"),
     extras = new Stat("extras"),
+    name = new Stat("name", humanInfo),
     gender = new Stat("gender", humanInfo),
     age = new Stat("age", humanInfo),
     personality = new Stat("personality", humanInfo),
