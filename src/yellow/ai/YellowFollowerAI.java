@@ -1,7 +1,7 @@
 package yellow.ai;
 
-import arc.util.Time;
 import arc.math.Mathf;
+import arc.util.Time;
 import mindustry.entities.units.AIController;
 import mindustry.gen.Building;
 import mindustry.gen.Groups;

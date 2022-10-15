@@ -5,7 +5,6 @@ import mindustry.graphics.Pal;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
-import mindustry.maps.planet.SerpuloPlanetGenerator;
 import mindustry.type.Planet;
 import yellow.ctype.FallbackContentList;
 import yellow.maps.planet.AzenoPlanetGenerator;

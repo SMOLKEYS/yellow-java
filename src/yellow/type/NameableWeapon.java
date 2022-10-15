@@ -8,8 +8,8 @@ import mindustry.type.Weapon;
 public class NameableWeapon extends Weapon{
     public String displayName;
     
-    public NameableWeapon(String internalName, String dName){
-        super(internalName);
-        this.displayName = dName;
+    public NameableWeapon(String name, String displayName){
+        super(name);
+        this.displayName = displayName;
     }
 }

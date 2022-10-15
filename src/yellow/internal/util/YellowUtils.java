@@ -10,8 +10,6 @@ import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import yellow.type.NameableWeapon;
 
-import java.lang.reflect.Array;
-
 import static arc.Core.settings;
 
 public class YellowUtils{

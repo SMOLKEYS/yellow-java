@@ -52,12 +52,11 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
         temp = Mathf.lerp(temp, tnoise, 0.5f)
         height *= 1.3f
         height = Mathf.clamp(height)
-        val res = arr[Mathf.clamp((temp * arr.size).toInt(), 0, arr[0].size - 1)][Mathf.clamp(
+        return arr[Mathf.clamp((temp * arr.size).toInt(), 0, arr[0].size - 1)][Mathf.clamp(
             (height * arr[0].size).toInt(),
             0,
             arr[0].size - 1
         )]
-        return res
     }
     fun rawHeight(position: Vec3): Float {
         val tposition = v34.set(position).scl(scl)

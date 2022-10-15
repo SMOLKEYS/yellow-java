@@ -12,7 +12,7 @@ public class GhostUnitType extends UnitType{
     /** Despawn effect. */
     public Effect despawnEffect = YellowFx.ghostDespawn;
     /** Despawn effect offset. */
-    public Vec2 despawnEffectOffset = new Vec2(0, 0);
+    public Vec2 despawnEffectOffset = new Vec2();
     
     
     public GhostUnitType(String name){

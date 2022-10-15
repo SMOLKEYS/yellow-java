@@ -6,8 +6,8 @@ import yellow.entities.units.DisableableWeaponMount;
 
 public class DisableableWeapon extends NameableWeapon{
     
-    public DisableableWeapon(String iName, String dName){
-        super(iName, dName);
+    public DisableableWeapon(String name, String displayName){
+        super(name, displayName);
         mountType = DisableableWeaponMount::new;
     }
     //basically, if the mount is disabled, ignore update and draw code entirely

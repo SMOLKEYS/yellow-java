@@ -1,15 +1,13 @@
 package yellow.content;
 
 import arc.Core;
-import arc.flabel.FLabel;
 import mindustry.ai.types.FlyingAI;
 import mindustry.type.UnitType;
-import yellow.ai.*;
+import yellow.ai.YellowFollowerAI;
 import yellow.ctype.FallbackContentList;
 import yellow.entities.units.GhostUnitType;
 import yellow.entities.units.YellowUnitType;
 import yellow.weapons.YellowWeapons;
-import yellow.world.meta.YellowStats;
 
 public class YellowUnitTypes implements FallbackContentList{
 
