@@ -9,8 +9,9 @@ import arc.graphics.g2d.Lines
 import arc.math.Mathf
 import arc.util.Time
 import arc.util.Tmp
+import mindustry.Vars
 import mindustry.graphics.Layer
-import mindustry.world.meta.Stat
+import mindustry.world.meta.*
 import mindustry.type.UnitType
 import yellow.world.meta.YellowStats
 import yellow.entities.units.entity.YellowUnitEntity
@@ -51,8 +52,12 @@ open class YellowUnitType(name: String): UnitType(name) {
         super.setStats()
         stats.remove(Stat.health)
         stats.add(Stat.health, "${Mathf.round(health * maxLives.toFloat())} (${health.toInt()} x $maxLives)")
+        stats.remove(Stat.itemCapacity)
+        stats.add(YellowStats.itemCapacityAlt, itemCapacity)
         stats.remove(Stat.weapons)
-        stats.add(Stat.weapons, "Many")
+        stats.add(YellowStats.weaponsAlt, "Many")
+        stats.remove(Stat.range)
+        stats.add(YellowStats.rangeAlt, (maxRange / Vars.tilesize).toInt(), StatUnit.blocks)
         
         
         stats.add(YellowStats.maxLives, "$maxLives")
@@ -64,7 +69,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         """.trimIndent())
         
         stats.add(YellowStats.gender, "Female")
-        stats.add(YellowStats.age, "23")
+        stats.add(YellowStats.age, 23, YellowStats.yearsOld)
         stats.add(YellowStats.personality, "Kind/Friendly")
         stats.add(YellowStats.headpatRating, "High")
         stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
