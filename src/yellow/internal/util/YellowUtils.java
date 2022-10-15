@@ -60,7 +60,7 @@ public class YellowUtils{
             String res = req.getResultAsString();
             JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
             JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-            strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
+            strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
             Vars.ui.showCustomConfirm("RESULT", strd, "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
         });
     }
