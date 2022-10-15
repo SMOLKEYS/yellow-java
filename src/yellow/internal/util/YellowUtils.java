@@ -5,7 +5,7 @@ import arc.func.Cons;
 import arc.math.Mathf;
 import arc.util.Http;
 import arc.util.io.Streams;
-import arc.util.serialization.JsonReader;
+import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
@@ -58,10 +58,15 @@ public class YellowUtils{
         StringBuilder bus = new StringBuilder();
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
             String res = req.getResultAsString()
-            for(i = 0; i > 15; i++){
-                bus.append(jsr.parse(res).get("workflow_runs").get(i).get("status").toString() + "\n-----");
+            for(i = 0; i > 7; i++){
+                JsonValue pros = jsr.parse(res).get("workflow_runs").get(i);
+                bus.append(pros.get("name") + "\n");
+                bus.append(pros.get("display_title") + "\n");
+                bus.append(pros.get("run_number") + "\n");
+                bus.append(pros.get("status") + "\n");
+                bus.append(pros.get("conclusion") + "\n");
             }
-            Vars.ui.showCustomConfirm("RESULT OF LAST 15 RUNS", bus.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
+            Vars.ui.showCustomConfirm("RESULT OF LAST 7 RUNS", bus.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
         });
     }
 }
