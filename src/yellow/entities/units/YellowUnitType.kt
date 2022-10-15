@@ -1,7 +1,7 @@
 package yellow.entities.units
 
-import arc.func.Prov
 import arc.flabel.FLabel
+import arc.func.Prov
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
@@ -10,11 +10,13 @@ import arc.math.Mathf
 import arc.util.Time
 import arc.util.Tmp
 import mindustry.graphics.Layer
-import mindustry.world.meta.Stat
 import mindustry.type.UnitType
+import mindustry.world.meta.Stat
 import mindustry.world.meta.Stats
-import yellow.world.meta.YellowStats
 import yellow.entities.units.entity.YellowUnitEntity
+import yellow.world.meta.YellowStats
+
+fun Stats.addFlabel(stat: Stat, value: String) = this.add(stat){ it.add(FLabel(value)) }
 
 open class YellowUnitType(name: String): UnitType(name) {
 
@@ -63,5 +65,13 @@ open class YellowUnitType(name: String): UnitType(name) {
         Random chance of teleporting frantically AND dropping plasma bombs on last life
         Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
+
+
+        stats.add(YellowStats.gender, "Female")
+        stats.add(YellowStats.age, "23")
+        stats.add(YellowStats.personality, "Kind/Friendly")
+        stats.add(YellowStats.headpatRating, "High")
+        stats.add(YellowStats.generalAura, "{shake}Menacing{} (First Encounter)")
+        stats.addFlabel(YellowStats.loveInterest, "{wave}........................")
     }
 }

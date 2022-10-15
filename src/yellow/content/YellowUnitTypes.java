@@ -1,6 +1,7 @@
 package yellow.content;
 
 import arc.Core;
+import arc.flabel.FLabel;
 import mindustry.ai.types.FlyingAI;
 import mindustry.type.UnitType;
 import yellow.ai.*;
@@ -61,12 +62,4 @@ public class YellowUnitTypes implements FallbackContentList{
         //endregion
     }
 
-    public static void setYellowStats(){
-        yellow.stats.add(YellowStats.gender, "Female");
-        yellow.stats.add(YellowStats.age, "23");
-        yellow.stats.add(YellowStats.personality, "Kind/Friendly");
-        yellow.stats.add(YellowStats.headpatRating, "High");
-        yellow.stats.add(YellowStats.generalAura, "Menacing (First Encounter)");
-        yellow.stats.add(YellowStats.loveInterest, ".....");
-    }
 }
