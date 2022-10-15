@@ -9,10 +9,9 @@ import arc.math.Interp;
 import arc.util.Time;
 import mindustry.entities.Effect;
 import mindustry.graphics.Layer;
+import yellow.entities.effect.RandomEffect;
 
-/**
- * All effects are sorted by oldest-top, newest-bottom.
- */
+
 public class YellowFx{
     
     public static final Effect
@@ -25,6 +24,24 @@ public class YellowFx{
         Lines.stroke(e.fout() * 7);
         Lines.circle(e.x, e.y, e.fin() * 10);
     }),
+
+    ghostDespawn2 = new Effect(15f, e -> {
+        Draw.z(Layer.effect);
+        Draw.alpha(e.fout() * 3);
+
+        Lines.stroke(e.fout() * 7);
+        Lines.circle(e.x, e.y, e.fin() * 17);
+    }),
+
+    ghostDespawn3 = new Effect(15f, e -> {
+        Draw.z(Layer.effect);
+        Draw.alpha(e.fout() * 3);
+
+        Lines.stroke(e.fout() * 7);
+        Lines.circle(e.x, e.y, e.fin() * 23);
+    }),
+
+    ghostDespawnMulti = new RandomEffect(ghostDespawn, ghostDespawn2, ghostDespawn3),
     
     /** Inward and outward explosion effect.
      * (-> center <-) and (<- center ->) at the same time

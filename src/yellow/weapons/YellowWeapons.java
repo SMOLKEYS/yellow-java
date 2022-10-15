@@ -71,8 +71,8 @@ public class YellowWeapons{
                 height = 12f;
                 lifetime = 300f;
                 speed = 6f;
-                hitEffect = YellowFx.ghostDespawn;
-                despawnEffect = YellowFx.ghostDespawn;
+                hitEffect = YellowFx.ghostDespawnMulti;
+                despawnEffect = YellowFx.ghostDespawnMulti;
                 backRegion = Core.atlas.find("flare");
                 frontRegion = Core.atlas.find("flare");
                 sprite = "flare";
