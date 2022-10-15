@@ -71,7 +71,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.age, "23")
         stats.add(YellowStats.personality, "Kind/Friendly")
         stats.add(YellowStats.headpatRating, "High")
-        stats.add(YellowStats.generalAura, "{shake}Menacing{} (First Encounter)")
+        stats.addFlabel(YellowStats.generalAura, "{shake}Menacing{} (First Encounter)")
         stats.addFlabel(YellowStats.loveInterest, "{wave}........................")
     }
 }
