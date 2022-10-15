@@ -84,7 +84,7 @@ public class YellowWeapons{
                 weaveScale = 4000f;
                 pierce = true;
                 pierceBuilding = true;
-                pierceCap = 35;
+                pierceCap = 40;
             }
                 @Override
                 public void draw(Bullet b){
