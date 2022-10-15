@@ -77,6 +77,6 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
         stats.add(YellowStats.loveInterest, ".....")
         stats.add(YellowStats.likes, "Comfort, Yellow-colored things, etc...")
-        stats.add(YellowStats.dislikes, "Anything explosive, especially Thorium Reactors")
+        stats.add(YellowStats.dislikes, "Anything explosive, especially Thorium Reactors\n[gray](with the exception of her own weapons in Unit form)[]")
     }
 }
