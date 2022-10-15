@@ -17,6 +17,8 @@ public class YellowStats{
     headpatRating = new Stat("headpatRating", humanInfo),
     loveInterest = new Stat("loveInterest", humanInfo),
     generalAura = new Stat("generalAura", humanInfo),
+    likes = new Stat("likes", humanInfo),
+    dislikes = new Stat("dislikes", humanInfo),
     itemCapacityAlt = new Stat("itemCapacity"),
     weaponsAlt = new Stat("weapons"),
     rangeAlt = new Stat("range");
