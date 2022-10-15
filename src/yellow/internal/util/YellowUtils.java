@@ -16,7 +16,6 @@ import static arc.Core.settings;
 public class YellowUtils{
 
     private static final JsonReader jsr = new JsonReader();
-    private static String stat;
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
@@ -56,9 +55,13 @@ public class YellowUtils{
     }
 
     public static void getWorkflowStatus(){
+        StringBuilder bus = new StringBuilder();
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
-            stat = jsr.parse(req.getResultAsString()).get("workflow_runs").get(0).get("status").toString();
-            Vars.ui.showCustomConfirm("RESULT", stat.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
+            String res = req.getResultAsString()
+            for(i = 0; i > 15; i++){
+                bus.append(jsr.parse(res).get("workflow_runs").get(i).get("status").toString() + "\n-----");
+            }
+            Vars.ui.showCustomConfirm("RESULT OF LAST 15 RUNS", bus.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
         });
     }
 }
