@@ -58,10 +58,8 @@ public class YellowUtils{
     public static void getWorkflowStatus(){
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
             String res = req.getResultAsString();
-            for(int i = 0; i > 7; i++){
-                JsonValue pros = jsr.parse(res).get("workflow_runs").get(i);
-                strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n";
-            }
+            JsonValue pros = jsr.parse(res).get("workflow_runs").get(i);
+            strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n";
             Vars.ui.showCustomConfirm("RESULT", bus.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
         });
     }
