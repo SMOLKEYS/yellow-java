@@ -50,6 +50,7 @@ open class YellowUnitType(name: String): UnitType(name) {
     
     override fun setStats(){
         super.setStats()
+        stats.useCategories = true
         stats.remove(Stat.health)
         stats.add(Stat.health, "${Mathf.round(health * maxLives.toFloat())} (${health.toInt()} x $maxLives)")
         stats.remove(Stat.itemCapacity)
