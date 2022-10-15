@@ -3,7 +3,7 @@ package yellow.content;
 import arc.Core;
 import mindustry.ai.types.FlyingAI;
 import mindustry.type.UnitType;
-import yellow.ai.*;
+import yellow.ai.YellowFollowerAI;
 import yellow.ctype.FallbackContentList;
 import yellow.entities.units.GhostUnitType;
 import yellow.entities.units.YellowUnitType;
@@ -59,4 +59,5 @@ public class YellowUnitTypes implements FallbackContentList{
         
         //endregion
     }
+
 }

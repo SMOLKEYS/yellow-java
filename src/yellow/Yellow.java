@@ -60,7 +60,7 @@ public class Yellow extends Mod{
         for(FallbackContentList list : yellowContent){
             list.load();
         }
-        
+
         YellowWeapons.afterInit();
 
         YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall}, true, true, YellowUnitTypes.yellow);

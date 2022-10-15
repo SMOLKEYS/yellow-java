@@ -3,23 +3,20 @@ package yellow.weapons;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Fill;
-import arc.graphics.g2d.Lines;
-import arc.math.Mathf;
-import arc.util.Time;
 import mindustry.content.Fx;
-import mindustry.entities.part.*;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
+import mindustry.entities.part.FlarePart;
+import mindustry.entities.part.ShapePart;
 import mindustry.entities.pattern.ShootSpread;
 import mindustry.gen.Bullet;
-import mindustry.gen.Hitboxc;
 import mindustry.gen.Sounds;
-import mindustry.gen.Unit;
 import mindustry.graphics.Layer;
 import mindustry.type.Weapon;
+import yellow.content.YellowBullets;
+import yellow.content.YellowFx;
+import yellow.content.YellowUnitTypes;
 import yellow.entities.bullet.PainfulPierceBulletType;
-import yellow.content.*;
 import yellow.type.DisableableWeapon;
 
 public class YellowWeapons{

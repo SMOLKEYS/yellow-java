@@ -5,11 +5,13 @@ import arc.math.geom.Vec2
 import arc.util.io.Reads
 import arc.util.io.Writes
 import mindustry.Vars
-import mindustry.gen.*
 import mindustry.content.UnitTypes
 import mindustry.entities.Units
-import mindustry.entities.bullet.BulletType
-import yellow.entities.units.*
+import mindustry.gen.EntityMapping
+import mindustry.gen.Icon
+import mindustry.gen.UnitEntity
+import yellow.entities.units.DisableableWeaponMount
+import yellow.entities.units.YellowUnitType
 import yellow.game.YellowPermVars
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
