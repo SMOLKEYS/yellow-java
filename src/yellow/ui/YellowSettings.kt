@@ -33,6 +33,12 @@ object YellowSettings{
                     ui.showInfoOnHidden("Mod updated. Restart the game."){ Core.app.exit() }
                 }
             }
+
+            table.row()
+
+            table.textButton("Check Status", wrap = false){
+                YellowUtils.getWorkflowStatus()
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import arc.func.Cons;
 import arc.math.Mathf;
 import arc.util.Http;
 import arc.util.io.Streams;
+import arc.util.serialization.JsonReader;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
@@ -13,7 +14,10 @@ import yellow.type.NameableWeapon;
 import static arc.Core.settings;
 
 public class YellowUtils{
-    
+
+    private static final JsonReader jsr = new JsonReader();
+    private static String stat;
+
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
     }
@@ -49,5 +53,12 @@ public class YellowUtils{
 
     public static Object random(Object[] arr){
         return arr[Mathf.random(arr.length)];
+    }
+
+    public static void getWorkflowStatus(){
+        Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
+            stat = jsr.parse(req.getResultAsString()).get("workflow_runs").get(0).get("status").toString();
+            Vars.ui.showCustomConfirm("RESULT", stat.toString(), "Check Again", "Ok", YellowUtils::getWorkflowStatus, () -> {});
+        });
     }
 }
