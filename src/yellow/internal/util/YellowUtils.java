@@ -58,7 +58,7 @@ public class YellowUtils{
         StringBuilder bus = new StringBuilder();
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
             String res = req.getResultAsString();
-            for(i = 0; i > 7; i++){
+            for(int i = 0; i > 7; i++){
                 JsonValue pros = jsr.parse(res).get("workflow_runs").get(i);
                 bus.append(pros.get("name") + "\n");
                 bus.append(pros.get("display_title") + "\n");
