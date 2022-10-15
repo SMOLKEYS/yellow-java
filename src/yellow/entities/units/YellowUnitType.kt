@@ -70,7 +70,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         """.trimIndent())
         
         stats.add(YellowStats.gender, "Female")
-        stats.add(YellowStats.age, 23, YellowStats.yearsOld)
+        stats.add(YellowStats.age, "23", YellowStats.yearsOld)
         stats.add(YellowStats.personality, "Kind/Friendly")
         stats.add(YellowStats.headpatRating, "High")
         stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
