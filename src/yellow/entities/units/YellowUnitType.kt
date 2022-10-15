@@ -12,6 +12,7 @@ import arc.util.Tmp
 import mindustry.graphics.Layer
 import mindustry.world.meta.Stat
 import mindustry.type.UnitType
+import mindustry.world.meta.Stats
 import yellow.world.meta.YellowStats
 import yellow.entities.units.entity.YellowUnitEntity
 
@@ -62,12 +63,5 @@ open class YellowUnitType(name: String): UnitType(name) {
         Random chance of teleporting frantically AND dropping plasma bombs on last life
         Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
-        
-        stats.add(YellowStats.gender, "Female")
-        stats.add(YellowStats.age, "23")
-        stats.add(YellowStats.personality, "Kind/Friendly")
-        stats.add(YellowStats.headpatRating, "High")
-        stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
-        stats.add(YellowStats.loveInterest, ".....")
     }
 }

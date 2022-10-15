@@ -1,4 +1,4 @@
-package yellow.ui.buttons.dialogs;
+package yellow.ui.buttons.dialogs
 
 import mindustry.entities.units.WeaponMount
 import mindustry.ui.dialogs.BaseDialog
@@ -16,7 +16,7 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
 
         weapon.forEach {
             if(it !is DisableableWeaponMount) return
-            cont.check("${(it.weapon as NameableWeapon).displayName}", it.enabled) {a: Boolean ->
+            cont.check((it.weapon as NameableWeapon).displayName, it.enabled) { a: Boolean ->
                 it.enabled = a
             }.row()
         }

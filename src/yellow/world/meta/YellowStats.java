@@ -1,6 +1,8 @@
 package yellow.world.meta;
 
+import mindustry.type.UnitType;
 import mindustry.world.meta.*;
+import yellow.content.YellowUnitTypes;
 
 public class YellowStats{
     public static StatCat humanInfo = new StatCat("humanInfo");
@@ -14,4 +16,5 @@ public class YellowStats{
     headpatRating = new Stat("headpatRating", humanInfo),
     loveInterest = new Stat("loveInterest", humanInfo),
     generalAura = new Stat("generalAura", humanInfo);
+
 }
