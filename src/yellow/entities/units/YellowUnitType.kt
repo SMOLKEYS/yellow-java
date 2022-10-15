@@ -54,7 +54,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.health)
         stats.add(Stat.health, "${Mathf.round(health * maxLives.toFloat())} (${health.toInt()} x $maxLives)")
         stats.remove(Stat.itemCapacity)
-        stats.add(YellowStats.itemCapacityAlt, itemCapacity)
+        stats.add(YellowStats.itemCapacityAlt, "$itemCapacity")
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt, "Many")
         stats.remove(Stat.range)
