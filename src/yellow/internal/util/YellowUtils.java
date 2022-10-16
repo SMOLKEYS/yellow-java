@@ -73,18 +73,27 @@ public class YellowUtils{
         statusRequestRunning = true;
         
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
-            try{
-                String res = req.getResultAsString();
-                JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
-                JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-                strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
-                statusRequestRunning = false;
-                Vars.ui.showCustomConfirm("RESULT", strd, "@internal.checkagain", "@ok", YellowUtils::getWorkflowStatus, () -> {});
-            }catch(Exception e){
-                Vars.ui.showException("Workflow Status GET Error", e);
-                statusRequestRunning = false;
-            }
-        });
+            String res = req.getResultAsString();
+            
+            Core.app.post(() -> {
+                try{
+                    JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
+                    JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
+                    strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
+                    statusRequestRunning = false;
+                    Vars.ui.showCustomConfirm("RESULT", strd, "@internal.checkagain", "@ok", YellowUtils::getWorkflowStatus, () -> {});
+                }catch(Exception e){
+                    e.printStackTrace();
+                    Vars.ui.showException("Workflow Status GET Error", e);
+                    statusRequestRunning = false;
+                }
+            });
+        }, err -> Core.app.post(() -> {
+            err.printStackTrace();
+            Vars.ui.showException("Workflow Status GET Error", err);
+            statusRequestRunning = false;
+        }));
+        
         requestsSent++;
     }
     
