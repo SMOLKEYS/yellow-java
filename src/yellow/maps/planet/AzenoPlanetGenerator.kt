@@ -18,7 +18,7 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
     private var csus = Color()
 
     var arr = arrayOf(
-        arrayOf(stone, stone, redmat, sand, water, grass, stone)
+        arrayOf(stone, dirt, sand, water, sand, dirt, stone)
     )
 
     var watera: Float = 2f / arr.get(0).size
