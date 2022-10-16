@@ -1,12 +1,11 @@
 package yellow.content;
 
 import mindustry.world.Block;
-import yellow.ctype.FallbackContentList;
 import yellow.world.blocks.units.SummoningShrine;
 
 import static yellow.content.YellowUnitTypes.yellow;
 
-public class YellowBlocks implements FallbackContentList{
+public class YellowBlocks{
     public static Block
     //props for planets
     yellowPropBlock,
@@ -14,8 +13,8 @@ public class YellowBlocks implements FallbackContentList{
     //other content
     yellowShrine;
     
-    @Override
-    public void load(){
+
+    public static void load(){
         yellowPropBlock = new Block("yellow-prop-block"){{
             size = 1;
             solid = false;

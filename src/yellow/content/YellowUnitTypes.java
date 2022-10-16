@@ -4,12 +4,11 @@ import arc.Core;
 import mindustry.ai.types.FlyingAI;
 import mindustry.type.UnitType;
 import yellow.ai.YellowFollowerAI;
-import yellow.ctype.FallbackContentList;
 import yellow.entities.units.GhostUnitType;
 import yellow.entities.units.YellowUnitType;
 import yellow.weapons.YellowWeapons;
 
-public class YellowUnitTypes implements FallbackContentList{
+public class YellowUnitTypes{
 
     public static UnitType
     
@@ -18,9 +17,8 @@ public class YellowUnitTypes implements FallbackContentList{
     
     //ghost units
     ghostFlare;
-    
-    @Override
-    public void load(){
+
+    public static void load(){
         
         yellow = new YellowUnitType("yellow"){{
             flying = true;

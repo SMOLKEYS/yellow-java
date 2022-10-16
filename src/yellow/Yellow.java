@@ -6,15 +6,12 @@ import mindustry.game.EventType.ClientLoadEvent;
 import mindustry.mod.Mod;
 import mindustry.type.Weapon;
 import yellow.content.*;
-import yellow.ctype.FallbackContentList;
 import yellow.internal.YellowClassGateway;
 import yellow.internal.util.YellowUtils;
 import yellow.ui.YellowSettings;
 import yellow.ui.buttons.YellowWeaponSwitch;
 import yellow.weapons.YellowWeapons;
 
-import static arc.Core.app;
-import static mindustry.Vars.headless;
 import static mindustry.Vars.ui;
 import static yellow.weapons.YellowWeapons.*;
 
@@ -37,26 +34,18 @@ public class Yellow extends Mod{
             YellowUtils.startRequestLimitHandler();
         });
     }
-
-    public final FallbackContentList[] yellowContent = {
-        new YellowUnitTypes(),
-        new YellowStatusEffects(),
-        new YellowPlanets(),
-        new YellowBlocks()
-    };
-    
-    public final FallbackContentList bullets = new YellowBullets();
     
     @Override
     public void loadContent(){
-        bullets.load();
-        YellowWeapons.init();
-        
-        for(FallbackContentList list : yellowContent){
-            list.load();
-        }
+        YellowBullets.load();
+        YellowWeapons.load();
 
-        YellowWeapons.afterInit();
+        YellowUnitTypes.load();
+        YellowStatusEffects.load();
+        YellowPlanets.load();
+        YellowBlocks.load();
+
+        YellowWeapons.afterLoad();
 
         YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall}, true, true, YellowUnitTypes.yellow);
     }

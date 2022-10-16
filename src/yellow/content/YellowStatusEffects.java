@@ -3,15 +3,13 @@ package yellow.content;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
 import mindustry.type.StatusEffect;
-import yellow.ctype.FallbackContentList;
 
-public class YellowStatusEffects implements FallbackContentList{
+public class YellowStatusEffects{
     public static StatusEffect
     
     demise;
-    
-    @Override
-    public void load(){
+
+    public static void load(){
         
         demise = new StatusEffect("demise"){{
             color = Team.derelict.color;

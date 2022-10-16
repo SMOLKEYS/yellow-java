@@ -5,6 +5,7 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.part.FlarePart;
 import mindustry.entities.part.ShapePart;
@@ -24,7 +25,7 @@ public class YellowWeapons{
     
     meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall;
     
-    public static void init(){
+    public static void load(){
         
         //region main
         
@@ -210,7 +211,10 @@ public class YellowWeapons{
         //endregion main
     }
     
-    public static void afterInit(){
-        ghostCall.bullet.spawnUnit = YellowUnitTypes.ghostFlare;
+    public static void afterLoad(){
+        BulletType bul = new BulletType();
+        bul.spawnUnit = YellowUnitTypes.ghostFlare;
+        bul.load();
+        ghostCall.bullet = bul;
     }
 }

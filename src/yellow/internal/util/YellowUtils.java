@@ -10,7 +10,9 @@ import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
+import yellow.game.YellowPermVars;
 import yellow.type.NameableWeapon;
+import yellow.ui.YellowSettings;
 
 import static arc.Core.settings;
 
@@ -18,7 +20,8 @@ public class YellowUtils{
 
     private static final JsonReader jsr = new JsonReader();
     private static String strd;
-    private static int requestLimit = 5, requestsSent = 0;
+    private static final int requestLimit = 5;
+    private static int requestsSent = 0;
     private static float requestLimitResetTime = 10f; //in seconds
     private static boolean statusRequestRunning = false;
     private static final String[][] choices = {{"@ok", "@internal.checkagain"}, {"@internal.openrepo"}};
@@ -112,8 +115,10 @@ public class YellowUtils{
     }
     
     public static void startRequestLimitHandler(){
-        loop(requestLimitResetTime, () -> {
-            requestsSent = 0;
-        });
+        loop(requestLimitResetTime, () -> requestsSent = 0);
+    }
+
+    public static void controlledLog(Object log){
+        if(YellowPermVars.INSTANCE.getVerboseLoggering()) Log.info(log);
     }
 }

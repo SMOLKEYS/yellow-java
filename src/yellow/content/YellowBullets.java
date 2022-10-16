@@ -2,18 +2,14 @@ package yellow.content;
 
 import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.bullet.BulletType;
-import yellow.ctype.FallbackContentList;
 import yellow.entities.bullet.AirstrikeFlare;
 
-import static arc.Core.atlas;
-
-public class YellowBullets implements FallbackContentList{
+public class YellowBullets{
     public static BulletType
     
     standardMissile, standardMissileCaller;
-    
-    @Override
-    public void load(){
+
+    public static void load(){
 
         standardMissile = new BombBulletType(){{
             lifetime = 60f;
