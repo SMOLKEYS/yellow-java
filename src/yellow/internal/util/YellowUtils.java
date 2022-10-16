@@ -90,7 +90,7 @@ public class YellowUtils{
                         case 0:
                             break;
                         case 1:
-                            YellowUtils::getWorkflowStatus;
+                            getWorkflowStatus();
                             break;
                         case 2:
                             Core.app.openURI("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs");
