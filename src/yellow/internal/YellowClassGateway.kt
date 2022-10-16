@@ -1,5 +1,7 @@
 package yellow.internal
 
+import arc.Core
+import arc.files.Fi
 import arc.util.Log
 import mindustry.Vars
 import rhino.ImporterTopLevel
@@ -14,13 +16,12 @@ open class YellowClassGateway{
         val packages = Vars.tree.get("classpaths/yellow-classpath.txt").readString().split('\n')
 
         Log.info("[yellow]--------STARTING GATEWAY--------[]")
-        Log.info("Scope: $scope, Generator: $this")
+        Log.info("Scope: $scope, Generator: $this, Classpath Container: $packages")
         packages.forEach{
             var p = NativeJavaPackage(it, Vars.mods.mainLoader())
             Log.info("importing classes from $p...")
             p.parentScope = scope
             scope.importPackage(p)
-            Log.info("success!")
         }
         Log.info("[green]--------GATEWAY STARTED!--------[]")
     }
