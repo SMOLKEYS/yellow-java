@@ -55,7 +55,10 @@ public class YellowUtils{
             }catch(Exception e){
                 Vars.ui.showException("Http Get Error", e);
             }
-        });
+        }, err -> Core.app.post(() -> {
+            err.printStackTrace();
+            Vars.ui.showException("Mod update error", e);
+        }));
     }
 
     public static Object random(Object[] arr){
