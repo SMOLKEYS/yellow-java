@@ -6,18 +6,17 @@ import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
 import mindustry.type.Planet;
-import yellow.ctype.FallbackContentList;
 import yellow.maps.planet.AzenoPlanetGenerator;
 
 import static mindustry.content.Planets.sun;
 
-public class YellowPlanets implements FallbackContentList{
+public class YellowPlanets{
     public static Planet
     
     azeno;
     
-    @Override
-    public void load(){
+
+    public static void load(){
         azeno = new Planet("azeno", sun, 1.3f, 3){{
             accessible = true;
             alwaysUnlocked = true;
