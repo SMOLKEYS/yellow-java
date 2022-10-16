@@ -19,6 +19,7 @@ public class YellowUtils{
     private static String strd;
     private static int requestLimit = 5, requestsSent = 0;
     private static float requestLimitResetTime = 10f; //in seconds
+    private static boolean statusRequestRunning = false;
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
@@ -45,16 +46,15 @@ public class YellowUtils{
     }
 
     public static void getAndWrite(String link, Fi file, boolean overwrite, Cons<Fi> cons){
-        try{
-            Http.get(link, a -> {
+        Http.get(link, a -> {
+            try{
                 Streams.copyProgress(a.getResultAsStream(), file.write(!overwrite), a.getContentLength(), 4096, l -> {});
 
                 cons.get(file);
-            });
-
-        }catch(Exception e){
-            Vars.ui.showException("HTTP GET ERROR", e);
-        }
+            }catch(Exception e){
+                Vars.ui.showException("Http Get Error", e);
+            }
+        });
     }
 
     public static Object random(Object[] arr){
@@ -65,14 +65,25 @@ public class YellowUtils{
         if(requestsSent >= requestLimit){
             Vars.ui.showInfo("@internal.request-limit-hit");
             return;
+        }else if(statusRequestRunning){
+            Vars.ui.showInfo("@internal.waiting-for-request");
+            return;
         }
         
+        statusRequestRunning = true;
+        
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
-            String res = req.getResultAsString();
-            JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
-            JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-            strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
-            Vars.ui.showCustomConfirm("RESULT", strd, "@internal.checkagain", "@ok", YellowUtils::getWorkflowStatus, () -> {});
+            try{
+                String res = req.getResultAsString();
+                JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
+                JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
+                strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
+                statusRequestRunning = false;
+                Vars.ui.showCustomConfirm("RESULT", strd, "@internal.checkagain", "@ok", YellowUtils::getWorkflowStatus, () -> {});
+            }catch(Exception e){
+                Vars.ui.showException("Workflow Status GET Error", e);
+                statusRequestRunning = false;
+            }
         });
         requestsSent++;
     }
