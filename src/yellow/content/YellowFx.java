@@ -137,7 +137,7 @@ public class YellowFx{
     }),
 
 
-    everything = new RandomEffect(Effect.all);
+    everything = new RandomEffect(Effect.all.items);
         
         //endregion
 }
