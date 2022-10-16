@@ -10,7 +10,9 @@ import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
+import yellow.game.YellowPermVars;
 import yellow.type.NameableWeapon;
+import yellow.ui.YellowSettings;
 
 import static arc.Core.settings;
 
@@ -114,5 +116,9 @@ public class YellowUtils{
     
     public static void startRequestLimitHandler(){
         loop(requestLimitResetTime, () -> requestsSent = 0);
+    }
+
+    public static void controlledLog(Object log){
+        if(YellowPermVars.INSTANCE.getVerboseLoggering()) Log.info(log);
     }
 }

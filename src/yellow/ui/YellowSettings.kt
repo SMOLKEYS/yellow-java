@@ -16,6 +16,10 @@ object YellowSettings{
     fun load(){
         ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
 
+            table.checkPref("Verbose Logging", false){
+                YellowPermVars.verboseLoggering = it
+            }
+
             table.textPref("Source Repo", YellowPermVars.sourceRepo){
                 if(it.isBlank()){
                     YellowPermVars.sourceRepo = "https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar"
