@@ -21,6 +21,7 @@ public class YellowUtils{
     private static int requestLimit = 5, requestsSent = 0;
     private static float requestLimitResetTime = 10f; //in seconds
     private static boolean statusRequestRunning = false;
+    private static final String[][] choices = {{"@ok", "@internal.checkagain", "@internal.openrepo"}}
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
@@ -84,7 +85,18 @@ public class YellowUtils{
                 JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
                 strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
                 statusRequestRunning = false;
-                Vars.ui.showCustomConfirm("RESULT", strd, "@internal.checkagain", "@ok", YellowUtils::getWorkflowStatus, () -> {});
+                Vars.ui.showMenu("RESULT", strd, choices, sel -> {
+                    switch(sel){
+                        case 0:
+                            break;
+                        case 1:
+                            YellowUtils::getWorkflowStatus;
+                            break;
+                        case 2:
+                            Core.app.openURI("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs");
+                            break;
+                    }
+                });
             }catch(Exception e){
                 e.printStackTrace();
                 Vars.ui.showException("Workflow Status GET Error", e);
