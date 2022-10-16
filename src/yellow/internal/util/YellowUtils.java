@@ -1,5 +1,6 @@
 package yellow.internal.util;
 
+import arc.Core;
 import arc.files.Fi;
 import arc.func.Cons;
 import arc.math.Mathf;
