@@ -93,7 +93,7 @@ public class YellowUtils{
                             getWorkflowStatus();
                             break;
                         case 2:
-                            Core.app.openURI("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs");
+                            Core.app.openURI("https://github.com/SMOLKEYS/yellow-java");
                             break;
                     }
                 });
