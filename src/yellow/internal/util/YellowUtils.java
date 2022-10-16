@@ -21,7 +21,7 @@ public class YellowUtils{
     private static int requestLimit = 5, requestsSent = 0;
     private static float requestLimitResetTime = 10f; //in seconds
     private static boolean statusRequestRunning = false;
-    private static final String[][] choices = {{"@ok", "@internal.checkagain", "@internal.openrepo"}}
+    private static final String[][] choices = {{"@ok", "@internal.checkagain", "@internal.openrepo"}};
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
