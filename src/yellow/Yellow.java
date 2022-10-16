@@ -34,13 +34,8 @@ public class Yellow extends Mod{
             ycg.load();
 
             YellowSettings.INSTANCE.load();
+            YellowUtils.startRequestLimitHandler();
         });
-        
-        if(headless){
-            Log.err("Yellow-chan: I'm sorry, but the mod I'm on (Yellow (Java)) does not work in multiplayer due to using singleplayer-only variables and desync issues. Also, here's a dev note:");
-            Log.err("I'm not making Yellow (Java) multiplayer-compatible. That seems like too much effort and most of the mod's upcoming/current content was never meant for multiplayer anyways. Terminating server...");
-            app.exit();
-        }
     }
 
     public final FallbackContentList[] yellowContent = {
