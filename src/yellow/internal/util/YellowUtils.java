@@ -18,7 +18,8 @@ public class YellowUtils{
 
     private static final JsonReader jsr = new JsonReader();
     private static String strd;
-    private static int requestLimit = 5, requestsSent = 0;
+    private static final int requestLimit = 5;
+    private static int requestsSent = 0;
     private static float requestLimitResetTime = 10f; //in seconds
     private static boolean statusRequestRunning = false;
     private static final String[][] choices = {{"@ok", "@internal.checkagain"}, {"@internal.openrepo"}};
@@ -112,8 +113,6 @@ public class YellowUtils{
     }
     
     public static void startRequestLimitHandler(){
-        loop(requestLimitResetTime, () -> {
-            requestsSent = 0;
-        });
+        loop(requestLimitResetTime, () -> requestsSent = 0);
     }
 }
