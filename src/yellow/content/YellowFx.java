@@ -134,10 +134,7 @@ public class YellowFx{
         Lines.stroke(10);
         Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6);
         Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6 - 180);
-    }),
-
-
-    everything = new RandomEffect(Effect.all.items);
+    });
         
         //endregion
 }
