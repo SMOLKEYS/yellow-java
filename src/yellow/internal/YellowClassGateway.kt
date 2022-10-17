@@ -3,6 +3,7 @@ package yellow.internal
 import arc.Core
 import arc.util.Log
 import mindustry.Vars
+import mindustry.world.meta.StatCat.function
 import rhino.ImporterTopLevel
 import rhino.NativeJavaPackage
 import yellow.internal.util.YellowUtils.*
@@ -42,6 +43,6 @@ open class YellowClassGateway{
             p.parentScope = scope
             scope.importPackage(p)
         }
-        controlledLog("[yellow]--------UNIVERSAL GATEWAY STARTED!--------[]")
+        controlledLog("[green]--------UNIVERSAL GATEWAY STARTED!--------[]")
     }
 }

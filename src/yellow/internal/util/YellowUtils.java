@@ -4,6 +4,7 @@ import arc.Core;
 import arc.files.Fi;
 import arc.func.Cons;
 import arc.math.Mathf;
+import arc.struct.Seq;
 import arc.util.*;
 import arc.util.io.Streams;
 import arc.util.serialization.*;
