@@ -14,6 +14,9 @@ import yellow.internal.util.YellowUtilsKt
 //sh1p you have done it
 open class YellowClassGateway{
 
+    private var uniGateImports = 0
+    private var uniGateErrors = 0
+
     fun load(){
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
         
@@ -54,6 +57,7 @@ open class YellowClassGateway{
             controlledLog("importing classes from $it...")
             p.parentScope = scope
             scope.importPackage(p)
+            uniGateImports++
         }
         
         modPaths.each{k: String, v: String -> 
@@ -66,12 +70,21 @@ open class YellowClassGateway{
                     controlledLog("importing classes from $it...")
                     p.parentScope = scope
                     scope.importPackage(p)
+                    uniGateImports++
                 }
+                
+                val p = NativeJavaPackage(v, Vars.mods.mainLoader())
+                controlledLog("importing classes from $it...")
+                p.parentScope = scope
+                scope.importPackage(p)
+                uniGateImports++
                 
             }catch(e: Exception){
                 Log.err("Failed to handle importing:", e)
+                uniGateErrors++
             }
         }
         controlledLog("[green]--------UNIVERSAL GATEWAY STARTED!--------[]")
+        Log.info("Total universal gateway imports: $uniGateImports, Total universal gateway import errors: $uniGateErrors")
     }
 }
