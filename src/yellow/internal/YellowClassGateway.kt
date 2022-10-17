@@ -59,7 +59,7 @@ open class YellowClassGateway{
         modPaths.each{k: String, v: String -> 
             val dump = Seq<String>()
             try{
-                YellowUtilsKt.traverse(ZipFi(Core.settings.dataDirectory.child(k)).child(v), dump)
+                YellowUtilsKt.traverse(ZipFi(Core.settings.dataDirectory.child("mods").child(k)).child(v), dump)
                 
                 dump.each{
                     val p = NativeJavaPackage(it, Vars.mods.mainLoader())
