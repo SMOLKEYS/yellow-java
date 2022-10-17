@@ -1,5 +1,6 @@
 package yellow.internal
 
+import arc.Core
 import arc.util.Log
 import mindustry.Vars
 import rhino.ImporterTopLevel
@@ -23,5 +24,24 @@ open class YellowClassGateway{
             scope.importPackage(p)
         }
         controlledLog("[green]--------GATEWAY STARTED!--------[]")
+    }
+    
+    fun loadUniversal(){
+        var scope = Vars.mods.scripts.scope as ImporterTopLevel
+        
+        val source = Core.settings.dataDirectory.child("yellow").child("universal-classpath.txt")
+        
+        if(!source.exists()) source.writeString("put.mod.paths.or.game.paths.here")
+        
+        val packages = source.readString().split('\n')
+        
+        controlledLog("[yellow]--------STARTING UNIVERSAL GATEWAY--------[]")
+        packages.forEach{
+            val p = NativeJavaPackage(it, Vars.mods.mainLoader())
+            controlledLog("importing classes from $it...")
+            p.parentScope = scope
+            scope.importPackage(p)
+        }
+        controlledLog("[yellow]--------UNIVERSAL GATEWAY STARTED!--------[]")
     }
 }
