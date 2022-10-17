@@ -74,7 +74,7 @@ open class YellowClassGateway{
                 }
                 
                 val p = NativeJavaPackage(v, Vars.mods.mainLoader())
-                controlledLog("importing classes from $it...")
+                controlledLog("importing classes from $v...")
                 p.parentScope = scope
                 scope.importPackage(p)
                 uniGateImports++
