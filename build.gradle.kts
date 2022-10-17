@@ -65,7 +65,7 @@ val genYellowClasspath by tasks.registering {
         
         File("$buildDir/gen-assets/classpaths/").let {
             it.mkdirs()
-            it.resolve("yellow-classpath.txt").writeText(packages + "\nbetamindy.graphics")
+            it.resolve("yellow-classpath.txt").writeText(packages)
         }
     }
 }
