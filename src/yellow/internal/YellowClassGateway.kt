@@ -2,11 +2,14 @@ package yellow.internal
 
 import arc.Core
 import arc.util.Log
+import arc.files.*
+import arc.struct.*
 import mindustry.Vars
 import mindustry.world.meta.StatCat.function
 import rhino.ImporterTopLevel
 import rhino.NativeJavaPackage
 import yellow.internal.util.YellowUtils.*
+import yellow.internal.util.YellowUtilsKt
 
 //sh1p you have done it
 open class YellowClassGateway{
@@ -31,10 +34,19 @@ open class YellowClassGateway{
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
         
         val source = Core.settings.dataDirectory.child("yellow").child("universal-classpath.txt")
+        val modListSource = Core.settings.dataDirectory.child("yellow").child("mod-lists.txt")
         
         if(!source.exists()) source.writeString("put.mod.paths.or.game.paths.here")
+        if(!modListSource.exists()) modListSource.writeString("")
         
         val packages = source.readString().split('\n')
+        val prep = modListSource.readString().split('\n')
+        val modPaths = ObjectMap<String, String>()
+        
+        prep.forEach{
+            val asu = it.split(",")
+            modPaths.put(asu[0], asu[1])
+        }
         
         controlledLog("[yellow]--------STARTING UNIVERSAL GATEWAY--------[]")
         packages.forEach{
@@ -42,6 +54,23 @@ open class YellowClassGateway{
             controlledLog("importing classes from $it...")
             p.parentScope = scope
             scope.importPackage(p)
+        }
+        
+        modPaths.each{(k: String, v: String) -> 
+            val dump = Seq<String>()
+            try{
+                YellowUtilsKt.traverse(ZipFi(Core.settings.dataDirectory.child(k)).child(v), dump)
+                
+                dump.each{
+                    val p = NativeJavaPackage(it, Vars.mods.mainLoader())
+                    controlledLog("importing classes from $it...")
+                    p.parentScope = scope
+                    scope.importPackage(p)
+                }
+                
+            }catch(e: Exception){
+                Log.err("Failed to handle importing:", e)
+            }
         }
         controlledLog("[green]--------UNIVERSAL GATEWAY STARTED!--------[]")
     }
