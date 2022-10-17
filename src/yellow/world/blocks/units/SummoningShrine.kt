@@ -122,8 +122,8 @@ open class SummoningShrine(
             write.bool(placed)
         }
 
-        override fun read(read: Reads) {
-            super.read(read)
+        override fun read(read: Reads, revision: Byte) {
+            super.read(read, revision)
             placed = read.bool()
         }
     }

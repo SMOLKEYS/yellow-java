@@ -58,6 +58,7 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
             arr[0].size - 1
         )]
     }
+    
     fun rawHeight(position: Vec3): Float {
         val tposition = v34.set(position).scl(scl)
         return (Mathf.pow(
