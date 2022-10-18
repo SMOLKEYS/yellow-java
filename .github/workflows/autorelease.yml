@@ -1,4 +1,4 @@
-name: Autorelease
+name: Autorelease CI
 
 on: [push]
 
