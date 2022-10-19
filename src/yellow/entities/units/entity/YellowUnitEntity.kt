@@ -12,12 +12,10 @@ import mindustry.gen.*
 import yellow.entities.units.DisableableWeaponMount
 import yellow.entities.units.YellowUnitType
 import yellow.game.YellowPermVars
+import yellow.YellowVars.entities
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
-
-    @JvmStatic
-    val entities = Seq<YellowUnitEntity>()
 
     private var inited = false
     private var franticTeleportTime = 60f
@@ -46,8 +44,8 @@ open class YellowUnitEntity: UnitEntity(){
         panicMode = false
         panicModeTypeTwo = false
         dead = true
-        health = 0
-        shield = 0
+        health = 0f
+        shield = 0f
         entities.remove(this)
     }
     
@@ -115,11 +113,12 @@ open class YellowUnitEntity: UnitEntity(){
     //1 - alive but not in list
     //2 - alive and in list
     fun listed(): Int{
-        if(!isValid() || dead || (maxLives <= 0 && health  <= 0)) return 0
+        var bus = 0
+        if(!isValid() || dead || (type().maxLives <= 0 && health <= 0)) bus = 0
         entities.each{
-            if(!dead && isValid() && it == this) return 2
+            if(!dead && isValid() && it == this) bus = 2 else bus = 1
         }
-        return 1
+        return bus
     }
 
     override fun type(): YellowUnitType {
@@ -211,7 +210,7 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
     
-    override fun toString(){
+    override fun toString(): String{
         return if(isValid()) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
     }
 
