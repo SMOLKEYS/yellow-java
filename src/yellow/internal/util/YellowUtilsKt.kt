@@ -28,7 +28,8 @@ object YellowUtilsKt{
         
         return buildString{
             values.forEach{
-                append(Core.bundle["@status.${aus[it].split(":")[0].replace("_", "-")}"] + ": ${aus[it].split(":")[1].trim()}\n")
+                val sua = "${aus[it]}".split(":")
+                append(Core.bundle["@status.${sua[0].replace("_", "-")}"] + ": ${sua[1].trim()}\n")
             }
         }
     }
