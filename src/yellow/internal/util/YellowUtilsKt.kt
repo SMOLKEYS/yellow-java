@@ -25,18 +25,11 @@ object YellowUtilsKt{
     
     fun JsonValue.getValues(vararg values: String): String{
         val aus = this
-        val ignoredBundleJsonValues = listOf("name", "display_title", "id", "run_number")
         
         return buildString{
-            values.forEach{ ba: String ->
-                val sua = "${aus[ba]}".split(":")
-                ignoredBundleJsonValues.forEach{ ab -> String
-                    if(ba == ab){
-                        append(Core.bundle["status.${sua[0].replace("_", "-")}"] + ": ${sua[1].trim()}\n")
-                    }else{
-                        append(Core.bundle["status.${sua[0].replace("_", "-")}"] + ": " + Core.bundle["status.${sua[1].replace("_", "-")}"] + "\n")
-                    }
-                }
+            values.forEach{
+                val sua = "${aus[it]}".split(":")
+                append(Core.bundle["status.${sua[0].replace("_", "-")}"] + ": ${sua[1].trim()}\n")
             }
         }
     }
