@@ -11,6 +11,7 @@ import arc.util.serialization.*;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
+import yellow.internal.util.YellowUtilsKt;
 import yellow.game.YellowPermVars;
 import yellow.type.NameableWeapon;
 import yellow.ui.YellowSettings;
@@ -87,7 +88,7 @@ public class YellowUtils{
             try{
                 JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
                 JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-                strd = pros.get("name") + "\n" + pros.get("display_title") + "\n" + pros.get("run_number") + "\n" + pros.get("status") + "\n" + pros.get("conclusion") + "\n-----\n" + cons.get("name") + "\n" + cons.get("display_title") + "\n" + cons.get("run_number") + "\n" + cons.get("status") + "\n" + cons.get("conclusion") + "\n";
+                strd = YellowUtilsKt.INSTANCE.getValues(pros, "name", "display_title", "run_number", "status", "conclusion", "id") + "----------" + YellowUtilsKt.INSTANCE.getValues(cons, "name", "display_name", "run_number", "status", "conclusion", "id");
                 statusRequestRunning = false;
                 Vars.ui.showMenu("RESULT", strd, choices, sel -> {
                     switch(sel){
