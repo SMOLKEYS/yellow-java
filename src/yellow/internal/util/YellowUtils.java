@@ -88,7 +88,7 @@ public class YellowUtils{
             try{
                 JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
                 JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-                strd = YellowUtilsKt.INSTANCE.getValues(pros, "name", "display_title", "run_number", "status", "conclusion", "id") + "----------" + YellowUtilsKt.INSTANCE.getValues(cons, "name", "display_title", "run_number", "status", "conclusion", "id");
+                strd = YellowUtilsKt.INSTANCE.getValues(pros, "name", "display_title", "run_number", "status", "conclusion", "id") + "----------\n" + YellowUtilsKt.INSTANCE.getValues(cons, "name", "display_title", "run_number", "status", "conclusion", "id");
                 statusRequestRunning = false;
                 Vars.ui.showMenu("RESULT", strd, choices, sel -> {
                     switch(sel){
