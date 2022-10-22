@@ -5,6 +5,7 @@ import mindustry.Vars;
 import mindustry.mod.Mods;
 import yellow.entities.units.entity.YellowUnitEntity;
 import yellow.internal.MetaChaos;
+import yellow.internal.util.YellowUtils;
 
 public class YellowVars{
     
@@ -18,5 +19,10 @@ public class YellowVars{
 
         meta.subtitle = locs.getSubtitles().random();
         meta.description = locs.getDescriptions().random();
+
+        YellowUtils.loop(15f, () -> {
+            meta.subtitle = locs.getSubtitles().random();
+            meta.description = locs.getDescriptions().random();
+        });
     }
 }
