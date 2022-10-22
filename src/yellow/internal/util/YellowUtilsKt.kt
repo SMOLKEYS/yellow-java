@@ -1,10 +1,10 @@
 package yellow.internal.util
 
 import arc.Core
-import arc.util.Log
-import arc.util.serialization.JsonValue
 import arc.files.Fi
 import arc.struct.Seq
+import arc.util.Log
+import arc.util.serialization.JsonValue
 
 object YellowUtilsKt{
     fun traverse(dir: Fi, dump: Seq<String>){

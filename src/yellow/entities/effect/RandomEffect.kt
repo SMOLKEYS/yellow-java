@@ -1,7 +1,6 @@
 package yellow.entities.effect
 
 import arc.graphics.Color
-import arc.struct.Seq
 import mindustry.entities.Effect
 
 open class RandomEffect(vararg var effects: Effect) : Effect(0f, {}){

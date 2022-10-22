@@ -4,17 +4,17 @@ import arc.Core;
 import arc.files.Fi;
 import arc.func.Cons;
 import arc.math.Mathf;
-import arc.struct.Seq;
-import arc.util.*;
+import arc.util.Http;
+import arc.util.Log;
+import arc.util.Timer;
 import arc.util.io.Streams;
-import arc.util.serialization.*;
+import arc.util.serialization.JsonReader;
+import arc.util.serialization.JsonValue;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
-import yellow.internal.util.YellowUtilsKt;
 import yellow.game.YellowPermVars;
 import yellow.type.NameableWeapon;
-import yellow.ui.YellowSettings;
 
 import static arc.Core.settings;
 

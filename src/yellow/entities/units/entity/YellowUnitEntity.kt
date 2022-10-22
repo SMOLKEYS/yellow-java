@@ -4,15 +4,16 @@ import arc.math.Mathf
 import arc.math.geom.Vec2
 import arc.util.io.Reads
 import arc.util.io.Writes
-import arc.struct.Seq
 import mindustry.Vars
 import mindustry.content.UnitTypes
 import mindustry.entities.Units
-import mindustry.gen.*
-import yellow.entities.units.DisableableWeaponMount
+import mindustry.gen.EntityMapping
+import mindustry.gen.Groups
+import mindustry.gen.Icon
+import mindustry.gen.UnitEntity
+import yellow.YellowVars.entities
 import yellow.entities.units.YellowUnitType
 import yellow.game.YellowPermVars
-import yellow.YellowVars.entities
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
@@ -109,14 +110,14 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
     
-    //0 - dead/invalid + not in list, should not be in list anyways
+    //0 - dead/invalid + not in list, should not be in list anyway
     //1 - alive but not in list
     //2 - alive and in list
     fun listed(): Int{
         var bus = 0
-        if(!isValid() || dead || (type().maxLives <= 0 && health <= 0)) bus = 0
+        if(!isValid || dead || (type().maxLives <= 0 && health <= 0)) bus = 0
         entities.each{
-            if(!dead && isValid() && it == this) bus = 2 else bus = 1
+            bus = if(!dead && isValid && it == this) 2 else 1
         }
         return bus
     }
@@ -172,7 +173,7 @@ open class YellowUnitEntity: UnitEntity(){
         if(listed() == 1) entities.add(this)
         
         //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
-        //very picky woman i will say :trollar:
+        //very picky woman i must say :trollar:
         if(allowsHealing){
             Units.nearby(x, y, 15f*8f, 15f*8f){a: mindustry.gen.Unit ->
                 if(a.team == team){
@@ -211,7 +212,7 @@ open class YellowUnitEntity: UnitEntity(){
     }
     
     override fun toString(): String{
-        return if(isValid()) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
+        return if(isValid) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
     }
 
 

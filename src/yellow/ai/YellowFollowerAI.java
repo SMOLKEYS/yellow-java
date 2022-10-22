@@ -10,34 +10,34 @@ import yellow.entities.units.entity.YellowUnitEntity;
 
 public class YellowFollowerAI extends AIController{
     
-    protected float distus = 80f, bogtus = 20f;
-    protected YellowUnitEntity mogu = null;
-    protected Building building = null;
+    protected float dist = 80f, wavedist = 20f;
+    protected YellowUnitEntity follow = null;
+    protected Building core = null;
     
     @Override
     public void init(){
         //hurricane
-        distus = Mathf.random(80f, 680f);
-        bogtus = Mathf.random(20f, 680f);
+        dist = Mathf.random(80f, 680f);
+        wavedist = Mathf.random(20f, 680f);
     }
     
     @Override
     public void updateMovement(){
         
-        if(mogu != null && mogu.dead) mogu = null;
+        if(follow != null && follow.dead) follow = null;
         
         Groups.unit.each(e -> {
-            if(e.type == YellowUnitTypes.yellow && mogu == null){
-                mogu = ((YellowUnitEntity)e);
+            if(e.type == YellowUnitTypes.yellow && follow == null){
+                follow = ((YellowUnitEntity)e);
             }
         });
         
-        if(mogu != null && mogu.team == unit.team){
-            circle(mogu, distus + Mathf.absin(Time.time * 0.05f, 20f, bogtus));
-        }else if(building != null){
-            circle(building, distus + Mathf.absin(Time.time * 0.05f, 20f, bogtus));
+        if(follow != null && follow.team == unit.team){
+            circle(follow, dist + Mathf.absin(Time.time * 0.05f, 20f, wavedist));
+        }else if(core != null){
+            circle(core, dist + Mathf.absin(Time.time * 0.05f, 20f, wavedist));
         }else{
-            building = unit.team.data().core();
+            core = unit.team.data().core();
         }
         
         faceMovement();

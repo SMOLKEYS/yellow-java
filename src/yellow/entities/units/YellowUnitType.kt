@@ -1,7 +1,6 @@
 package yellow.entities.units
 
 import arc.func.Prov
-import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
@@ -11,10 +10,11 @@ import arc.util.Time
 import arc.util.Tmp
 import mindustry.Vars
 import mindustry.graphics.Layer
-import mindustry.world.meta.*
 import mindustry.type.UnitType
-import yellow.world.meta.YellowStats
+import mindustry.world.meta.Stat
+import mindustry.world.meta.StatUnit
 import yellow.entities.units.entity.YellowUnitEntity
+import yellow.world.meta.YellowStats
 
 open class YellowUnitType(name: String): UnitType(name) {
 

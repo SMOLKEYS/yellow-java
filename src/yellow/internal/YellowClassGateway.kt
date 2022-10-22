@@ -1,14 +1,14 @@
 package yellow.internal
 
 import arc.Core
+import arc.files.ZipFi
+import arc.struct.ObjectMap
+import arc.struct.Seq
 import arc.util.Log
-import arc.files.*
-import arc.struct.*
 import mindustry.Vars
-import mindustry.world.meta.StatCat.function
 import rhino.ImporterTopLevel
 import rhino.NativeJavaPackage
-import yellow.internal.util.YellowUtils.*
+import yellow.internal.util.YellowUtils.controlledLog
 import yellow.internal.util.YellowUtilsKt
 
 //sh1p you have done it

@@ -1,6 +1,8 @@
 package yellow.world.meta;
 
-import mindustry.world.meta.*;
+import mindustry.world.meta.Stat;
+import mindustry.world.meta.StatCat;
+import mindustry.world.meta.StatUnit;
 
 public class YellowStats{
     public static final StatCat humanInfo = new StatCat("humanInfo");
