@@ -13,7 +13,14 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
     //TODO add more variety control over weapons because why not
     fun show(weapon: Array<WeaponMount>) {
         cont.clear()
-
+        
+        cont.add("""
+            Weapon Switch System
+            Each checkbox here is linked to the unit weapon associated with this dialog.
+            You can toggle any weapon here. Have fun!
+            [gray]TODO: Non-corruptive save I/O, weapon state inheritance, and perhaps weapon descriptions?
+            Will probably need a seperate dialog to view in, keep that in mind.[]
+        """.trimIndent()).row()
         weapon.forEach {
             if(it !is DisableableWeaponMount) return
             cont.check((it.weapon as NameableWeapon).displayName, it.enabled) { a: Boolean ->
