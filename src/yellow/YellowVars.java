@@ -20,7 +20,7 @@ public class YellowVars{
         meta.subtitle = locs.getSubtitles().random();
         meta.description = locs.getDescriptions().random();
 
-        YellowUtils.loop(15f, () -> {
+        YellowUtils.loop(1f, () -> {
             meta.subtitle = locs.getSubtitles().random();
             meta.description = locs.getDescriptions().random();
         });
