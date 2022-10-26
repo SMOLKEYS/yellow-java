@@ -28,7 +28,7 @@ dependencies {
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
     //flabel hash eae3c2dc59 is broken
     compileOnly("com.github.Anuken.Arc:flabel:$mindustryVersion")
-    compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
+    compileOnly("com.github.Anuken.MindustryJitpack:core:$mindustryVersion")
     implementation("com.github.mnemotechnician:mkui:v1.1")
 }
 

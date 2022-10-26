@@ -109,18 +109,6 @@ open class YellowUnitEntity: UnitEntity(){
             kill()
         }
     }
-    
-    //0 - dead/invalid + not in list, should not be in list anyway
-    //1 - alive but not in list
-    //2 - alive and in list
-    fun listed(): Int{
-        var bus = 0
-        if(!isValid || dead || (type().maxLives <= 0 && health <= 0)) bus = 0
-        entities.each{
-            bus = if(!dead && isValid && it == this) 2 else 1
-        }
-        return bus
-    }
 
     override fun type(): YellowUnitType {
         return type as YellowUnitType
@@ -170,7 +158,6 @@ open class YellowUnitEntity: UnitEntity(){
             YellowPermVars.removeAllowed = false
         }
         
-        if(listed() == 1) entities.add(this)
         
         //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
         //very picky woman i must say :trollar:
