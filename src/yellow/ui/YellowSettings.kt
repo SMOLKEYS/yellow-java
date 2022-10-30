@@ -6,7 +6,7 @@ import com.github.mnemotechnician.mkui.extensions.dsl.textButton
 import mindustry.Vars
 import mindustry.Vars.ui
 import mindustry.gen.Icon
-import yellow.game.YellowPermVars
+import yellow.YellowPermVars
 import yellow.internal.util.YellowUtils
 
 object YellowSettings{

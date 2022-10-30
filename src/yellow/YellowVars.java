@@ -1,5 +1,7 @@
 package yellow;
 
+import arc.ApplicationListener;
+import arc.Core;
 import arc.struct.Seq;
 import mindustry.Vars;
 import mindustry.mod.Mods;
@@ -24,5 +26,15 @@ public class YellowVars{
             meta.subtitle = locs.getSubtitles().random();
             meta.description = locs.getDescriptions().random();
         });
+
+
+        if(YellowPermVars.INSTANCE.getTemporary()){
+            Core.app.addListener(new ApplicationListener(){
+                @Override
+                public void exit(){
+                    Yellow.getSelf().file.delete();
+                }
+            });
+        }
     }
 }

@@ -13,7 +13,7 @@ import mindustry.gen.Icon
 import mindustry.gen.UnitEntity
 import yellow.YellowVars.entities
 import yellow.entities.units.YellowUnitType
-import yellow.game.YellowPermVars
+import yellow.YellowPermVars
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){

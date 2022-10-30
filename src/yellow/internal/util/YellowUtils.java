@@ -13,7 +13,7 @@ import arc.util.serialization.JsonValue;
 import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
-import yellow.game.YellowPermVars;
+import yellow.YellowPermVars;
 import yellow.type.NameableWeapon;
 
 import static arc.Core.settings;
@@ -35,7 +35,9 @@ public class YellowUtils{
     public static Timer.Task loop(float delay, Runnable run){
         return Timer.schedule(run, delay, delay, -1);
     }
-    
+
+    /** Utility for manually mirroring disableable weapons.
+     * Why does this exist? Simple, disableable weapons are pure jank with the usual mirror implementation. */
     public static void mirror(Weapon[] in, boolean nameable, boolean alternate, UnitType unit){
         for (Weapon weapon : in) {
             Weapon mog = weapon.copy();
@@ -52,10 +54,12 @@ public class YellowUtils{
         }
     }
 
+    /** Gets the resource from the inputted link and writes it to the specified file path. If the file already exists and is not empty, the overwrite parameter determines whether the file contents get overwritten. */
     public static void getAndWrite(String link, Fi file, boolean overwrite, Cons<Fi> cons){
         Http.get(link, a -> {
             try{
-                Streams.copyProgress(a.getResultAsStream(), file.write(!overwrite), a.getContentLength(), 4096, l -> {});
+                if(overwrite && file.exists() && file.readString().isEmpty()) return;
+                Streams.copyProgress(a.getResultAsStream(), file.write(), a.getContentLength(), 4096, l -> {});
 
                 cons.get(file);
             }catch(Exception e){
@@ -67,7 +71,7 @@ public class YellowUtils{
         }));
     }
 
-    public static Object random(Object[] arr){
+    public static <T> T random(T[] arr){
         return arr[Mathf.random(arr.length)];
     }
 

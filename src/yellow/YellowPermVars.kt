@@ -1,4 +1,4 @@
-package yellow.game
+package yellow
 
 import com.github.mnemotechnician.mkui.delegates.setting
 
@@ -11,4 +11,6 @@ object YellowPermVars {
     
     var removeAllowed by setting(false, syn)
     var verboseLoggering by setting(false, syn)
+
+    var temporary by setting(false, syn)
 }

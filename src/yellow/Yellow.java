@@ -2,8 +2,10 @@ package yellow;
 
 import arc.Events;
 import arc.util.Log;
+import mindustry.Vars;
 import mindustry.game.EventType.ClientLoadEvent;
 import mindustry.mod.Mod;
+import mindustry.mod.Mods;
 import mindustry.type.Weapon;
 import yellow.content.*;
 import yellow.internal.YellowClassGateway;
@@ -37,6 +39,10 @@ public class Yellow extends Mod{
             YellowUtils.startRequestLimitHandler();
         });
     }
+
+    public static Mods.LoadedMod getSelf(){
+        return Vars.mods.getMod("yellow-java");
+    }
     
     @Override
     public void loadContent(){
@@ -52,5 +58,4 @@ public class Yellow extends Mod{
 
         YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall}, true, true, YellowUnitTypes.yellow);
     }
-    
 }
