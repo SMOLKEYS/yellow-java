@@ -1,6 +1,7 @@
 package yellow.entities.units
 
 import arc.func.Prov
+import arc.scene.ui.layout.Table
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
@@ -13,6 +14,7 @@ import mindustry.graphics.Layer
 import mindustry.type.UnitType
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
+import yellow.internal.util.YellowUtilsKt
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.world.meta.YellowStats
 
@@ -56,7 +58,13 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.itemCapacity)
         stats.add(YellowStats.itemCapacityAlt, "$itemCapacity")
         stats.remove(Stat.weapons)
-        stats.add(YellowStats.weaponsAlt, "Many")
+        stats.add(YellowStats.weaponsAlt){ me: Table ->
+            weapons.each{
+                val suse = it as NameableWeapon
+                me.add(suse.displayName)
+                YellowUtilsKt.seperator(me, 55f)
+            }
+        }
         stats.remove(Stat.range)
         stats.add(YellowStats.rangeAlt, "${(maxRange / Vars.tilesize).toInt()}", StatUnit.blocks)
         

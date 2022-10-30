@@ -1,7 +1,10 @@
 package yellow.internal.util
 
 import arc.Core
+import arc.scene.ui.Image
+import arc.scene.ui.layout.*
 import arc.files.Fi
+import arc.graphics.Color
 import arc.struct.Seq
 import arc.util.Log
 import arc.util.serialization.JsonValue
@@ -33,4 +36,10 @@ object YellowUtilsKt{
             }
         }
     }
+
+    fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
+
+    fun seperator(table: Table, width: Float, height: Float): Cell<Image> = seperator(table, width, height, Color.darkGray)
+    
+    fun seperator(table: Table, width: Float, height: Float, color: Color): Cell<Image> = table.image().width(width).height(height).color(color)
 }
