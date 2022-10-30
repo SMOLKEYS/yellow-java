@@ -1,12 +1,12 @@
 package yellow.entities.units
 
 import arc.func.Prov
+import arc.scene.ui.layout.Table
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
 import arc.graphics.g2d.Lines
 import arc.math.Mathf
-import arc.scene.ui.layout.Table
 import arc.util.Time
 import arc.util.Tmp
 import mindustry.Vars
@@ -15,12 +15,12 @@ import mindustry.type.UnitType
 import mindustry.ui.Styles
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
-import yellow.entities.units.entity.YellowUnitEntity
+import mindustry.world.meta.StatValue
 import yellow.internal.util.YellowUtilsKt
+import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.YellowUtilsKt.seperator
-import yellow.internal.util.ins
-import yellow.type.NameableWeapon
 import yellow.world.meta.YellowStats
+import yellow.type.NameableWeapon
 
 open class YellowUnitType(name: String): UnitType(name) {
 
@@ -63,19 +63,16 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.itemCapacityAlt, "$itemCapacity")
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt){ me: Table ->
-            me.background = Styles.grayPanel
             me.add().row()
-            for(infel in 1..3) seperator(me, 340f, 4f)
+            seperator(me, 290f, 4f)
             me.row()
-            var ind = 0
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
                 me.button("?"){}.size(35f)
-                if(ind ins 3) me.row()
-                seperator(me, 340f, 4f)
                 me.row()
-                ind++
+                seperator(me, 290f, 4f)
+                me.row()
             }
         }
         stats.remove(Stat.range)
