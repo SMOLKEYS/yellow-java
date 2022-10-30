@@ -17,6 +17,7 @@ import mindustry.world.meta.StatUnit
 import yellow.internal.util.YellowUtilsKt
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.world.meta.YellowStats
+import yellow.type.NameableWeapon
 
 open class YellowUnitType(name: String): UnitType(name) {
 
