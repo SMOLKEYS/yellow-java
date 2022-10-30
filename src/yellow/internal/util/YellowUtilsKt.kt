@@ -9,11 +9,13 @@ import arc.struct.Seq
 import arc.util.Log
 import arc.util.serialization.JsonValue
 
+
+infix fun Int.ins(other: Int) = this % other == 0
 object YellowUtilsKt{
     fun traverse(dir: Fi, dump: Seq<String>){
         if(!dir.exists()) return
         dir.seq().each{ su: Fi ->
-            if(su.isDirectory()) dump.add(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
+            if(su.isDirectory) dump.add(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
             if(!su.seq().isEmpty) traverse(su, dump)
         }
     }
@@ -21,7 +23,7 @@ object YellowUtilsKt{
     fun traverse(dir: Fi){
         if(!dir.exists()) return
         dir.seq().each{ su: Fi -> 
-            if(su.isDirectory()) Log.info(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
+            if(su.isDirectory) Log.info(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
             if(!su.seq().isEmpty) traverse(su)
         }
     }

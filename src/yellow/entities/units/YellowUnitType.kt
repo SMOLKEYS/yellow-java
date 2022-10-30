@@ -17,6 +17,8 @@ import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.YellowUtilsKt
+import yellow.internal.util.YellowUtilsKt.seperator
+import yellow.internal.util.ins
 import yellow.type.NameableWeapon
 import yellow.world.meta.YellowStats
 
@@ -63,15 +65,17 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.weaponsAlt){ me: Table ->
             me.background = Styles.grayPanel
             me.add().row()
-            YellowUtilsKt.seperator(me, 340f, 4f)
+            for(infel in 1..3) seperator(me, 340f, 4f)
             me.row()
+            var ind = 0
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
                 me.button("?"){}.size(35f)
+                if(ind ins 3) me.row()
+                seperator(me, 340f, 4f)
                 me.row()
-                YellowUtilsKt.seperator(me, 340f, 4f)
-                me.row()
+                ind++
             }
         }
         stats.remove(Stat.range)
