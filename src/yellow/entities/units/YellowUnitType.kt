@@ -14,6 +14,7 @@ import mindustry.graphics.Layer
 import mindustry.type.UnitType
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
+import mindustry.world.meta.StatValue
 import yellow.internal.util.YellowUtilsKt
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.world.meta.YellowStats
@@ -60,6 +61,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.itemCapacityAlt, "$itemCapacity")
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt){ me: Table ->
+            me.add().row()
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
