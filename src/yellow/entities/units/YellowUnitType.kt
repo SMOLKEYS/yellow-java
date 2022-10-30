@@ -64,7 +64,7 @@ open class YellowUnitType(name: String): UnitType(name) {
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
                 me.row()
-                YellowUtilsKt.seperator(me, 210f, 7f)
+                YellowUtilsKt.seperator(me, 290f, 4f)
                 me.row()
             }
         }
