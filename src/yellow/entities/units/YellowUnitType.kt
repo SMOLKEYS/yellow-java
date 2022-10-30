@@ -12,6 +12,7 @@ import arc.util.Tmp
 import mindustry.Vars
 import mindustry.graphics.Layer
 import mindustry.type.UnitType
+import mindustry.ui.Styles
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
 import yellow.entities.units.entity.YellowUnitEntity
@@ -60,6 +61,7 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.itemCapacityAlt, "$itemCapacity")
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt){ me: Table ->
+            me.background = Styles.grayPanel
             me.add().row()
             YellowUtilsKt.seperator(me, 340f, 4f)
             me.row()
