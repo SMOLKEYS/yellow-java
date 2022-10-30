@@ -1,25 +1,23 @@
 package yellow.entities.units
 
 import arc.func.Prov
-import arc.scene.ui.layout.Table
 import arc.graphics.Color
 import arc.graphics.g2d.Draw
 import arc.graphics.g2d.Fill
 import arc.graphics.g2d.Lines
 import arc.math.Mathf
+import arc.scene.ui.layout.Table
 import arc.util.Time
 import arc.util.Tmp
 import mindustry.Vars
 import mindustry.graphics.Layer
 import mindustry.type.UnitType
-import mindustry.ui.Styles
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
-import mindustry.world.meta.StatValue
-import yellow.internal.util.YellowUtilsKt
 import yellow.entities.units.entity.YellowUnitEntity
-import yellow.world.meta.YellowStats
+import yellow.internal.util.YellowUtilsKt
 import yellow.type.NameableWeapon
+import yellow.world.meta.YellowStats
 
 open class YellowUnitType(name: String): UnitType(name) {
 
@@ -63,14 +61,14 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt){ me: Table ->
             me.add().row()
-            YellowUtilsKt.seperator(me, 290f, 4f)
+            YellowUtilsKt.seperator(me, 340f, 4f)
             me.row()
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
-                me.button("?"){}.size(45f)
+                me.button("?"){}.size(35f)
                 me.row()
-                YellowUtilsKt.seperator(me, 290f, 4f)
+                YellowUtilsKt.seperator(me, 340f, 4f)
                 me.row()
             }
         }
