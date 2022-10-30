@@ -12,6 +12,7 @@ import arc.util.Tmp
 import mindustry.Vars
 import mindustry.graphics.Layer
 import mindustry.type.UnitType
+import mindustry.ui.Styles
 import mindustry.world.meta.Stat
 import mindustry.world.meta.StatUnit
 import mindustry.world.meta.StatValue
@@ -63,10 +64,11 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.weaponsAlt){ me: Table ->
             me.add().row()
             YellowUtilsKt.seperator(me, 290f, 4f)
+            me.row()
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
-                me.button("?"){}.size(12f)
+                me.button("?"){}.style(Styles.defaultt).size(12f)
                 me.row()
                 YellowUtilsKt.seperator(me, 290f, 4f)
                 me.row()
