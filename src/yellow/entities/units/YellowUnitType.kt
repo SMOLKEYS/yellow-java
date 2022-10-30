@@ -62,9 +62,11 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.remove(Stat.weapons)
         stats.add(YellowStats.weaponsAlt){ me: Table ->
             me.add().row()
+            YellowUtilsKt.seperator(me, 290f, 4f)
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
+                me.button("?"){}.size(12f)
                 me.row()
                 YellowUtilsKt.seperator(me, 290f, 4f)
                 me.row()
