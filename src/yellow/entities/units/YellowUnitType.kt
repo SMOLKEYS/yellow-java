@@ -68,7 +68,7 @@ open class YellowUnitType(name: String): UnitType(name) {
             weapons.each{
                 val suse = it as NameableWeapon
                 me.add(suse.displayName)
-                me.button("?"){}.style(Styles.defaultt).size(24f)
+                me.button("?"){}.size(45f)
                 me.row()
                 YellowUtilsKt.seperator(me, 290f, 4f)
                 me.row()
