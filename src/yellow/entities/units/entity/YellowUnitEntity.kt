@@ -27,7 +27,6 @@ open class YellowUnitEntity: UnitEntity(){
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
-    var existenceTime = 0f
 
     
     private fun initVars(){
@@ -81,14 +80,6 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
     
-    private fun lifetimeCompare(runnable: () -> Unit){
-        Groups.unit.each{
-            if(it != this && it is YellowUnitEntity){
-                if(it.existenceTime < existenceTime) runnable()
-            }
-        }
-    }
-    
     private fun destroyFull(){
         invalidateVars()
         super.destroy()
@@ -119,8 +110,7 @@ open class YellowUnitEntity: UnitEntity(){
     }
     
 
-    override fun destroy() {
-        lifetimeCompare{ destroyFull() }
+    override fun destroy(){
         
         if(lives > 1) {
             invalidateDeath()
@@ -131,8 +121,7 @@ open class YellowUnitEntity: UnitEntity(){
     }
 
     override fun remove() {
-        lifetimeCompare{ removeFull() }
-        
+    
         if(!YellowPermVars.removeAllowed && lives > 1){
             return
         }
@@ -148,12 +137,11 @@ open class YellowUnitEntity: UnitEntity(){
             initVars()
         }
 
-        spawnedByCore = true
-        existenceTime++
+        spawnedByCore = false
 
         if(team.data().countType(type) > 1) {
             YellowPermVars.removeAllowed = true
-            remove()
+            removeFull()
         } else {
             YellowPermVars.removeAllowed = false
         }

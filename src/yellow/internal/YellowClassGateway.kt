@@ -33,6 +33,10 @@ open class YellowClassGateway{
         controlledLog("[green]--------GATEWAY STARTED!--------[]")
     }
     
+    /*
+    
+    TODO crashes due to thw creation of a SingletonList somewhere
+    
     fun loadUniversal(){
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
         
@@ -87,4 +91,5 @@ open class YellowClassGateway{
         controlledLog("[green]--------UNIVERSAL GATEWAY STARTED!--------[]")
         Log.info("Total universal gateway imports: $uniGateImports, Total universal gateway import errors: $uniGateErrors")
     }
+    */
 }

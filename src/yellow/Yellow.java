@@ -33,7 +33,7 @@ public class Yellow extends Mod{
             
             YellowClassGateway ycg = new YellowClassGateway();
             ycg.load();
-            ycg.loadUniversal();
+            //ycg.loadUniversal();
 
             YellowSettings.INSTANCE.load();
             YellowUtils.startRequestLimitHandler();

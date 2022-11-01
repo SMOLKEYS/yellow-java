@@ -3,7 +3,7 @@ package yellow.internal.util;
 import arc.Core;
 import arc.files.Fi;
 import arc.func.Cons;
-import arc.math.Mathf;
+import arc.math.*;
 import arc.util.Http;
 import arc.util.Log;
 import arc.util.Timer;
@@ -126,5 +126,9 @@ public class YellowUtils{
 
     public static void controlledLog(Object log){
         if(YellowPermVars.INSTANCE.getVerboseLoggering()) Log.info(log);
+    }
+    
+    public static float combineInterp(Interp main, Interp other, float base){
+        return main.apply(other.apply(base));
     }
 }

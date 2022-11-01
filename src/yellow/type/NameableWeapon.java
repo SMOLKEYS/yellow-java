@@ -2,14 +2,15 @@ package yellow.type;
 
 import mindustry.type.Weapon;
 
-    /**
-     * A weapon with a configurable display name.
-     */
 public class NameableWeapon extends Weapon{
-    public String displayName;
+    /** The weapon display name, as shown in UI. */
+    public String displayName = "displayed weapon name";
+    /** The weapon description. */
+    public String description;
     
     public NameableWeapon(String name, String displayName){
         super(name);
+        if(displayName == null) throw new NullPointerException("displayName of weapon " + name + " cannot be null.");
         this.displayName = displayName;
     }
 }
