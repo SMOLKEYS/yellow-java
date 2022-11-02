@@ -7,6 +7,7 @@ import mindustry.Vars
 import mindustry.Vars.ui
 import mindustry.gen.Icon
 import yellow.YellowPermVars
+import yellow.content.YellowUnitTypes
 import yellow.internal.util.YellowUtils
 
 object YellowSettings{
@@ -14,7 +15,7 @@ object YellowSettings{
     val tmpDir: Fi = Core.settings.dataDirectory.child("yellow.jar")
 
     fun load(){
-        ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
+        ui.settings.addCategory("Yellow (Java)", YellowUnitTypes.yellow.uiIcon){ table ->
 
             table.checkPref("Verbose Logging", false){
                 YellowPermVars.verboseLoggering = it
