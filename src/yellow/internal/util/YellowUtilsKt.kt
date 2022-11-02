@@ -3,6 +3,7 @@ package yellow.internal.util
 import arc.Core
 import arc.scene.ui.Image
 import arc.scene.ui.layout.*
+import arc.scene.event.*
 import arc.files.Fi
 import arc.graphics.Color
 import arc.struct.Seq
@@ -11,6 +12,11 @@ import arc.util.serialization.JsonValue
 
 
 infix fun Int.ins(other: Int) = this % other == 0
+
+fun Table.touchableOf(index: Int, touchable: Touchable){
+    this.children[index].touchable = touchable
+}
+
 object YellowUtilsKt{
     fun traverse(dir: Fi, dump: Seq<String>){
         if(!dir.exists()) return

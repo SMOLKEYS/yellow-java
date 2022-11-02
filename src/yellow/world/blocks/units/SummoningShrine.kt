@@ -20,7 +20,7 @@ import mindustry.type.UnitType
 import mindustry.world.Block
 import mindustry.world.meta.BuildVisibility
 import mindustry.world.meta.Stat
-import yellow.internal.util.YellowUtils
+import yellow.internal.util.*
 
 open class SummoningShrine(
     /** What unit to summon.  */
@@ -65,7 +65,7 @@ open class SummoningShrine(
             table.table { t: Table ->
                 t.add("Summoning Shrine (${unit.localizedName})").row()
                 t.button("Summon Unit") {
-                    t.children[1].touchable = Touchable.disabled
+                    t.touchableOf(1, Touchable.disabled)
                     requestEffect.at(this)
                     currentlySummoning = true
                     Time.run(summonTime) {
@@ -77,11 +77,11 @@ open class SummoningShrine(
                             summonEffect.at(this)
                         }
                         currentlySummoning = false
-                        t.children[1].touchable = Touchable.enabled
+                        t.touchableOf(1, Touchable.enabled)
                     }
                 }.get().label.setWrap(false)
                 if (currentlySummoning) {
-                    t.children[1].touchable = Touchable.disabled
+                    t.touchableOf(1, Touchable.enabled)
                 }
             }
         }

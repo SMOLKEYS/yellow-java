@@ -30,6 +30,7 @@ public class YellowUtils{
     private static float requestLimitResetTime = 10f; //in seconds
     private static boolean statusRequestRunning = false;
     private static final String[][] choices = {{"@ok", "@internal.checkagain"}, {"@internal.openrepo"}};
+    private static int currentButtons = 0;
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
@@ -160,5 +161,20 @@ public class YellowUtils{
             cc.add(type.localizedName).grow().left().pad(10f);
             cc.add(rightHandText).pad(25f);
         });
+    }
+    
+    public static void mobileHudButton(Drawable icon, Runnable listener){
+        Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
+        if(currentButtons == 5){
+            currentButtons = 0;
+            but.image().height(65f).width(4f).color(Color.darkGray);
+            but.row();
+        }
+        
+        but.table(Styles.none, a => {
+            a.button(icon, Styles.cleari, listener).grow();
+        });
+        
+        currentButtons++;
     }
 }
