@@ -20,7 +20,7 @@ import yellow.internal.util.YellowUtilsKt
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.YellowUtilsKt.seperator
 import yellow.world.meta.YellowStats
-import yellow.type.NameableWeapon
+import yellow.type.*
 
 open class YellowUnitType(name: String): UnitType(name) {
 
@@ -68,12 +68,13 @@ open class YellowUnitType(name: String): UnitType(name) {
             me.row()
             weapons.each{
                 val suse = it as DisableableWeapon
-                if(suse.mirroredType) return
-                me.add(suse.displayName)
-                me.button("?"){}.size(35f)
-                me.row()
-                seperator(me, 290f, 4f)
-                me.row()
+                if(!suse.mirroredType){
+                    me.add(suse.displayName)
+                    me.button("?"){}.size(35f)
+                    me.row()
+                    seperator(me, 290f, 4f)
+                    me.row()
+                }
             }
         }
         stats.remove(Stat.range)
