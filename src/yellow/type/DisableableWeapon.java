@@ -6,6 +6,8 @@ import yellow.entities.units.DisableableWeaponMount;
 
 public class DisableableWeapon extends NameableWeapon{
     
+    public boolean mirroredVersion = false;
+    
     public DisableableWeapon(String name, String displayName){
         super(name, displayName);
         mountType = DisableableWeaponMount::new;

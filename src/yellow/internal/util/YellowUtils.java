@@ -38,7 +38,7 @@ public class YellowUtils{
 
     /** Utility for manually mirroring disableable weapons.
      * Why does this exist? Simple, disableable weapons are pure jank with the usual mirror implementation. */
-    public static void mirror(Weapon[] in, boolean nameable, boolean alternate, UnitType unit){
+    public static void mirror(Weapon[] in, boolean nameable, boolean disableable, boolean alternate, UnitType unit){
         for (Weapon weapon : in) {
             Weapon mog = weapon.copy();
             mog.x = weapon.x - (weapon.x * 2);
@@ -47,9 +47,8 @@ public class YellowUtils{
             }
             mog.name = weapon.name + "-m";
             mog.load();
-            if (nameable) {
-                ((NameableWeapon) mog).displayName = ((NameableWeapon) weapon).displayName + " (Inv)";
-            }
+            if(disableable) ((DisableableWeapon) mog). mirroredVersion = true;
+            if(nameable) ((NameableWeapon) mog).displayName = ((NameableWeapon) weapon).displayName + " (Inv)";
             unit.weapons.add(mog);
         }
     }

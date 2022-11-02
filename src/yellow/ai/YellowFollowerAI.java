@@ -11,8 +11,8 @@ import yellow.entities.units.entity.YellowUnitEntity;
 public class YellowFollowerAI extends AIController{
     
     protected float dist = 80f, wavedist = 20f;
-    protected YellowUnitEntity follow = null;
-    protected Building core = null;
+    protected YellowUnitEntity follow;
+    protected Building core;
     
     @Override
     public void init(){
