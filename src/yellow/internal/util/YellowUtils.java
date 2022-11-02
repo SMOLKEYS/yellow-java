@@ -171,7 +171,7 @@ public class YellowUtils{
             but.row();
         }
         
-        but.table(Styles.none, a => {
+        but.table(Styles.none, a -> {
             a.button(icon, Styles.cleari, listener).grow();
         });
         
