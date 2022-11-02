@@ -49,6 +49,7 @@ open class SummoningShrine(
     override fun setStats() {
         super.setStats()
         stats.add(Stat.output){
+            it.row()
             YellowUtils.unitBar(it, unit, "Summon Time: $summonTime")
         }
     }
