@@ -20,6 +20,7 @@ import mindustry.type.UnitType
 import mindustry.world.Block
 import mindustry.world.meta.BuildVisibility
 import mindustry.world.meta.Stat
+import yellow.internal.util.YellowUtils
 
 open class SummoningShrine(
     /** What unit to summon.  */
@@ -28,7 +29,7 @@ open class SummoningShrine(
     /** Time required for the unit to be summoned.  */
     var summonTime = 60f
 
-    /** Whether the block sprite should be drawn on the block.  */
+    /** Whether the block sprite should be drawn on the block. */
     var drawBlock = false
 
     /** What effect to call on summon request.  */
@@ -42,20 +43,14 @@ open class SummoningShrine(
         solid = true
         update = true
         rotate = false
-        buildVisibility = BuildVisibility.shown
+        buildVisibility = BuildVisibility.sandboxOnly //fn, ig
     }
 
     override fun setStats() {
         super.setStats()
-        stats.add(Stat.abilities,
-            """
-            [lightgray]——————————————————
-            Unit Summoner:
-            Unit:[accent] ${unit.localizedName} [lightgray](${unit.name})
-            Summon Time Needed:[] ${summonTime / 60f} Seconds[lightgray]
-            ——————————————————[]
-            """.trimIndent()
-        )
+        stats.add(Stat.output){
+            YellowUtils.unitBar(it, unit, "Summon Time: $summonTime")
+        }
     }
 
     inner class SummoningShrineBuild : Building() {
