@@ -1,6 +1,7 @@
 package yellow.internal.util;
 
 import arc.Core;
+import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.files.Fi;
 import arc.func.*;
@@ -134,5 +135,9 @@ public class YellowUtils{
     
     public static void table(Table parent, Cons<Cell<Table>> child, Cons<Table> childContents){
         child.get(parent.table(childContents));
+    }
+    
+    public static void dialogTable(Dialog parent, Cons<Cell<Table>> tableParent, Cons<Table> tableContents){
+        tableParent.get(parent.cont.table(tableContents));
     }
 }
