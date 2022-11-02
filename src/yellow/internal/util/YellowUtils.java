@@ -33,6 +33,7 @@ public class YellowUtils{
     private static boolean statusRequestRunning = false;
     private static final String[][] choices = {{"@ok", "@internal.checkagain"}, {"@internal.openrepo"}};
     private static int currentButtons = 0;
+    private static boolean once = false;
 
     public static boolean isEnabled(String modName){
         return settings.getBool("mod-" + modName + "-enabled");
@@ -167,6 +168,12 @@ public class YellowUtils{
     
     public static void mobileHudButton(Drawable icon, Runnable listener){
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
+        
+        if(!once){
+            once = true;
+            but.row();
+        }
+        
         if(currentButtons == 5){
             currentButtons = 0;
             but.image().height(65f).width(4f).color(Color.darkGray);
