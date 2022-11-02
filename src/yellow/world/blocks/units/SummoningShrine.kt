@@ -50,7 +50,7 @@ open class SummoningShrine(
         super.setStats()
         stats.add(Stat.output){
             it.row()
-            YellowUtils.unitBar(it, unit, "Summon Time: $summonTime")
+            YellowUtils.unitBar(it, unit, "Summon Time: [accent]${Mathf.round(summonTime / 60f)} Seconds[]")
         }
     }
 
