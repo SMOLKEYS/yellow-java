@@ -68,7 +68,7 @@ open class YellowUnitType(name: String): UnitType(name) {
             me.row()
             weapons.each{
                 val suse = it as DisableableWeapon
-                if(!suse.mirroredType){
+                if(!suse.mirroredVersion){
                     me.add(suse.displayName)
                     me.button("?"){}.size(35f)
                     me.row()
