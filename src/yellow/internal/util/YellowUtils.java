@@ -13,6 +13,7 @@ import arc.util.io.Streams;
 import arc.util.serialization.JsonReader;
 import arc.util.serialization.JsonValue;
 import mindustry.Vars;
+import mindustry.ui.Styles;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import yellow.YellowPermVars;
