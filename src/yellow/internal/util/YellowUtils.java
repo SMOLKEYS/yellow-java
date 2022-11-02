@@ -14,7 +14,7 @@ import mindustry.Vars;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import yellow.YellowPermVars;
-import yellow.type.NameableWeapon;
+import yellow.type.*;
 
 import static arc.Core.settings;
 
@@ -47,7 +47,7 @@ public class YellowUtils{
             }
             mog.name = weapon.name + "-m";
             mog.load();
-            if(disableable) ((DisableableWeapon) mog). mirroredVersion = true;
+            if(disableable) ((DisableableWeapon) mog).mirroredVersion = true;
             if(nameable) ((NameableWeapon) mog).displayName = ((NameableWeapon) weapon).displayName + " (Inv)";
             unit.weapons.add(mog);
         }
