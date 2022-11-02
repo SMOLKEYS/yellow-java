@@ -1,8 +1,9 @@
 package yellow.internal.util;
 
 import arc.Core;
+import arc.scene.ui.layout.*;
 import arc.files.Fi;
-import arc.func.Cons;
+import arc.func.*;
 import arc.math.*;
 import arc.util.Http;
 import arc.util.Log;
@@ -129,5 +130,9 @@ public class YellowUtils{
     
     public static float combineInterp(Interp main, Interp other, float base){
         return main.apply(other.apply(base));
+    }
+    
+    public static void table(Table parent, Cons<Cell<Table>> child, Cons<Table> childContents){
+        child.get(parent.table(childContents));
     }
 }
