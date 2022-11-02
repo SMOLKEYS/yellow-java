@@ -63,7 +63,7 @@ open class SummoningShrine(
 
         override fun buildConfiguration(table: Table) {
             table.table { t: Table ->
-                t.add("Summoning Shrine (" + unit.localizedName + ")").row()
+                t.add("Summoning Shrine (${unit.localizedName})").row()
                 t.button("Summon Unit") {
                     t.children[1].touchable = Touchable.disabled
                     requestEffect.at(this)
@@ -98,7 +98,9 @@ open class SummoningShrine(
             }
             val lerpA = if (currentlySummoning) 1f else 0f
             val sus = Mathf.absin(10f, 10f)
+            
             a = Mathf.lerp(a, lerpA, 0.04f)
+            
             val lerpSize = if (placed) 20f else 0f
             size = Mathf.lerp(size, lerpSize, 0.043f)
             Draw.z(Layer.effect)

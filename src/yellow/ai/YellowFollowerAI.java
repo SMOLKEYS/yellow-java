@@ -28,7 +28,8 @@ public class YellowFollowerAI extends AIController{
         
         Groups.unit.each(e -> {
             if(e.type == YellowUnitTypes.yellow && follow == null){
-                follow = ((YellowUnitEntity)e);
+                YellowUnitEntity defo = (YellowUnitEntity) e;
+                if(defo.team == unit.team) follow = defo;
             }
         });
         
