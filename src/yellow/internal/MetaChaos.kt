@@ -14,7 +14,7 @@ open class MetaChaos{
     }
     
     fun List<String>.filterComments(): List<String>{
-        return this.filter{ !it.startsWith("#") }
+        return this.filter{ !it.startsWith("#") || !it.startsWith("//") }
     }
     
     fun Fi.readLines(): List<String>{
