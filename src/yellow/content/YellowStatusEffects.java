@@ -1,6 +1,7 @@
 package yellow.content;
 
 import arc.math.Mathf;
+import arc.graphics.Color;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
 import mindustry.type.StatusEffect;
@@ -39,7 +40,7 @@ public class YellowStatusEffects{
             public void update(Unit unit, float time){
                 if(Mathf.chanceDelta(0.6)){
                     unit.damage(1);
-                    YellowFx.textIndicator.at("-1", unit.x, unit.y);
+                    YellowFx.textIndicator.at(unit.x, unit.y, 0f, Color.black, "-1");
                 }
             }
         };

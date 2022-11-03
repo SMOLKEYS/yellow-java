@@ -142,11 +142,6 @@ public class YellowFx{
         Draw.z(Layer.flyingUnit);
         Fonts.def.draw((String)e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
         
-    }){
-        public void at(String text, float x, float y){
-            super.at(x, y, 0f, Color.black, text);
-        }
-    };
-        
+    });
         //endregion
 }
