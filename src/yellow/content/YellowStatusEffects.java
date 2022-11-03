@@ -40,7 +40,6 @@ public class YellowStatusEffects{
             public void update(Unit unit, float time){
                 if(Mathf.chanceDelta(0.6)){
                     unit.damage(1);
-                    YellowFx.textIndicator.at(unit.x, unit.y, 0f, Color.black, "-1");
                 }
             }
         };
