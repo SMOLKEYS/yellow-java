@@ -140,7 +140,7 @@ public class YellowFx{
     textIndicator = new Effect(25f, e -> {
         if(!(e.data instanceof String)) return;
         Draw.z(Layer.flyingUnit);
-        Fonts.def.draw(e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
+        Fonts.def.draw((String)e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
         
     }){
         public void at(String text, float x, float y){
