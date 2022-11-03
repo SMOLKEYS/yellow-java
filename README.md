@@ -20,6 +20,7 @@ A random piece of chaos I made. My second java mod aside Ion (prior to the kotli
 
 There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) if you need it for some reason. (Don't use it, it contains the old bullethell configurations which are pieces of absolute batshit.)
 
+
 ## Contributors/Suggestors
 
 ### Contributors
@@ -34,6 +35,7 @@ Janssendel - David's Star effect for Bullethell
 
 
 
+
 |Links|
 |---|
 |[SMOLHome Discord Server](https://discord.gg/uAddT46bFx)|
@@ -41,3 +43,12 @@ Janssendel - David's Star effect for Bullethell
 |[Ion (Second Main Project)](https://github.com/PKChaos/Ion)|
 |[The Original Project Repository (JS)](https://github.com/SMOLKEYS/yellow)|
 |**MISSING-LINK**|
+
+
+|Time|Event|Info|
+|---|---|---|
+|August 5, 2021; 8:41PM PST|Prologue|The first image of the flare|
+|August 5, 2021; 8:44PM PST|Prologue|Designation of name "Yellow" to the flare (by ffx#0370)|
+|August 5, 2021; 8:48PM PST|Beginning|Project commited to GitHub|
+|August 21, 2021; ??? PST|Beginning|Uploaded yellow sprite|
+|December 6, 2021: ??? PST|New Beginning|Creation of the java version of the project, aka this repository|

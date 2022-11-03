@@ -38,8 +38,9 @@ public class YellowStatusEffects{
             
             @Override
             public void update(Unit unit, float time){
+                if(unit.health <= unit.type.health / 8f) unit.unapply(this);
                 if(Mathf.chanceDelta(0.6)){
-                    unit.damage(1);
+                    unit.damage(1f);
                 }
             }
         };
