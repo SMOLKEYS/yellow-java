@@ -10,6 +10,7 @@ plugins {
 }
 
 val mindustryVersion = "v140"
+val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
     maven("https://jitpack.io")
@@ -29,7 +30,9 @@ dependencies {
     //flabel hash eae3c2dc59 is broken
     compileOnly("com.github.Anuken.Arc:flabel:$mindustryVersion")
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
-    implementation("com.github.mnemotechnician:mkui:v1.1")
+    implementation("com.github.mnemotechnician:mkui:v1.2")
+    
+    annotationProcessor("com.github.Anuken:jabel:$jabelCommitHash")
 }
 
 java {
