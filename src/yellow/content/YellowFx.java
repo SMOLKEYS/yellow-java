@@ -9,6 +9,7 @@ import arc.math.Interp;
 import arc.util.Time;
 import mindustry.entities.Effect;
 import mindustry.graphics.Layer;
+import mindustry.ui.Fonts;
 import yellow.entities.effect.RandomEffect;
 
 
@@ -134,7 +135,18 @@ public class YellowFx{
         Lines.stroke(10);
         Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6);
         Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6 - 180);
-    });
+    }),
+    
+    textIndicator = new Effect(25f, e -> {
+        if(!(e.data instanceof String)) return;
+        Draw.z(Layer.flyingUnit);
+        Fonts.def.draw(e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
+        
+    }){
+        public void at(String text, float x, float y){
+            super.at(x, y, 0f, Color.black, text);
+        }
+    };
         
         //endregion
 }

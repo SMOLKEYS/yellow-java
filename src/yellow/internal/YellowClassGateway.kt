@@ -35,7 +35,7 @@ open class YellowClassGateway{
     
     /*
     
-    TODO crashes due to thw creation of a SingletonList somewhere
+    TODO crashes due to the creation of a SingletonList somewhere
     
     fun loadUniversal(){
         var scope = Vars.mods.scripts.scope as ImporterTopLevel
