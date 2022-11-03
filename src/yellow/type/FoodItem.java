@@ -15,13 +15,13 @@ public class FoodItem extends Item{
     /** Possible responses of the specified consumers when consuming this item. */
     public final ObjectMap<UnitType, Seq<String>> responses = new ObjectMap<UnitType, Seq<String>>();
     
-    public FoodItem(String name, float health){
+    public FoodItem(String name, float healthGain){
         super(name);
-        this.health = health;
+        this.healthGain = healthGain;
     }
     
     @Override
     public void setStats(){
-        stats.add();
+        //TODO
     }
 }
