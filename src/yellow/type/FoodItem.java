@@ -49,7 +49,6 @@ public class FoodItem extends Item{
     }
     
     private void heal(Unit unit){
-        if(unit.health == unit.type.health) return;
         if(healPercent){
             unit.healFract(healthGainPercent);
         }else{
@@ -59,7 +58,6 @@ public class FoodItem extends Item{
     }
     
     private void healFavorite(Unit unit){
-        if(unit.health == unit.type.health) return;
         if(unitFavorites.containsKey(unit.type)) unit.heal(unitFavorites.get(unit.type));
         if(unitFavoritesPercentage.containsKey(unit.type)) unit.heal(unitFavoritesPercentage.get(unit.type));
         healedAnything = true;
