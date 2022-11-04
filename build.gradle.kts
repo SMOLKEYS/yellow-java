@@ -42,8 +42,8 @@ java {
 }
 
 tasks.withType<JavaCompile> {
-    sourceCompatibility = 17
-    options.release = 8
+    sourceCompatibility.set(17)
+    options.release.set(8)
 }
 
 val genYellowClasspath by tasks.registering {
