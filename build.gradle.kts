@@ -36,20 +36,8 @@ dependencies {
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
-tasks.withType<JavaCompile> {
-    sourceCompatibility = "17"
-    options.release.set(8)
-}
-
-tasks.compileKotlin {
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 val genYellowClasspath by tasks.registering {
