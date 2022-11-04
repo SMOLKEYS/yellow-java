@@ -38,6 +38,15 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_17
+    
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "17"
+    options.release.set(8)
 }
 
 val genYellowClasspath by tasks.registering {
