@@ -11,17 +11,13 @@ public class YellowItems{
     
     public static void load(){
         surgeCandy = new FoodItem("surge-candy"){{
-            healPercent = true;
-            healthGainPercent = -0.07f;
-            
-            unitFavoritesPercentage.put(YellowUnitTypes.yellow, 0.5f);
-            
-            responses.put(YellowUnitTypes.yellow, Seq.with("Some real candy right here!", "Tingly. I love it!", "Very sweet and electric!", "Thank youuuuuu~!"));
+            healing = 170f;
         }};
         
         megaCopperPack = new FoodItem("mega-copper-pack"){{
-            healPercent = true;
-            healthGainPercent = 0.12f;
+            healAllAllies = true;
+            healUsingPercentage = true;
+            healingPercent = 0.07f;
         }};
     }
 }

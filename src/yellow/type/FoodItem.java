@@ -7,102 +7,48 @@ import mindustry.type.*;
 import mindustry.game.*;
 
 public class FoodItem extends Item{
-    private static boolean healedAnything = false;
+    /** Amount of health healed when consumed. Use negative values to inflict damage instead. */
+    public float healing = 40f,
     
+    /** Amount of health healed when consumed, in percentage. Use negative values to inflict damage instead. */
+    healingPercent = 0f;
     
-    /** If set to true, this food item gives health in percentage. */
-    public boolean healPercent = false,
+    /** If true, consuming one of this item heals all allied units. */
+    public boolean healAllAllies = false,
     
-    /** If set to true, consuming this food item heals all units in the player's team. */
-    healAll = false,
-    
-    /** Determines whether this item can only heal whitelisted units, or any unit. */
-    useWhitelist = false;
-    
-    /** Total health gain when consuming this item. */
-    public float healthGain = 40f,
-    
-    /** Total health gain by percentage when consuming this item. Must be anywhere between 0-1, with 0 being 0% and 1 being 100%. */
-    healthGainPercent = 0f;
-    
-    /** Possible responses of the specified consumers when consuming this item. */
-    public final ObjectMap<UnitType, Seq<String>> responses = new ObjectMap<UnitType, Seq<String>>();
-    
-    /** A list of units that can gain more health than other units consuming this item. Can be set to a negative value to make specific units take damage consuming this item. */
-    public final ObjectMap<UnitType, Float> unitFavorites = new ObjectMap<UnitType, Float>();
-    
-    /** unitFavorites, but with percentage. Does not require healAll to be true. */
-    public final ObjectMap<UnitType, Float> unitFavoritesPercentage = new ObjectMap<UnitType, Float>();
-    
-    /** If useWhitelist is true, then every single unit cannot consume this item, except for units in this whitelist.
-      * If healAll is true, then only the units in this list will be healed.
-      */
-    public final Seq<UnitType> whitelist = new Seq<UnitType>();
+    /** If true, this item heals health in percentage. */
+    healUsingPercentage = false;
     
     public FoodItem(String name){
         super(name);
     }
     
-    @Override
-    public void setStats(){
-        //TODO
-    }
-    
+    /** Healing handler. */
     private void heal(Unit unit){
-        if(healPercent){
-            unit.healFract(healthGainPercent);
+        if(healUsingPercentage){
+            unit.healFract(healingPercent);
         }else{
-            unit.heal(healthGain);
-        }
-        healedAnything = true;
-    }
-    
-    private void healFavorite(Unit unit){
-        if(unitFavorites.containsKey(unit.type)) unit.heal(unitFavorites.get(unit.type));
-        if(unitFavoritesPercentage.containsKey(unit.type)) unit.heal(unitFavoritesPercentage.get(unit.type));
-        healedAnything = true;
-    }
-    
-    public boolean hasThis(Team team){
-        return team.items().get(this) >= 1;
-    }
-    
-    public void consume(Team team, Unit unit){
-        if(!hasThis(team)) return;
-        Groups.unit.each(t -> {
-            if(t.team != team){
-                if(unitFavorites.containsKey(t.type) || unitFavoritesPercentage.containsKey(t.type)) return;
-                if(healAll){
-                    if(useWhitelist){
-                        if(whitelist.contains(t.type)) heal(t);
-                    }else{
-                        heal(t);
-                    }
-                }else{
-                    heal(unit);
-                }
-            }
-        });
-        
-        //other ones
-        Groups.unit.each(t -> {
-            if(t.team == team){
-                if(healAll){
-                    healFavorite(t);
-                }else{
-                    healFavorite(unit);
-                }
-            }
-        });
-        
-        if(healedAnything){
-            team.items().remove(this, 1);
-            healedAnything = false;
+            unit.heal(healing);
         }
     }
     
-    public String response(UnitType type){
-        if(responses.get(type) == null) return "...";
-        return responses.get(type).random();
+    /** Consumes one of this item and heals the unit this was given to, or all units if healAllAllies is true. */
+    public void consume(Unit unit, Team team){
+        if(healAllAllies && team != null){
+            Groups.unit.each(un -> {
+                if(un.team == team){
+                    heal(un);
+                }
+            });
+        }else{
+            heal(unit);
+        }
+        
+        team.items().remove(this, 1);
+    }
+    
+    //TODO
+    public String response(Unit unit){
+        return "...";
     }
 }
