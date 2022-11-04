@@ -46,9 +46,10 @@ tasks.withType<JavaCompile> {
     options.release.set(8)
 }
 
-tasks.withType<KotlinCompile> {
-    sourceCompatibility = "17"
-    options.release.set(8)
+tasks.compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 val genYellowClasspath by tasks.registering {
