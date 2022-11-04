@@ -53,6 +53,7 @@ public class Yellow extends Mod{
         YellowStatusEffects.load();
         YellowPlanets.load();
         YellowBlocks.load();
+        YellowItems.load();
 
         YellowWeapons.afterLoad();
 
