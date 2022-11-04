@@ -66,7 +66,7 @@ public class FoodItem extends Item{
     }
     
     public boolean hasThis(Team team){
-        return team.items().get(this) <= 1;
+        return team.items().get(this) >= 1;
     }
     
     public void consume(Team team, Unit unit){
