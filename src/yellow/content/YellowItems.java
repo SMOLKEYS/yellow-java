@@ -16,7 +16,7 @@ public class YellowItems{
             
             unitFavoritesPercentage.put(YellowUnitTypes.yellow, 0.5f);
             
-            responses.put(YellowUnitTypes.yellow, Seq.with("Some real candy right here!", "Tingly. I love it!", "Very sweet and electric!", "Thank youuuuuu~!"))
+            responses.put(YellowUnitTypes.yellow, Seq.with("Some real candy right here!", "Tingly. I love it!", "Very sweet and electric!", "Thank youuuuuu~!"));
         }};
         
         megaCopperPack = new FoodItem("mega-copper-pack"){{

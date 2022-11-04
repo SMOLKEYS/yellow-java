@@ -25,7 +25,7 @@ public class FoodItem extends Item{
     /** Total health gain by percentage when consuming this item. Must be anywhere between 0-1, with 0 being 0% and 1 being 100%. */
     healthGainPercent = 0f;
     
-    /** Possible responses of the specified consumers when consuming this item. Unused. */
+    /** Possible responses of the specified consumers when consuming this item. */
     public final ObjectMap<UnitType, Seq<String>> responses = new ObjectMap<UnitType, Seq<String>>();
     
     /** A list of units that can gain more health than other units consuming this item. Can be set to a negative value to make specific units take damage consuming this item. */
