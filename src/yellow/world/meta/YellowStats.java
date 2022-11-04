@@ -7,7 +7,9 @@ import mindustry.world.meta.StatUnit;
 public class YellowStats{
     public static final StatCat humanInfo = new StatCat("humanInfo");
     
-    public static final StatUnit yearsOld = new StatUnit("yearsOld");
+    public static final StatUnit yearsOld = new StatUnit("yearsOld"),
+    
+    hp = new StatUnit("hp");
     
     public static final Stat
     maxLives = new Stat("maxLives"),
@@ -23,5 +25,12 @@ public class YellowStats{
     dislikes = new Stat("dislikes", humanInfo),
     itemCapacityAlt = new Stat("itemCapacity"),
     weaponsAlt = new Stat("weapons"),
-    rangeAlt = new Stat("range");
+    rangeAlt = new Stat("range"),
+    
+    
+    //food items
+    
+    healing = new Stat("healing"),
+    healingPercent = new Stat("healingPercent"),
+    healAllAllies = new Stat("healAllAllies");
 }

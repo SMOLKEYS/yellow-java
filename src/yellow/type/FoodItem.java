@@ -5,6 +5,7 @@ import mindustry.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.game.*;
+import yellow.world.meta.*;
 
 public class FoodItem extends Item{
     /** Amount of health healed when consumed. Use negative values to inflict damage instead. */
@@ -21,6 +22,17 @@ public class FoodItem extends Item{
     
     public FoodItem(String name){
         super(name);
+    }
+    
+    @Override
+    public void setStats(){
+        if(healUsingPercentage){
+            stats.addPercent(YellowStats.healingPercent, healingPercent);
+        }else{
+            stats.add(YellowStats.healing, healing, YellowStats.hp);
+        }
+        
+        stats.add(YellowStats.healAllAllies, healAllAllies);
     }
     
     /** Healing handler. */
