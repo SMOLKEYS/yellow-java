@@ -32,12 +32,21 @@ dependencies {
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
     implementation("com.github.mnemotechnician:mkui:v1.2")
     
-    annotationProcessor("com.github.Anuken:jabel:$jabelCommitHash")
+    //annotationProcessor("com.github.Anuken:jabel:$jabelCommitHash")
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+    
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = 17
+    options.release = 8
 }
 
 val genYellowClasspath by tasks.registering {
