@@ -42,7 +42,7 @@ java {
 }
 
 tasks.withType<JavaCompile> {
-    sourceCompatibility.set(17)
+    sourceCompatibility = "17"
     options.release.set(8)
 }
 
