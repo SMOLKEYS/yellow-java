@@ -28,7 +28,7 @@ open class FoodDialog : BaseDialog("Food"){
                     YellowUtils.foodOpts(this, unit, {}){ issus: Table ->
                         FoodItem.instances.each{
                             issus.button(it.localizedName){
-                                it.consume(unit, team)
+                                if(it.hasThis(team)) it.consume(unit, team)
                             }.get().label.setWrap(false)
                             issus.row()
                         }
