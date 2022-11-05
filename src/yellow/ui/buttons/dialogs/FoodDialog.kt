@@ -25,7 +25,7 @@ open class FoodDialog : BaseDialog("Food"){
         cont.clear()
 
         cont.scrollPane{ scr: ScrollPane ->
-            YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 10f, Pal.accent)
+            YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 4f, Pal.accent)
             this.row()
             Groups.unit.each{ unit ->
                 if(unit.team == team){
@@ -44,7 +44,7 @@ open class FoodDialog : BaseDialog("Food"){
                         })
                     }
                     this.row()
-                    YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 10f, Pal.accent)
+                    YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 4f, Pal.accent)
                     this.row()
                 }
             }
