@@ -1,6 +1,10 @@
 package yellow.ui.buttons.dialogs
 
+import arc.Core
 import arc.scene.ui.Dialog
+import arc.scene.ui.ScrollPane
+import com.github.mnemotechnician.mkui.extensions.dsl.addTable
+import com.github.mnemotechnician.mkui.extensions.dsl.scrollPane
 import mindustry.game.Team
 import mindustry.gen.Groups
 import mindustry.ui.dialogs.BaseDialog
@@ -16,11 +20,15 @@ open class FoodDialog : BaseDialog("Food"){
     fun show(team: Team): Dialog{
         cont.clear()
 
-        Groups.unit.each{
-            if(it.team == team){
-                YellowUtils.foodOpts(cont, it, {}, {})
+        cont.scrollPane{ scr: ScrollPane ->
+            Groups.unit.each{
+                if(it.team == team){
+                    YellowUtils.foodOpts(this, it, {}, {})
+                }
             }
-        }
+            scr.width = Core.graphics.width.toFloat()
+        }.size(Core.graphics.width.toFloat(), Core.graphics.height.toFloat())
+
 
         return super.show()
     }
