@@ -2,6 +2,7 @@ package yellow.internal.util;
 
 import arc.Core;
 import arc.graphics.*;
+import arc.scene.event.Touchable;
 import arc.scene.style.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
@@ -178,7 +179,17 @@ public class YellowUtils{
         }, cc -> {
             cc.setBackground(Styles.grayPanel);
             cc.image(unit.type.uiIcon).size(50).padLeft(20f);
-            cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + Mathf.round(unit.maxHealth)).grow().left().pad(15f);
+            Cell<Label> suse = cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + Mathf.round(unit.maxHealth)).grow().left().pad(15f);
+            suse.update(up -> {
+                if(unit.dead){
+                    up.setText("[red]DEAD[]");
+                    cc.getChildren().each(el -> {
+                        el.touchable = Touchable.disabled;
+                    });
+                }else{
+                    up.setText(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + Mathf.round(unit.maxHealth));
+                }
+            });
             tableChildren.get(cc);
         });
     }
