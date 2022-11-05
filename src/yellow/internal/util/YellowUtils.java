@@ -184,7 +184,7 @@ public class YellowUtils{
     }
 
     public static void mobileHudButton(Drawable icon, Runnable listener) throws Exception{
-        if(!Vars.mobile) throw new Exception("mobileHudButton is not usable outside mobile devices.");
+        if(!Vars.mobile) throw new Exception("mobileHudButton is not usable outside mobile devices. If this device is a mobile device, then some error occurred. Report it when possible.");
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
         if(!once){
