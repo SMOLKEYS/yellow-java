@@ -12,6 +12,7 @@ import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
 import yellow.internal.util.YellowUtils
 import yellow.internal.util.YellowUtilsKt
+import yellow.internal.util.typiis
 import yellow.type.FoodItem
 
 open class FoodDialog : BaseDialog("Food"){
@@ -35,7 +36,7 @@ open class FoodDialog : BaseDialog("Food"){
                         }, { table ->
                             table.pane{ pan ->
                                 FoodItem.instances.each{
-                                    pan.button(it.nameShort){
+                                    pan.button("${it.nameShort}\n${typiis(it)}"){
                                         if(it.hasThis(team)) it.consume(unit, team)
                                     }.get().label.setWrap(false)
                                     pan.row()
