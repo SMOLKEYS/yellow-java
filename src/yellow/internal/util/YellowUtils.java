@@ -174,7 +174,7 @@ public class YellowUtils{
     public static void foodOpts(Table parent, Unit unit, Cons<Cell<Table>> table, Cons<Table> tableChildren){
         table(parent, c -> {
             c.width(Core.graphics.getWidth());
-            c.height(95);
+            c.height(115);
             table.get(c);
         }, cc -> {
             cc.setBackground(Styles.grayPanel);
