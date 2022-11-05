@@ -35,7 +35,7 @@ open class FoodDialog : BaseDialog("Food"){
                         }, { table ->
                             table.pane{ pan ->
                                 FoodItem.instances.each{
-                                    pan.button(it.localizedName){
+                                    pan.button(it.nameShort){
                                         if(it.hasThis(team)) it.consume(unit, team)
                                     }.get().label.setWrap(false)
                                     pan.row()
