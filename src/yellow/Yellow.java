@@ -5,6 +5,7 @@ import arc.scene.style.Drawable;
 import arc.util.Log;
 import mindustry.Vars;
 import mindustry.game.EventType.ClientLoadEvent;
+import mindustry.gen.Icon;
 import mindustry.mod.Mod;
 import mindustry.mod.Mods;
 import mindustry.type.Weapon;
@@ -32,7 +33,7 @@ public class Yellow extends Mod{
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
             food = new FoodDialog();
-            YellowUtils.mobileHudButton((Drawable)YellowItems.megaCopperPack.uiIcon, food::show);
+            YellowUtils.mobileHudButton(Icon.defense, food::show);
 
             YellowVars.load();
             
