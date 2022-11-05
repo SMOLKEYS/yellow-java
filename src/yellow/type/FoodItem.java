@@ -10,7 +10,7 @@ import yellow.world.meta.*;
 import static yellow.internal.util.YellowUtilsKtKt.*;
 
 public class FoodItem extends Item{
-
+    /** Instances of this class. */
     public static Seq<FoodItem> instances = seqOf();
 
     /** Shortened name of this item. */

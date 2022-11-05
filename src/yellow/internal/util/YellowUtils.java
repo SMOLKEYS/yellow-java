@@ -209,7 +209,4 @@ public class YellowUtils{
         currentButtons++;
     }
 
-    public static int getScaling(){
-        return settings.getInt("uiscale") / 100;
-    }
 }
