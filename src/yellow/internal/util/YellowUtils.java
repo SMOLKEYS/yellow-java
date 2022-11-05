@@ -181,8 +181,8 @@ public class YellowUtils{
             cc.image(unit.type.uiIcon).size(50).padLeft(20f);
             Cell<Label> suse = cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + Mathf.round(unit.maxHealth)).grow().left().pad(15f);
             suse.update(up -> {
-                if(unit.dead){
-                    up.setText("[red]DEAD[]");
+                if(unit.dead || !unit.isValid()){
+                    up.setText("[red]DEAD/INVALID[]");
                     cc.getChildren().each(el -> {
                         el.touchable = Touchable.disabled;
                     });
