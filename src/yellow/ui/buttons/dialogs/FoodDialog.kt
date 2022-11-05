@@ -36,7 +36,7 @@ open class FoodDialog : BaseDialog("Food"){
                                         if(it.hasThis(team)) it.consume(unit, team)
                                     }.update{ ab ->
                                         ab.setText("${it.nameShort}\n${typiis(it)}")
-                                    }.length(270f).get().label.setWrap(false)
+                                    }.size(280f, 80f).get().label.setWrap(false)
                                     pan.row()
                                 }
                             }.grow()
