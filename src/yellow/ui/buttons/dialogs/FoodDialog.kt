@@ -8,8 +8,10 @@ import com.github.mnemotechnician.mkui.extensions.dsl.addTable
 import com.github.mnemotechnician.mkui.extensions.dsl.scrollPane
 import mindustry.game.Team
 import mindustry.gen.Groups
+import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
 import yellow.internal.util.YellowUtils
+import yellow.internal.util.YellowUtilsKt
 import yellow.type.FoodItem
 
 open class FoodDialog : BaseDialog("Food"){
@@ -23,6 +25,8 @@ open class FoodDialog : BaseDialog("Food"){
         cont.clear()
 
         cont.scrollPane{ scr: ScrollPane ->
+            YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 10f, Pal.accent)
+            this.row()
             Groups.unit.each{ unit ->
                 if(unit.team == team){
                     YellowUtils.foodOpts(this, unit, {}){ itt ->
@@ -39,6 +43,8 @@ open class FoodDialog : BaseDialog("Food"){
                             }
                         })
                     }
+                    this.row()
+                    YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 10f, Pal.accent)
                     this.row()
                 }
             }
