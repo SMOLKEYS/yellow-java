@@ -47,6 +47,10 @@ public class FoodItem extends Item{
         stats.add(YellowStats.healAllAllies, healAllAllies);
     }
     
+    public void update(){
+        //for overrides
+    }
+    
     /** Healing handler. */
     private void heal(Unit unit){
         if(healUsingPercentage){

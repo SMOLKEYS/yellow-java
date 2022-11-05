@@ -34,6 +34,8 @@ open class FoodDialog : BaseDialog("Food"){
                                 FoodItem.instances.each{
                                     pan.button("${it.nameShort}\n${typiis(it)}"){
                                         if(it.hasThis(team)) it.consume(unit, team)
+                                    }.update{ ab ->
+                                        ab.setText("${it.nameShort}\n${typiis(it)}")
                                     }.get().label.setWrap(false)
                                     pan.row()
                                 }

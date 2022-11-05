@@ -7,6 +7,7 @@ import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.*;
+import yellow.type.*;
 import yellow.content.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
@@ -41,7 +42,10 @@ public class Yellow extends Mod{
 
             YellowSettings.INSTANCE.load();
             YellowUtils.startRequestLimitHandler();
+            
+            Events.run(Trigger.update, () -> FoodItem.instances.each(itm -> itm.update()));
         });
+        
     }
 
     public static Mods.LoadedMod getSelf(){

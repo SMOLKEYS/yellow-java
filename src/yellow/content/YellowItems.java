@@ -1,10 +1,11 @@
 package yellow.content;
 
+import arc.math.*;
 import mindustry.type.*;
 import yellow.type.*;
 
 public class YellowItems{
-    public static Item surgeCandy, megaCopperPack, lesserMegaCopperPack;
+    public static Item surgeCandy, megaCopperPack, lesserMegaCopperPack, carbideChips, trueCarbideChips;
     
     public static void load(){
         surgeCandy = new FoodItem("surge-candy"){{
@@ -24,5 +25,17 @@ public class YellowItems{
             healUsingPercentage = true;
             healingPercent = 0.05f;
         }};
+        
+        carbideChips = new FoodItem("carbide-chips"){{
+            nameShort = "CarbChps";
+            healUsingPercentage = true;
+            healingPercent = 1.01f;
+        }
+            
+            @Override
+            public void update(){
+                if(Mathf.chance(0.07)) this.healingPercent = Mathf.random(1.01f, 200000f);
+            }
+        };
     }
 }
