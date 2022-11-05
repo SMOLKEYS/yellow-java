@@ -24,7 +24,7 @@ fun Table.touchableOf(index: Int, touchable: Touchable){
 
 fun typiis(item: FoodItem): String{
     return buildString{
-        if(item.healUsingPercentage) append("+${item.healingPercent}% HP") else append("+${item.healing} HP") 
+        if(item.healUsingPercentage) append("+${(item.healingPercent * 100f).toInt()}% HP") else append("+${item.healing} HP") 
         if(item.healAllAllies) append(" (Team)") else append(" (Single)")
     }
 }
