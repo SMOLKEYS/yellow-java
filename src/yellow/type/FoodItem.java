@@ -14,7 +14,7 @@ import static yellow.internal.util.YellowUtilsKtKt.seqOf;
 public class FoodItem extends Item{
 
     public static Seq<FoodItem> instances = seqOf();
-    
+
 
     /** Amount of health healed when consumed. Use negative values to inflict damage instead. */
     public float healing = 40f,

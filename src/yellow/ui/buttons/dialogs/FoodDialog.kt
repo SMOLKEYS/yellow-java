@@ -25,13 +25,19 @@ open class FoodDialog : BaseDialog("Food"){
         cont.scrollPane{ scr: ScrollPane ->
             Groups.unit.each{ unit ->
                 if(unit.team == team){
-                    YellowUtils.foodOpts(this, unit, {}){ issus: Table ->
-                        FoodItem.instances.each{
-                            issus.button(it.localizedName){
-                                if(it.hasThis(team)) it.consume(unit, team)
-                            }.get().label.setWrap(false)
-                            issus.row()
-                        }
+                    YellowUtils.foodOpts(this, unit, {}){ itt ->
+                        YellowUtils.table(itt, {
+                            it.grow()
+                        }, { table ->
+                            table.pane{ pan ->
+                                FoodItem.instances.each{
+                                    pan.button(it.localizedName){
+                                        if(it.hasThis(team)) it.consume(unit, team)
+                                    }.get().label.setWrap(false)
+                                    pan.row()
+                                }
+                            }
+                        })
                     }
                     this.row()
                 }
