@@ -40,7 +40,7 @@ open class FoodDialog : BaseDialog("Food"){
                                     }.get().label.setWrap(false)
                                     pan.row()
                                 }
-                            }
+                            }.grow()
                         })
                     }
                     this.row()
