@@ -24,6 +24,7 @@ open class FoodDialog : BaseDialog("Food"){
             Groups.unit.each{
                 if(it.team == team){
                     YellowUtils.foodOpts(this, it, {}, {})
+                    this.row()
                 }
             }
             scr.width = Core.graphics.width.toFloat()
