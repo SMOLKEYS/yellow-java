@@ -13,6 +13,10 @@ import arc.util.serialization.JsonValue
 
 infix fun Int.ins(other: Int) = this % other == 0
 
+fun <T> seqOf(vararg items: T): Seq<T>{
+    if(items.isEmpty()) return Seq.with();
+    return Seq.with(*items);
+}
 fun Table.touchableOf(index: Int, touchable: Touchable){
     this.children[index].touchable = touchable
 }

@@ -6,6 +6,8 @@ import mindustry.type.Item;
 import yellow.content.*;
 import yellow.type.FoodItem;
 
+import static yellow.internal.util.YellowUtilsKtKt.seqOf;
+
 public class YellowItems{
     public static Item surgeCandy, megaCopperPack;
     

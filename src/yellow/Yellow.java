@@ -1,6 +1,7 @@
 package yellow;
 
 import arc.Events;
+import arc.scene.style.Drawable;
 import arc.util.Log;
 import mindustry.Vars;
 import mindustry.game.EventType.ClientLoadEvent;
@@ -12,6 +13,7 @@ import yellow.internal.YellowClassGateway;
 import yellow.internal.util.YellowUtils;
 import yellow.ui.YellowSettings;
 import yellow.ui.buttons.YellowWeaponSwitch;
+import yellow.ui.buttons.dialogs.FoodDialog;
 import yellow.weapons.YellowWeapons;
 
 import static mindustry.Vars.ui;
@@ -20,6 +22,7 @@ import static yellow.weapons.YellowWeapons.*;
 public class Yellow extends Mod{
     
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
+    public static FoodDialog food = new FoodDialog();
     
     public Yellow(){
         String yellow = "yellow suse ";
@@ -28,6 +31,7 @@ public class Yellow extends Mod{
         
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
+            YellowUtils.mobileHudButton((Drawable)YellowItems.megaCopperPack.uiIcon, food::show);
 
             YellowVars.load();
             

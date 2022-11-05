@@ -15,12 +15,14 @@ import arc.util.io.Streams;
 import arc.util.serialization.JsonReader;
 import arc.util.serialization.JsonValue;
 import mindustry.Vars;
+import mindustry.gen.Unit;
 import mindustry.ui.Styles;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import yellow.YellowPermVars;
 import yellow.type.*;
 
+import static arc.Core.graphics;
 import static arc.Core.settings;
 
 public class YellowUtils{
@@ -165,7 +167,20 @@ public class YellowUtils{
             cc.add(rightHandText).pad(25f);
         });
     }
-    
+
+    public static void foodOpts(Table parent, Unit unit, Cons<Cell<Table>> table, Cons<Table> tableChildren){
+        table(parent, c -> {
+            c.width(Core.graphics.getWidth());
+            c.height(130);
+            table.get(c);
+        }, cc -> {
+            cc.setBackground(Styles.grayPanel);
+            cc.image(unit.type.uiIcon).size(50).padLeft(20f);
+            cc.add(unit.type.localizedName).grow().left().pad(15f);
+            tableChildren.get(cc);
+        });
+    }
+
     public static void mobileHudButton(Drawable icon, Runnable listener){
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
