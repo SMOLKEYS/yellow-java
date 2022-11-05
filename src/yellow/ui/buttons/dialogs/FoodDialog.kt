@@ -27,16 +27,17 @@ open class FoodDialog : BaseDialog("Food"){
                 if(unit.team == team){
                     YellowUtils.foodOpts(this, unit, {}){ issus: Table ->
                         FoodItem.instances.each{
-                            issus.button(it.drawable){
+                            issus.button(it.localizedName){
                                 it.consume(unit, team)
-                            }.size(40f)
+                            }.get().label.setWrap(false)
+                            issus.row()
                         }
                     }
                     this.row()
                 }
             }
             scr.width = Core.graphics.width.toFloat()
-        }.size(Core.graphics.width.toFloat(), Core.graphics.height.toFloat())
+        }.size(Core.graphics.width.toFloat(), Core.graphics.height.toFloat() / 1.15f)
 
 
         return super.show()
