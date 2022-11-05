@@ -22,6 +22,8 @@ import mindustry.type.Weapon;
 import yellow.YellowPermVars;
 import yellow.type.*;
 
+import java.io.IOException;
+
 import static arc.Core.graphics;
 import static arc.Core.settings;
 
@@ -176,12 +178,13 @@ public class YellowUtils{
         }, cc -> {
             cc.setBackground(Styles.grayPanel);
             cc.image(unit.type.uiIcon).size(50).padLeft(20f);
-            cc.add(unit.type.localizedName).grow().left().pad(15f);
+            cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + unit.maxHealth).grow().left().pad(15f);
             tableChildren.get(cc);
         });
     }
 
-    public static void mobileHudButton(Drawable icon, Runnable listener){
+    public static void mobileHudButton(Drawable icon, Runnable listener) throws Exception{
+        if(!Vars.mobile) throw new Exception("mobileHudButton is not usable outside mobile devices.");
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
         if(!once){
