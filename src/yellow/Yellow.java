@@ -31,7 +31,7 @@ public class Yellow extends Mod{
         Log.info(yellow);
         
         Events.run(ClientLoadEvent.class, () -> {
-            weaponSwitch.build(ui.hudGroup);
+            weaponSwitch.build();
             food = new FoodDialog();
 
             YellowUtils.mobileHudButton(Icon.defense, () -> food.show(Vars.player.team()));
