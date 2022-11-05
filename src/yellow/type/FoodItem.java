@@ -14,8 +14,7 @@ import static yellow.internal.util.YellowUtilsKtKt.seqOf;
 public class FoodItem extends Item{
 
     public static Seq<FoodItem> instances = seqOf();
-
-    public TextureRegionDrawable drawable;
+    
 
     /** Amount of health healed when consumed. Use negative values to inflict damage instead. */
     public float healing = 40f,
@@ -35,11 +34,6 @@ public class FoodItem extends Item{
     public FoodItem(String name){
         super(name);
         instances.add(this);
-    }
-
-    @Override
-    public void load(){
-        drawable = new TextureRegionDrawable(this.uiIcon);
     }
 
     @Override
