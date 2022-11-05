@@ -1,14 +1,12 @@
 package yellow.entities.units.entity
 
-import arc.math.Mathf
-import arc.util.Time
-import arc.util.io.Reads
-import arc.util.io.Writes
-import mindustry.content.Fx
-import mindustry.entities.Effect
-import mindustry.gen.EntityMapping
-import mindustry.gen.UnitEntity
-import yellow.entities.units.GhostUnitType
+import arc.math.*
+import arc.util.*
+import arc.util.io.*
+import mindustry.content.*
+import mindustry.entities.*
+import mindustry.gen.*
+import yellow.entities.units.*
 
 open class GhostUnitEntity: UnitEntity() {
     var ghostLifetime = 0f

@@ -1,12 +1,11 @@
 package yellow.content;
 
-import arc.Core;
-import mindustry.ai.types.FlyingAI;
-import mindustry.type.UnitType;
-import yellow.ai.YellowFollowerAI;
-import yellow.entities.units.GhostUnitType;
-import yellow.entities.units.YellowUnitType;
-import yellow.weapons.YellowWeapons;
+import arc.*;
+import mindustry.ai.types.*;
+import mindustry.type.*;
+import yellow.ai.*;
+import yellow.entities.units.*;
+import yellow.weapons.*;
 
 public class YellowUnitTypes{
 

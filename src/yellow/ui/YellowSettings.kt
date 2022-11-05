@@ -1,13 +1,13 @@
 package yellow.ui
 
-import arc.Core
-import arc.files.Fi
-import com.github.mnemotechnician.mkui.extensions.dsl.textButton
-import mindustry.Vars
-import mindustry.Vars.ui
-import mindustry.gen.Icon
-import yellow.YellowPermVars
-import yellow.internal.util.YellowUtils
+import arc.*
+import arc.files.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
+import mindustry.*
+import mindustry.Vars.*
+import mindustry.gen.*
+import yellow.*
+import yellow.internal.util.*
 
 object YellowSettings{
 

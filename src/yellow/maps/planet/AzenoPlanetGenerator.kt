@@ -1,13 +1,13 @@
 package yellow.maps.planet
 
-import arc.graphics.Color
-import arc.math.Mathf
-import arc.math.geom.Vec3
-import arc.util.Tmp
-import arc.util.noise.Simplex
+import arc.graphics.*
+import arc.math.*
+import arc.math.geom.*
+import arc.util.*
+import arc.util.noise.*
 import mindustry.content.Blocks.*
-import mindustry.maps.generators.PlanetGenerator
-import mindustry.world.Block
+import mindustry.maps.generators.*
+import mindustry.world.*
 
 open class AzenoPlanetGenerator : PlanetGenerator(){
 

@@ -1,15 +1,8 @@
 package yellow.internal
 
-import arc.Core
-import arc.files.ZipFi
-import arc.struct.ObjectMap
-import arc.struct.Seq
-import arc.util.Log
-import mindustry.Vars
-import rhino.ImporterTopLevel
-import rhino.NativeJavaPackage
-import yellow.internal.util.YellowUtils.controlledLog
-import yellow.internal.util.YellowUtilsKt
+import mindustry.*
+import rhino.*
+import yellow.internal.util.YellowUtils.*
 
 //sh1p you have done it
 open class YellowClassGateway{

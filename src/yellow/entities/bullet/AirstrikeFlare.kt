@@ -1,10 +1,9 @@
 package yellow.entities.bullet
 
-import arc.math.Mathf
-import arc.util.Time
-import mindustry.entities.bullet.ArtilleryBulletType
-import mindustry.entities.bullet.BulletType
-import mindustry.gen.Bullet
+import arc.math.*
+import arc.util.*
+import mindustry.entities.bullet.*
+import mindustry.gen.*
 
 open class AirstrikeFlare(var missileBullet: BulletType): ArtilleryBulletType() {
     init {

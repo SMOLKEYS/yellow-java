@@ -1,9 +1,9 @@
 package yellow.content;
 
-import mindustry.world.Block;
-import yellow.world.blocks.units.SummoningShrine;
+import mindustry.world.*;
+import yellow.world.blocks.units.*;
 
-import static yellow.content.YellowUnitTypes.yellow;
+import static yellow.content.YellowUnitTypes.*;
 
 public class YellowBlocks{
     public static Block

@@ -1,15 +1,13 @@
 package yellow.type;
 
-import arc.scene.style.TextureRegionDrawable;
 import arc.struct.*;
-import mindustry.*;
+import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.game.*;
-import yellow.internal.util.YellowUtils;
+import yellow.internal.util.*;
 import yellow.world.meta.*;
 
-import static yellow.internal.util.YellowUtilsKtKt.seqOf;
+import static yellow.internal.util.YellowUtilsKtKt.*;
 
 public class FoodItem extends Item{
 

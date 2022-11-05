@@ -1,8 +1,7 @@
 package yellow.content;
 
-import mindustry.entities.bullet.BombBulletType;
-import mindustry.entities.bullet.BulletType;
-import yellow.entities.bullet.AirstrikeFlare;
+import mindustry.entities.bullet.*;
+import yellow.entities.bullet.*;
 
 public class YellowBullets{
     public static BulletType

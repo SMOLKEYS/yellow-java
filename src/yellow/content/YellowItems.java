@@ -1,12 +1,7 @@
 package yellow.content;
 
-import arc.struct.*;
-import mindustry.content.*;
-import mindustry.type.Item;
-import yellow.content.*;
-import yellow.type.FoodItem;
-
-import static yellow.internal.util.YellowUtilsKtKt.seqOf;
+import mindustry.type.*;
+import yellow.type.*;
 
 public class YellowItems{
     public static Item surgeCandy, megaCopperPack, lesserMegaCopperPack;

@@ -1,15 +1,15 @@
 package yellow.internal.util
 
-import arc.Core
-import arc.scene.ui.Image
-import arc.scene.ui.layout.*
+import arc.*
+import arc.files.*
+import arc.graphics.*
 import arc.scene.event.*
-import arc.files.Fi
-import arc.graphics.Color
-import arc.struct.Seq
-import arc.util.Log
-import arc.util.serialization.JsonValue
-import yellow.type.FoodItem
+import arc.scene.ui.*
+import arc.scene.ui.layout.*
+import arc.struct.*
+import arc.util.*
+import arc.util.serialization.*
+import yellow.type.*
 
 
 infix fun Int.ins(other: Int) = this % other == 0

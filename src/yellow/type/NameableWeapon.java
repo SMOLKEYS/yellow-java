@@ -1,7 +1,7 @@
 package yellow.type;
 
-import arc.Core;
-import mindustry.type.Weapon;
+import arc.*;
+import mindustry.type.*;
 
 public class NameableWeapon extends Weapon{
     /** The weapon display name, as shown in UI. */

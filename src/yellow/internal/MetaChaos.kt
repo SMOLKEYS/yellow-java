@@ -1,8 +1,8 @@
 package yellow.internal
 
-import arc.files.Fi
-import arc.struct.Seq
-import mindustry.Vars
+import arc.files.*
+import arc.struct.*
+import mindustry.*
 
 open class MetaChaos{
 

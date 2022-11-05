@@ -1,14 +1,12 @@
 package yellow.content;
 
-import arc.graphics.Color;
-import mindustry.graphics.Pal;
-import mindustry.graphics.g3d.HexMesh;
-import mindustry.graphics.g3d.HexSkyMesh;
-import mindustry.graphics.g3d.MultiMesh;
-import mindustry.type.Planet;
-import yellow.maps.planet.AzenoPlanetGenerator;
+import arc.graphics.*;
+import mindustry.graphics.*;
+import mindustry.graphics.g3d.*;
+import mindustry.type.*;
+import yellow.maps.planet.*;
 
-import static mindustry.content.Planets.sun;
+import static mindustry.content.Planets.*;
 
 public class YellowPlanets{
     public static Planet

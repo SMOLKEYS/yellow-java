@@ -1,19 +1,15 @@
 package yellow.entities.units.entity
 
-import arc.math.Mathf
-import arc.math.geom.Vec2
-import arc.util.io.Reads
-import arc.util.io.Writes
-import mindustry.Vars
-import mindustry.content.UnitTypes
-import mindustry.entities.Units
-import mindustry.gen.EntityMapping
-import mindustry.gen.Groups
-import mindustry.gen.Icon
-import mindustry.gen.UnitEntity
-import yellow.YellowVars.entities
-import yellow.entities.units.YellowUnitType
-import yellow.YellowPermVars
+import arc.math.*
+import arc.math.geom.*
+import arc.util.io.*
+import mindustry.*
+import mindustry.content.*
+import mindustry.entities.*
+import mindustry.gen.*
+import yellow.*
+import yellow.YellowVars.*
+import yellow.entities.units.*
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){

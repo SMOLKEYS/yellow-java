@@ -1,26 +1,19 @@
 package yellow.entities.units
 
-import arc.func.Prov
-import arc.scene.ui.layout.Table
-import arc.graphics.Color
-import arc.graphics.g2d.Draw
-import arc.graphics.g2d.Fill
-import arc.graphics.g2d.Lines
-import arc.math.Mathf
-import arc.util.Time
-import arc.util.Tmp
-import mindustry.Vars
-import mindustry.graphics.Layer
-import mindustry.type.UnitType
-import mindustry.ui.Styles
-import mindustry.world.meta.Stat
-import mindustry.world.meta.StatUnit
-import mindustry.world.meta.StatValue
-import yellow.internal.util.YellowUtilsKt
-import yellow.entities.units.entity.YellowUnitEntity
+import arc.func.*
+import arc.graphics.*
+import arc.graphics.g2d.*
+import arc.math.*
+import arc.scene.ui.layout.*
+import arc.util.*
+import mindustry.*
+import mindustry.graphics.*
+import mindustry.type.*
+import mindustry.world.meta.*
+import yellow.entities.units.entity.*
 import yellow.internal.util.YellowUtilsKt.seperator
-import yellow.world.meta.YellowStats
 import yellow.type.*
+import yellow.world.meta.*
 
 open class YellowUnitType(name: String): UnitType(name) {
 

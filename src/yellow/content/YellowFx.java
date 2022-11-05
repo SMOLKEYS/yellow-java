@@ -1,16 +1,13 @@
 package yellow.content;
 
-import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Fill;
-import arc.graphics.g2d.Lines;
-import arc.math.Angles;
-import arc.math.Interp;
-import arc.util.Time;
-import mindustry.entities.Effect;
-import mindustry.graphics.Layer;
-import mindustry.ui.Fonts;
-import yellow.entities.effect.RandomEffect;
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.util.*;
+import mindustry.entities.*;
+import mindustry.graphics.*;
+import mindustry.ui.*;
+import yellow.entities.effect.*;
 
 
 public class YellowFx{

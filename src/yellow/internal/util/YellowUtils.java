@@ -1,32 +1,25 @@
 package yellow.internal.util;
 
-import arc.Core;
+import arc.*;
+import arc.files.*;
+import arc.func.*;
 import arc.graphics.*;
-import arc.scene.event.Touchable;
+import arc.math.*;
+import arc.scene.event.*;
 import arc.scene.style.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
-import arc.files.Fi;
-import arc.func.*;
-import arc.math.*;
-import arc.util.Http;
-import arc.util.Log;
-import arc.util.Timer;
-import arc.util.io.Streams;
-import arc.util.serialization.JsonReader;
-import arc.util.serialization.JsonValue;
-import mindustry.Vars;
-import mindustry.gen.Unit;
-import mindustry.ui.Styles;
-import mindustry.type.UnitType;
-import mindustry.type.Weapon;
-import yellow.YellowPermVars;
+import arc.util.*;
+import arc.util.io.*;
+import arc.util.serialization.*;
+import mindustry.*;
+import mindustry.gen.*;
+import mindustry.type.*;
+import mindustry.ui.*;
+import yellow.*;
 import yellow.type.*;
 
-import java.io.IOException;
-
-import static arc.Core.graphics;
-import static arc.Core.settings;
+import static arc.Core.*;
 
 public class YellowUtils{
 
@@ -214,5 +207,9 @@ public class YellowUtils{
         });
         
         currentButtons++;
+    }
+
+    public static int getScaling(){
+        return settings.getInt("uiscale") / 100;
     }
 }

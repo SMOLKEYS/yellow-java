@@ -1,19 +1,15 @@
 package yellow.ui.buttons.dialogs
 
-import arc.Core
-import arc.scene.ui.Dialog
-import arc.scene.ui.ScrollPane
-import arc.scene.ui.layout.Table
-import com.github.mnemotechnician.mkui.extensions.dsl.addTable
-import com.github.mnemotechnician.mkui.extensions.dsl.scrollPane
-import mindustry.game.Team
-import mindustry.gen.Groups
-import mindustry.graphics.Pal
-import mindustry.ui.dialogs.BaseDialog
-import yellow.internal.util.YellowUtils
-import yellow.internal.util.YellowUtilsKt
-import yellow.internal.util.typiis
-import yellow.type.FoodItem
+import arc.*
+import arc.scene.ui.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
+import mindustry.game.*
+import mindustry.gen.*
+import mindustry.graphics.*
+import mindustry.ui.dialogs.*
+import yellow.internal.util.*
+import yellow.internal.util.YellowUtils.*
+import yellow.type.*
 
 open class FoodDialog : BaseDialog("Food"){
 
@@ -26,7 +22,7 @@ open class FoodDialog : BaseDialog("Food"){
         cont.clear()
 
         cont.scrollPane{ scr: ScrollPane ->
-            YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 4f, Pal.accent)
+            YellowUtilsKt.seperator(this, Core.graphics.width.toFloat() * getScaling(), 4f, Pal.accent)
             this.row()
             Groups.unit.each{ unit ->
                 if(unit.team == team){
@@ -45,12 +41,12 @@ open class FoodDialog : BaseDialog("Food"){
                         })
                     }
                     this.row()
-                    YellowUtilsKt.seperator(this, Core.graphics.width.toFloat(), 4f, Pal.accent)
+                    YellowUtilsKt.seperator(this, Core.graphics.width.toFloat() * getScaling(), 4f, Pal.accent)
                     this.row()
                 }
             }
-            scr.width = Core.graphics.width.toFloat()
-        }.size(Core.graphics.width.toFloat(), Core.graphics.height.toFloat() / 1.15f)
+            scr.width = Core.graphics.width.toFloat() * getScaling()
+        }.size(Core.graphics.width.toFloat() * getScaling(), Core.graphics.height.toFloat() / 1.15f * getScaling())
 
 
         return super.show()

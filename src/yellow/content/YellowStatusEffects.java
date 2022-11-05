@@ -1,11 +1,9 @@
 package yellow.content;
 
-import arc.math.Mathf;
-import arc.graphics.Color;
-import mindustry.game.Team;
-import mindustry.gen.Unit;
-import mindustry.type.StatusEffect;
-import yellow.content.YellowFx;
+import arc.math.*;
+import mindustry.game.*;
+import mindustry.gen.*;
+import mindustry.type.*;
 
 public class YellowStatusEffects{
     public static StatusEffect

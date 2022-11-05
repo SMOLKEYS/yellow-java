@@ -1,23 +1,20 @@
 package yellow;
 
-import arc.Events;
-import arc.scene.style.Drawable;
-import arc.util.Log;
-import mindustry.Vars;
-import mindustry.game.EventType.ClientLoadEvent;
-import mindustry.gen.Icon;
-import mindustry.mod.Mod;
-import mindustry.mod.Mods;
-import mindustry.type.Weapon;
+import arc.*;
+import arc.util.*;
+import mindustry.*;
+import mindustry.game.EventType.*;
+import mindustry.gen.*;
+import mindustry.mod.*;
+import mindustry.type.*;
 import yellow.content.*;
-import yellow.internal.YellowClassGateway;
-import yellow.internal.util.YellowUtils;
-import yellow.ui.YellowSettings;
-import yellow.ui.buttons.YellowWeaponSwitch;
-import yellow.ui.buttons.dialogs.FoodDialog;
-import yellow.weapons.YellowWeapons;
+import yellow.internal.*;
+import yellow.internal.util.*;
+import yellow.ui.*;
+import yellow.ui.buttons.*;
+import yellow.ui.buttons.dialogs.*;
+import yellow.weapons.*;
 
-import static mindustry.Vars.ui;
 import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{

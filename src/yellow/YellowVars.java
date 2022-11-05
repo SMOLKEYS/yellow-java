@@ -1,13 +1,12 @@
 package yellow;
 
-import arc.ApplicationListener;
-import arc.Core;
-import arc.struct.Seq;
-import mindustry.Vars;
-import mindustry.mod.Mods;
-import yellow.entities.units.entity.YellowUnitEntity;
-import yellow.internal.MetaChaos;
-import yellow.internal.util.YellowUtils;
+import arc.*;
+import arc.struct.*;
+import mindustry.*;
+import mindustry.mod.*;
+import yellow.entities.units.entity.*;
+import yellow.internal.*;
+import yellow.internal.util.*;
 
 public class YellowVars{
     
