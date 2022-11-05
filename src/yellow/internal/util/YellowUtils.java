@@ -178,7 +178,7 @@ public class YellowUtils{
         }, cc -> {
             cc.setBackground(Styles.grayPanel);
             cc.image(unit.type.uiIcon).size(50).padLeft(20f);
-            cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + unit.maxHealth).grow().left().pad(15f);
+            cc.add(unit.type.localizedName + "\n" + Mathf.round(unit.health) +  "/" + Mathf.round(unit.maxHealth)).grow().left().pad(15f);
             tableChildren.get(cc);
         });
     }
