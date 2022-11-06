@@ -32,11 +32,11 @@ open class FoodDialog : BaseDialog("Food"){
                         }, { table ->
                             table.pane{ pan ->
                                 FoodItem.instances.each{
-                                    pan.button("${it.nameShort}\n${typiis(it)}"){
+                                    pan.button("${it.nameShort}\n${typiis(it)}", Styles.flatBordert){
                                         if(it.hasThis(team)) it.consume(unit, team)
                                     }.update{ ab ->
                                         ab.setText("${it.nameShort}\n${typiis(it)}")
-                                    }.size(280f, 80f).style(Styles.flatBordert).get().label.setWrap(false)
+                                    }.size(280f, 80f).get().label.setWrap(false)
                                     pan.row()
                                 }
                             }.grow()
