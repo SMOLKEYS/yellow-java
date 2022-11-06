@@ -6,6 +6,7 @@ import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.game.*
 import mindustry.gen.*
 import mindustry.graphics.*
+import mindustry.ui.Styles
 import mindustry.ui.dialogs.*
 import yellow.internal.util.*
 import yellow.internal.util.YellowUtils.*
@@ -35,7 +36,7 @@ open class FoodDialog : BaseDialog("Food"){
                                         if(it.hasThis(team)) it.consume(unit, team)
                                     }.update{ ab ->
                                         ab.setText("${it.nameShort}\n${typiis(it)}")
-                                    }.size(280f, 80f).get().label.setWrap(false)
+                                    }.size(280f, 80f).style(Styles.flatBordert).get().label.setWrap(false)
                                     pan.row()
                                 }
                             }.grow()
