@@ -10,7 +10,7 @@ public class YeetBulletType extends BasicBulletType{
     /** The amount of throwing force to apply to this bullet. */
     public float throwForce = 5f;
     /** The peak minimum speed required for this bullet to be thrown. Usually zero in most cases. */
-    public float peakMinSpeed = 0f;
+    public float peakMinSpeed = 0.001f;
     /** Throw delay. */
     public float throwDelay = 5f;
     /** Effect called on throw. */
