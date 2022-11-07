@@ -2,7 +2,7 @@ package yellow.entities.bullet;
 
 import arc.math.*;
 import mindustry.gen.*;
-import mindustry.entities.*:
+import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import yellow.content.*;
 
