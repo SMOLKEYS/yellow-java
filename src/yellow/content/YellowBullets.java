@@ -26,14 +26,5 @@ public class YellowBullets{
         }};
         
         standardMissileCaller = new AirstrikeFlare(standardMissile);
-        
-        placeholderYeetBullet = new YeetBulletType(){{
-            speed = 4.5f;
-            drag = 0.1f;
-            lifetime = 240f;
-            damage = 40f;
-            width = 8f;
-            height = 16f;
-        }};
     }
 }

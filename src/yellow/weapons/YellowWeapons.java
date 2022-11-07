@@ -17,7 +17,7 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain;
     
     public static void load(){
         
@@ -200,6 +200,36 @@ public class YellowWeapons{
             minWarmup = 0.99f;
             
             shoot.shots = 35;
+        }};
+        
+        ghostRain = new DisableableWeapon("ghost-rain", "Ghost Rain"){{
+            reload = 30f;
+            x = 80f;
+            y = 0f;
+            mirror = false;
+            minWarmup = 0.99f;
+            inaccuracy = 360f;
+            
+            shoot.shots = 20;
+            shoot.shotDelay = 5;
+            
+            bullet = new YeetBulletType(){{
+                speed = 10f;
+                drag = 0.1f;
+                lifetime = 240f;
+                damage = 40f;
+                width = 12f;
+                height = 12f;
+                homingRange = 80f;
+                homingPower = 0.1f;
+                hitEffect = YellowFx.ghostDespawnMulti;
+                despawnEffect = YellowFx.ghostDespawnMulti;
+                backRegion = Core.atlas.find("flare");
+                frontRegion = Core.atlas.find("flare");
+                sprite = "flare";
+                shrinkX = 0f;
+                shrinkY = 0f;
+            }};
         }};
 
         //endregion main
