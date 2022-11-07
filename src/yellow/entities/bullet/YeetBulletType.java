@@ -27,7 +27,7 @@ public class YeetBulletType extends BasicBulletType{
     public void update(Bullet b){
         super.update(b);
         
-        if((b.vel().len() <= peakMinSpeed || speed == peakMinSpeed) && b.fdata > 1f) b.fdata -= 1f;
+        if((b.vel().len() <= peakMinSpeed || speed == peakMinSpeed) && b.fdata > 0f) b.fdata -= 1f;
         
         if(b.fdata <= 0f && b.drag != 0f){
             b.vel().trns(Angles.angle(b.x, b.y, b.aimX, b.aimY), throwForce);
