@@ -1,7 +1,10 @@
 package yellow.ui.buttons;
 
 import arc.scene.*;
+import arc.scene.ui.ImageButton.ImageButtonStyle;
 import arc.scene.style.*;
+import mindustry.ui.*;
+import mindustry.gen.*;
 import yellow.content.*;
 import yellow.internal.util.*;
 import yellow.ui.buttons.dialogs.*;
