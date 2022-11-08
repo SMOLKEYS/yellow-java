@@ -16,6 +16,7 @@ import yellow.ui.buttons.*;
 import yellow.ui.buttons.dialogs.*;
 import yellow.weapons.*;
 
+import static mindustry.Vars.*;
 import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{
@@ -29,7 +30,7 @@ public class Yellow extends Mod{
         Log.info(yellow);
         
         Events.run(ClientLoadEvent.class, () -> {
-            weaponSwitch.build();
+            weaponSwitch.build(ui.hudGroup);
             food = new FoodDialog();
 
             YellowUtils.mobileHudButton(Icon.defense, () -> food.show(Vars.player.team()));
