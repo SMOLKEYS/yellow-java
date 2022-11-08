@@ -48,6 +48,7 @@ public class YellowWeaponSwitch{
     
                 // show buttons only when player controls yellow air
                 cont.visible(() -> player.unit().type == YellowUnitTypes.yellow);
+            });
         }
     }
 }
