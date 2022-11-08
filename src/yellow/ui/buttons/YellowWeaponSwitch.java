@@ -1,5 +1,6 @@
 package yellow.ui.buttons;
 
+import arc.scene.*;
 import arc.scene.style.*;
 import yellow.content.*;
 import yellow.internal.util.*;
@@ -20,14 +21,33 @@ public class YellowWeaponSwitch{
 
     private YellowWeaponSwitchDialog dialog;
 
-    public void build(){
+    public void build(Group parent){
         Drawable icon = atlas.drawable("status-disarmed");
 
         dialog = new YellowWeaponSwitchDialog(); // do not create new ones until the client loads
 
-        YellowUtils.mobileHudButton(icon, () -> {
-            if(player.unit().type == YellowUnitTypes.yellow) dialog.show(player.unit().mounts);
-        });
+        if(mobile){
+            YellowUtils.mobileHudButton(icon, () -> {
+                if(player.unit().type == YellowUnitTypes.yellow) dialog.show(player.unit().mounts);
+            });
+        }else{
+            ImageButtonStyle style = new ImageButtonStyle(){{
+                up = Tex.pane;
+                down = Styles.flatDown;
+                over = Styles.flatOver;
+            }};
+            
+            parent.fill(cont -> {
+                cont.name = "weapons switch";
+                cont.defaults().size(width / 2f);
+    
+                cont.top().right();
+                cont.marginRight(width - padding);
+    
+                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts));
+    
+                // show buttons only when player controls yellow air
+                cont.visible(() -> player.unit().type == YellowUnitTypes.yellow);
+        }
     }
-
 }
