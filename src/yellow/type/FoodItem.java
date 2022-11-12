@@ -66,8 +66,8 @@ public class FoodItem extends Item{
             unit.heal(healing);
         }
         
-        consUnit(unit);
-        consSelf(this);
+        consUnit.get(unit);
+        consSelf.get(this);
     }
 
     public boolean hasThis(Team team){
