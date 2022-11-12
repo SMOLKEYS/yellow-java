@@ -16,6 +16,8 @@ import yellow.entities.units.*
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
 
+    //TODO finalizing fields, as adding new ones/removing old ones causes save corruption
+    
     private var inited = false
     private var firstDeath = false
     private var franticTeleportTime = 60f
