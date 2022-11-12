@@ -27,7 +27,7 @@ public class PlayerFollowerAI extends AIController{
 			if(target.isShooting){
 				unit.vel.trns(Angles.angle(unit.x, unit.y, target.aimX, target.aimY), unit.speed());
 			}else{
-				circle(target, target.hitSize * 2f);
+				circle(target, target.hitSize * 5f);
 			}
 		}
 	}
