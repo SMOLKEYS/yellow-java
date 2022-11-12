@@ -19,4 +19,12 @@ public class DisableableWeaponMount extends WeaponMount{
     public void read(Reads read){
         enabled = read.bool();
     }
+    
+    /** Called when this weapon mount is enabled. */
+    public void enabled(){
+    }
+    
+    /** Called when this weapon mount is disabled. */
+    public void disabled(){
+    }
 }

@@ -13,9 +13,7 @@ public class DisableableWeapon extends NameableWeapon{
         mountType = DisableableWeaponMount::new;
     }
     //basically, if the mount is disabled, ignore update and draw code entirely
-    /**
-     * TODO make the damn thing not break with mirrored weapons
-     */
+    //breaks with normal mirror implementation
     @Override
     public void update(Unit unit, WeaponMount mount){
         if(!((DisableableWeaponMount) mount).enabled) return;

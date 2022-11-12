@@ -1,5 +1,6 @@
 package yellow.entities.units.entity
 
+import arc.*
 import arc.math.*
 import arc.math.geom.*
 import arc.util.io.*
@@ -8,6 +9,7 @@ import mindustry.content.*
 import mindustry.entities.*
 import mindustry.gen.*
 import yellow.*
+import yellow.game.YEventType.*
 import yellow.YellowVars.*
 import yellow.entities.units.*
 
@@ -15,11 +17,14 @@ import yellow.entities.units.*
 open class YellowUnitEntity: UnitEntity(){
 
     private var inited = false
+    private var firstDeath = false
     private var franticTeleportTime = 60f
+    private var iframes = 0
     private val everywhere = Vec2()
-
+    
+    //turn into private field?
     var lives = 0
-    var firstDeath = false
+    
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
@@ -57,7 +62,7 @@ open class YellowUnitEntity: UnitEntity(){
         }
         
         if(isPlayer){
-            Vars.ui.hudfrag.showToast(Icon.warning, "$lives left!")
+            Vars.ui.showInfoFade("$lives left!")
         }
         
         //sorry, but yellow ain't going down to the void
@@ -74,6 +79,9 @@ open class YellowUnitEntity: UnitEntity(){
             x += Mathf.range(25f * 8f)
             y += Mathf.range(25f * 8f)
         }
+        
+        //fire the death invalidation event after everything
+        Events.fire(DeathInvalidationEvent(this))
     }
     
     private fun destroyFull(){
@@ -125,6 +133,36 @@ open class YellowUnitEntity: UnitEntity(){
 
         removeFull()
     }
+    
+    
+    //just call the damage(float) method
+    //disregards withEffect entirely
+    override fun damage(amount: Float){
+        if(iframes > 1){
+            super.damage(0f)
+            return
+        }
+        
+        if(amount >= health){
+            //convert excess damage divided by 2 into inv-frames
+            iframes = Mathf.round(amount - health / 2f)
+            super.damage(health)
+        }else{
+            super.damage(amount)
+        }
+    }
+    
+    override fun damage(amount: Float, withEffect: Boolean){
+        damage(amount)
+    }
+    
+    override fun damagePierce(amount: Float){
+        damage(amount)
+    }
+    
+    override fun damagePierce(amount: Float, withEffect: Boolean){
+        damage(amount)
+    }
 
     override fun update() {
         super.update()
@@ -134,6 +172,9 @@ open class YellowUnitEntity: UnitEntity(){
         }
 
         spawnedByCore = false
+        
+        if(iframes > 1800) iframes = 1800 //cap inv-frames to 30 seconds max
+        iframes--
 
         if(team.data().countType(type) > 1) {
             YellowPermVars.removeAllowed = true
@@ -194,6 +235,7 @@ open class YellowUnitEntity: UnitEntity(){
         write.bool(allowsHealing)
         write.bool(panicMode)
         write.bool(panicModeTypeTwo)
+        write.i(iframes)
         write.i(lives)
         write.f(franticTeleportTime)
         /*
@@ -211,6 +253,7 @@ open class YellowUnitEntity: UnitEntity(){
         allowsHealing = read.bool()
         panicMode = read.bool()
         panicModeTypeTwo = read.bool()
+        iframes = read.i()
         lives = read.i()
         franticTeleportTime = read.f()
         /*

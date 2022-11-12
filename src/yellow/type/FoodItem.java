@@ -1,5 +1,6 @@
 package yellow.type;
 
+import arc.func.*;
 import arc.struct.*;
 import mindustry.game.*;
 import mindustry.gen.*;
@@ -31,6 +32,12 @@ public class FoodItem extends Item{
     /** Responses that the following units may say when consuming this item. */
     public final OrderedMap<UnitType, String[]> responses = new OrderedMap<>();
     
+    /** Extra things ran on the unit. */
+    public Cons<Unit> consUnit = u -> {};
+    
+    /** Extra things ran on this item instance. */
+    public Cons<FoodItem> consSelf = i -> {};
+    
     public FoodItem(String name){
         super(name);
         instances.add(this);
@@ -51,13 +58,16 @@ public class FoodItem extends Item{
         //for overrides
     }
     
-    /** Healing handler. */
-    private void heal(Unit unit){
+    /** Handler. */
+    private void handle(Unit unit){
         if(healUsingPercentage){
             unit.healFract(healingPercent);
         }else{
             unit.heal(healing);
         }
+        
+        consUnit(unit);
+        consSelf(this);
     }
 
     public boolean hasThis(Team team){
@@ -71,11 +81,11 @@ public class FoodItem extends Item{
         if(healAllAllies && team != null){
             Groups.unit.each(un -> {
                 if(un.team == team){
-                    heal(un);
+                    handle(un);
                 }
             });
         }else{
-            if(unit != null) heal(unit);
+            if(unit != null) handle(unit);
         }
 
 
