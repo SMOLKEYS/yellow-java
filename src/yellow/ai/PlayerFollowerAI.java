@@ -1,6 +1,7 @@
 package yellow.ai;
 
 import arc.math.Angles;
+import arc.math.Mathf;
 import arc.util.Tmp;
 import mindustry.entities.units.AIController;
 import mindustry.entities.units.WeaponMount;
@@ -13,7 +14,7 @@ public class PlayerFollowerAI extends AIController{
 	protected Unit target;
 	protected Building noTarget;
 	protected boolean followingUnit = false;
-	protected float targetX, targetY;
+	protected float targetXR, targetYR;
 	protected int time;
 	
 	@Override
@@ -32,13 +33,13 @@ public class PlayerFollowerAI extends AIController{
 		
 		if(target != null){
 			
-			if(time % 120 == 0){
-			    targetX = target.aimX;
-			    targetY = target.aimY;
+			if(time % 180 == 0){
+			    targetXR = Mathf.range(250f);
+			    targetYR = Mathf.range(250f);
 			}
 			
 			if(target.isShooting){
-				moveTo(Tmp.v1.set(targetX, targetY), 5f);
+				moveTo(Tmp.v1.set(target.aimX + targetXR, target.aimY + targetYR), 5f);
 				unit.lookAt(target.aimX, target.aimY);
 				for(WeaponMount mount : unit.mounts){
 					mount.shoot = true;
