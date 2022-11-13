@@ -34,8 +34,8 @@ public class PlayerFollowerAI extends AIController{
 		if(target != null){
 			
 			if(time % 180 == 0){
-			    targetXR = Mathf.range(250f);
-			    targetYR = Mathf.range(250f);
+			    targetXR = Mathf.range(120f);
+			    targetYR = Mathf.range(120f);
 			}
 			
 			if(target.isShooting){
