@@ -10,7 +10,9 @@ Well, the Kotlin port is NOT cooperating at all, despite all efforts to fix it. 
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
-[![BE Builds](https://img.shields.io/badge/Bleeding%20Edge%20Builds-Stable%3F%20Who%20knows!-red?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+[![BE Builds](https://img.shields.io/badge/Bleeding%20Edge%20Builds-Stable%3F%20Who%20knows!-red?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java-builds/releases)
+
+[![Release Builds](https://img.shields.io/badge/Release%20Builds-Stable%3F%20I%20have%20no%20idea%20anymore!-orange?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
 ![Stars](https://img.shields.io/github/stars/SMOLKEYS/yellow-java?style=for-the-badge)
 
