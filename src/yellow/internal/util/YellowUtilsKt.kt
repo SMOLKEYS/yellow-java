@@ -14,7 +14,7 @@ import yellow.type.*
 
 typealias MUnit = mindustry.gen.Unit
 
-fun Unit.healthFract() = this.health / this.type.health
+fun MUnit.healthFract() = this.health / this.type.health
 
 infix fun Int.ins(other: Int) = this % other == 0
 

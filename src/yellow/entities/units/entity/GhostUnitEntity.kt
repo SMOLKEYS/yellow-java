@@ -74,6 +74,6 @@ open class GhostUnitEntity: UnitEntity() {
     override fun classId() = mappingId
 
     companion object {
-        val mappingId = EntityMapping.register("ion-ghost-unit", ::GhostUnitEntity)
+        val mappingId = EntityMapping.register("ghost-unit", ::GhostUnitEntity)
     }
 }
