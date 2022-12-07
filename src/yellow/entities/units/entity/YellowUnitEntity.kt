@@ -9,18 +9,20 @@ import mindustry.content.*
 import mindustry.entities.*
 import mindustry.gen.*
 import yellow.*
+import yellow.game.*
 import yellow.game.YEventType.*
 import yellow.YellowVars.*
 import yellow.entities.units.*
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-open class YellowUnitEntity: UnitEntity(){
+open class YellowUnitEntity: UnitEntity(), Spellcaster{
 
     //TODO finalizing fields, as adding new ones/removing old ones causes save corruption
     
     private var inited = false
     private var firstDeath = false
     private var franticTeleportTime = 60f
+    private var tensionPoints = 0
     private val everywhere = Vec2()
     
     //turn into private field?
@@ -125,7 +127,7 @@ open class YellowUnitEntity: UnitEntity(){
         destroyFull()
     }
 
-    override fun remove() {
+    override fun remove(){
     
         if(!YellowPermVars.removeAllowed && lives > 1){
             return
@@ -210,12 +212,24 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
     
-    override fun toString(): String{
-        return if(isValid) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
+    override fun getTensionPoints() = tensionPoints
+    
+    override fun setTensionPoints(set: Int){
+        tensionPoints = set
     }
+    
+    override fun addTensionPoints(amount: Int){
+        tensionPoints += amount
+    }
+    
+    override fun removeTensionPoints(amount: Int){
+        tensionPoints -= amount
+    }
+    
+    override fun toString() = if(isValid) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
 
 
-    override fun write(write: Writes) {
+    override fun write(write: Writes){
         super.write(write)
         write.bool(inited)
         write.bool(firstDeath)
@@ -223,6 +237,7 @@ open class YellowUnitEntity: UnitEntity(){
         write.bool(panicMode)
         write.bool(panicModeTypeTwo)
         write.i(lives)
+        write.i(tensionPoints)
         write.f(franticTeleportTime)
         /*
         mounts.forEach{
@@ -232,7 +247,7 @@ open class YellowUnitEntity: UnitEntity(){
         */
     }
 
-    override fun read(read: Reads) {
+    override fun read(read: Reads){
         super.read(read)
         inited = read.bool()
         firstDeath = read.bool()
@@ -240,10 +255,11 @@ open class YellowUnitEntity: UnitEntity(){
         panicMode = read.bool()
         panicModeTypeTwo = read.bool()
         lives = read.i()
+        tensionPoints = read.i()
         franticTeleportTime = read.f()
         /*
         mounts.forEach{
-            val rts = it as DisableableWeaponMount
+            val rts = it as DisableabeWeaponMount
             rts.read(read)
         }
         */
@@ -251,7 +267,10 @@ open class YellowUnitEntity: UnitEntity(){
 
     override fun classId() = mappingId
 
-    companion object {
-        val mappingId = EntityMapping.register("ion-yellow-unit", ::YellowUnitEntity)
+    companion object{
+        val mappingId = EntityMapping.register("yellow-unit", ::YellowUnitEntity)
+        
+        @JvmStatic
+        val entities = Seq<YellowUnitEntity>()
     }
 }

@@ -10,7 +10,6 @@ import yellow.internal.util.*;
 
 public class YellowVars{
     
-    public static Seq<YellowUnitEntity> entities = new Seq<YellowUnitEntity>();
     public static Mods.ModMeta meta;
 
     public static void load(){

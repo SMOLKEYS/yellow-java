@@ -12,6 +12,10 @@ import arc.util.serialization.*
 import yellow.type.*
 
 
+typealias MUnit = mindustry.gen.Unit
+
+val Unit.healthFract = this.health / this.type.health
+
 infix fun Int.ins(other: Int) = this % other == 0
 
 fun <T> seqOf(vararg items: T): Seq<T>{
