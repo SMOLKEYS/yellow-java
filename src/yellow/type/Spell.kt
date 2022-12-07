@@ -15,7 +15,10 @@ open class Spell(){
     var groupHeal = false
     var healWithFract = false
     
-    var predicate: (MUnit) -> Boolean = { it.healthFract() < 0.2f }
+    var predicate: (MUnit) -> Boolean = {
+        val kr = it.healthFract() < 0.2f
+        return kr
+    }
     
     fun cast(user: Spellcaster){
         if((user.getTensionPoints() < cost) || (user !is MUnit)) return
