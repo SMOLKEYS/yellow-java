@@ -15,14 +15,14 @@ open class Spell(){
     var groupHeal = false
     var healWithFract = false
     
-    var predicate: (MUnit) -> Boolean = { it.healthFract < 0.2f }
+    var predicate: (MUnit) -> Boolean = { it.healthFract() < 0.2f }
     
     fun cast(user: Spellcaster){
-        if((user.tensionPoints() < cost) || (user !is MUnit)) return
+        if((user.getTensionPoints() < cost) || (user !is MUnit)) return
         var healedTargets = 0
         
         Groups.unit.each{
-            if(!groupHeal && healedTargets > 0) continue@each
+            if(!groupHeal && healedTargets > 0) continue
             if(predicate(it) && (it.team == user.team)){
                 if(healWithFract) it.healFract(healingByFract) else it.heal(healing)
                 healedTargets++

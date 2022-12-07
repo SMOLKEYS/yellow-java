@@ -4,6 +4,7 @@ import arc.*
 import arc.math.*
 import arc.math.geom.*
 import arc.util.io.*
+import arc.struct.*
 import mindustry.*
 import mindustry.content.*
 import mindustry.entities.*
