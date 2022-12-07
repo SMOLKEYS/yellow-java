@@ -22,7 +22,7 @@ open class Spell(){
         var healedTargets = 0
         
         Groups.unit.each{
-            if(!groupHeal && healedTargets > 0) continue
+            if(!groupHeal && healedTargets) return@each
             if(predicate(it) && (it.team == user.team)){
                 if(healWithFract) it.healFract(healingByFract) else it.heal(healing)
                 healedTargets++
