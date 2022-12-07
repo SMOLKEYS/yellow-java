@@ -3,11 +3,11 @@ package yellow.game;
 //rune delta
 public interface Spellcaster{
     
-    int getTensionPoints();
+    float getTensionPoints();
     
-    void setTensionPoints(int set);
+    void setTensionPoints(float set);
     
-    void addTensionPoints(int amount);
+    void addTensionPoints(float amount);
     
-    void removeTensionPoints(int amount);
+    void removeTensionPoints(float amount);
 }

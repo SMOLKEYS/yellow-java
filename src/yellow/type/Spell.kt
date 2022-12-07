@@ -10,7 +10,7 @@ open class Spell(){
     var healing = 10f
     var healingByFract = 0f
     var cooldown = 60f
-    var cost = 27
+    var cost = 27f
     
     var groupHeal = false
     var healWithFract = false

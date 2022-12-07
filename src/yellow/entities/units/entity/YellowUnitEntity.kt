@@ -23,7 +23,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
     private var inited = false
     private var firstDeath = false
     private var franticTeleportTime = 60f
-    private var tensionPoints = 0
+    private var tensionPoints = 0f
     private val everywhere = Vec2()
     
     //turn into private field?
@@ -215,15 +215,15 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
     
     override fun getTensionPoints() = tensionPoints
     
-    override fun setTensionPoints(set: Int){
+    override fun setTensionPoints(set: Float){
         tensionPoints = set
     }
     
-    override fun addTensionPoints(amount: Int){
+    override fun addTensionPoints(amount: Float){
         tensionPoints += amount
     }
     
-    override fun removeTensionPoints(amount: Int){
+    override fun removeTensionPoints(amount: Float){
         tensionPoints -= amount
     }
     
@@ -238,7 +238,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         write.bool(panicMode)
         write.bool(panicModeTypeTwo)
         write.i(lives)
-        write.i(tensionPoints)
+        write.f(tensionPoints)
         write.f(franticTeleportTime)
         /*
         mounts.forEach{
@@ -256,7 +256,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         panicMode = read.bool()
         panicModeTypeTwo = read.bool()
         lives = read.i()
-        tensionPoints = read.i()
+        tensionPoints = read.f()
         franticTeleportTime = read.f()
         /*
         mounts.forEach{
