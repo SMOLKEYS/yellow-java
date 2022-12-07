@@ -16,8 +16,10 @@ open class Spell(){
     var healWithFract = false
     
     var predicate: (MUnit) -> Boolean = {
-        val kr = it.healthFract() < 0.2f
-        return kr
+        val kr = it.healthFract() <= 0.2f
+        
+        
+        kr
     }
     
     fun cast(user: Spellcaster){
