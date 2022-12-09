@@ -23,6 +23,9 @@ object BleedingEdgeAutoUpdater{
                         val version = jsr.parse(res)[0]["name"].asString()
                         val kr = if(version != null && version.toIntOrNull() != null) version.toInt() else 0 //anything can happen.
                         
+                        Log.info("$version")
+                        Log.info("$kr")
+                        
                         if(kr > Yellow.getSelf().meta.version.toInt()) Vars.ui.showConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now?"){
                             YellowUtils.getAndWrite(YellowPermVars.sourceRepo, YellowSettings.tmpDir, true){
                                 Vars.mods.importMod(it)
