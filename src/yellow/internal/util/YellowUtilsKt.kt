@@ -71,7 +71,7 @@ object YellowUtilsKt{
             val res = it.getResultAsString()
             
             try{
-                val version = jsr.parse(res)["name"].name
+                val version = jsr.parse(res)[0]["name"].name
                 kr = if(version != null) version.toInt() else 0 //anything can happen.
             }catch(e: Exception){
                 Vars.ui.showException("Bleeding Edge Version GET Error", e)
