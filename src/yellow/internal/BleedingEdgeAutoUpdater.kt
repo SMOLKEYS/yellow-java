@@ -7,6 +7,7 @@ import mindustry.*
 import yellow.*
 import yellow.ui.*
 import yellow.internal.util.*
+import yellow.internal.util.YellowUtils.*
 
 object BleedingEdgeAutoUpdater{
     val vtype = if(Yellow.getSelf().meta.version.contains(".")) "release" else "bleeding-edge"
@@ -20,11 +21,11 @@ object BleedingEdgeAutoUpdater{
                     val res = it.getResultAsString()
             
                     try{
-                        val version = jsr.parse(res)[0]["name"].asString()
+                        val version = jsr.parse(res)[0]["tag_name"].asString()
                         val kr = if(version != null && version.toIntOrNull() != null) version.toInt() else 0 //anything can happen.
                         
-                        Log.info("$version")
-                        Log.info("$kr")
+                        controlledLog("$version")
+                        controlledLog("$kr")
                         
                         if(kr > Yellow.getSelf().meta.version.toInt()) Vars.ui.showConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now?"){
                             YellowUtils.getAndWrite(YellowPermVars.sourceRepo, YellowSettings.tmpDir, true){
