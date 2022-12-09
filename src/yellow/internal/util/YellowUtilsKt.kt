@@ -9,6 +9,7 @@ import arc.scene.ui.layout.*
 import arc.struct.*
 import arc.util.*
 import arc.util.serialization.*
+import mindustry.*
 import yellow.type.*
 
 
@@ -34,6 +35,8 @@ fun typiis(item: FoodItem): String{
 }
 
 object YellowUtilsKt{
+    private val jsr = JsonReader()
+    
     fun traverse(dir: Fi, dump: Seq<String>){
         if(!dir.exists()) return
         dir.seq().each{ su: Fi ->
@@ -60,7 +63,30 @@ object YellowUtilsKt{
             }
         }
     }
-
+    
+    fun getBleedingEdgeVersion(): Int{
+        var kr = 0
+        
+        Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java-builds/releases", {
+            val res = it.getResultAsString()
+            
+            try{
+                val version = jsr.parse(res)[name]
+                kr = if(version != null) version.toInt() else 0 //anything can happen.
+            }catch(e: Exception){
+                e.printStacktrace()
+                Vars.ui.showException("Bleeding Edge Version GET Error", e)
+            }
+        }, {
+            Core.app.post{
+                it.printStackTrace()
+                Vars.ui.showException("Bleeding Edge Version GET Error", it)
+            }
+        })
+        
+        return kr
+    }
+    
     fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
 
     fun seperator(table: Table, width: Float, height: Float): Cell<Image> = seperator(table, width, height, Color.darkGray)

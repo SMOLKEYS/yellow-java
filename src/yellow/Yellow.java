@@ -44,6 +44,8 @@ public class Yellow extends Mod{
             YellowSettings.INSTANCE.load();
             YellowUtils.startRequestLimitHandler();
             
+            BleedingEdgeAutoUpdater.INSTANCE.start();
+            
             Events.run(Trigger.update, () -> FoodItem.instances.each(itm -> itm.update()));
         });
         
