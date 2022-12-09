@@ -64,27 +64,6 @@ object YellowUtilsKt{
         }
     }
     
-    fun getBleedingEdgeVersion(): Int{
-        var kr = 0
-        
-        Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java-builds/releases", {
-            val res = it.getResultAsString()
-            
-            try{
-                val version = jsr.parse(res)[0]["name"].name
-                kr = if(version != null) version.toInt() else 0 //anything can happen.
-            }catch(e: Exception){
-                Vars.ui.showException("Bleeding Edge Version GET Error", e)
-            }
-        }, {
-            Core.app.post{
-                it.printStackTrace()
-                Vars.ui.showException("Bleeding Edge Version GET Error", it)
-            }
-        })
-        
-        return kr
-    }
     
     fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
 
