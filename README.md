@@ -1,11 +1,3 @@
----
-
-Repo unarchived, why?
-
-Well, the Kotlin port is NOT cooperating at all, despite all efforts to fix it. (To be specific, the weapon mirror system, which is a core component.)
-
----
-
 # Yellow (Java)
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
