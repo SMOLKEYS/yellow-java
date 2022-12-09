@@ -23,11 +23,13 @@ object BleedingEdgeAutoUpdater{
                     try{
                         val version = jsr.parse(res)[0]["tag_name"].asString()
                         val kr = if(version != null && version.toIntOrNull() != null) version.toInt() else 0 //anything can happen.
+                        val rk = Yellow.getSelf().meta.version
+                        val krk = if(rk.toIntOrNull() != null) rk.toInt() else 999999
                         
                         controlledLog("$version")
                         controlledLog("$kr")
                         
-                        if(kr > Yellow.getSelf().meta.version.toInt()) Vars.ui.showConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now?"){
+                        if(kr > krk) Vars.ui.showConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now? (current: $krk, new: $kr)"){
                             YellowUtils.getAndWrite(YellowPermVars.sourceRepo, YellowSettings.tmpDir, true){
                                 Vars.mods.importMod(it)
                                 it.delete()
