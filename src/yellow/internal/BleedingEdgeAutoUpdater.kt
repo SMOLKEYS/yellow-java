@@ -1,5 +1,6 @@
 package yellow.internal
 
+import arc.*
 import mindustry.*
 import yellow.*
 import yellow.ui.*
