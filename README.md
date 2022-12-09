@@ -46,4 +46,3 @@ Janssendel - David's Star effect for Bullethell
 |August 5, 2021; 8:48PM PST|Beginning|Project commited to GitHub|
 |August 21, 2021; ??? PST|Beginning|Uploaded yellow sprite|
 |December 6, 2021: ??? PST|New Beginning|Creation of the java version of the project, aka this repository|
-|TODO|PERHAPS|THISISINTERESTING|
