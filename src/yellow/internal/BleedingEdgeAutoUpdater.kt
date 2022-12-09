@@ -1,6 +1,8 @@
 package yellow.internal
 
 import arc.*
+import arc.util.*
+import arc.util.serialization.*
 import mindustry.*
 import yellow.*
 import yellow.ui.*
@@ -8,6 +10,7 @@ import yellow.internal.util.*
 
 object BleedingEdgeAutoUpdater{
     val vtype = if(Yellow.getSelf().meta.version.contains(".")) "release" else "bleeding-edge"
+    val jsr = JsonReader()
     
     fun start(){
         when(vtype){
