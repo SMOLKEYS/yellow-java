@@ -37,12 +37,12 @@ object BleedingEdgeAutoUpdater{
                             }
                         }
                     }catch(e: Exception){
-                        Vars.ui.showException("Bleeding Edge Version GET Error", e)
+                        Log.err(e)
                     }
                 }, {
                     Core.app.post{
                         it.printStackTrace()
-                        Vars.ui.showException("Bleeding Edge Version GET Error", it)
+                        Log.err(e)
                     }
                 })
             }
