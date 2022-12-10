@@ -42,7 +42,7 @@ object BleedingEdgeAutoUpdater{
                 }, {
                     Core.app.post{
                         it.printStackTrace()
-                        Log.err(e)
+                        Log.err(it)
                     }
                 })
             }
