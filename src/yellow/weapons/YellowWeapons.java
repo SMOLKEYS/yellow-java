@@ -21,8 +21,6 @@ public class YellowWeapons{
     
     public static void load(){
         
-        //region main
-        
         meltdownBurstAttack = new DisableableWeapon("meltdown-burst", "Meltdown Burst"){{
             reload = 60f;
             x = 56f;
@@ -231,8 +229,6 @@ public class YellowWeapons{
                 shrinkY = 0f;
             }};
         }};
-
-        //endregion main
     }
     
     public static void afterLoad(){
