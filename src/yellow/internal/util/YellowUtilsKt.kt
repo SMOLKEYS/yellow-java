@@ -19,6 +19,8 @@ fun MUnit.healthFract() = this.health / this.type.health
 
 infix fun Int.ins(other: Int) = this % other == 0
 
+infix fun Float.ins(other: Float) = this % other == 0f
+
 fun <T> seqOf(vararg items: T): Seq<T>{
     if(items.isEmpty()) return Seq.with();
     return Seq.with(*items);

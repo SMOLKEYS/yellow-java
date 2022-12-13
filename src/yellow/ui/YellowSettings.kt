@@ -13,6 +13,7 @@ object YellowSettings{
 
     val tmpDir: Fi = Core.settings.dataDirectory.child("yellow.jar")
 
+    @JvmStatic
     fun load(){
         ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
 
@@ -20,18 +21,18 @@ object YellowSettings{
                 YellowPermVars.verboseLoggering = it
             }
 
-            table.textPref("Source Repo", YellowPermVars.sourceRepo){
+            table.textPref("Source Repo", YellowPermVars.sourceBERepo){
                 if(it.isBlank()){
-                    YellowPermVars.sourceRepo = "https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar"
+                    YellowPermVars.sourceBERepo = "https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar"
                 }else{
-                    YellowPermVars.sourceRepo = it
+                    YellowPermVars.sourceBERepo = it
                 }
             }
 
             table.row()
 
             table.textButton("Update\n(Do not spam!)", wrap = false){
-                YellowUtils.getAndWrite(YellowPermVars.sourceRepo, tmpDir, true){
+                YellowUtils.getAndWrite(YellowPermVars.sourceBERepo, tmpDir, true){
                     Vars.mods.importMod(it)
                     it.delete()
                     ui.showInfoOnHidden("Mod updated. Restart the game."){ Core.app.exit() }

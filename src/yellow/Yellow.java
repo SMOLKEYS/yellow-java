@@ -41,12 +41,12 @@ public class Yellow extends Mod{
             ycg.load();
             //ycg.loadUniversal();
 
-            YellowSettings.INSTANCE.load();
+            YellowSettings.load();
             YellowUtils.startRequestLimitHandler();
             
-            BleedingEdgeAutoUpdater.INSTANCE.start();
+            YellowAutoUpdater.start();
             
-            Events.run(Trigger.update, () -> FoodItem.instances.each(itm -> itm.update()));
+            Events.run(Trigger.update, () -> FoodItem.instances.each(FoodItem::update));
         });
         
     }

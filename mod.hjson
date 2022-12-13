@@ -23,4 +23,4 @@ minGameVersion: 138
 java: true
 
 #i have a reason for this
-hideBrowser: true
+hideBrowser: false

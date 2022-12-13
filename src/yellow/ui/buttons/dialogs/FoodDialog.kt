@@ -22,32 +22,21 @@ open class FoodDialog : BaseDialog("Food"){
     fun show(team: Team): Dialog{
         cont.clear()
 
-        cont.scrollPane{ scr: ScrollPane ->
-            this.row()
-            Groups.unit.each{ unit ->
-                if(unit.team == team){
-                    foodOpts(this, unit, {}){ itt ->
-                        table(itt, {
-                            it.grow()
-                        }, { table ->
-                            table.pane{ pan ->
-                                FoodItem.instances.each{
-                                    pan.button("${it.nameShort}\n${typiis(it)}", Styles.flatBordert){
-                                        if(it.hasThis(team)) it.consume(unit, team)
-                                    }.update{ ab ->
-                                        ab.setText("${it.nameShort}\n${typiis(it)}")
-                                    }.size(280f, 80f).get().label.setWrap(false)
-                                    pan.row()
-                                }
-                            }.grow()
-                        })
-                    }
-                    this.row()
-                }
-            }
-            scr.width = Core.graphics.width.toFloat() / 1.10f
-        }.size(Core.graphics.width.toFloat() / 1.10f, Core.graphics.height.toFloat() / 1.15f)
+        //left table - unit info
+        cont.addTable(Tex.pane){
 
+        }
+
+        //right table - food selection
+        cont.addTable(Tex.pane){
+
+        }
+
+        cont.row()
+        //bottom table - unit selection (list? grid? or both as options?)
+        cont.addTable(Tex.pane){
+
+        }
 
         return super.show()
     }
