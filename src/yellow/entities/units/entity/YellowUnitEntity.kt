@@ -14,6 +14,7 @@ import yellow.game.*
 import yellow.game.YEventType.*
 import yellow.YellowVars.*
 import yellow.entities.units.*
+import kotmindy.mindustry.*
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(), Spellcaster{
@@ -109,7 +110,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         }
     }
     
-    fun mounts() = mounts as Array<DisableableWeaponMount>
+    override fun mounts() = mounts as Array<DisableableWeaponMount>
 
     override fun type(): YellowUnitType {
         return type as YellowUnitType
@@ -270,7 +271,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
     
     override fun afterRead(){
         mounts().forEach{
-            if(team == Vars.player.team) it.enabled = false
+            if(team == Vars.player.unit().team) it.enabled = false
         }
     }
 

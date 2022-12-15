@@ -4,6 +4,7 @@ import arc.func.*
 import mindustry.gen.*
 import yellow.game.*
 import yellow.internal.util.*
+import kotmindy.mindustry.*
 
 /** The root spell class. Comes with generic healing fields. */
 open class Spell(){
@@ -23,7 +24,7 @@ open class Spell(){
         
         Groups.unit.each{
             if(!groupHeal && healedTargets > 0) return@each
-            if(predicate(it) && (it.team == user.team)){
+            if(predicate(it) && (it.team == (user as MUnit).team)){
                 if(healWithFract) it.healFract(healingByFract) else it.heal(healing)
                 healedTargets++
             }
