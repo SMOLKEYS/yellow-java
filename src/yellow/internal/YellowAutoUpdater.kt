@@ -3,7 +3,7 @@ package yellow.internal
 import arc.*
 import arc.util.*
 import arc.util.serialization.*
-import com.github.smol.kotmindy.mindustry.ui.*
+import kotmindy.mindustry.ui.*
 import mindustry.*
 import yellow.*
 import yellow.ui.*

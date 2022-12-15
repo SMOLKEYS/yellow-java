@@ -25,7 +25,7 @@ public class Yellow extends Mod{
     public static FoodDialog food;
     
     public Yellow(){
-        String yellow = "yellow suse ";
+        String yellow = "yellow suse ballas ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         

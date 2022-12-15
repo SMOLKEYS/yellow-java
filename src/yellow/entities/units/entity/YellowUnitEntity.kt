@@ -108,11 +108,13 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
             kill()
         }
     }
+    
+    fun mounts() = mounts as Array<DisableableWeaponMount>
 
     override fun type(): YellowUnitType {
         return type as YellowUnitType
     }
-
+    
     override fun kill() {
         destroy() //just call destroy(), no point in waiting
     }
@@ -177,7 +179,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
         //very picky woman i must say :trollar:
         if(allowsHealing){
-            Units.nearby(x, y, 15f*8f, 15f*8f){a: mindustry.gen.Unit ->
+            Units.nearby(x, y, 15f*8f, 15f*8f){a: MUnit ->
                 if(a.team == team){
                     if(!a.isPlayer){
                         if(Mathf.chanceDelta(0.09)){
@@ -264,6 +266,12 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
             rts.read(read)
         }
         */
+    }
+    
+    override fun afterRead(){
+        mounts().forEach{
+            if(team == Vars.player.team) it.enabled = false
+        }
     }
 
     override fun classId() = mappingId

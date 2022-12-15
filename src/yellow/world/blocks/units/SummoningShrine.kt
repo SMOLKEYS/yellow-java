@@ -33,7 +33,7 @@ open class SummoningShrine(
     var summonEffect: Effect = Fx.none
 
     init {
-        configurable = true //set this to false, and you basically just have a Block lmao
+        configurable = true
         solid = true
         update = true
         rotate = false

@@ -5,6 +5,7 @@ import yellow.entities.units.*;
 
 public class YEventType{
     
+    /** Fired when a unit defies death. */
     public static class DeathInvalidationEvent{
         public final Unit defier;
         

@@ -188,7 +188,7 @@ public class YellowUtils{
     }
 
     public static void mobileHudButton(Drawable icon, Runnable listener){
-        if(!Vars.mobile) return;
+        if(!Vars.mobile) return; //bewhewhe
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
         if(!once){

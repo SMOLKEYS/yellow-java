@@ -27,7 +27,10 @@ public class FoodItem extends Item{
     public boolean healAllAllies = false,
     
     /** If true, this item heals health in percentage. */
-    healUsingPercentage = false;
+    healUsingPercentage = false
+    
+    /** If true, this item is hidden from the food selection. */
+    internalFood = false;
 
     /** Responses that the following units may say when consuming this item. */
     public final OrderedMap<UnitType, String[]> responses = new OrderedMap<>();

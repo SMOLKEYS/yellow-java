@@ -5,7 +5,7 @@ import mindustry.type.*;
 import yellow.type.*;
 
 public class YellowItems{
-    public static Item surgeCandy, megaCopperPack, lesserMegaCopperPack, carbideChips, trueCarbideChips;
+    public static Item surgeCandy, megaCopperPack, lesserMegaCopperPack, carbideChips, trueCarbideChips, stockItem;
     
     public static void load(){
         surgeCandy = new FoodItem("surge-candy"){{
@@ -37,5 +37,12 @@ public class YellowItems{
                 if(Mathf.chance(0.07)) this.healingPercent = Mathf.random(1.01f, 200000f);
             }
         };
+        
+        stockItem = new FoodItem("stock-item"){{
+            nameShort = "StckItem";
+            healingPercent = healing = 0f;
+            internalFood = true;
+            hidden = true;
+        }};
     }
 }

@@ -7,6 +7,7 @@ import arc.math.*
 import arc.scene.ui.layout.*
 import arc.util.*
 import mindustry.*
+import mindustry.ai.*
 import mindustry.graphics.*
 import mindustry.type.*
 import mindustry.world.meta.*
@@ -14,16 +15,18 @@ import yellow.entities.units.entity.*
 import yellow.internal.util.YellowUtilsKt.seperator
 import yellow.type.*
 import yellow.world.meta.*
+import kotmindy.mindustry.*
 
 open class YellowUnitType(name: String): UnitType(name) {
 
     var maxLives = 5
 
-    init {
-        constructor = Prov<mindustry.gen.Unit> {YellowUnitEntity()}
+    init{
+        constructor = Prov<MUnit> {YellowUnitEntity()}
+        defaultCommand = UnitCommand.assistCommand
     }
 
-    override fun draw(unit: mindustry.gen.Unit) {
+    override fun draw(unit: MUnit) {
         super.draw(unit)
 
         var s = Mathf.absin(Time.time, 16f, 1f)

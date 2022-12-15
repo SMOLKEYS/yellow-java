@@ -11,9 +11,7 @@ import arc.util.*
 import arc.util.serialization.*
 import mindustry.*
 import yellow.type.*
-
-
-typealias MUnit = mindustry.gen.Unit
+import kotmindy.mindustry.*
 
 fun MUnit.healthFract() = this.health / this.type.health
 

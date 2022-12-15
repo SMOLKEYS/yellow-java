@@ -19,7 +19,7 @@ jobs:
       - name: Use different metadata
         run: |
           rm mod.hjson
-          printf 'name: "yellow-java"\ndisplayName: "Yellow (Java)"\nsubtitle: "BE Build ${{ github.run_number }}"\nversion: ${{ github.run_number }}\nminGameVersion: 138\nmain: "yellow.Yellow"' >> mod.hjson
+          printf 'name: "yellow-java"\ndisplayName: "Yellow BE (Java)"\nsubtitle: "BE Build ${{ github.run_number }}"\nversion: ${{ github.run_number }}\nminGameVersion: 138\nmain: "yellow.Yellow"' >> mod.hjson
       - name: Build mod jar
         run: chmod +x ./gradlew; ./gradlew deploy -Duse-k2
       - name: Upload built jar file

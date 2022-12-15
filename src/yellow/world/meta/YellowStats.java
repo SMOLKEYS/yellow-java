@@ -2,6 +2,7 @@ package yellow.world.meta;
 
 import mindustry.world.meta.*;
 
+//agone
 public class YellowStats{
     public static final StatCat humanInfo = new StatCat("humanInfo");
     

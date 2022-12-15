@@ -2,7 +2,7 @@ package yellow
 
 import com.github.mnemotechnician.mkui.delegates.*
 
-/** Variables that are saved to your save file. Does not reset even when the game is reloaded. From Ion. */
+/** Variables that are saved to your save file. Does not reset even when the game is reloaded. */
 object YellowPermVars {
     /** The setting string head. DO NOT MODIFY, EVER! */
     val syn = "yellow-"

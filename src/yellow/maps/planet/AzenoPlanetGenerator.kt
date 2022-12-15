@@ -11,7 +11,7 @@ import mindustry.world.*
 
 open class AzenoPlanetGenerator : PlanetGenerator(){
 
-    var scl = 4.7f
+    var scl = 4.2f
     var waterOffset = 0.13f
     private var v34 = Vec3()
     private var v35 = Vec3()

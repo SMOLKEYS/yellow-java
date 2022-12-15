@@ -1,6 +1,6 @@
 package yellow.game;
 
-//rune delta
+//rune delta seiral
 public interface Spellcaster{
     
     float getTensionPoints();

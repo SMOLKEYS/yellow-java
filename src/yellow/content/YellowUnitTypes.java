@@ -31,9 +31,13 @@ public class YellowUnitTypes{
             maxRange = 1250f;
             mineSpeed = 5000f;
             mineTier = 5000;
-            itemCapacity = 850000;
+            itemCapacity = 8500;
             buildSpeed = 95000f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
+            alwaysShootWhenMoving = true;
+            allowedInPayloads = false;
+            createScorch = false;
+            createWreck = false;
             
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
