@@ -24,23 +24,21 @@ open class FoodDialog : BaseDialog("Food"){
     fun show(team: Team): Dialog{
         cont.clear()
         
-        cont.let{
-            //unit info (health + armor, sorted by lowest first (provided i can do that)), top-left
-            addTable(Tex.pane){
-                
-            }
+        //unit info (health + armor, sorted by lowest first (provided i can do that)), top-left
+        cont.addTable(Tex.pane){
             
-            //item selection + info (healing, healing type, etc etc), top-right
-            addTable(Tex.pane){
-                
-            }
+        }
             
-            row()
+        //item selection + info (healing, healing type, etc etc), top-right
+        cont.addTable(Tex.pane){
             
-            //unit selection (clicking a unit will make it consume the selected food item), bottom-middle
-            addTable(Tex.pane){
-                
-            }
+        }
+            
+        cont.row()
+            
+        //unit selection (clicking a unit will make it consume the selected food item), bottom-middle
+        cont.addTable(Tex.pane){
+            
         }
 
         return super.show()
