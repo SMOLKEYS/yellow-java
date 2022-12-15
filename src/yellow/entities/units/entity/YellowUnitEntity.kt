@@ -8,6 +8,7 @@ import arc.struct.*
 import mindustry.*
 import mindustry.content.*
 import mindustry.entities.*
+import mindustry.entities.units.*
 import mindustry.gen.*
 import yellow.*
 import yellow.game.*
@@ -110,7 +111,11 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         }
     }
     
-    override fun mounts() = mounts as Array<DisableableWeaponMount>
+    inline fun <reified T : WeaponMount> eachMountAs(cons: (T) -> Unit){
+        mounts().forEach{
+            if(it is T) cons(it)
+        }
+    }
 
     override fun type(): YellowUnitType {
         return type as YellowUnitType
@@ -270,7 +275,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
     }
     
     override fun afterRead(){
-        mounts().forEach{
+        eachMountAs<DisableableWeaponMount>{
             if(team == Vars.player.unit().team) it.enabled = false
         }
     }
