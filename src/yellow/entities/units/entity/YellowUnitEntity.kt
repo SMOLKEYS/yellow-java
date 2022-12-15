@@ -276,7 +276,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
     
     override fun afterRead(){
         eachMountAs<DisableableWeaponMount>{
-            if(team == Vars.player.unit().team) it.enabled = false
+            if(team == Vars.player.unit().team) it.enabled = !YellowPermVars.weaponSanityCheck
         }
     }
 

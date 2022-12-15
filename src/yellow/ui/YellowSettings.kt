@@ -20,12 +20,24 @@ object YellowSettings{
             table.checkPref("Verbose Logging", false){
                 YellowPermVars.verboseLoggering = it
             }
-
-            table.textPref("Source Repo", YellowPermVars.sourceBERepo){
+            
+            table.checkPref("Disable Allied Yellow Unit Weapons On World Reload", true){
+                YellowPermVars.weaponSanityCheck = it
+            }
+            
+            table.textPref("Source BE Repo", YellowPermVars.sourceBERepo){
                 if(it.isBlank()){
                     YellowPermVars.sourceBERepo = "https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar"
                 }else{
                     YellowPermVars.sourceBERepo = it
+                }
+            }
+            
+            table.textPref("Source Repo", YellowPermVars.sourceReleaseRepo){
+                if(it.isBlank()){
+                    YellowPermVars.sourceReleaseRepo = "https://github.com/SMOLKEYS/yellow-java/releases/latest/download/yellow-java.jar"
+                }else{
+                    YellowPermVars.sourceReleaseRepo = it
                 }
             }
 
