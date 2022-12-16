@@ -4,7 +4,7 @@ import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
 
-import java.io.*
+import java.io.*;
 
 public class DisableableWeaponMount extends WeaponMount{
     /** whether or not the weapon is enabled */
