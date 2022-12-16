@@ -249,7 +249,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         write.f(tensionPoints)
         write.f(franticTeleportTime)
         
-        eachMountAs<DisableabeWeaponMount>{
+        eachMountAs<DisableableWeaponMount>{
             it.write(write)
         }
         
