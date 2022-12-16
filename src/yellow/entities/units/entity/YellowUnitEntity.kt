@@ -248,12 +248,11 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         write.i(lives)
         write.f(tensionPoints)
         write.f(franticTeleportTime)
-        /*
-        mounts.forEach{
-            val wts = it as DisableableWeaponMount
-            wts.write(write)
+        
+        eachMountAs<DisableabeWeaponMount>{
+            it.write(write)
         }
-        */
+        
     }
 
     override fun read(read: Reads){
@@ -266,20 +265,13 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         lives = read.i()
         tensionPoints = read.f()
         franticTeleportTime = read.f()
-        /*
-        mounts.forEach{
-            val rts = it as DisableabeWeaponMount
-            rts.read(read)
+        
+        eachMountAs<DisableableWeaponMount>{
+            it.read(read)
         }
-        */
+        
     }
     
-    override fun afterRead(){
-        eachMountAs<DisableableWeaponMount>{
-            if(team == Vars.player.unit().team) it.enabled = !YellowPermVars.weaponSanityCheck
-        }
-    }
-
     override fun classId() = mappingId
 
     companion object{

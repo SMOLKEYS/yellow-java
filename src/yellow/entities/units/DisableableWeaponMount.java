@@ -4,6 +4,8 @@ import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
 
+import java.io.*
+
 public class DisableableWeaponMount extends WeaponMount{
     /** whether or not the weapon is enabled */
     public boolean enabled = true;
@@ -17,7 +19,11 @@ public class DisableableWeaponMount extends WeaponMount{
     }
     
     public void read(Reads read){
-        enabled = read.bool();
+        try{
+            enabled = read.bool();
+        }catch(IOException e){
+            enabled = true;
+        }
     }
     
     /** Called when this weapon mount is enabled. */
