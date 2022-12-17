@@ -231,7 +231,7 @@ public class YellowWeapons{
             }};
         }};
         
-        speedEngine = new SpeedWeapon("speed-engine", "Speed Engine", YellowUtilsKt.INSTANCE.rangeOf(3, 100)){{
+        speedEngine = new DistanceBasedWeapon("speed-engine", "Speed Engine"){{
             enabledDefault = false;
             rotate = false;
             baseRotation = 180f;
@@ -240,9 +240,9 @@ public class YellowWeapons{
             x = y = 0f;
             
             bullet = new ContinuousFlameBulletType(){{
-                recoil = 1.45f;
+                recoil = -0.27f;
                 damage = 0f;
-                
+                colors = {Color.orange, Color.cyan, Color.purple};
             }};
         }};
     }

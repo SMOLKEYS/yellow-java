@@ -1,19 +1,20 @@
 package yellow.type;
 
+import arc.*;
 import arc.math.*;
+import mindustry.*;
 import mindustry.gen.*;
 import mindustry.entities.units.*;
 import yellow.type.*;
 import yellow.entities.units.*;
 import kotlin.ranges.*;
 
-public class SpeedWeapon extends DisableableWeapon{
+public class DistanceBasedWeapon extends DisableableWeapon{
     
-    public IntRange speedRange;
+    public int distance = 8 * 15;
     
-    public SpeedWeapon(String name, String displayName, IntRange range){
+    public SpeedWeapon(String name, String displayName){
         super(name, displayName);
-        speedRange = range;
         alwaysShooting = true;
         alwaysContinuous = true;
     }
@@ -22,6 +23,6 @@ public class SpeedWeapon extends DisableableWeapon{
     public void update(Unit unit, WeaponMount mount){
         super.update(unit, mount);
         
-        mount.shoot = speedRange.contains(Mathf.round(unit.vel.len())) && ((DisableableWeaponMount) mount).enabled;
+        mount.shoot = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && ((DisableableWeaponMount) mount).enabled;
     }
 }
