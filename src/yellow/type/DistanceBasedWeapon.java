@@ -14,7 +14,7 @@ import static yellow.internal.util.YellowUtils.*;
 
 public class DistanceBasedWeapon extends DisableableWeapon{
     
-    public int distance = 8 * 15;
+    public int distance = 8 * 22;
     
     public DistanceBasedWeapon(String name, String displayName){
         super(name, displayName);
