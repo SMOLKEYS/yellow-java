@@ -4,6 +4,7 @@ import arc.math.*;
 import mindustry.gen.*;
 import mindustry.entities.units.*;
 import yellow.type.*;
+import yellow.entities.units.*;
 import kotlin.ranges.*;
 
 public class SpeedWeapon extends DisableableWeapon{
