@@ -12,6 +12,7 @@ object YellowPermVars {
 
     var removeAllowed by setting(false, syn)
     var verboseLoggering by setting(false, syn)
+    var internalLoggering by setting(false, syn)
     var weaponSanityCheck by setting(true, syn)
 
     var temporary by setting(false, syn)

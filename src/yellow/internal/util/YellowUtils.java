@@ -132,6 +132,10 @@ public class YellowUtils{
         if(YellowPermVars.INSTANCE.getVerboseLoggering()) Log.info(log);
     }
     
+    public static void internalLog(Object log){
+        if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(log);
+    }
+    
     public static float combineInterp(Interp main, Interp other, float base){
         return main.apply(other.apply(base));
     }

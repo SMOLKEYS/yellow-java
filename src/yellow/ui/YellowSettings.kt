@@ -21,6 +21,10 @@ object YellowSettings{
                 YellowPermVars.verboseLoggering = it
             }
             
+            table.checkPref("Internal Logging", false){
+                YellowPermVars.internalLoggering = it
+            }
+            
             table.checkPref("Disable Allied Yellow Unit Weapons On World Reload", true){
                 YellowPermVars.weaponSanityCheck = it
             }
