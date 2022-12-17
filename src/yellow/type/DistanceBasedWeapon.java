@@ -25,9 +25,11 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     public void update(Unit unit, WeaponMount mount){
         super.update(unit, mount);
         
-        boolean shoot = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && ((DisableableWeaponMount) mount).enabled;
+        boolean shooter = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && ((DisableableWeaponMount) mount).enabled;
         
-        mount.shoot = shoot;
+        if(shooter){
+            shoot(unit, mount, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+        }
         
         internalLog(shoot);
     }
