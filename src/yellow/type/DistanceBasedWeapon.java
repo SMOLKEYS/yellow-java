@@ -29,11 +29,9 @@ public class DistanceBasedWeapon extends DisableableWeapon{
         
         if(mount.bullet != null){
             mount.bullet.keepAlive = shooter;
+            mount.bullet.time = 8f;
         }else{
             if(shooter){
-                
-                mount.shoot = true;
-                
                 shoot(unit, mount, unit.x, unit.y, unit.rotation - 90f + baseRotation);
             }
         }
