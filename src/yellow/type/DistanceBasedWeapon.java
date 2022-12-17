@@ -13,7 +13,7 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     
     public int distance = 8 * 15;
     
-    public SpeedWeapon(String name, String displayName){
+    public DistanceBasedWeapon(String name, String displayName){
         super(name, displayName);
         alwaysShooting = true;
         alwaysContinuous = true;

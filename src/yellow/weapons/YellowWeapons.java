@@ -242,7 +242,7 @@ public class YellowWeapons{
             bullet = new ContinuousFlameBulletType(){{
                 recoil = -0.27f;
                 damage = 0f;
-                colors = {Color.orange, Color.cyan, Color.purple};
+                colors = new Color[]{Color.orange, Color.cyan, Color.purple};
             }};
         }};
     }
