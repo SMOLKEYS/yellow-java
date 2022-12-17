@@ -29,6 +29,8 @@ public class DistanceBasedWeapon extends DisableableWeapon{
         
         if(shooter){
             shoot(unit, mount, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+            
+            mount.reload = reload;
         }
         
         internalLog(shoot);
