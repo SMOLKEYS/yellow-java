@@ -30,7 +30,12 @@ public class DistanceBasedWeapon extends DisableableWeapon{
         if(mount.bullet != null){
             mount.bullet.keepAlive = shooter;
         }else{
-            if(shooter) shoot(unit, mount, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+            if(shooter){
+                
+                mount.shoot = true;
+                
+                shoot(unit, mount, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+            }
         }
         
         internalLog(shooter);
