@@ -15,7 +15,6 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     
     public DistanceBasedWeapon(String name, String displayName){
         super(name, displayName);
-        alwaysShooting = true;
         alwaysContinuous = true;
     }
     
