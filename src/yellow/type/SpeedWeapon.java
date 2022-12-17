@@ -22,6 +22,6 @@ public class SpeedWeapon extends DisableableWeapon{
     public void update(Unit unit, WeaponMount mount){
         super.update(unit, mount);
         
-        mount.shoot = speedRange.contains(Mathf.round(unit.vel().len())) && ((DisableableWeaponMount) mount).enabled;
+        mount.shoot = speedRange.contains(Mathf.round(unit.vel.len())) && ((DisableableWeaponMount) mount).enabled;
     }
 }
