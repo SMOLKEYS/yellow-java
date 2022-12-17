@@ -7,6 +7,7 @@ import yellow.entities.units.*;
 public class DisableableWeapon extends NameableWeapon{
     
     public boolean mirroredVersion = false;
+    public boolean enabledDefault = true;
     
     public DisableableWeapon(String name, String displayName){
         super(name, displayName);

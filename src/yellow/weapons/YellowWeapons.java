@@ -10,6 +10,7 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import yellow.internal.util.*;
 import yellow.content.*;
 import yellow.entities.bullet.*;
 import yellow.type.*;
@@ -17,7 +18,7 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine;
     
     public static void load(){
         
@@ -227,6 +228,21 @@ public class YellowWeapons{
                 sprite = "flare";
                 shrinkX = 0f;
                 shrinkY = 0f;
+            }};
+        }};
+        
+        speedEngine = new SpeedWeapon("speed-engine", "Speed Engine", YellowUtilsKt.INSTANCE.rangeOf(3, 100)){{
+            enabledDefault = false;
+            rotate = false;
+            baseRotation = 180f;
+            shootCone = 360f;
+            mirror = false;
+            x = y = 0f;
+            
+            bullet = new ContinuousFlameBulletType(){{
+                recoil = 1.45f;
+                damage = 0f;
+                
             }};
         }};
     }

@@ -36,7 +36,9 @@ fun typiis(item: FoodItem): String{
 
 object YellowUtilsKt{
     private val jsr = JsonReader()
-    
+   
+   fun rangeOf(one: Int, two: Int) = one..two
+   
     fun traverse(dir: Fi, dump: Seq<String>){
         if(!dir.exists()) return
         dir.seq().each{ su: Fi ->
