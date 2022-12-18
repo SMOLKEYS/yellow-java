@@ -1,8 +1,9 @@
 package yellow.ui.buttons.dialogs
 
 import arc.*
-import arc.graphics.*
-import mindustry.entities.units.*
+import arc.scene.ui.*
+import mindustry.game.*
+import mindustry.gen.*
 import mindustry.graphics.*
 import mindustry.ui.dialogs.*
 import yellow.type.*
@@ -40,6 +41,9 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
             append("[lightgray]Shoot Cone:[] ${weapon.shootCone}\n")
             append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed}\n")
         })
+        
+        val paenu = ScrollPane(info)
+        cont.add(paenu)
         
         return super.show()
     }
