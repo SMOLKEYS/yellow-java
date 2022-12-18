@@ -42,7 +42,8 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
             append("[lightgray]X, Y:[] ${weapon.x}, ${weapon.y}\n")
             append("[lightgray]Rotate:[] ${weapon.rotate.yesNo()}\n")
             append("[lightgray]Shoot Cone:[] ${weapon.shootCone} degrees\n")
-            append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed} degrees\n")
+            append("[lightgray]Base Rotation:[] ${weapon.baseRotation} degrees\n")
+            if(weapon.rotate) append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed} degrees\n")
         })
         
         val paenu = ScrollPane(info)
