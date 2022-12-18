@@ -2,6 +2,8 @@ package yellow.ui.buttons.dialogs
 
 import arc.*
 import arc.scene.ui.*
+import arc.scene.ui.layout.*
+import arc.graphics.*
 import mindustry.game.*
 import mindustry.gen.*
 import mindustry.graphics.*
