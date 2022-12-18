@@ -32,7 +32,7 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
         
         info.add("Description").color(Pal.accent).fillX().padTop(10f).row()
         
-        info.add(weapon.description).color(Color.lightGray).get().setWrap(true)
+        info.add(weapon.description).color(Color.lightGray).fillX().get().setWrap(true)
         info.row()
         
         info.add("General Stats").color(Pal.accent).fillX().padTop(3f).row()
