@@ -33,6 +33,7 @@ jobs:
           
       - name: Decompile the mod and dump to the sources folder
         run: |
+          rm -rf yellow-java-sources/cfr yellow-java-sources/procyon
           java -jar procyon-decompiler-0.6.0.jar yellow-java.jar -o yellow-java-sources -ec -ps -ss
           java -jar cfr-0.152.jar yellow-java.jar --outputdir yellow-java-sources/cfr
       - name: Push to repo
