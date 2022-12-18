@@ -22,7 +22,7 @@ import static yellow.weapons.YellowWeapons.*;
 public class Yellow extends Mod{
     
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
-    public static WeaponInfoDialog weaponInfo = new WeaponInfoDialog();
+    public static WeaponInfoDialog weaponInfo;
     public static FoodDialog food;
     
     public Yellow(){
@@ -32,6 +32,7 @@ public class Yellow extends Mod{
         
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
+            weaponInfo = new WeaponInfoDialog();
             food = new FoodDialog();
 
             YellowUtils.mobileHudButton(Icon.add, () -> food.show(Vars.player.team()));
