@@ -23,6 +23,7 @@ fun <T> seqOf(vararg items: T): Seq<T>{
     if(items.isEmpty()) return Seq.with();
     return Seq.with(*items);
 }
+
 fun Table.touchableOf(index: Int, touchable: Touchable){
     this.children[index].touchable = touchable
 }
@@ -33,6 +34,10 @@ fun typiis(item: FoodItem): String{
         if(item.healAllAllies) append(" (Team)") else append(" (Single)")
     }
 }
+
+fun String.tint(color: Color) = "[#${color.toString()}]$this[]"
+
+fun Boolean.yesNo() = if(this) "Yes" else "No"
 
 object YellowUtilsKt{
     private val jsr = JsonReader()

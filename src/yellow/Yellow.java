@@ -22,6 +22,7 @@ import static yellow.weapons.YellowWeapons.*;
 public class Yellow extends Mod{
     
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
+    public static WeaponInfoDialog weaponInfo = new WeaponInfoDialog();
     public static FoodDialog food;
     
     public Yellow(){

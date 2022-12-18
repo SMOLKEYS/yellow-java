@@ -11,6 +11,7 @@ import mindustry.ai.*
 import mindustry.graphics.*
 import mindustry.type.*
 import mindustry.world.meta.*
+import yellow.*
 import yellow.entities.units.entity.*
 import yellow.internal.util.YellowUtilsKt.seperator
 import yellow.type.*
@@ -66,7 +67,9 @@ open class YellowUnitType(name: String): UnitType(name) {
                 val suse = it as DisableableWeapon
                 if(!suse.mirroredVersion){
                     me.add(suse.displayName)
-                    me.button("?"){}.size(35f)
+                    me.button("?"){
+                        Yellow.weaponInfo.show(it)
+                    }.size(35f)
                     me.row()
                     seperator(me, 290f, 4f)
                     me.row()

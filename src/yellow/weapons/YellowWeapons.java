@@ -239,11 +239,15 @@ public class YellowWeapons{
             mirror = false;
             x = y = 0f;
             
+            shootSound = Sounds.pulse;
+            
             bullet = new ContinuousFlameBulletType(){{
                 recoil = -0.32f;
                 damage = 60f;
                 knockback = 50f;
-                colors = new Color[]{Color.orange, Color.cyan, Color.purple};
+                
+                flareColor = Color.yellow;
+                colors = new Color[]{Color.yellow, Color.orange};
             }};
         }};
     }
