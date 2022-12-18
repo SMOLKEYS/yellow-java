@@ -32,16 +32,17 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
         
         info.add("Description").color(Pal.accent).fillX().padTop(10f).row()
         
-        info.add(weapon.description).color(Color.lightGray).row()
+        info.add(weapon.description).color(Color.lightGray).get().setWrap(true)
+        info.row()
         
-        info.add("General Stats").color(Pal.accent).fillX().padTop(10f).row()
+        info.add("General Stats").color(Pal.accent).fillX().padTop(3f).row()
         
         info.add(buildString{
-            append("[lightgray]Reload:[] ${weapon.reload / 60f}\n")
+            append("[lightgray]Reload:[] ${weapon.reload / 60f} seconds\n")
             append("[lightgray]X, Y:[] ${weapon.x}, ${weapon.y}\n")
             append("[lightgray]Rotate:[] ${weapon.rotate.yesNo()}\n")
-            append("[lightgray]Shoot Cone:[] ${weapon.shootCone}\n")
-            append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed}\n")
+            append("[lightgray]Shoot Cone:[] ${weapon.shootCone} degrees\n")
+            append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed} degrees\n")
         })
         
         val paenu = ScrollPane(info)
