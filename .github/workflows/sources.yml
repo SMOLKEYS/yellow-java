@@ -31,9 +31,11 @@ jobs:
       - name: Push to repo
         run: |
           cd yellow-java-sources
-          git config --global user.name "Github CLI"
-          git config --global user.email "cli@github.com"
+          
+          rm -rf org kotlin com 
+          git config --global user.name "Github Actions"
+          git config --global user.email "actions@github.com"
           git add .
           git commit -m "sources-update"
-          git push https://SMOLKEYS:${{ secrets.GTOKEN }}@github.com/SMOLKEYS/yellow-java-sources
+          git push https://SMOLKEYS:${{ secrets.API_GTOKEN }}@github.com/SMOLKEYS/yellow-java-sources
           cd ../
