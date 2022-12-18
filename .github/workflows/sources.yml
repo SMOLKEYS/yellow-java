@@ -24,18 +24,35 @@ jobs:
         run: chmod +x ./gradlew; ./gradlew deploy -Duse-k2
       - name: Move jar to root
         run: mv build/libs/yellow-java.jar .
-      - name: Get the Procyon decompiler AND get the decomp sources repo
-        run: 'wget https://github.com/mstrobel/procyon/releases/download/v0.6.0/procyon-decompiler-0.6.0.jar && git clone https://github.com/SMOLKEYS/yellow-java-sources'
+      - name: Get the Procyon and CFR decompiler AND get the decomp sources repo
+        run: |
+          wget https://github.com/mstrobel/procyon/releases/download/v0.6.0/procyon-decompiler-0.6.0.jar
+          wget https://github.com/leibnitz27/cfr/releases/download/0.152/cfr-0.152.jar
+          
+          git clone https://github.com/SMOLKEYS/yellow-java-sources
+          
       - name: Decompile the mod and dump to the sources folder
-        run: 'java -jar procyon-decompiler-0.6.0.jar yellow-java.jar -o yellow-java-sources -ec -ps -ss'
+        run: |
+          java -jar procyon-decompiler-0.6.0.jar yellow-java.jar -o yellow-java-sources -ec -ps -ss
+          java -jar cfr-0.152.jar yellow-java.jar --outputdir yellow-java-sources/cfr
       - name: Push to repo
         run: |
           cd yellow-java-sources
           
-          rm -rf org kotlin com 
+          rm -rf org kotlin com kotmindy
+          
+          mkdir procyon
+          mv yellow procyon
+          
+          cd cfr
+          
+          rm -rf org kotlin com kotmindy
+          cd ../
+          
           git config --global user.name "Github Actions"
           git config --global user.email "actions@github.com"
           git add .
           git commit -m "sources-update"
           git push https://SMOLKEYS:${{ secrets.API_GTOKEN }}@github.com/SMOLKEYS/yellow-java-sources
+          
           cd ../
