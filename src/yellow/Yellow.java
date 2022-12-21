@@ -61,12 +61,12 @@ public class Yellow extends Mod{
     public void loadContent(){
         YellowBullets.load();
         YellowWeapons.load();
-
         YellowUnitTypes.load();
         YellowStatusEffects.load();
         YellowPlanets.load();
         YellowBlocks.load();
         YellowItems.load();
+        YellowSpells.load();
 
         YellowWeapons.afterLoad();
 
