@@ -17,7 +17,7 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine;
     
     public static void load(){
         
@@ -245,6 +245,28 @@ public class YellowWeapons{
                 damage = 60f;
                 knockback = 50f;
                 
+                flareColor = Color.yellow;
+                colors = new Color[]{Color.yellow, Color.orange};
+            }};
+        }};
+
+        dualSpeedEngine = new DistanceBasedWeapon("dual-speed-engine", "Dual Speed Engine"){{
+           enabledDefault = false;
+           rotate = false;
+           holdTime = 120f;
+           baseRotation = 215f;
+           shootCone = 360f;
+           mirror = false;
+           x = y = 0f;
+
+           shootSound = Sounds.none;
+
+            bullet = new ContinuousFlameBulletType(){{
+                recoil = -0.32f;
+                damage = 60f;
+                knockback = 50f;
+                length = 45f;
+
                 flareColor = Color.yellow;
                 colors = new Color[]{Color.yellow, Color.orange};
             }};
