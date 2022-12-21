@@ -1,8 +1,7 @@
 package yellow.entities.bullet
 
-import arc.util.Time
-import mindustry.entities.Damage
-import mindustry.entities.bullet.BulletType
+import arc.util.*
+import mindustry.entities.bullet.*
 import mindustry.gen.*
 import yellow.internal.util.*
 

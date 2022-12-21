@@ -4,14 +4,11 @@ import arc.files.*
 import arc.struct.*
 import mindustry.*
 
-open class MetaChaos{
-
+object MetaChaos{
+    @JvmStatic
     val subtitles = Seq<String>()
+    @JvmStatic
     val descriptions = Seq<String>()
-
-    init{
-        load()
-    }
     
     fun List<String>.filterComments(): List<String>{
         return this.filter{ !it.startsWith("#") }
@@ -21,6 +18,7 @@ open class MetaChaos{
         return this.readString().split('\n').filterComments()
     }
 
+    @JvmStatic
     fun load(){
         val meta = Vars.mods.getMod("yellow-java").meta
         subtitles.add(meta.subtitle)

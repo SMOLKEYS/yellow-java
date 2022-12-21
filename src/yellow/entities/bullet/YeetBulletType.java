@@ -1,9 +1,9 @@
 package yellow.entities.bullet;
 
 import arc.math.*;
-import mindustry.gen.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
+import mindustry.gen.*;
 import yellow.content.*;
 
 public class YeetBulletType extends BasicBulletType{

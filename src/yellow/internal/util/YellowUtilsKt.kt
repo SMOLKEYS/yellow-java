@@ -9,9 +9,8 @@ import arc.scene.ui.layout.*
 import arc.struct.*
 import arc.util.*
 import arc.util.serialization.*
-import mindustry.*
-import yellow.type.*
 import kotmindy.mindustry.*
+import yellow.type.*
 
 fun MUnit.healthFract() = this.health / this.type.health
 

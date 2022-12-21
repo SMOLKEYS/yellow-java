@@ -3,19 +3,18 @@ package yellow.entities.units.entity
 import arc.*
 import arc.math.*
 import arc.math.geom.*
-import arc.util.io.*
 import arc.struct.*
+import arc.util.io.*
+import kotmindy.mindustry.*
 import mindustry.*
 import mindustry.content.*
 import mindustry.entities.*
 import mindustry.entities.units.*
 import mindustry.gen.*
 import yellow.*
-import yellow.game.*
-import yellow.game.YEventType.*
-import yellow.YellowVars.*
 import yellow.entities.units.*
-import kotmindy.mindustry.*
+import yellow.game.*
+import yellow.game.YEventType.DeathInvalidationEvent
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(), Spellcaster{

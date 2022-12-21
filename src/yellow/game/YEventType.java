@@ -1,7 +1,6 @@
 package yellow.game;
 
 import mindustry.gen.*;
-import yellow.entities.units.*;
 
 public class YEventType{
     

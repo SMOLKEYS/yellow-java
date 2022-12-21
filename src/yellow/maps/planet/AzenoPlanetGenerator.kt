@@ -24,7 +24,7 @@ open class AzenoPlanetGenerator : PlanetGenerator(){
     var watera: Float = 2f / arr.get(0).size
 
     override fun getHeight(position: Vec3): Float{
-        return Math.max(rawHeight(position), watera)
+        return rawHeight(position).coerceAtLeast(watera)
     }
 
     override fun getColor(position: Vec3): Color{

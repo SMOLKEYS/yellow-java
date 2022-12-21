@@ -1,10 +1,7 @@
 package yellow;
 
 import arc.*;
-import arc.struct.*;
-import mindustry.*;
 import mindustry.mod.*;
-import yellow.entities.units.entity.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
 
@@ -13,16 +10,16 @@ public class YellowVars{
     public static Mods.ModMeta meta;
 
     public static void load(){
-        meta = Vars.mods.getMod("yellow-java").meta;
+        meta = Yellow.getSelf().meta;
 
-        MetaChaos locs = new MetaChaos();
+        MetaChaos.load();
 
-        meta.subtitle = locs.getSubtitles().random();
-        meta.description = locs.getDescriptions().random();
+        meta.subtitle = MetaChaos.getSubtitles().random();
+        meta.description = MetaChaos.getDescriptions().random();
 
         YellowUtils.loop(1f, () -> {
-            meta.subtitle = locs.getSubtitles().random();
-            meta.description = locs.getDescriptions().random();
+            meta.subtitle = MetaChaos.getSubtitles().random();
+            meta.description = MetaChaos.getDescriptions().random();
         });
 
 

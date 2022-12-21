@@ -1,16 +1,13 @@
 package yellow.ui.buttons.dialogs
 
 import arc.*
+import arc.graphics.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
-import arc.graphics.*
-import mindustry.game.*
-import mindustry.gen.*
 import mindustry.graphics.*
 import mindustry.ui.dialogs.*
-import yellow.type.*
-import yellow.entities.units.*
 import yellow.internal.util.*
+import yellow.type.*
 
 open class WeaponInfoDialog : BaseDialog("Weapon Info"){
     

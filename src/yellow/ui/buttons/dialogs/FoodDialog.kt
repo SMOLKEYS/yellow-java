@@ -1,17 +1,11 @@
 package yellow.ui.buttons.dialogs
 
-import arc.*
 import arc.scene.ui.*
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.game.*
 import mindustry.gen.*
-import mindustry.graphics.*
-import mindustry.ui.Styles
 import mindustry.ui.dialogs.*
 import yellow.content.*
-import yellow.internal.util.*
-import yellow.internal.util.YellowUtils.*
-import yellow.type.*
 
 open class FoodDialog : BaseDialog("Food"){
 

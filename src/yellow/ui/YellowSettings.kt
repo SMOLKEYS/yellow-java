@@ -4,7 +4,7 @@ import arc.*
 import arc.files.*
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.*
-import mindustry.Vars.*
+import mindustry.Vars.ui
 import mindustry.gen.*
 import yellow.*
 import yellow.internal.util.*

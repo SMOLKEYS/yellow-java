@@ -14,17 +14,19 @@ public class DisableableWeaponMount extends WeaponMount{
         
         enabled = ((DisableableWeapon) weapon).enabledDefault;
     }
-    
+
+
+    //TODO
     public void write(Writes write){
-        write.bool(enabled);
+        //write.bool(enabled);
     }
     
     public void read(Reads read){
-        try{
-            enabled = read.bool();
-        }catch(Exception e){
-            enabled = ((DisableableWeapon) weapon).enabledDefault;
-        }
+        //try{
+        //    enabled = read.bool();
+        //}catch(Exception e){
+        //    enabled = ((DisableableWeapon) weapon).enabledDefault;
+        //}
     }
     
     /** Called when this weapon mount is enabled. */

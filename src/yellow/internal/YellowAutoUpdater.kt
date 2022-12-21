@@ -6,8 +6,9 @@ import arc.util.serialization.*
 import kotmindy.mindustry.ui.*
 import mindustry.*
 import yellow.*
+import yellow.internal.util.YellowUtils.controlledLog
+import yellow.internal.util.YellowUtils.getAndWrite
 import yellow.ui.*
-import yellow.internal.util.YellowUtils.*
 
 object YellowAutoUpdater{
     val vtype = if(Yellow.getSelf().meta.version.contains(".")) "release" else "bleeding-edge"

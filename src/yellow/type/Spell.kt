@@ -1,10 +1,9 @@
 package yellow.type
 
-import arc.func.*
+import kotmindy.mindustry.*
 import mindustry.gen.*
 import yellow.game.*
 import yellow.internal.util.*
-import kotmindy.mindustry.*
 
 /** The root spell class. Comes with generic healing fields. */
 open class Spell(){

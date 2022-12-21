@@ -6,6 +6,7 @@ import arc.graphics.g2d.*
 import arc.math.*
 import arc.scene.ui.layout.*
 import arc.util.*
+import kotmindy.mindustry.*
 import mindustry.*
 import mindustry.ai.*
 import mindustry.graphics.*
@@ -16,7 +17,6 @@ import yellow.entities.units.entity.*
 import yellow.internal.util.YellowUtilsKt.seperator
 import yellow.type.*
 import yellow.world.meta.*
-import kotmindy.mindustry.*
 
 open class YellowUnitType(name: String): UnitType(name) {
 

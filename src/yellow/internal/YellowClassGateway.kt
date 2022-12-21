@@ -2,7 +2,7 @@ package yellow.internal
 
 import mindustry.*
 import rhino.*
-import yellow.internal.util.YellowUtils.*
+import yellow.internal.util.YellowUtils.controlledLog
 
 //sh1p you have done it
 open class YellowClassGateway{
