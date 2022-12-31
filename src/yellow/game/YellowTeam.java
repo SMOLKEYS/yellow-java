@@ -16,6 +16,6 @@ public class YellowTeam extends Team{
     
     @Override
     public boolean isEnemy(Team other){
-        return team != other && other != Team.sharded;
+        return this != other && other != Team.sharded;
     }
 }
