@@ -13,4 +13,9 @@ public class YellowTeam extends Team{
     public static void load(){
         azmar = new YellowTeam(7, "azmar", Color.yellow); //7 is mine
     }
+    
+    @Override
+    public boolean isEnemy(Team other){
+        return team != other && other != Team.sharded
+    }
 }
