@@ -234,7 +234,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         tensionPoints -= amount
     }
     
-    override fun toString() = if(isValid) "YellowUnitEntity#$id" else "(invalid) YellowUnitEntity#$id"
+    override fun toString() = if(isValid) "YellowUnitEntity#$id:${type.name}" else "(invalid) YellowUnitEntity#$id"
 
 
     override fun write(write: Writes){
