@@ -7,6 +7,7 @@ import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.*;
+import yellow.game.*;
 import yellow.content.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
