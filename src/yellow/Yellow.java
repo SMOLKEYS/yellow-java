@@ -75,7 +75,7 @@ public class Yellow extends Mod{
 
             YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine}, true, true, true, YellowUnitTypes.yellow);
         }catch(Exception e){
-            Events.on(ClientLoadEvent.class, () -> ui.showCustomConfirm("[red]FATAL LOAD ERROR[]", "An error was thrown while content was being loaded from Yellow.\nClosing the game is heavily recommended.", "Close", "Keep Playing", () -> Core.app.exit(), () -> {}));
+            Events.run(ClientLoadEvent.class, () -> ui.showCustomConfirm("[red]FATAL LOAD ERROR[]", "An error was thrown while content was being loaded from Yellow.\nClosing the game is heavily recommended.", "Close", "Keep Playing", () -> Core.app.exit(), () -> {}));
         }
     }
 }
