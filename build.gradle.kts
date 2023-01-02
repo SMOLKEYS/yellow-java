@@ -30,7 +30,7 @@ dependencies {
     //flabel hash eae3c2dc59 is broken
     //compileOnly("com.github.Anuken.Arc:flabel:$mindustryVersion")
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
-    implementation("com.github.SMOLKEYS:kotmindy:v0.3")
+    implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
     implementation("com.github.mnemotechnician:mkui:v1.2")
     
     //annotationProcessor("com.github.Anuken:jabel:$jabelCommitHash")

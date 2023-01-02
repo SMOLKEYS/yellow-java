@@ -60,18 +60,22 @@ public class Yellow extends Mod{
     
     @Override
     public void loadContent(){
-        YellowBullets.load();
-        YellowWeapons.load();
-        YellowUnitTypes.load();
-        YellowStatusEffects.load();
-        YellowPlanets.load();
-        YellowBlocks.load();
-        YellowItems.load();
-        YellowSpells.load();
-        YellowTeam.load();
+        try{
+            YellowBullets.load();
+            YellowWeapons.load();
+            YellowUnitTypes.load();
+            YellowStatusEffects.load();
+            YellowPlanets.load();
+            YellowBlocks.load();
+            YellowItems.load();
+            YellowSpells.load();
+            YellowTeam.load();
 
-        YellowWeapons.afterLoad();
+            YellowWeapons.afterLoad();
 
-        YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine}, true, true, true, YellowUnitTypes.yellow);
+            YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine}, true, true, true, YellowUnitTypes.yellow);
+        }catch(Exception e){
+            Events.on(ClientLoadEvent.class, () -> ui.showCustomConfirm("[red]FATAL LOAD ERROR[]", "An error was thrown while content was being loaded from Yellow.\nClosing the game is heavily recommended.", "Close", "Keep Playing", () -> Core.app.exit(), () -> {}));
+        }
     }
 }
