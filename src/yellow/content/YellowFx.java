@@ -139,6 +139,15 @@ public class YellowFx{
         Draw.z(Layer.flyingUnit);
         Fonts.def.draw((String)e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
         
+    }),
+    
+    gateClose = new Effect(120f, e -> {
+        Lines.stroke(e.fout() * 6f);
+        
+        Draw.color(Color.yellow, Color.white, e.fin());
+        Lines.line(e.x, e.y - 2000f, e.x, e.y + 2000f);
     });
-        //endregion
+    
+    
+    //endregion
 }

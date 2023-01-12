@@ -17,7 +17,7 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, sunlightGrace;
     
     public static void load(){
         
