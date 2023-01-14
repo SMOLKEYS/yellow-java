@@ -1,6 +1,6 @@
 version: 2.1
 executors:
-  my-custom-executor:
+  build:
     docker:
       - image: cimg/base:stable
         auth:
