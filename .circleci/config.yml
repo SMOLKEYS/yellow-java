@@ -11,7 +11,7 @@ executors:
 jobs:
   build:
 
-    executor: my-custom-executor
+    executor: build
     steps:
       - checkout
       - run: |
