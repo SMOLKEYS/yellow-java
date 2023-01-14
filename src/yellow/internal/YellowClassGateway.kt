@@ -5,13 +5,14 @@ import rhino.*
 import yellow.internal.util.YellowUtils.controlledLog
 
 //sh1p you have done it
-open class YellowClassGateway{
+object YellowClassGateway{
 
     private var uniGateImports = 0
     private var uniGateErrors = 0
 
+    @JvmStatic
     fun load(){
-        var scope = Vars.mods.scripts.scope as ImporterTopLevel
+        val scope = Vars.mods.scripts.scope as ImporterTopLevel
         
         val packages = Vars.tree.get("classpaths/yellow-classpath.txt").readString().split('\n')
 

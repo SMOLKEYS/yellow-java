@@ -7,6 +7,8 @@ import mindustry.*
 import mindustry.Vars.ui
 import mindustry.gen.*
 import yellow.*
+import yellow.content.YellowNotifications
+import yellow.internal.YellowClassGateway
 import yellow.internal.util.*
 
 object YellowSettings{
@@ -59,6 +61,24 @@ object YellowSettings{
 
             table.textButton("Check Status", wrap = false){
                 YellowUtils.getWorkflowStatus()
+            }
+
+            table.row()
+
+            table.textButton("Notifications", wrap = false){
+                Yellow.notifs.show(Notification.instances)
+            }
+
+            table.row()
+
+            table.textButton("Manually Load Class Gateway", wrap = false){
+                YellowClassGateway.load()
+            }
+
+            table.row()
+
+            table.textButton("Call Notification", wrap = false){
+                YellowNotifications.hi.add()
             }
         }
     }

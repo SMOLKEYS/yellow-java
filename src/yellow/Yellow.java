@@ -25,6 +25,7 @@ public class Yellow extends Mod{
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     public static WeaponInfoDialog weaponInfo;
     public static FoodDialog food;
+    public static NotificationListDialog notifs;
     
     public Yellow(){
         String yellow = "yellow suse ballas ";
@@ -35,13 +36,15 @@ public class Yellow extends Mod{
             weaponSwitch.build(ui.hudGroup);
             weaponInfo = new WeaponInfoDialog();
             food = new FoodDialog();
+            notifs = new NotificationListDialog();
+
+            YellowNotifications.load();
 
             YellowUtils.mobileHudButton(Icon.add, () -> food.show(Vars.player.team()));
 
             YellowVars.load();
             
-            YellowClassGateway ycg = new YellowClassGateway();
-            ycg.load();
+            YellowClassGateway.load();
             //ycg.loadUniversal();
 
             YellowSettings.load();
