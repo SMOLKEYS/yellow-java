@@ -9,7 +9,7 @@ plugins {
     kotlin("jvm") version "1.8.0"
 }
 
-val mindustryVersion = "v140.3"
+val mindustryVersion = "v141.1"
 val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
