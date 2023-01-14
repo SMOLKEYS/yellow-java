@@ -30,9 +30,9 @@ open class YellowUnitType(name: String): UnitType(name) {
     override fun draw(unit: MUnit) {
         super.draw(unit)
 
-        var s = Mathf.absin(Time.time, 16f, 1f)
-        var r1 = s * 25f
-        var r2 = s * 20f
+        val s = Mathf.absin(Time.time, 16f, 1f)
+        val r1 = s * 25f
+        val r2 = s * 20f
 
         Draw.z(Layer.effect)
         Draw.color(Color.yellow)

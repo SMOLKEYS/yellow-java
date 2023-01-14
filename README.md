@@ -1,7 +1,3 @@
----
-tbis is what falling down stairs feels like
----
-
 # Yellow (Java)
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
@@ -40,7 +36,6 @@ Janssendel - David's Star effect for Bullethell
 |[PKChaos Org.](https://github.com/PKChaos)|
 |[Ion (Second Main Project)](https://github.com/PKChaos/Ion)|
 |[The Original Project Repository (JS)](https://github.com/SMOLKEYS/yellow)|
-|**MISSING-LINK**|
 
 
 |Time|Event|Info|

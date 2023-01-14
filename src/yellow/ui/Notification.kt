@@ -56,11 +56,11 @@ open class Notification{
     }
 
     fun add(){
+        sound.play()
         if(instances.contains(this)){
             reminderSound.play(reminderSoundVolume)
             return
         }
-        sound.play()
         instances.add(this)
         removed = false
     }

@@ -18,8 +18,8 @@ object YellowAutoUpdater{
     fun start(){
         when(vtype){
             "release" -> {
-                Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", {
-                    val res = it.resultAsString
+                Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", { response ->
+                    val res = response.resultAsString
 
                     try{
                         val version = jsr.parse(res)[0]["tag_name"].asString().replace("v", "")
@@ -32,9 +32,9 @@ object YellowAutoUpdater{
 
                         if(kr > krk){
                             showTitledConfirm("New yellow-java release!", "Update now?"){
-                                getAndWrite(YellowPermVars.sourceReleaseRepo, YellowSettings.tmpDir, true){
-                                    Vars.mods.importMod(it)
-                                    it.delete()
+                                getAndWrite(YellowPermVars.sourceReleaseRepo, YellowSettings.tmpDir, true){ file ->
+                                    Vars.mods.importMod(file)
+                                    file.delete()
                                     showInfo("Mod imported. The game will now restart."){ Core.app.exit() }
                                 }
                             }
