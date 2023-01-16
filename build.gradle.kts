@@ -62,7 +62,7 @@ val genYellowClasspath by tasks.registering {
                     .removePrefix("$buildDir/classes/")
                     .removePrefix("java/main/").removePrefix("kotlin/main/") // any can be present
                     .replace('/', '.')
-                    .substringBeforeLast('.') // turining class path into package path
+                    .substringBeforeLast('.') // turning class path into package path
             }
             .distinct() // remove duplicate packages
             .sorted() // because why not
