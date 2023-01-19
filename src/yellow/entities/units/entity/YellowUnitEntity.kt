@@ -42,13 +42,6 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         panicMode = Mathf.chance(0.221)
         panicModeTypeTwo = Mathf.chance(0.124)
         entities.add(this)
-        
-        //inherit from found instance
-        findInstance()?.eachMountAs<DisableableWeaponMount>{ins ->
-            eachMountAs<DisableableWeaponMount>{you ->
-                you.enabled = ins.enabled
-            }
-        }
     }
     
     private fun invalidateVars(){
@@ -285,12 +278,5 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         
         @JvmStatic
         val entities = Seq<YellowUnitEntity>()
-        
-        fun findInstance(): YellowUnitEntity?{
-            Groups.unit.each{
-                if(it is YellowUnitEntity) return@findInstance it
-            }
-            return null
-        }
     }
 }
