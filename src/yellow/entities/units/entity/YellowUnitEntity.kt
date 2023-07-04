@@ -17,14 +17,11 @@ import yellow.game.*
 import yellow.game.YEventType.DeathInvalidationEvent
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-open class YellowUnitEntity: UnitEntity(), Spellcaster{
-
-    //TODO finalizing fields, as adding new ones/removing old ones causes save corruption
+open class YellowUnitEntity: UnitEntity(){
     
     private var inited = false
     private var firstDeath = false
     private var franticTeleportTime = 60f
-    private var tensionPoints = 0f
     private val everywhere = Vec2()
     
     //turn into private field?
@@ -181,14 +178,14 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         }
         
         
-        //heal surrounding units; normal units gain 10 health, player units gain either no health or a third of their current health
+        //heal surrounding units; normal units gain 70 health, player units gain either no health or a third of their current health
         //very picky woman i must say :trollar:
         if(allowsHealing){
             Units.nearby(x, y, 15f*8f, 15f*8f){a: MUnit ->
                 if(a.team == team){
                     if(!a.isPlayer){
                         if(Mathf.chanceDelta(0.09)){
-                            a.heal(10f)
+                            a.heal(70f)
                         }
                     }else{
                         if(Mathf.chanceDelta(0.14)){
@@ -201,6 +198,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         
         
         //teleport everywhere and start firing all weapons on last life for a second if panic mode is enabled
+        //TODO not working
         if(panicMode && lives == 1 && franticTeleportTime > 0f){
             everywhere.set(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
             x = everywhere.x
@@ -220,22 +218,7 @@ open class YellowUnitEntity: UnitEntity(), Spellcaster{
         }
     }
     
-    override fun getTensionPoints() = tensionPoints
-    
-    override fun setTensionPoints(set: Float){
-        tensionPoints = set
-    }
-    
-    override fun addTensionPoints(amount: Float){
-        tensionPoints += amount
-    }
-    
-    override fun removeTensionPoints(amount: Float){
-        tensionPoints -= amount
-    }
-    
     override fun toString() = if(isValid) "YellowUnitEntity#$id:${type.name}" else "(invalid) YellowUnitEntity#$id:${type.name}"
-
 
     override fun write(write: Writes){
         super.write(write)

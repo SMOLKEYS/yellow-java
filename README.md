@@ -1,4 +1,4 @@
-# Yellow (Java)
+# Yellow
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
