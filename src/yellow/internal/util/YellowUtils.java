@@ -192,6 +192,8 @@ public class YellowUtils{
         });
     }
 
+    //TODO use pages or scrollpane instead of rows
+    //resolves issue against scheme size top ui overlapping
     public static void mobileHudButton(Drawable icon, Runnable listener){
         if(!Vars.mobile) return; //bewhewhe
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
@@ -201,7 +203,7 @@ public class YellowUtils{
             but.row();
         }
         
-        if(currentButtons == 5){
+        if(currentButtons > 4){
             currentButtons = 0;
             but.image().height(65f).width(4f).color(Color.darkGray);
             but.row();
@@ -212,6 +214,15 @@ public class YellowUtils{
         });
         
         currentButtons++;
+    }
+
+    public static void emptyHudButtonRow(){
+    	for(int i = 0; i < 5 - currentButtons; i++){
+    		mobileHudButton(Icon.none, () -> {});
+    	}
+    	mobileHudButton(Icon.none, () -> {});
+    	//god fucking damnit i hate ui
+    	Vars.ui.hudGroup.<Table>find("mobile buttons").image().height(65f).width(4f).color(Color.darkGray);
     }
 
 }

@@ -41,10 +41,11 @@ public class Yellow extends Mod{
             YellowNotifications.load();
 
             YellowUtils.mobileHudButton(Icon.add, () -> food.show(Vars.player.team()));
-
+            YellowUtils.emptyHudButtonRow();
+            
             YellowVars.load();
             
-            YellowClassGateway.load();
+            //YellowClassGateway.load();
             //ycg.loadUniversal();
 
             YellowSettings.load();
