@@ -42,7 +42,7 @@ open class Notification{
     
     /** Creates a Notification with the specified priority level. */
     constructor(priority: NotificationPriority){
-        this.priority = priority.level
+        this.priority = priority.prio //lmao
     }
     
     /** Creates a low-priority Notification. */

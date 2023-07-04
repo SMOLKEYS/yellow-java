@@ -49,7 +49,7 @@ object YellowAutoUpdater{
                     }
                 })
             }
-            "bleeding-edge" -> {
+            "bleeding-edge" -> {/* deprecated, as github disabled actions for my account
                 Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java-builds/releases", {
                     val res = it.resultAsString
             
@@ -78,7 +78,7 @@ object YellowAutoUpdater{
                         Log.err(it)
                     }
                 })
-            }
+            */}
             else -> {}
         }
     }

@@ -101,8 +101,8 @@ open class YellowUnitEntity: UnitEntity(){
     }
 
 
-    fun forceKill() {
-        while(lives > 0) {
+    fun forceKill(){
+        while(lives > 0){
             kill()
         }
     }
@@ -113,18 +113,18 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
 
-    override fun type(): YellowUnitType {
+    override fun type(): YellowUnitType{
         return type as YellowUnitType
     }
     
-    override fun kill() {
+    override fun kill(){
         destroy() //just call destroy(), no point in waiting
     }
     
 
     override fun destroy(){
         
-        if(lives > 1) {
+        if(lives > 1){
             invalidateDeath()
             return
         }
@@ -195,19 +195,13 @@ open class YellowUnitEntity: UnitEntity(){
                 }
             }
         }
+
+
         
-        
-        //teleport everywhere and start firing all weapons on last life for a second if panic mode is enabled
-        //TODO not working
         if(panicMode && lives == 1 && franticTeleportTime > 0f){
             everywhere.set(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
             x = everywhere.x
             y = everywhere.y
-
-            val mountus = mounts.random()
-
-            mountus.shoot = true
-            mountus.weapon.update(this, mountus)
             
             //if type two panic mode is enabled, start dropping quad bombs
             if(panicModeTypeTwo){
@@ -228,7 +222,6 @@ open class YellowUnitEntity: UnitEntity(){
         write.bool(panicMode)
         write.bool(panicModeTypeTwo)
         write.i(lives)
-        write.f(tensionPoints)
         write.f(franticTeleportTime)
         
         eachMountAs<DisableableWeaponMount>{
@@ -245,7 +238,6 @@ open class YellowUnitEntity: UnitEntity(){
         panicMode = read.bool()
         panicModeTypeTwo = read.bool()
         lives = read.i()
-        tensionPoints = read.f()
         franticTeleportTime = read.f()
         
         eachMountAs<DisableableWeaponMount>{

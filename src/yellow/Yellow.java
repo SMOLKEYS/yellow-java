@@ -71,8 +71,6 @@ public class Yellow extends Mod{
             YellowPlanets.load();
             YellowBlocks.load();
             YellowItems.load();
-            YellowSpells.load();
-            YellowTeam.load();
 
             YellowWeapons.afterLoad();
 
