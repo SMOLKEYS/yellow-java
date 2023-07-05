@@ -155,4 +155,6 @@ gradle-app.setting
 Thumbs.db
 android/libs/
 
-## bad
+## Devtools
+*.c
+dev-*
