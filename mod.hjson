@@ -1,1 +1,25 @@
-nˆxÂ9w
+
+displayName: "Yellow"
+
+#the internal name of your mod
+name: "yellow-java"
+
+#your name
+author: "SMOLKEYS"
+
+#the fully qualified main class of the mod
+main: "yellow.Yellow"
+
+#the mod description as seen in the mod dialog
+description: "Very pog."
+
+#the mod version
+version: 0.6
+
+#the minimum game build required to run this mod
+minGameVersion: 138
+
+#this is a java mod
+java: true
+
+#i have a reason for this
