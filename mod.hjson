@@ -1,11 +1,10 @@
-
 displayName: "Yellow"
 
 #the internal name of your mod
 name: "yellow-java"
 
 #your name
-author: "SMOLKEYS"
+author: "PKChaos (SMOLKEYS)"
 
 #the fully qualified main class of the mod
 main: "yellow.Yellow"
