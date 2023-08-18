@@ -6,11 +6,9 @@ import yellow.internal.*;
 import yellow.internal.util.*;
 
 public class YellowVars{
-    
-    public static Mods.ModMeta meta;
 
     public static void load(){
-        meta = Yellow.getSelf().meta;
+        Mods.ModMeta meta = Yellow.getSelf().meta;
 
         MetaChaos.load();
 

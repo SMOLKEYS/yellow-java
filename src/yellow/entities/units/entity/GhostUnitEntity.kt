@@ -1,12 +1,12 @@
 package yellow.entities.units.entity
 
-import arc.math.*
-import arc.util.*
+import arc.math.Mathf
+import arc.util.Time
 import arc.util.io.*
-import mindustry.content.*
-import mindustry.entities.*
+import mindustry.content.Fx
+import mindustry.entities.Effect
 import mindustry.gen.*
-import yellow.entities.units.*
+import yellow.entities.units.GhostUnitType
 
 open class GhostUnitEntity: UnitEntity() {
     var ghostLifetime = 0f
@@ -20,6 +20,10 @@ open class GhostUnitEntity: UnitEntity() {
 
     fun clampLifetime() {
         ghostLifetime = Mathf.clamp(ghostLifetime, 0f, (type as GhostUnitType).ghostLifetime)
+    }
+
+    fun ghostLifetime(time: Float){
+        ghostLifetime = time
     }
 
     private fun initVars() {

@@ -1,6 +1,6 @@
 package yellow.content;
 
-import yellow.ui.Notification;
+import yellow.ui.*;
 
 public class YellowNotifications{
     public static Notification

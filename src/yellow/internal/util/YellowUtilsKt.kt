@@ -1,16 +1,15 @@
 package yellow.internal.util
 
-import arc.*
-import arc.files.*
-import arc.graphics.*
-import arc.scene.event.*
-import arc.scene.ui.*
+import arc.Core
+import arc.files.Fi
+import arc.graphics.Color
+import arc.scene.event.Touchable
+import arc.scene.ui.Image
 import arc.scene.ui.layout.*
-import arc.struct.*
-import arc.util.*
+import arc.struct.Seq
+import arc.util.Log
 import arc.util.serialization.*
-import kotmindy.mindustry.*
-import yellow.type.*
+import kotmindy.mindustry.MUnit
 
 fun MUnit.healthFract() = this.health / this.type.health
 
@@ -25,13 +24,6 @@ fun <T> seqOf(vararg items: T): Seq<T>{
 
 fun Table.touchableOf(index: Int, touchable: Touchable){
     this.children[index].touchable = touchable
-}
-
-fun typiis(item: FoodItem): String{
-    return buildString{
-        if(item.healUsingPercentage) append("+${(item.healingPercent * 100f).toInt()}% HP") else append("+${item.healing} HP") 
-        if(item.healAllAllies) append(" (Team)") else append(" (Single)")
-    }
 }
 
 fun String.tint(color: Color) = "[#${color.toString()}]$this[]"

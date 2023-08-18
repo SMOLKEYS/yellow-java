@@ -4,14 +4,11 @@ import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.*;
-import yellow.game.*;
 import yellow.content.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
-import yellow.type.*;
 import yellow.ui.*;
 import yellow.ui.buttons.*;
 import yellow.ui.buttons.dialogs.*;
@@ -24,7 +21,6 @@ public class Yellow extends Mod{
     
     public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
     public static WeaponInfoDialog weaponInfo;
-    public static FoodDialog food;
     public static NotificationListDialog notifs;
     
     public Yellow(){
@@ -35,25 +31,17 @@ public class Yellow extends Mod{
         Events.run(ClientLoadEvent.class, () -> {
             weaponSwitch.build(ui.hudGroup);
             weaponInfo = new WeaponInfoDialog();
-            food = new FoodDialog();
             notifs = new NotificationListDialog();
 
             YellowNotifications.load();
 
-            YellowUtils.mobileHudButton(Icon.add, () -> food.show(Vars.player.team()));
             YellowUtils.emptyHudButtonRow();
             
             YellowVars.load();
-            
-            //YellowClassGateway.load();
-            //ycg.loadUniversal();
 
             YellowSettings.load();
-            YellowUtils.startRequestLimitHandler();
             
             YellowAutoUpdater.start();
-            
-            Events.run(Trigger.update, () -> FoodItem.instances.each(FoodItem::update));
         });
         
     }
@@ -69,9 +57,7 @@ public class Yellow extends Mod{
             YellowWeapons.load();
             YellowUnitTypes.load();
             YellowStatusEffects.load();
-            YellowPlanets.load();
             YellowBlocks.load();
-            YellowItems.load();
 
             YellowWeapons.afterLoad();
 

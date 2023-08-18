@@ -1,14 +1,14 @@
 package yellow.internal
 
-import arc.*
+import arc.Core
 import arc.util.*
-import arc.util.serialization.*
+import arc.util.serialization.JsonReader
 import kotmindy.mindustry.ui.*
-import mindustry.*
+import mindustry.Vars
 import yellow.*
 import yellow.internal.util.YellowUtils.controlledLog
 import yellow.internal.util.YellowUtils.getAndWrite
-import yellow.ui.*
+import yellow.ui.YellowSettings
 
 object YellowAutoUpdater{
     val vtype = if(Yellow.getSelf().meta.version.contains(".")) "release" else "bleeding-edge"

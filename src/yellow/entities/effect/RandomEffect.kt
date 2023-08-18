@@ -1,7 +1,7 @@
 package yellow.entities.effect
 
-import arc.graphics.*
-import mindustry.entities.*
+import arc.graphics.Color
+import mindustry.entities.Effect
 
 open class RandomEffect(vararg var effects: Effect) : Effect(0f, {}){
     

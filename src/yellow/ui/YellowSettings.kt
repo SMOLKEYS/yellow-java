@@ -1,15 +1,14 @@
 package yellow.ui
 
-import arc.*
-import arc.files.*
-import com.github.mnemotechnician.mkui.extensions.dsl.*
-import mindustry.*
+import arc.Core
+import arc.files.Fi
+import com.github.mnemotechnician.mkui.extensions.dsl.textButton
+import mindustry.Vars
 import mindustry.Vars.ui
-import mindustry.gen.*
+import mindustry.gen.Icon
 import yellow.*
 import yellow.content.YellowNotifications
-import yellow.internal.YellowClassGateway
-import yellow.internal.util.*
+import yellow.internal.util.YellowUtils
 
 object YellowSettings{
 
@@ -59,20 +58,8 @@ object YellowSettings{
 
             table.row()
 
-            table.textButton("Check Status", wrap = false){
-                YellowUtils.getWorkflowStatus()
-            }
-
-            table.row()
-
             table.textButton("Notifications", wrap = false){
                 Yellow.notifs.show(Notification.instances)
-            }
-
-            table.row()
-
-            table.textButton("Manually Load Class Gateway", wrap = false){
-                YellowClassGateway.load()
             }
 
             table.row()

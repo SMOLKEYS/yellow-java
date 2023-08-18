@@ -1,19 +1,22 @@
 package yellow.entities.units.entity
 
-import arc.*
-import arc.math.*
-import arc.math.geom.*
-import arc.struct.*
+import arc.Events
+import arc.graphics.Color
+import arc.graphics.g2d.*
+import arc.math.Mathf
+import arc.math.geom.Vec2
+import arc.struct.Seq
+import arc.util.*
 import arc.util.io.*
-import kotmindy.mindustry.*
-import mindustry.*
+import kotmindy.mindustry.MUnit
+import mindustry.Vars
 import mindustry.content.*
-import mindustry.entities.*
-import mindustry.entities.units.*
+import mindustry.entities.Units
+import mindustry.entities.units.WeaponMount
 import mindustry.gen.*
-import yellow.*
+import mindustry.graphics.Layer
+import yellow.YellowPermVars
 import yellow.entities.units.*
-import yellow.game.*
 import yellow.game.YEventType.DeathInvalidationEvent
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -53,6 +56,10 @@ open class YellowUnitEntity: UnitEntity(){
     }
     
     private fun invalidateDeath(){
+
+        //huh???
+        type().afterDeath[-lives + type().maxLives]?.get(this)
+
         lives -= 1
         health = type.health
         dead = false
@@ -66,8 +73,7 @@ open class YellowUnitEntity: UnitEntity(){
         if(isPlayer){
             Vars.ui.showInfoFade("$lives left!")
         }
-        
-        //sorry, but yellow ain't going down to the void
+
         if(outOfWorldBounds()){
             if(team.data().cores.isEmpty){
                 x = Mathf.random(Vars.world.width()) * 8f
@@ -179,7 +185,6 @@ open class YellowUnitEntity: UnitEntity(){
         
         
         //heal surrounding units; normal units gain 70 health, player units gain either no health or a third of their current health
-        //very picky woman i must say :trollar:
         if(allowsHealing){
             Units.nearby(x, y, 15f*8f, 15f*8f){a: MUnit ->
                 if(a.team == team){
@@ -196,8 +201,6 @@ open class YellowUnitEntity: UnitEntity(){
             }
         }
 
-
-        
         if(panicMode && lives == 1 && franticTeleportTime > 0f){
             everywhere.set(Mathf.random(Vars.world.width()) * 8f, Mathf.random(Vars.world.height()) * 8f)
             x = everywhere.x
@@ -209,6 +212,36 @@ open class YellowUnitEntity: UnitEntity(){
             }
             
             franticTeleportTime--
+        }
+    }
+
+    override fun draw(){
+        super.draw()
+
+        val s = Mathf.absin(Time.time, 16f, 1f)
+        val r1 = s * 25f
+        val r2 = s * 20f
+
+        Draw.z(Layer.effect)
+        Draw.color(Color.yellow)
+
+        Lines.circle(x, y, 20f + r1)
+        Lines.square(x, y, 20f + r1, Time.time)
+        Lines.square(x, y, 20f + r1, -Time.time)
+
+        Tmp.v1.trns(Time.time, r2, r2)
+
+        Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
+        Tmp.v1.trns(Time.time, -r2, -r2)
+        Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
+        Tmp.c1.set(Color.white)
+        Tmp.c1.a = 0f
+        Fill.light(x, y, 5, 50f - r1, Color.yellow, Tmp.c1)
+
+        when(lives){
+            3 -> {
+                if(Mathf.chance(0.1)) Fx.smoke.at(x, y)
+            }
         }
     }
     

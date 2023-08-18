@@ -5,6 +5,7 @@ import mindustry.ai.types.*;
 import mindustry.type.*;
 import yellow.ai.*;
 import yellow.entities.units.*;
+import yellow.entities.units.entity.*;
 import yellow.weapons.*;
 
 public class YellowUnitTypes{
@@ -41,7 +42,22 @@ public class YellowUnitTypes{
             
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
+
+            getAfterDeath()[0] = a -> {
+                for(int i = 0; i < 360; i++) YellowBullets.glowOrb.create(a, a.x, a.y, i);
+            };
             
+            getAfterDeath()[3] = a -> a.armor(20f);
+
+            getAfterDeath()[4] = a -> {
+                for(int i = 0; i < 35; i++){
+                    GhostUnitEntity ent = (GhostUnitEntity) ghostFlare.spawn(a, a.team());
+                    ent.armor(10f);
+                    ent.health(3550f);
+                    ent.shield(12f);
+                }
+            };
+
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine);
         }};
         

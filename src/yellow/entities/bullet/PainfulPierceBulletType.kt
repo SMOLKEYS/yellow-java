@@ -1,6 +1,6 @@
 package yellow.entities.bullet
 
-import mindustry.entities.bullet.*
+import mindustry.entities.bullet.BulletType
 import mindustry.gen.*
 
 open class PainfulPierceBulletType(speed: Float, damage: Float, var damageBenefitPerPierce: Float) : BulletType(speed, damage){

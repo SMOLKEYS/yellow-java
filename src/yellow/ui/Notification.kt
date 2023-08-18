@@ -1,11 +1,8 @@
 package yellow.ui
 
-import arc.scene.ui.layout.*
-import arc.struct.*
-import com.github.mnemotechnician.mkui.extensions.dsl.scrollPane
-import mindustry.gen.Icon
-import mindustry.gen.Sounds
-import mindustry.gen.Tex
+import arc.scene.ui.layout.Table
+import arc.struct.Seq
+import mindustry.gen.*
 
 open class Notification{
 

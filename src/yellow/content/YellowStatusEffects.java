@@ -1,6 +1,5 @@
 package yellow.content;
 
-import arc.math.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -8,10 +7,7 @@ import mindustry.type.*;
 public class YellowStatusEffects{
     public static StatusEffect
     
-    demise,
-    
-    //omg sandz undtertale?!???//
-    karma;
+    demise;
 
     public static void load(){
         
@@ -26,20 +22,6 @@ public class YellowStatusEffects{
                 super.update(unit, time);
                 
                 unit.kill();
-            }
-        };
-        
-        karma = new StatusEffect("karma"){{
-            color = Team.malis.color;
-            show = false;
-        }
-            
-            @Override
-            public void update(Unit unit, float time){
-                if(unit.health <= unit.type.health / 8f) unit.unapply(this);
-                if(Mathf.chanceDelta(0.6)){
-                    unit.damage(1f);
-                }
             }
         };
     }

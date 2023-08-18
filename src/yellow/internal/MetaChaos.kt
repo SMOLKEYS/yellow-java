@@ -1,8 +1,8 @@
 package yellow.internal
 
-import arc.files.*
-import arc.struct.*
-import mindustry.*
+import arc.files.Fi
+import arc.struct.Seq
+import mindustry.Vars
 
 object MetaChaos{
     @JvmStatic

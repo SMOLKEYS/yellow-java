@@ -14,8 +14,8 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     public int distance = 8 * 22;
     public float holdTime = 0f;
     
-    public DistanceBasedWeapon(String name, String displayName){
-        super(name, displayName);
+    public DistanceBasedWeapon(String name){
+        super(name);
         alwaysContinuous = true;
         mountType = DistanceBasedWeaponMount::new;
     }

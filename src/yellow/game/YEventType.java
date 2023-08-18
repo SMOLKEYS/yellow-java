@@ -6,10 +6,10 @@ public class YEventType{
     
     /** Fired when a unit defies death. */
     public static class DeathInvalidationEvent{
-        public final Unit defier;
+        public final Unit unit;
         
-        public DeathInvalidationEvent(Unit defier){
-            this.defier = defier;
+        public DeathInvalidationEvent(Unit unit){
+            this.unit = unit;
         }
     }
 }

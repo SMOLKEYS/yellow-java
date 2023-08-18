@@ -1,54 +1,33 @@
 package yellow.entities.units
 
 import arc.func.*
-import arc.graphics.*
+import arc.graphics.Color
 import arc.graphics.g2d.*
-import arc.math.*
-import arc.scene.ui.layout.*
+import arc.math.Mathf
+import arc.scene.ui.layout.Table
 import arc.util.*
-import kotmindy.mindustry.*
-import mindustry.*
-import mindustry.ai.*
-import mindustry.graphics.*
-import mindustry.type.*
+import kotmindy.mindustry.MUnit
+import mindustry.Vars
+import mindustry.ai.UnitCommand
+import mindustry.graphics.Layer
+import mindustry.type.UnitType
 import mindustry.world.meta.*
 import yellow.*
-import yellow.entities.units.entity.*
+import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.YellowUtilsKt.seperator
-import yellow.type.*
-import yellow.world.meta.*
+import yellow.type.DisableableWeapon
+import yellow.world.meta.YellowStats
 
 open class YellowUnitType(name: String): UnitType(name) {
 
     var maxLives = 5
+    var afterDeath: Array<Cons<YellowUnitEntity>?> = arrayOfNulls(maxLives)
 
     init{
         constructor = Prov<MUnit> {YellowUnitEntity()}
         defaultCommand = UnitCommand.assistCommand
-    }
 
-    override fun draw(unit: MUnit) {
-        super.draw(unit)
-
-        val s = Mathf.absin(Time.time, 16f, 1f)
-        val r1 = s * 25f
-        val r2 = s * 20f
-
-        Draw.z(Layer.effect)
-        Draw.color(Color.yellow)
-
-        Lines.circle(unit.x, unit.y, 20f + r1)
-        Lines.square(unit.x, unit.y, 20f + r1, Time.time)
-        Lines.square(unit.x, unit.y, 20f + r1, -Time.time)
-
-        Tmp.v1.trns(Time.time, r2, r2)
-
-        Fill.circle(unit.x + Tmp.v1.x, unit.y + Tmp.v1.y, 2f + s * 8f)
-        Tmp.v1.trns(Time.time, -r2, -r2)
-        Fill.circle(unit.x + Tmp.v1.x, unit.y + Tmp.v1.y, 2f + s * 8f)
-        Tmp.c1.set(Color.white)
-        Tmp.c1.a = 0f
-        Fill.light(unit.x, unit.y, 5, 50f - r1, Color.yellow, Tmp.c1)
+        if(afterDeath.size != maxLives) throw ArrayIndexOutOfBoundsException("onDeath.size not equal to maxLives")
     }
     
     override fun setStats(){
@@ -66,7 +45,7 @@ open class YellowUnitType(name: String): UnitType(name) {
             weapons.each{
                 val suse = it as DisableableWeapon
                 if(!suse.mirroredVersion){
-                    me.add(suse.displayName)
+                    me.add(suse.nameLocalized())
                     me.button("?"){
                         Yellow.weaponInfo.show(it)
                     }.size(35f)
@@ -85,17 +64,11 @@ open class YellowUnitType(name: String): UnitType(name) {
         1000-8000 [cyan]shield health[] on first death
         Random chance of teleporting frantically on last life
         Random chance of teleporting frantically AND dropping plasma bombs on last life
-        Fourth-wall breaker (Pilot/Human Form)
         """.trimIndent())
         
         stats.add(YellowStats.name, "Nihara")
         stats.add(YellowStats.gender, "Female")
         stats.add(YellowStats.age, "23", YellowStats.yearsOld)
-        stats.add(YellowStats.personality, "Kind/Friendly")
-        stats.add(YellowStats.headpatRating, "High")
-        stats.add(YellowStats.generalAura, "Menacing (First Encounter)")
-        stats.add(YellowStats.loveInterest, ".....")
-        stats.add(YellowStats.likes, "Comfort, Yellow-colored things, etc...")
-        stats.add(YellowStats.dislikes, "Anything explosive, especially Thorium Reactors\n[gray](with the exception of her own weapons in Unit form)[]")
+        stats.add(YellowStats.affinity, "${YellowPermVars.getAffinityQ()} / 100")
     }
 }

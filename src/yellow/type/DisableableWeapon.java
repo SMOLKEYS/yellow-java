@@ -9,8 +9,8 @@ public class DisableableWeapon extends NameableWeapon{
     public boolean mirroredVersion = false;
     public boolean enabledDefault = true;
     
-    public DisableableWeapon(String name, String displayName){
-        super(name, displayName);
+    public DisableableWeapon(String name){
+        super(name);
         mountType = DisableableWeaponMount::new;
     }
     //basically, if the mount is disabled, ignore update and draw code entirely

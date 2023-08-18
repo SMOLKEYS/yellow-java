@@ -17,11 +17,11 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, isolator;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, locker;
     
     public static void load(){
         
-        meltdownBurstAttack = new DisableableWeapon("meltdown-burst", "Meltdown Burst"){{
+        meltdownBurstAttack = new DisableableWeapon("meltdown-burst"){{
             reload = 60f;
             x = 56f;
             mirror = false;
@@ -44,7 +44,7 @@ public class YellowWeapons{
             
         }};
         
-        bullethell = new DisableableWeapon("bullethell", "Bullethell"){{
+        bullethell = new DisableableWeapon("bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
@@ -87,7 +87,7 @@ public class YellowWeapons{
             };
         }};
         
-        antiMothSpray = new DisableableWeapon("anti-moth-spray", "Anti Moth Spray"){{
+        antiMothSpray = new DisableableWeapon("anti-moth-spray"){{
             reload = 2f;
             x = 3f;
             mirror = false;
@@ -104,7 +104,7 @@ public class YellowWeapons{
             }};
         }};
         
-        decimation = new DisableableWeapon("decimation", "Decimation"){{
+        decimation = new DisableableWeapon("decimation"){{
             reload = 300f;
             x = 48f;
             mirror = false;
@@ -154,7 +154,7 @@ public class YellowWeapons{
             };
         }};
         
-        airstrikeFlareLauncher = new DisableableWeapon("airstrike-flare-launcher", "Airstrike Flare Launcher"){{
+        airstrikeFlareLauncher = new DisableableWeapon("airstrike-flare-launcher"){{
             reload = 300f;
             x = 0f;
             y = 0f;
@@ -163,7 +163,7 @@ public class YellowWeapons{
             bullet = YellowBullets.standardMissileCaller;
         }};
 
-        disruptor = new DisableableWeapon("disruptor", "Disruptor"){{
+        disruptor = new DisableableWeapon("disruptor"){{
             reload = 600f;
             x = 0f;
             y = 0f;
@@ -190,7 +190,7 @@ public class YellowWeapons{
             }};
         }};
 
-        ghostCall = new DisableableWeapon("ghost-call", "Ghost Call"){{
+        ghostCall = new DisableableWeapon("ghost-call"){{
             reload = 240f;
             x = 24f;
             y = 0f;
@@ -200,7 +200,7 @@ public class YellowWeapons{
             shoot.shots = 35;
         }};
         
-        ghostRain = new DisableableWeapon("ghost-rain", "Ghost Rain"){{
+        ghostRain = new DisableableWeapon("ghost-rain"){{
             reload = 30f;
             x = 80f;
             y = 0f;
@@ -218,8 +218,6 @@ public class YellowWeapons{
                 damage = 40f;
                 width = 12f;
                 height = 12f;
-                homingRange = 80f;
-                homingPower = 0.1f;
                 hitEffect = YellowFx.ghostDespawnMulti;
                 despawnEffect = YellowFx.ghostDespawnMulti;
                 backRegion = Core.atlas.find("flare");
@@ -230,7 +228,7 @@ public class YellowWeapons{
             }};
         }};
         
-        speedEngine = new DistanceBasedWeapon("speed-engine", "Speed Engine"){{
+        speedEngine = new DistanceBasedWeapon("speed-engine"){{
             enabledDefault = false;
             rotate = false;
             baseRotation = 180f;
@@ -250,7 +248,7 @@ public class YellowWeapons{
             }};
         }};
 
-        dualSpeedEngine = new DistanceBasedWeapon("dual-speed-engine", "Dual Speed Engine"){{
+        dualSpeedEngine = new DistanceBasedWeapon("dual-speed-engine"){{
            enabledDefault = false;
            rotate = false;
            holdTime = 120f;

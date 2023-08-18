@@ -2,12 +2,10 @@ package yellow.type
 
 import arc.util.Time
 import mindustry.entities.units.WeaponMount
-import mindustry.type.Weapon
-
-import yellow.entities.units.*
+import yellow.entities.units.DisableableWeaponMount
 
 /** An extension of Weapon that rotates indefinitely. Taken from Ion.*/
-open class SpinnyWeapon(name: String, displayName: String, var spinSpeed: Float = 0.8f): DisableableWeapon(name, displayName) {
+open class SpinnyWeapon(name: String, var spinSpeed: Float = 0.8f): DisableableWeapon(name) {
 
     init{
         rotate = false

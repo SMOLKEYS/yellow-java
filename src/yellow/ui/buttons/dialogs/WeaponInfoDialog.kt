@@ -1,13 +1,13 @@
 package yellow.ui.buttons.dialogs
 
-import arc.*
-import arc.graphics.*
+import arc.Core
+import arc.graphics.Color
 import arc.scene.ui.*
-import arc.scene.ui.layout.*
-import mindustry.graphics.*
-import mindustry.ui.dialogs.*
-import yellow.internal.util.*
-import yellow.type.*
+import arc.scene.ui.layout.Table
+import mindustry.graphics.Pal
+import mindustry.ui.dialogs.BaseDialog
+import yellow.internal.util.yesNo
+import yellow.type.NameableWeapon
 
 open class WeaponInfoDialog : BaseDialog("Weapon Info"){
     
@@ -24,7 +24,7 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
         
         info.table{
             it.image(Core.atlas.drawable("status-disarmed")).size(50f)
-            it.add("[accent]${weapon.displayName}[]")
+            it.add("[accent]${weapon.nameLocalized()}[]")
         }.row()
         
         info.add("Description").color(Pal.accent).fillX().padTop(10f).row()

@@ -9,7 +9,7 @@ plugins {
     kotlin("jvm") version "1.8.0"
 }
 
-val mindustryVersion = "145"
+val mindustryVersion = "v145"
 val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
@@ -27,13 +27,18 @@ sourceSets {
 
 dependencies {
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
-    //flabel hash eae3c2dc59 is broken
-    //compileOnly("com.github.Anuken.Arc:flabel:$mindustryVersion")
     compileOnly("com.github.Anuken.MindustryJitpack:core:$mindustryVersion")
     implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
     implementation("com.github.mnemotechnician:mkui:v1.2")
-    
-    //annotationProcessor("com.github.Anuken:jabel:$jabelCommitHash")
+
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "com.github.Anuken.Arc") {
+            useVersion("$mindustryVersion")
+        }
+    }
 }
 
 java {
@@ -41,42 +46,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-//yet to be properly implemented in windows environments
-//subject to removal
-/*
-val genYellowClasspath by tasks.registering {
-    dependsOn("compileKotlin")
-    dependsOn("compileJava")
-
-    inputs.files(configurations.runtimeClasspath.get().files)
-    outputs.dir("$buildDir/gen-assets/")
-
-    doLast {
-        val packages = sourceSets.main.get().output.classesDirs
-            .flatMap {
-                // collect all classes
-                it.walkTopDown().filter { 
-                    !it.isDirectory && it.name.endsWith(".class") && "$" !in it.name 
-                }.toList()
-            }.map {
-                // turn class files pathes into packages
-                it.absolutePath.removeSuffix(".class")
-                    .removePrefix("$buildDir/classes/")
-                    .removePrefix("java/main/").removePrefix("kotlin/main/") // any can be present
-                    .replace('/', '.')
-                    .substringBeforeLast('.') // turning class path into package path
-            }
-            .distinct() // remove duplicate packages
-            .sorted() // because why not
-            .joinToString("\n")
-        
-        File("$buildDir/gen-assets/classpaths/").let {
-            it.mkdirs()
-            it.resolve("yellow-classpath.txt").writeText(packages)
-        }
-    }
-}
-*/
 
 tasks.register("jarAndroid") {
     group = "build"
@@ -123,7 +92,6 @@ tasks.register("jarAndroid") {
 }
 
 tasks.jar {
-    //dependsOn(genYellowClasspath)
 
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName.set("${project.name}Desktop.jar")
@@ -137,7 +105,6 @@ tasks.jar {
 
     from("$rootDir/assets/") { include("**") }
 
-    //from("$buildDir/gen-assets/") { include("**") }
 }
 
 task<Jar>("deploy") {

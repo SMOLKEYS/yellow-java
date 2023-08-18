@@ -1,6 +1,6 @@
 package yellow
 
-import com.github.mnemotechnician.mkui.delegates.*
+import com.github.mnemotechnician.mkui.delegates.setting
 
 /** Variables that are saved to your save file. Does not reset even when the game is reloaded. */
 object YellowPermVars {
@@ -16,4 +16,15 @@ object YellowPermVars {
     var weaponSanityCheck by setting(true, syn)
 
     var temporary by setting(false, syn)
+
+    private var affinity by setting(0f, syn)
+
+    fun getAffinityQ() = affinity
+
+    fun setAffinityQ(value: Float) {
+        affinity += value
+        if (affinity > 100f) {
+            affinity = 100f
+        }
+    }
 }

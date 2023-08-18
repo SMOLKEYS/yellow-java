@@ -11,7 +11,6 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import arc.util.io.*;
-import arc.util.serialization.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -19,24 +18,11 @@ import mindustry.ui.*;
 import yellow.*;
 import yellow.type.*;
 
-import static arc.Core.*;
-
+@SuppressWarnings("CallToPrintStackTrace")
 public class YellowUtils{
-
-    private static final JsonReader jsr = new JsonReader();
-    private static String strd;
-    private static final int requestLimit = 5;
-    private static int requestsSent = 0;
-    private static float requestLimitResetTime = 10f; //in seconds
-    private static boolean statusRequestRunning = false;
-    private static final String[][] choices = {{"@ok", "@internal.checkagain"}, {"@internal.openrepo"}};
     private static int currentButtons = 0;
     private static boolean once = false;
 
-    public static boolean isEnabled(String modName){
-        return settings.getBool("mod-" + modName + "-enabled");
-    }
-    
     public static Timer.Task loop(float delay, Runnable run){
         return Timer.schedule(run, delay, delay, -1);
     }
@@ -72,61 +58,12 @@ public class YellowUtils{
             }
         }, err -> Core.app.post(() -> {
             err.printStackTrace();
-            Vars.ui.showException("Mod update error", err);
+            Vars.ui.showException("Error", err);
         }));
     }
 
     public static <T> T random(T[] arr){
         return arr[Mathf.random(arr.length)];
-    }
-
-    public static void getWorkflowStatus(){
-        if(requestsSent >= requestLimit){
-            Vars.ui.showInfo("@internal.request-limit-hit");
-            return;
-        }else if(statusRequestRunning){
-            Vars.ui.showInfo("@internal.waiting-for-request");
-            return;
-        }
-        
-        statusRequestRunning = true;
-        
-        Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/actions/runs", req -> {
-            String res = req.getResultAsString();
-            
-            try{
-                JsonValue pros = jsr.parse(res).get("workflow_runs").get(0);
-                JsonValue cons = jsr.parse(res).get("workflow_runs").get(1);
-                strd = YellowUtilsKt.INSTANCE.getValues(pros, "name", "display_title", "run_number", "status", "conclusion", "id") + "----------\n" + YellowUtilsKt.INSTANCE.getValues(cons, "name", "display_title", "run_number", "status", "conclusion", "id");
-                statusRequestRunning = false;
-                Vars.ui.showMenu("RESULT", strd, choices, sel -> {
-                    switch(sel){
-                        case 0:
-                            break;
-                        case 1:
-                            getWorkflowStatus();
-                            break;
-                        case 2:
-                            Core.app.openURI("https://github.com/SMOLKEYS/yellow-java");
-                            break;
-                    }
-                });
-            }catch(Exception e){
-                e.printStackTrace();
-                Vars.ui.showException("Workflow Status GET Error", e);
-                statusRequestRunning = false;
-            }
-        }, err -> Core.app.post(() -> {
-            err.printStackTrace();
-            Vars.ui.showException("Workflow Status GET Error", err);
-            statusRequestRunning = false;
-        }));
-        
-        requestsSent++;
-    }
-    
-    public static void startRequestLimitHandler(){
-        loop(requestLimitResetTime, () -> requestsSent = 0);
     }
 
     public static void controlledLog(Object log){
@@ -217,6 +154,7 @@ public class YellowUtils{
     }
 
     public static void emptyHudButtonRow(){
+        if(!Vars.mobile) return; //im gonna bomb this whole motherfucking plane
     	for(int i = 0; i < 5 - currentButtons; i++){
     		mobileHudButton(Icon.none, () -> {});
     	}
