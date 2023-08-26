@@ -13,6 +13,7 @@ val mindustryVersion = "v145"
 val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
+    maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
     maven("https://www.jitpack.io")
 }
 
@@ -27,7 +28,7 @@ sourceSets {
 
 dependencies {
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
-    compileOnly("com.github.Anuken.MindustryJitpack:core:$mindustryVersion")
+    compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
     implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
     implementation("com.github.mnemotechnician:mkui:v1.2")
 
