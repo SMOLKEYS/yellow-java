@@ -37,13 +37,13 @@ public class Yellow extends Mod{
 
             YellowNotifications.load();
 
-            YellowUtils.emptyHudButtonRow();
             YellowUtils.mobileHudButton(Icon.down, () -> {
                 if(player.unit() instanceof YellowUnitEntity){
                     YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
                     aegis.setForceIdle(!aegis.getForceIdle());
                 }
             });
+            YellowUtils.emptyHudButtonRow();
             
             YellowVars.load();
 

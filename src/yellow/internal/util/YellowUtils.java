@@ -159,9 +159,8 @@ public class YellowUtils{
     		mobileHudButton(Icon.none, () -> {});
     	}
     	mobileHudButton(Icon.none, () -> {});
-        mobileHudButton(Icon.none, () -> {}); // :husk:
     	//god fucking damnit i hate ui
-    	Vars.ui.hudGroup.<Table>find("mobile buttons").image().height(65f).width(4f).color(Color.darkGray);
+    	Vars.ui.hudGroup.<Table>find("mobile buttons").image().height(65f).width(4f).color(Color.gray);
     }
 
 }
