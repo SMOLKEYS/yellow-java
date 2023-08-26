@@ -141,7 +141,7 @@ public class YellowFx{
         
     }),
     
-    gateClose = new Effect(120f, e -> {
+    despawn = new Effect(120f, e -> {
         Lines.stroke(e.fout() * 6f);
         
         Draw.color(Color.yellow, Color.white, e.fin());

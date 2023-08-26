@@ -31,11 +31,8 @@ public class YellowControl {
 
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
-                if(player.unit() instanceof YellowUnitEntity) {
+                if(player.unit() instanceof YellowUnitEntity){
                     dialog.show(player.unit().mounts);
-                }else{
-                    YellowUnitEntity ent = YellowUnitEntity.getEntities().find(a -> a.team == player.team());
-                    if(ent != null) dialog.show(ent.mounts);
                 }
             });
             YellowUtils.mobileHudButton(Icon.down, () -> {
@@ -48,6 +45,11 @@ public class YellowControl {
                 if(player.unit() instanceof YellowUnitEntity){
                     YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
                     aegis.setEnableAutoIdle(!aegis.getEnableAutoIdle());
+                }
+            });
+            YellowUtils.mobileHudButton(Icon.exit, () -> {
+                if(player.unit() instanceof YellowUnitEntity){
+                    ((YellowUnitEntity) player.unit()).despawn();
                 }
             });
         }else{

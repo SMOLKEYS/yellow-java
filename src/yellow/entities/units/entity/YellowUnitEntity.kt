@@ -16,6 +16,7 @@ import mindustry.entities.units.WeaponMount
 import mindustry.gen.*
 import mindustry.graphics.Layer
 import yellow.YellowPermVars
+import yellow.content.YellowFx
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
 import yellow.internal.util.ins
@@ -115,6 +116,12 @@ open class YellowUnitEntity: UnitEntity(){
         while(lives > 0){
             kill()
         }
+    }
+
+    fun despawn(){
+        YellowFx.despawn.at(x, y)
+        invalidateVars()
+        super.remove()
     }
     
     inline fun <reified T : WeaponMount> eachMountAs(cons: (T) -> Unit){

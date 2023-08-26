@@ -43,6 +43,10 @@ open class YellowControlDialog: BaseDialog("Weapon Switch") {
             cont.check("@enableautoidle", unit.enableAutoIdle){a: Boolean ->
                 unit.enableAutoIdle = a
             }.row()
+            cont.textButton("@removefrommap"){
+                unit.despawn()
+                hide()
+            }
         }
 
         super.show()
