@@ -140,7 +140,7 @@ public class YellowUtils{
             but.row();
         }
         
-        if(currentButtons > 4){
+        if(currentButtons >= 5){
             currentButtons = 0;
             but.image().height(65f).width(4f).color(Color.darkGray);
             but.row();
@@ -158,7 +158,6 @@ public class YellowUtils{
     	for(int i = 0; i < 5 - currentButtons; i++){
     		mobileHudButton(Icon.none, () -> {});
     	}
-    	mobileHudButton(Icon.none, () -> {});
     	//god fucking damnit i hate ui
     	Vars.ui.hudGroup.<Table>find("mobile buttons").image().height(65f).width(4f).color(Color.darkGray);
     }
