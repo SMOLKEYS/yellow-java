@@ -23,7 +23,9 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
             cont.check((it.weapon as NameableWeapon).displayName, it.enabled) { a: Boolean ->
                 it.enabled = a
                 if(it.enabled) it.enabled() else it.disabled()
-            }.row()
+            }.apply{
+                if(!(it.weapon as DisableableWeapon).mirroredVersion) row() //puh
+            }
             if(!(it.weapon as DisableableWeapon).mirroredVersion) cont.textButton("?"){
                 Yellow.weaponInfo.show(it.weapon as NameableWeapon)
             }.row()

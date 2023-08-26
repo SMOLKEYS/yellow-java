@@ -142,7 +142,7 @@ public class YellowUtils{
         
         if(currentButtons > 4){
             currentButtons = 0;
-            but.image().height(65f).width(4f).color(Color.gray);
+            but.image().height(65f).width(4f).color(Color.darkGray);
             but.row();
         }
         
