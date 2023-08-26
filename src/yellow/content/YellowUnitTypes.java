@@ -27,7 +27,7 @@ public class YellowUnitTypes{
             armor = 5f;
             speed = 3f;
             accel = 0.08f;
-            drag = 0.01f;
+            drag = 0.03f;
             range = 1250f;
             maxRange = 1250f;
             mineSpeed = 5000f;

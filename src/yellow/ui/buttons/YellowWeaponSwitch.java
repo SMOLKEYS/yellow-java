@@ -34,6 +34,7 @@ public class YellowWeaponSwitch{
                 if(player.unit().type == YellowUnitTypes.yellow) dialog.show(player.unit().mounts);
             });
         }else{
+            //TODO adapt with foo's custom corner ui
             ImageButtonStyle style = new ImageButtonStyle(){{
                 up = Tex.pane;
                 down = Styles.flatDown;

@@ -24,7 +24,7 @@ public class Yellow extends Mod{
     public static NotificationListDialog notifs;
     
     public Yellow(){
-        String yellow = "yellow suse ballas ";
+        String yellow = "yellow! ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         

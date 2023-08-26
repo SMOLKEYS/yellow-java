@@ -33,6 +33,7 @@ open class YellowUnitEntity: UnitEntity(){
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
+    var idleTime = 0f
 
     
     private fun initVars(){
@@ -119,6 +120,8 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
 
+    override fun wobble(){}
+
     override fun type(): YellowUnitType{
         return type as YellowUnitType
     }
@@ -126,7 +129,6 @@ open class YellowUnitEntity: UnitEntity(){
     override fun kill(){
         destroy() //just call destroy(), no point in waiting
     }
-    
 
     override fun destroy(){
         
@@ -213,6 +215,13 @@ open class YellowUnitEntity: UnitEntity(){
             
             franticTeleportTime--
         }
+
+        if(vel.len() == 0f) idleTime++ else idleTime = 0f
+        if(idleTime > 600f){
+            if(elevation > 0f) elevation -= 0.01f
+        }else{
+            if(elevation < 1f) elevation += 0.05f
+        }
     }
 
     override fun draw(){
@@ -229,14 +238,15 @@ open class YellowUnitEntity: UnitEntity(){
         Lines.square(x, y, 20f + r1, Time.time)
         Lines.square(x, y, 20f + r1, -Time.time)
 
+        Draw.alpha(elevation)
         Tmp.v1.trns(Time.time, r2, r2)
 
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
         Tmp.v1.trns(Time.time, -r2, -r2)
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
-        Tmp.c1.set(Color.white)
-        Tmp.c1.a = 0f
-        Fill.light(x, y, 5, 50f - r1, Color.yellow, Tmp.c1)
+        Tmp.c1.set(Color.yellow)
+        Tmp.c1.a = -elevation //weird, but eh we ball
+        Fill.light(x, y, 5, 50f - r1, Tmp.c1, Color.clear)
 
         when(lives){
             3 -> {
