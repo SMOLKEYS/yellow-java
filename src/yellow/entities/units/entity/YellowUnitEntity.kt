@@ -33,6 +33,7 @@ open class YellowUnitEntity: UnitEntity(){
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
+    var forceIdle = false
     var idleTime = 0f
 
     
@@ -169,6 +170,15 @@ open class YellowUnitEntity: UnitEntity(){
         damage(amount)
     }
 
+    override fun speed(): Float{
+        if(forceIdle){
+            vel.set(0f, 0f)
+            return 0f
+        }else{
+            return super.speed()
+        }
+    }
+
     override fun update() {
         super.update()
 
@@ -216,11 +226,11 @@ open class YellowUnitEntity: UnitEntity(){
             franticTeleportTime--
         }
 
-        if(vel.len() == 0f) idleTime++ else idleTime = 0f
-        if(idleTime > 600f){
+        if(vel.len() == 0f && !forceIdle) idleTime++ else idleTime = 0f
+        if(idleTime > 600f || forceIdle){
             if(elevation > 0f) elevation -= 0.01f
         }else{
-            if(elevation < 1f) elevation += 0.05f
+            if(elevation < 1f) elevation += 0.02f
         }
     }
 
@@ -244,9 +254,6 @@ open class YellowUnitEntity: UnitEntity(){
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
         Tmp.v1.trns(Time.time, -r2, -r2)
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
-        Tmp.c1.set(Color.yellow)
-        Tmp.c1.a = -elevation //weird, but eh we ball
-        Fill.light(x, y, 5, 50f - r1, Tmp.c1, Color.clear)
 
         when(lives){
             3 -> {

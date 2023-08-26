@@ -6,6 +6,7 @@ import arc.scene.ui.ImageButton.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 import yellow.content.*;
+import yellow.entities.units.entity.*;
 import yellow.internal.util.*;
 import yellow.ui.buttons.dialogs.*;
 
@@ -31,7 +32,7 @@ public class YellowWeaponSwitch{
 
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
-                if(player.unit().type == YellowUnitTypes.yellow) dialog.show(player.unit().mounts);
+                if(player.unit() instanceof YellowUnitEntity) dialog.show(player.unit().mounts);
             });
         }else{
             //TODO adapt with foo's custom corner ui
@@ -42,13 +43,13 @@ public class YellowWeaponSwitch{
             }};
             
             parent.fill(cont -> {
-                cont.name = "weapons switch";
+                cont.name = "weapon switch";
                 cont.defaults().size(width / 2f);
     
                 cont.top().right();
                 cont.marginRight(width - padding);
     
-                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts));
+                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, (YellowUnitEntity) player.unit()));
     
                 // show buttons only when player controls yellow air
                 cont.visible(() -> player.unit().type == YellowUnitTypes.yellow);

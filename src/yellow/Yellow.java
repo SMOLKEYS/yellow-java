@@ -4,9 +4,11 @@ import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.game.EventType.*;
+import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.*;
 import yellow.content.*;
+import yellow.entities.units.entity.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
 import yellow.ui.*;
@@ -36,6 +38,12 @@ public class Yellow extends Mod{
             YellowNotifications.load();
 
             YellowUtils.emptyHudButtonRow();
+            YellowUtils.mobileHudButton(Icon.down, () -> {
+                if(player.unit() instanceof YellowUnitEntity){
+                    YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
+                    aegis.setForceIdle(!aegis.getForceIdle());
+                }
+            });
             
             YellowVars.load();
 
