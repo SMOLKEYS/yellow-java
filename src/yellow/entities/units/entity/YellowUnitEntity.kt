@@ -18,6 +18,7 @@ import mindustry.graphics.Layer
 import yellow.YellowPermVars
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
+import yellow.internal.util.ins
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
@@ -34,6 +35,7 @@ open class YellowUnitEntity: UnitEntity(){
     var panicMode = false
     var panicModeTypeTwo = false
     var forceIdle = false
+    var enableAutoIdle = false
     var idleTime = 0f
 
     
@@ -226,9 +228,12 @@ open class YellowUnitEntity: UnitEntity(){
             franticTeleportTime--
         }
 
-        if(vel.len() == 0f && !forceIdle) idleTime++ else idleTime = 0f
+        if((vel.len() == 0f && enableAutoIdle) || forceIdle) idleTime++ else idleTime = 0f
         if(idleTime > 600f || forceIdle){
             if(elevation > 0f) elevation -= 0.01f
+            if(idleTime > 4200f){
+                if(idleTime ins 60f) heal(Mathf.random(10f, 30f))
+            }
         }else{
             if(elevation < 1f) elevation += 0.02f
         }
@@ -273,6 +278,9 @@ open class YellowUnitEntity: UnitEntity(){
         write.bool(panicModeTypeTwo)
         write.i(lives)
         write.f(franticTeleportTime)
+        write.f(idleTime)
+        write.bool(enableAutoIdle)
+        write.bool(forceIdle)
         
         eachMountAs<DisableableWeaponMount>{
             it.write(write)
@@ -289,6 +297,9 @@ open class YellowUnitEntity: UnitEntity(){
         panicModeTypeTwo = read.bool()
         lives = read.i()
         franticTeleportTime = read.f()
+        idleTime = read.f()
+        enableAutoIdle = read.bool()
+        forceIdle = read.bool()
         
         eachMountAs<DisableableWeaponMount>{
             it.read(read)

@@ -9,7 +9,7 @@ import yellow.entities.units.DisableableWeaponMount
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.type.*
 
-open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
+open class YellowControlDialog: BaseDialog("Weapon Switch") {
     init {
         addCloseButton()
     }
@@ -35,8 +35,14 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
                 }.row()
             }
         }
-        if(!Vars.mobile && unit != null) cont.check("@sentryidle", unit.forceIdle){a: Boolean ->
-            unit.forceIdle = a
+        //TODO use tabs
+        if(!Vars.mobile && unit != null){
+            cont.check("@sentryidle", unit.forceIdle){a: Boolean ->
+                unit.forceIdle = a
+            }.row()
+            cont.check("@enableautoidle", unit.enableAutoIdle){a: Boolean ->
+                unit.enableAutoIdle = a
+            }.row()
         }
 
         super.show()

@@ -4,11 +4,9 @@ import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.type.*;
 import yellow.content.*;
-import yellow.entities.units.entity.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
 import yellow.ui.*;
@@ -21,7 +19,7 @@ import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{
     
-    public static YellowWeaponSwitch weaponSwitch = new YellowWeaponSwitch();
+    public static YellowControl weaponSwitch = new YellowControl();
     public static WeaponInfoDialog weaponInfo;
     public static NotificationListDialog notifs;
     
@@ -37,12 +35,6 @@ public class Yellow extends Mod{
 
             YellowNotifications.load();
 
-            YellowUtils.mobileHudButton(Icon.down, () -> {
-                if(player.unit() instanceof YellowUnitEntity){
-                    YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
-                    aegis.setForceIdle(!aegis.getForceIdle());
-                }
-            });
             YellowUtils.emptyHudButtonRow();
             
             YellowVars.load();
