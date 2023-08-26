@@ -20,15 +20,20 @@ open class YellowWeaponSwitchDialog: BaseDialog("Weapon Switch") {
         cont.clear()
         weapon.forEach {
             if(it !is DisableableWeaponMount) return
-            cont.check((it.weapon as NameableWeapon).displayName, it.enabled) { a: Boolean ->
-                it.enabled = a
-                if(it.enabled) it.enabled() else it.disabled()
-            }.apply{
-                if(!(it.weapon as DisableableWeapon).mirroredVersion) row() //puh
+            if(!(it.weapon as DisableableWeapon).mirroredVersion){
+                cont.check((it.weapon as NameableWeapon).displayName, it.enabled) {a: Boolean ->
+                    it.enabled = a
+                    if(it.enabled) it.enabled() else it.disabled()
+                }
+                cont.textButton("?") {
+                    Yellow.weaponInfo.show(it.weapon as NameableWeapon)
+                }.row()
+            }else{
+                cont.check((it.weapon as NameableWeapon).displayName, it.enabled) {a: Boolean ->
+                    it.enabled = a
+                    if(it.enabled) it.enabled() else it.disabled()
+                }.row()
             }
-            if(!(it.weapon as DisableableWeapon).mirroredVersion) cont.textButton("?"){
-                Yellow.weaponInfo.show(it.weapon as NameableWeapon)
-            }.row()
         }
         if(!Vars.mobile && unit != null) cont.check("@sentryidle", unit.forceIdle){a: Boolean ->
             unit.forceIdle = a
