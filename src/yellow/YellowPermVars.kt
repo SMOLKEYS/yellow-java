@@ -15,4 +15,15 @@ object YellowPermVars {
     var weaponSanityCheck by setting(true, syn)
 
     var temporary by setting(false, syn)
+
+    private var affinity by setting(0f, syn)
+
+    fun getAffinityQ() = affinity
+
+    fun setAffinityQ(value: Float) {
+        affinity += value
+        if (affinity > 100f) {
+            affinity = 100f
+        }
+    }
 }
