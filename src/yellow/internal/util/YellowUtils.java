@@ -66,10 +66,6 @@ public class YellowUtils{
         return arr[Mathf.random(arr.length)];
     }
 
-    public static void controlledLog(Object log){
-        if(YellowPermVars.INSTANCE.getVerboseLoggering()) Log.info(log);
-    }
-    
     public static void internalLog(Object log){
         if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(log);
     }

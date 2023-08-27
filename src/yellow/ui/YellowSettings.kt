@@ -17,10 +17,6 @@ object YellowSettings{
     @JvmStatic
     fun load(){
         ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
-
-            table.checkPref("Verbose Logging", false){
-                YellowPermVars.verboseLoggering = it
-            }
             
             table.checkPref("Internal Logging", false){
                 YellowPermVars.internalLoggering = it

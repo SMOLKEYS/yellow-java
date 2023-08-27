@@ -26,7 +26,7 @@ open class GhostUnitEntity: UnitEntity() {
         ghostLifetime = time
     }
 
-    private fun initVars() {
+    private fun initVars(){
         inited = true
         ghostLifetime = (type as GhostUnitType).ghostLifetime + Mathf.random(60f)
         despawnEffect = (type as GhostUnitType).despawnEffect

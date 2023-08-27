@@ -124,9 +124,12 @@ open class YellowUnitEntity: UnitEntity(){
         super.remove()
     }
     
-    inline fun <reified T : WeaponMount> eachMountAs(cons: (T) -> Unit){
+    inline fun <reified T : WeaponMount> eachMountAs(max: Int, cons: (T) -> Unit){
+        var index = 0
         mounts().forEach{
+            if(index >= max) return
             if(it is T) cons(it)
+            index++
         }
     }
 
@@ -278,6 +281,10 @@ open class YellowUnitEntity: UnitEntity(){
 
     override fun write(write: Writes){
         super.write(write)
+
+        val mnt = mounts().size - 1
+
+        write.s(0)
         write.bool(inited)
         write.bool(firstDeath)
         write.bool(allowsHealing)
@@ -288,8 +295,9 @@ open class YellowUnitEntity: UnitEntity(){
         write.f(idleTime)
         write.bool(enableAutoIdle)
         write.bool(forceIdle)
+        write.i(mnt)
         
-        eachMountAs<DisableableWeaponMount>{
+        eachMountAs<DisableableWeaponMount>(mnt){
             it.write(write)
         }
         
@@ -297,21 +305,26 @@ open class YellowUnitEntity: UnitEntity(){
 
     override fun read(read: Reads){
         super.read(read)
-        inited = read.bool()
-        firstDeath = read.bool()
-        allowsHealing = read.bool()
-        panicMode = read.bool()
-        panicModeTypeTwo = read.bool()
-        lives = read.i()
-        franticTeleportTime = read.f()
-        idleTime = read.f()
-        enableAutoIdle = read.bool()
-        forceIdle = read.bool()
-        
-        eachMountAs<DisableableWeaponMount>{
-            it.read(read)
+        val revision = read.s().toInt()
+
+        when(revision){
+            0 -> {
+                inited = read.bool()
+                firstDeath = read.bool()
+                allowsHealing = read.bool()
+                panicMode = read.bool()
+                panicModeTypeTwo = read.bool()
+                lives = read.i()
+                franticTeleportTime = read.f()
+                idleTime = read.f()
+                enableAutoIdle = read.bool()
+                forceIdle = read.bool()
+
+                eachMountAs<DisableableWeaponMount>(read.i()){
+                    it.read(read)
+                }
+            }
         }
-        
     }
     
     override fun classId() = mappingId

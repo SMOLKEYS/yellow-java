@@ -6,7 +6,7 @@ import arc.util.serialization.JsonReader
 import kotmindy.mindustry.ui.*
 import mindustry.Vars
 import yellow.*
-import yellow.internal.util.YellowUtils.controlledLog
+import yellow.internal.util.YellowUtils.internalLog
 import yellow.internal.util.YellowUtils.getAndWrite
 import yellow.ui.YellowSettings
 
@@ -27,8 +27,8 @@ object YellowAutoUpdater{
                         val rk = Yellow.getSelf().meta.version.replace("v", "")
                         val krk = if(rk.toFloatOrNull() != null) rk.toFloat() else 99999.99f
 
-                        controlledLog(version)
-                        controlledLog("$kr")
+                        internalLog(version)
+                        internalLog("$kr")
 
                         if(kr > krk){
                             showTitledConfirm("New yellow-java release!", "Update now?"){
@@ -59,8 +59,8 @@ object YellowAutoUpdater{
                         val rk = Yellow.getSelf().meta.version
                         val krk = if(rk.toIntOrNull() != null) rk.toInt() else 999999
                         
-                        controlledLog(version)
-                        controlledLog("$kr")
+                        internalLog(version)
+                        internalLog("$kr")
                         
                         if(kr > krk) showTitledConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now? (current: $krk, new: $kr)"){
                             getAndWrite(YellowPermVars.sourceBERepo, YellowSettings.tmpDir, true){
