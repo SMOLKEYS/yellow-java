@@ -16,14 +16,10 @@ object YellowPermVars {
 
     var temporary by setting(false, syn)
 
-    private var affinity by setting(0f, syn)
-
-    fun getAffinityQ() = affinity
-
-    fun setAffinityQ(value: Float) {
-        affinity += value
-        if (affinity > 100f) {
-            affinity = 100f
-        }
+    private var _affinity by setting(0f, syn)
+    var affinity
+      get() = _affinity
+      set(value){
+        _affinity = if(value >= 100f) 100f else value
     }
 }

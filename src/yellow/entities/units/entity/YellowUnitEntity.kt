@@ -20,6 +20,7 @@ import yellow.content.YellowFx
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
 import yellow.internal.util.ins
+import yellow.internal.util.YellowUtils.internalLog
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
@@ -282,9 +283,9 @@ open class YellowUnitEntity: UnitEntity(){
     override fun write(write: Writes){
         super.write(write)
 
-        val mnt = mounts().size - 1
+        val mnt = mounts().size
 
-        write.s(0)
+        write.s(0) //increment by one when adding new fields/weapons for a commit
         write.bool(inited)
         write.bool(firstDeath)
         write.bool(allowsHealing)
@@ -306,6 +307,8 @@ open class YellowUnitEntity: UnitEntity(){
     override fun read(read: Reads){
         super.read(read)
         val revision = read.s().toInt()
+
+        internalLog("REVISION: $revision")
 
         when(revision){
             0 -> {

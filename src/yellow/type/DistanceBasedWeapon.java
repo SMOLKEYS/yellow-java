@@ -43,6 +43,6 @@ public class DistanceBasedWeapon extends DisableableWeapon{
             }
         }
         
-        internalLog(shooter);
+        //internalLog(shooter);
     }
 }

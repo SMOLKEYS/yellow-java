@@ -72,6 +72,6 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.name, "Nihara")
         stats.add(YellowStats.gender, "Female")
         stats.add(YellowStats.age, "23", YellowStats.yearsOld)
-        stats.add(YellowStats.affinity, "${YellowPermVars.getAffinityQ()} / 100")
+        stats.add(YellowStats.affinity, "${YellowPermVars.affinity} / 100")
     }
 }

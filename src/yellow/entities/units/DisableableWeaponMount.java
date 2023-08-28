@@ -29,7 +29,9 @@ public class DisableableWeaponMount extends WeaponMount{
     public void read(Reads read){
         try{
             internalLog("begin read for " + weapon);
-            enabled = read.bool();
+            boolean b = read.bool();
+            enabled = b;
+            internalLog(b);
             internalLog("read complete");
         }catch(RuntimeException e){
             enabled = ((DisableableWeapon) weapon).enabledDefault;
