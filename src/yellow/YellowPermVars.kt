@@ -9,11 +9,9 @@ object YellowPermVars {
 
     var sourceBERepo by setting("https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar", syn)
     var sourceReleaseRepo by setting("https://github.com/SMOLKEYS/yellow-java/releases/latest/download/yellow-java.jar", syn)
-
     var removeAllowed by setting(false, syn)
     var internalLoggering by setting(false, syn)
     var weaponSanityCheck by setting(true, syn)
-
     var temporary by setting(false, syn)
 
     private var _affinity by setting(0f, syn)

@@ -10,37 +10,22 @@ import yellow.content.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
 import yellow.ui.*;
-import yellow.ui.buttons.*;
-import yellow.ui.buttons.dialogs.*;
 import yellow.weapons.*;
 
 import static mindustry.Vars.*;
 import static yellow.weapons.YellowWeapons.*;
 
 public class Yellow extends Mod{
-    
-    public static YellowControl weaponSwitch = new YellowControl();
-    public static WeaponInfoDialog weaponInfo;
-    public static NotificationListDialog notifs;
-    
+
     public Yellow(){
         String yellow = "yellow! ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
         Events.run(ClientLoadEvent.class, () -> {
-            weaponSwitch.build(ui.hudGroup);
-            weaponInfo = new WeaponInfoDialog();
-            notifs = new NotificationListDialog();
-
-            YellowNotifications.load();
-
-            YellowUtils.emptyHudButtonRow();
-            
             YellowVars.load();
-
+            YellowNotifications.load();
             YellowSettings.load();
-            
             YellowAutoUpdater.start();
         });
         

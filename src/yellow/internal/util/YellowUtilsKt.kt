@@ -2,14 +2,16 @@ package yellow.internal.util
 
 import arc.Core
 import arc.files.Fi
+import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.scene.event.Touchable
-import arc.scene.ui.Image
+import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.struct.Seq
-import arc.util.Log
+import arc.util.*
 import arc.util.serialization.*
 import kotmindy.mindustry.MUnit
+import mindustry.ui.Styles
 
 fun MUnit.healthFract() = this.health / this.type.health
 
@@ -33,23 +35,7 @@ fun Boolean.yesNo() = if(this) "Yes" else "No"
 object YellowUtilsKt{
     private val jsr = JsonReader()
    
-   fun rangeOf(one: Int, two: Int) = one..two
-   
-    fun traverse(dir: Fi, dump: Seq<String>){
-        if(!dir.exists()) return
-        dir.seq().each{ su: Fi ->
-            if(su.isDirectory) dump.add(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
-            if(!su.seq().isEmpty) traverse(su, dump)
-        }
-    }
-    
-    fun traverse(dir: Fi){
-        if(!dir.exists()) return
-        dir.seq().each{ su: Fi -> 
-            if(su.isDirectory) Log.info(su.pathWithoutExtension().toString().replace("/", ".").removeSuffix("."))
-            if(!su.seq().isEmpty) traverse(su)
-        }
-    }
+    fun rangeOf(one: Int, two: Int) = one..two
     
     fun JsonValue.getValues(vararg values: String): String{
         val aus = this

@@ -4,10 +4,24 @@ import arc.*;
 import mindustry.mod.*;
 import yellow.internal.*;
 import yellow.internal.util.*;
+import yellow.ui.buttons.*;
+import yellow.ui.buttons.dialogs.*;
+
+import static mindustry.Vars.*;
 
 public class YellowVars{
 
+    public static YellowControl yellowControl = new YellowControl();
+    public static WeaponInfoDialog weaponInfo;
+    public static NotificationListDialog notifs;
+
     public static void load(){
+        yellowControl.build(ui.hudGroup);
+        weaponInfo = new WeaponInfoDialog();
+        notifs = new NotificationListDialog();
+
+        YellowUtils.emptyHudButtonRow();
+
         Mods.ModMeta meta = Yellow.getSelf().meta;
 
         MetaChaos.load();

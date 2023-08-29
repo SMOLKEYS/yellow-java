@@ -4,6 +4,9 @@ import arc.Core
 import arc.graphics.Color
 import arc.scene.ui.*
 import arc.scene.ui.layout.Table
+import arc.struct.ObjectMap
+import arc.struct.ObjectSet
+import arc.struct.Seq
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
 import yellow.internal.util.yesNo
@@ -14,10 +17,18 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
     init{
         addCloseButton()
     }
-    
+
+    private val cache = ObjectMap<NameableWeapon, ScrollPane>() //use caching to reduce object initialization
+
+    fun invalidateCache() = cache.clear()
     
     fun show(weapon: NameableWeapon): Dialog{
         cont.clear()
+
+        if(cache.containsKey(weapon)){
+            cont.add(cache[weapon])
+            return super.show()
+        }
         
         val info = Table()
         info.margin(10f)
@@ -39,7 +50,7 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
             append("[lightgray]X, Y:[] ${weapon.x}, ${weapon.y}\n")
             append("[lightgray]Rotate:[] ${weapon.rotate.yesNo()}\n")
             append("[lightgray]Shoot Cone:[] ${weapon.shootCone} degrees\n")
-            append("[lightgray]Base Rotation:[] ${weapon.baseRotation} degrees\n")
+            if(!weapon.rotate) append("[lightgray]Base Rotation:[] ${weapon.baseRotation} degrees\n")
             if(weapon.rotate) append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed} degrees\n")
         })
         

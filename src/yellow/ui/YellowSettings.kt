@@ -55,7 +55,7 @@ object YellowSettings{
             table.row()
 
             table.textButton("Notifications", wrap = false){
-                Yellow.notifs.show(Notification.instances)
+                YellowVars.notifs.show(Notification.instances)
             }
 
             table.row()

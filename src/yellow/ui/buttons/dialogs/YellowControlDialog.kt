@@ -4,7 +4,7 @@ import com.github.mnemotechnician.mkui.extensions.dsl.textButton
 import mindustry.Vars
 import mindustry.entities.units.WeaponMount
 import mindustry.ui.dialogs.BaseDialog
-import yellow.Yellow
+import yellow.*
 import yellow.entities.units.DisableableWeaponMount
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.type.*
@@ -26,7 +26,7 @@ open class YellowControlDialog: BaseDialog("Weapon Switch") {
                     if(it.enabled) it.enabled() else it.disabled()
                 }
                 cont.textButton("?") {
-                    Yellow.weaponInfo.show(it.weapon as NameableWeapon)
+                    YellowVars.weaponInfo.show(it.weapon as NameableWeapon)
                 }.row()
             }else{
                 cont.check((it.weapon as NameableWeapon).displayName, it.enabled) {a: Boolean ->
