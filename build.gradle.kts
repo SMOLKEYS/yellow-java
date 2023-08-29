@@ -120,3 +120,11 @@ task<Jar>("deploy") {
         delete { delete("$buildDir/libs/${project.name}Android.jar") }
     }
 }
+
+task<Copy>("copy") {
+    dependsOn("jar")
+
+    from("$buildDir/libs")
+    into("${System.getenv("APPDATA")}\\Mindustry\\mods")
+    include("*.jar")
+}
