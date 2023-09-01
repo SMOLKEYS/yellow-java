@@ -55,6 +55,7 @@ public class YellowUnitTypes{
                     ent.armor(10f);
                     ent.health(3550f);
                     ent.shield(12f);
+                    ent.ghostLifetime(60f * 60f);
                 }
             };
 

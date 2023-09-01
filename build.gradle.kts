@@ -2,6 +2,7 @@
 //origin "PKChaos/Ion"
 
 import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
 
 version = "1.0"
 plugins {
@@ -124,6 +125,7 @@ task<Jar>("deploy") {
 task<Copy>("copy") {
     dependsOn("jar")
 
+    println("Copying mod...")
     from("$buildDir/libs")
     into("${System.getenv("APPDATA")}\\Mindustry\\mods")
     include("*.jar")

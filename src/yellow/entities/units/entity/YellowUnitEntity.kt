@@ -14,6 +14,7 @@ import mindustry.content.*
 import mindustry.entities.Units
 import mindustry.entities.units.WeaponMount
 import mindustry.gen.*
+import mindustry.graphics.Drawf
 import mindustry.graphics.Layer
 import yellow.YellowPermVars
 import yellow.content.YellowFx
@@ -271,8 +272,10 @@ open class YellowUnitEntity: UnitEntity(){
         Tmp.v1.trns(Time.time, -r2, -r2)
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
 
-        when(lives){
-            3 -> {
+        if(isShooting()) Drawf.target(aimX, aimY, 12f, Color.yellow)
+
+        when{
+            lives <= 3 -> {
                 if(Mathf.chance(0.1)) Fx.smoke.at(x, y)
             }
         }

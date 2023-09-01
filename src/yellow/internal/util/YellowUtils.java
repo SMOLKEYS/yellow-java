@@ -128,7 +128,7 @@ public class YellowUtils{
     //TODO use pages or scrollpane instead of rows
     //resolves issue against scheme size top ui overlapping
     public static void mobileHudButton(Drawable icon, Runnable listener){
-        if(!Vars.mobile) return; //bewhewhe
+        if(!Vars.mobile) return; //bwehehe
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
         if(!once){

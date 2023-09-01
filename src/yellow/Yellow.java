@@ -2,7 +2,6 @@ package yellow;
 
 import arc.*;
 import arc.util.*;
-import mindustry.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.type.*;
@@ -18,6 +17,8 @@ import static yellow.weapons.YellowWeapons.*;
 public class Yellow extends Mod{
 
     public Yellow(){
+        YellowVars.onImport();
+
         String yellow = "yellow! ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
@@ -31,20 +32,15 @@ public class Yellow extends Mod{
         
     }
 
-    public static Mods.LoadedMod getSelf(){
-        return Vars.mods.getMod("yellow-java");
-    }
-    
     @Override
     public void loadContent(){
         try{
             YellowBullets.load();
             YellowWeapons.load();
             YellowUnitTypes.load();
+            YellowWeapons.afterLoad();
             YellowStatusEffects.load();
             YellowBlocks.load();
-
-            YellowWeapons.afterLoad();
 
             YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine}, true, true, true, YellowUnitTypes.yellow);
         }catch(Exception e){
