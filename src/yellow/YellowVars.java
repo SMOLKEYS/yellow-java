@@ -35,7 +35,7 @@ public class YellowVars{
     }
 
     public static void onImport(){
-        Vars.ui.showStartupInfo("Hi there!");
+        //Vars.ui.showStartupInfo("Hi there!"); this was NOT a good idea
     }
 
     public static Mods.LoadedMod getSelf(){
