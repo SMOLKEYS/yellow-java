@@ -7,10 +7,10 @@ import java.io.FileNotFoundException
 version = "1.0"
 plugins {
     java
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.0"
 }
 
-val mindustryVersion = "v145"
+val mindustryVersion = "v146"
 val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
@@ -37,7 +37,7 @@ dependencies {
 configurations.all {
     resolutionStrategy.eachDependency {
         if (requested.group == "com.github.Anuken.Arc") {
-            useVersion("$mindustryVersion")
+            useVersion(mindustryVersion)
         }
     }
 }

@@ -16,7 +16,6 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.ui.*;
 import yellow.*;
-import yellow.type.*;
 
 @SuppressWarnings("CallToPrintStackTrace")
 public class YellowUtils{
@@ -25,24 +24,6 @@ public class YellowUtils{
 
     public static Timer.Task loop(float delay, Runnable run){
         return Timer.schedule(run, delay, delay, -1);
-    }
-
-    /** Utility for manually mirroring disableable weapons.
-     * Why does this exist? Simple, disableable weapons are pure jank with the usual mirror implementation. */
-    public static void mirror(Weapon[] in, boolean nameable, boolean disableable, boolean alternate, UnitType unit){
-        for (Weapon weapon : in) {
-            Weapon mog = weapon.copy();
-            mog.x = weapon.x - (weapon.x * 2);
-            mog.baseRotation = weapon.baseRotation * -1f;
-            if (alternate) {
-                mog.reload = weapon.reload * 2;
-            }
-            mog.name = weapon.name + "-m";
-            mog.load();
-            if(disableable) ((DisableableWeapon) mog).mirroredVersion = true;
-            if(nameable) ((NameableWeapon) mog).displayName = ((NameableWeapon) weapon).displayName + " (Inv)";
-            unit.weapons.add(mog);
-        }
     }
 
     /** Gets the resource from the inputted link and writes it to the specified file path. If the file already exists and is not empty, the overwrite parameter determines whether the file contents get overwritten. */

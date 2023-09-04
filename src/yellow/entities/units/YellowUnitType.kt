@@ -6,6 +6,8 @@ import arc.scene.ui.layout.Table
 import kotmindy.mindustry.MUnit
 import mindustry.Vars
 import mindustry.ai.UnitCommand
+import mindustry.game.Team
+import mindustry.gen.Unit
 import mindustry.type.UnitType
 import mindustry.world.meta.*
 import yellow.*

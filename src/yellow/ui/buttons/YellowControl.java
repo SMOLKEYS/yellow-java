@@ -31,9 +31,7 @@ public class YellowControl {
 
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
-                if(player.unit() instanceof YellowUnitEntity){
-                    dialog.show(player.unit().mounts);
-                }
+                if(player.unit() instanceof YellowUnitEntity) dialog.show(player.unit().mounts);
             });
             YellowUtils.mobileHudButton(Icon.down, () -> {
                 if(player.unit() instanceof YellowUnitEntity){
@@ -48,9 +46,10 @@ public class YellowControl {
                 }
             });
             YellowUtils.mobileHudButton(Icon.exit, () -> {
-                if(player.unit() instanceof YellowUnitEntity){
-                    ((YellowUnitEntity) player.unit()).despawn();
-                }
+                if(player.unit() instanceof YellowUnitEntity) ((YellowUnitEntity) player.unit()).despawn();
+            });
+            YellowUtils.mobileHudButton(Icon.warning, () -> {
+                if(player.unit() instanceof YellowUnitEntity) player.unit().kill();
             });
         }else{
             //TODO adapt with foo's custom corner ui
@@ -70,7 +69,7 @@ public class YellowControl {
                 cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, (YellowUnitEntity) player.unit()));
     
                 // show buttons only when player controls yellow air
-                cont.visible(() -> player.unit() instanceof YellowUnitEntity);
+                cont.visible(() -> player.unit() instanceof YellowUnitEntity && !disableUI);
             });
         }
     }

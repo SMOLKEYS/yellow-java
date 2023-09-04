@@ -11,6 +11,9 @@ import static mindustry.Vars.*;
 
 public class YellowVars{
 
+
+    public static boolean debugMode = false;
+
     public static YellowControl yellowControl;
     public static WeaponInfoDialog weaponInfo;
     public static NotificationListDialog notifs;
@@ -22,7 +25,7 @@ public class YellowVars{
 
         yellowControl.build(ui.hudGroup);
 
-        YellowUtils.emptyHudButtonRow();
+        //YellowUtils.emptyHudButtonRow();
 
         Mods.ModMeta meta = getSelf().meta;
 

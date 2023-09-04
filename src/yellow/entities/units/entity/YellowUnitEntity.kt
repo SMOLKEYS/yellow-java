@@ -288,7 +288,7 @@ open class YellowUnitEntity: UnitEntity(){
 
         val mnt = mounts().size
 
-        write.s(0) //increment by one when adding new fields/weapons for a commit
+        write.s(0)
         write.bool(inited)
         write.bool(firstDeath)
         write.bool(allowsHealing)

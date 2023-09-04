@@ -7,7 +7,7 @@ import mindustry.mod.*;
 import mindustry.type.*;
 import yellow.content.*;
 import yellow.internal.*;
-import yellow.internal.util.*;
+import yellow.type.*;
 import yellow.ui.*;
 import yellow.weapons.*;
 
@@ -42,7 +42,7 @@ public class Yellow extends Mod{
             YellowStatusEffects.load();
             YellowBlocks.load();
 
-            YellowUtils.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine}, true, true, true, YellowUnitTypes.yellow);
+            DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
         }catch(Exception e){
             Events.run(ClientLoadEvent.class, () -> ui.showCustomConfirm("[red]FATAL LOAD ERROR[]", "An error was thrown while content was being loaded from Yellow.\nClosing the game is heavily recommended.", "Close", "Keep Playing", () -> Core.app.exit(), () -> {}));
         }

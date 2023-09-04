@@ -70,16 +70,18 @@ public class YellowFx{
      */
     yellowExplosionOut = new Effect(120f, e -> {
         Draw.color(Color.yellow);
+
+        float h = e.fin(Interp.smooth);
         
         Lines.stroke(e.fout() * 15);
-        Lines.circle(e.x, e.y, e.fin() * 25);
-        Lines.square(e.x, e.y, e.fin() * 50, Time.time * 9);
-        Lines.circle(e.x, e.y, e.fin() * 50);
-        Lines.square(e.x, e.y, e.fin() * 100, Time.time * 9);
-        Lines.circle(e.x, e.y, e.fin() * 25);
-        Lines.square(e.x, e.y, e.fin() * 50, -Time.time * 9);
-        Lines.circle(e.x, e.y, e.fin() * 50);
-        Lines.square(e.x, e.y, e.fin() * 100, -Time.time * 9);
+        Lines.circle(e.x, e.y, h * 25);
+        Lines.square(e.x, e.y, h * 50, Time.time * 9);
+        Lines.circle(e.x, e.y, h * 50);
+        Lines.square(e.x, e.y, h * 100, Time.time * 9);
+        Lines.circle(e.x, e.y, h * 25);
+        Lines.square(e.x, e.y, h * 50, -Time.time * 9);
+        Lines.circle(e.x, e.y, h * 50);
+        Lines.square(e.x, e.y, h * 100, -Time.time * 9);
     }),
     
     /** Inward explosion effect. 

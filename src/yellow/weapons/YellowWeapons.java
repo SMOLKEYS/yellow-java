@@ -17,7 +17,7 @@ import yellow.type.*;
 public class YellowWeapons{
     public static Weapon
     
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, locker;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, igneous, railer;
     
     public static void load(){
         
@@ -111,14 +111,17 @@ public class YellowWeapons{
             shoot.shots = 8;
             inaccuracy = 35f;
             minWarmup = 0.99f;
+
+            shootSound = Sounds.artillery;
+
             bullet = new BasicBulletType(){{
-                damage = 8500f;
-                splashDamage = 7000f;
+                damage = 1100f;
+                splashDamage = 990f;
                 splashDamageRadius = 192f;
                 lifetime = 420f;
-                speed = 2f;
-                width = 8f;
-                height = 8f;
+                speed = 3f;
+                width = 16f;
+                height = 16f;
                 hitEffect = YellowFx.yellowExplosionOut;
                 despawnEffect = YellowFx.yellowExplosionOut;
                 
@@ -267,6 +270,83 @@ public class YellowWeapons{
 
                 flareColor = Color.yellow;
                 colors = new Color[]{Color.yellow, Color.orange};
+            }};
+        }};
+
+        igneous = new DisableableWeapon("igneous"){{
+            reload = 60f;
+            x = 40f;
+            y = 0f;
+
+            shootSound = Sounds.bolt;
+
+            shoot = new ShootSpread(){{
+                shots = 7;
+                spread = 4f;
+            }};
+
+            bullet = new BasicBulletType(){{
+                damage = 15f;
+                speed = 5f;
+                lifetime = 180f;
+                status = StatusEffects.burning;
+                trailChance = 0.8f;
+                trailEffect = Fx.fire;
+                pierce = true;
+                homingRange = 80f;
+                homingPower = 0.01f;
+                width = height = 16f;
+                hitEffect = Fx.fireHit;
+            }
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health) {
+                    super.hitEntity(b, entity, health);
+                    if(entity instanceof Statusc){
+                        Statusc un = (Statusc) entity;
+
+                        if(un.hasEffect(StatusEffects.burning)) un.apply(StatusEffects.melting, 30f);
+                    }
+                }
+            };
+        }};
+
+        railer = new DisableableWeapon("railer"){{
+            reload = 600f;
+            x = y = 0f;
+
+            shootSound = Sounds.boom;
+
+            //the bullshit i commit to sometimes
+            bullet = new LaserBulletType(){{
+                damage = 100f;
+                length = 5000f;
+                width = 30f;
+                drawSize = 300f;
+                pierce = false;
+                fragBullets = 6;
+                fragBullet = new LaserBulletType(){{
+                    damage = 65f;
+                    length = 5000f;
+                    width = 30f;
+                    drawSize = 300f;
+                    pierce = false;
+                    fragBullets = 6;
+                    fragBullet = new LaserBulletType(){{
+                        damage = 40f;
+                        length = 5000f;
+                        width = 30f;
+                        drawSize = 300f;
+                        pierce = false;
+                        fragBullets = 6;
+                        fragBullet = new LaserBulletType(){{
+                            damage = 35f;
+                            length = 5000f;
+                            width = 30f;
+                            drawSize = 300f;
+                            pierce = false;
+                        }};
+                    }};
+                }};
             }};
         }};
     }
