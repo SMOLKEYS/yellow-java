@@ -32,13 +32,12 @@ public class YellowVars{
         MetaChaos.load();
 
         YellowUtils.loop(1f, () -> {
-            meta.subtitle = MetaChaos.getSubtitles().random();
-            meta.description = MetaChaos.getDescriptions().random();
+            MetaChaos.update(meta);
         });
     }
 
     public static void onImport(){
-        //Vars.ui.showStartupInfo("Hi there!"); this was NOT a good idea
+        Vars.ui.showInfo("Hi there!");
     }
 
     public static Mods.LoadedMod getSelf(){

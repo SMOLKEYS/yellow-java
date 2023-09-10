@@ -5,8 +5,7 @@ import arc.math.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import yellow.entities.units.*;
-
-import static yellow.internal.util.YellowUtils.*;
+import yellow.entities.units.entity.*;
 
 
 public class DistanceBasedWeapon extends DisableableWeapon{
@@ -24,25 +23,27 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     public void update(Unit unit, WeaponMount mount){
         super.update(unit, mount);
 
-        DistanceBasedWeaponMount mount1 = (DistanceBasedWeaponMount) mount;
-        
-        boolean shooter = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && mount1.enabled;
+        if(unit instanceof YellowUnitEntity){
+            DistanceBasedWeaponMount mount1 = (DistanceBasedWeaponMount) mount;
 
-        if(shooter){
-            mount1.shootTime++;
-        }else{
-            mount1.shootTime = 0f;
-        }
+            boolean shooter = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && mount1.enabled;
 
-        if(mount1.bullet != null && mount1.shootTime >= holdTime){
-            mount1.bullet.keepAlive = shooter;
-            if(shooter) mount1.bullet.time = 8f;
-        }else{
-            if(shooter && mount1.shootTime >= holdTime){
-                shoot(unit, mount1, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+            if(shooter) {
+                mount1.shootTime++;
+            } else {
+                mount1.shootTime = 0f;
             }
+
+            if(mount1.bullet != null && mount1.shootTime >= holdTime) {
+                mount1.bullet.keepAlive = shooter;
+                if(shooter) mount1.bullet.time = 8f;
+            } else {
+                if(shooter && mount1.shootTime >= holdTime) {
+                    shoot(unit, mount1, unit.x, unit.y, unit.rotation - 90f + baseRotation);
+                }
+            }
+
+            //internalLog(shooter);
         }
-        
-        //internalLog(shooter);
     }
 }

@@ -4,6 +4,7 @@ import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import yellow.entities.units.*;
+import yellow.entities.units.entity.*;
 
 public class DisableableWeapon extends NameableWeapon{
     
@@ -38,12 +39,21 @@ public class DisableableWeapon extends NameableWeapon{
     //breaks with normal mirror implementation
     @Override
     public void update(Unit unit, WeaponMount mount){
+        //compatibility with ESR Flarogus
+        if(!(unit instanceof YellowUnitEntity)){
+            super.update(unit, mount);
+            return;
+        }
         if(!((DisableableWeaponMount) mount).enabled) return;
         super.update(unit, mount);
     }
     
     @Override
     public void draw(Unit unit, WeaponMount mount){
+        if(!(unit instanceof YellowUnitEntity)){
+            super.draw(unit, mount);
+            return;
+        }
         if(!((DisableableWeaponMount) mount).enabled) return;
         super.draw(unit, mount);
     }

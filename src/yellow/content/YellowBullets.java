@@ -20,6 +20,7 @@ public class YellowBullets{
             splashDamage = 310f;
             splashDamageRadius = 88f;
             spin = 7f;
+            hitEffect = despawnEffect = Fx.explosion;
             
             sprite = "yellow-java-standard-missile";
         }};

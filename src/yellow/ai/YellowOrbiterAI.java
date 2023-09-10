@@ -7,7 +7,7 @@ import mindustry.gen.*;
 import yellow.content.*;
 import yellow.entities.units.entity.*;
 
-public class YellowFollowerAI extends AIController{
+public class YellowOrbiterAI extends AIController{
     
     protected float dist = 80f, wavedist = 20f;
     protected YellowUnitEntity follow;

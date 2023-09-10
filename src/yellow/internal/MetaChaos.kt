@@ -3,6 +3,8 @@ package yellow.internal
 import arc.files.Fi
 import arc.struct.Seq
 import mindustry.Vars
+import mindustry.mod.Mod
+import mindustry.mod.Mods
 
 object MetaChaos{
     @JvmStatic
@@ -27,5 +29,11 @@ object MetaChaos{
         subtitles.addAll(sub)
         val desc = Vars.tree["metachaos/descriptions.txt"].readLines()
         descriptions.addAll(desc)
+    }
+
+    @JvmStatic
+    fun update(meta: Mods.ModMeta){
+        meta.subtitle = subtitles.random()
+        meta.description = descriptions.random()
     }
 }

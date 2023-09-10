@@ -17,7 +17,7 @@ import static yellow.weapons.YellowWeapons.*;
 public class Yellow extends Mod{
 
     public Yellow(){
-        YellowVars.onImport();
+        //YellowVars.onImport();
 
         String yellow = "yellow! ";
         for(int i = 0; i < 5; i++) yellow += yellow;

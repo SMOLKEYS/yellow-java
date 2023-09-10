@@ -22,7 +22,8 @@ public class YellowBlocks{
         yellowShrine = new SummoningShrine(yellow){{
             health = 1685;
             size = 1;
-            setSummonTime(180f); //kotlin what
+            setSummonTime(180f);
+            setOneOnly(true);
         }};
     }
 }

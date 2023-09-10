@@ -11,6 +11,9 @@ import arc.struct.Seq
 import arc.util.*
 import arc.util.serialization.*
 import kotmindy.mindustry.MUnit
+import mindustry.game.Team
+import mindustry.gen.Groups
+import mindustry.type.UnitType
 import mindustry.ui.Styles
 
 fun MUnit.healthFract() = this.health / this.type.health
@@ -28,7 +31,11 @@ fun Table.touchableOf(index: Int, touchable: Touchable){
     this.children[index].touchable = touchable
 }
 
-fun String.tint(color: Color) = "[#${color.toString()}]$this[]"
+fun UnitType.exists(team: Team): Boolean{
+    return Groups.unit.contains{ it.type == this && it.team == team }
+}
+
+fun String.tint(color: Color) = "[#$color]$this[]"
 
 fun Boolean.yesNo() = if(this) "Yes" else "No"
 

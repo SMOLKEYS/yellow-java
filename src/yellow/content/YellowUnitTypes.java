@@ -5,7 +5,6 @@ import mindustry.ai.types.*;
 import mindustry.type.*;
 import yellow.ai.*;
 import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
 import yellow.weapons.*;
 
 public class YellowUnitTypes{
@@ -46,18 +45,7 @@ public class YellowUnitTypes{
             getAfterDeath()[0] = a -> {
                 for(int i = 0; i < 360; i++) YellowBullets.glowOrb.create(a, a.x, a.y, i);
             };
-            
-            getAfterDeath()[3] = a -> a.armor(20f);
 
-            getAfterDeath()[4] = a -> {
-                for(int i = 0; i < 35; i++){
-                    GhostUnitEntity ent = (GhostUnitEntity) ghostFlare.spawn(a, a.team());
-                    ent.armor(10f);
-                    ent.health(3550f);
-                    ent.shield(12f);
-                    ent.ghostLifetime(60f * 60f);
-                }
-            };
 
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous, YellowWeapons.railer);
         }};
@@ -71,7 +59,7 @@ public class YellowUnitTypes{
             drag = 0.01f;
             lifetime = 960f;
             
-            controller = u -> new YellowFollowerAI();
+            controller = u -> new YellowOrbiterAI();
             region = Core.atlas.find("flare");
         }};
         

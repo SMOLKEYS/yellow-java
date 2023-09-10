@@ -7,15 +7,17 @@ import arc.scene.event.Touchable
 import arc.scene.ui.layout.Table
 import arc.util.*
 import arc.util.io.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.content.Fx
 import mindustry.entities.Effect
 import mindustry.gen.Building
 import mindustry.graphics.*
-import mindustry.type.UnitType
+import mindustry.type.*
 import mindustry.world.Block
 import mindustry.world.meta.*
 import yellow.internal.util.*
 
+@Suppress("GrazieInspection") //headass lmao
 open class SummoningShrine(
     /** What unit to summon.  */
     var unit: UnitType
@@ -32,12 +34,15 @@ open class SummoningShrine(
     /** What effect to call once the unit gets successfully summoned.  */
     var summonEffect: Effect = Fx.none
 
+    var oneOnly: Boolean = false
+
     init {
         configurable = true
         solid = true
         update = true
         rotate = false
         buildVisibility = BuildVisibility.sandboxOnly //fn, ig
+        category = Category.effect
     }
 
     override fun setStats() {
@@ -56,28 +61,18 @@ open class SummoningShrine(
         private var size = 0f
 
         override fun buildConfiguration(table: Table) {
-            table.table { t: Table ->
-                t.add("Summoning Shrine (${unit.localizedName})").row()
-                t.button("Summon Unit") {
-                    t.touchableOf(1, Touchable.disabled)
-                    requestEffect.at(this)
+            table.addTable {
+                addLabel("${this@SummoningShrine.localizedName} (${unit.localizedName})", wrap = false).growX().row()
+                textButton("@summon", wrap = false){
                     currentlySummoning = true
-                    Time.run(summonTime) {
-                        if (!unit.flying && !unit.canBoost) {
-                            unit.spawn(team, x + 8f * 5f, y)
-                            summonEffect.at(x + 8f * 5f, y)
-                        } else {
-                            unit.spawn(team, this)
-                            summonEffect.at(this)
-                        }
+                    Time.run(summonTime){
+                        unit.spawn(this@SummoningShrineBuild, team)
                         currentlySummoning = false
-                        t.touchableOf(1, Touchable.enabled)
                     }
-                }.get().label.setWrap(false)
-                if (currentlySummoning) {
-                    t.touchableOf(1, Touchable.enabled)
+                }.update{
+                    it.touchable = if(currentlySummoning || oneOnly && unit.exists(team)) Touchable.disabled else Touchable.enabled
                 }
-            }
+            }.grow()
         }
 
         override fun placed() {
