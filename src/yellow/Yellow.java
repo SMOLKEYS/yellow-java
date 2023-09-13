@@ -9,10 +9,9 @@ import yellow.content.*;
 import yellow.internal.*;
 import yellow.type.*;
 import yellow.ui.*;
-import yellow.weapons.*;
 
 import static mindustry.Vars.*;
-import static yellow.weapons.YellowWeapons.*;
+import static yellow.content.YellowWeapons.*;
 
 public class Yellow extends Mod{
 
@@ -37,6 +36,7 @@ public class Yellow extends Mod{
         try{
             YellowBullets.load();
             YellowWeapons.load();
+            YellowSpells.load();
             YellowUnitTypes.load();
             YellowWeapons.afterLoad();
             YellowStatusEffects.load();

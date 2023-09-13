@@ -3,6 +3,7 @@ package yellow.ui.buttons.dialogs
 import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.scene.ui.ScrollPane
+import arc.scene.ui.TextButton
 import arc.scene.ui.layout.Table
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.Vars
@@ -27,10 +28,14 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
         cont.clear()
 
         val weapons = Table()
+        val spells = Table()
         val misc = Table()
         val info = Table()
 
-        if(!Vars.mobile && unit != null){
+        val buttone = TextButton("@exit")
+
+
+        if(unit != null){
             misc.addTable {
                 addLabel("@misc").row()
                 image().color(Color.darkGray).height(6f).growX()
@@ -109,21 +114,44 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
                     addLabel({ "Lives: ${unit.lives}/${unit.type().maxLives}" }).left().row()
                     addLabel({ "Shield: ${unit.shield}" }).left().row()
                     addLabel({ "Idle Time: ${unit.idleTime}" }).left().row()
-                    add(FLabel("i am clearly not making use of any of this space\nNOR properly using ui")).left().row()
                 }
             }.grow()
         }.grow()
 
-        cont.add(weapons).grow().let { if(Vars.mobile) row() }
-
-        if(!Vars.mobile){
-            val subTable = Table()
-            subTable.add(misc).grow().row()
-            subTable.add(info).grow().row()
-            cont.add(subTable).grow()
-        }else{
-            cont.add(info).grow()
+        buttone.clicked {
+            cont.clear()
+            cont.textButton("@weapons"){
+                cont.clear()
+                cont.add(weapons).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@unitinfo"){
+                cont.clear()
+                cont.add(info).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@misc"){
+                cont.clear()
+                cont.add(misc).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
         }
+
+        cont.textButton("@weapons"){
+            cont.clear()
+            cont.add(weapons).grow().row()
+            cont.add(buttone).growX()
+        }.growX().row()
+        cont.textButton("@unitinfo"){
+            cont.clear()
+            cont.add(info).grow().row()
+            cont.add(buttone).growX()
+        }.growX().row()
+        cont.textButton("@misc"){
+            cont.clear()
+            cont.add(misc).grow().row()
+            cont.add(buttone).growX()
+        }.growX().row()
 
         super.show()
     }

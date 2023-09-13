@@ -2,8 +2,9 @@ package yellow.type;
 
 import arc.*;
 import mindustry.type.*;
+import yellow.internal.*;
 
-public class NameableWeapon extends Weapon{
+public class NameableWeapon extends Weapon implements Namec {
     /** The weapon display name, as shown in UI. */
     public String displayName = nameLocalized();
     /** The weapon description. Defaults to the weapon description found in bundles. */
@@ -14,13 +15,17 @@ public class NameableWeapon extends Weapon{
         
         this.description = descriptionLocalized();
     }
-    
-    public String descriptionLocalized(){
-        return Core.bundle.get("weapon." + name + ".description");
-    }
 
+    @Override
     public String nameLocalized(){
         displayName = Core.bundle.get("weapon." + name + ".name");
         return displayName;
     }
+
+    @Override
+    public String descriptionLocalized(){
+        return Core.bundle.get("weapon." + name + ".description");
+    }
+
+
 }

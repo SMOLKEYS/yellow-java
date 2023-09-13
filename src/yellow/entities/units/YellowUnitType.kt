@@ -3,6 +3,7 @@ package yellow.entities.units
 import arc.func.*
 import arc.math.Mathf
 import arc.scene.ui.layout.Table
+import arc.struct.Seq
 import kotmindy.mindustry.MUnit
 import mindustry.Vars
 import mindustry.ai.UnitCommand
@@ -13,13 +14,16 @@ import mindustry.world.meta.*
 import yellow.*
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.YellowUtilsKt.seperator
-import yellow.type.DisableableWeapon
+import yellow.type.*
 import yellow.world.meta.YellowStats
 
 open class YellowUnitType(name: String): UnitType(name) {
 
     var maxLives = 5
     var afterDeath: Array<Cons<YellowUnitEntity>?> = arrayOfNulls(maxLives)
+
+    @JvmField
+    var spells = Seq<Spell>()
 
     init{
         constructor = Prov<MUnit> {YellowUnitEntity()}

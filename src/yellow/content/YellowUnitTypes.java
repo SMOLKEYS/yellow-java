@@ -5,7 +5,6 @@ import mindustry.ai.types.*;
 import mindustry.type.*;
 import yellow.ai.*;
 import yellow.entities.units.*;
-import yellow.weapons.*;
 
 public class YellowUnitTypes{
 
@@ -46,7 +45,7 @@ public class YellowUnitTypes{
                 for(int i = 0; i < 360; i++) YellowBullets.glowOrb.create(a, a.x, a.y, i);
             };
 
-
+            spells.addAll(YellowSpells.fireCircle);
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous, YellowWeapons.railer);
         }};
         

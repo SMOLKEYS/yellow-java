@@ -41,13 +41,20 @@ open class YellowUnitEntity: UnitEntity(){
     var enableAutoIdle = false
     var idleTime = 0f
 
-    
+    var spells: Array<SpellBind?> = arrayOfNulls(0)
+
     private fun initVars(){
         inited = true
         lives = type().maxLives
         allowsHealing = Mathf.chance(0.346)
         panicMode = Mathf.chance(0.221)
         panicModeTypeTwo = Mathf.chance(0.124)
+
+        spells = arrayOfNulls(type().spells.size)
+        for(i in 0..type().spells.size - 1){
+            spells[i] = type().spells[i].spellType[type().spells[i]]
+        }
+
         entities.add(this)
     }
     
@@ -108,7 +115,9 @@ open class YellowUnitEntity: UnitEntity(){
         invalidateVars()
         super.remove()
     }
-    
+
+    fun spells() = spells
+
     fun outOfWorldBounds(): Boolean{
         return x > Vars.world.width() * 8f || x < 0f || y > Vars.world.height() * 8f || y < 0f
     }
@@ -131,6 +140,15 @@ open class YellowUnitEntity: UnitEntity(){
         mounts().forEach{
             if(index >= max) return
             if(it is T) cons(it)
+            index++
+        }
+    }
+
+    inline fun eachSpellAs(max: Int, cons: (SpellBind) -> Unit){
+        var index = 0
+        spells().forEach{
+            if(index >= max) return
+            cons(it!!)
             index++
         }
     }
@@ -208,7 +226,10 @@ open class YellowUnitEntity: UnitEntity(){
         } else {
             YellowPermVars.removeAllowed = false
         }
-        
+
+        spells().forEach{
+            it?.update()
+        }
         
         //heal surrounding units; normal units gain 70 health, player units gain either no health or a third of their current health
         if(allowsHealing){
@@ -287,8 +308,9 @@ open class YellowUnitEntity: UnitEntity(){
         super.write(write)
 
         val mnt = mounts().size
+        val spl = spells().size
 
-        write.s(0)
+        write.s(1)
         write.bool(inited)
         write.bool(firstDeath)
         write.bool(allowsHealing)
@@ -300,11 +322,15 @@ open class YellowUnitEntity: UnitEntity(){
         write.bool(enableAutoIdle)
         write.bool(forceIdle)
         write.i(mnt)
+        write.i(spl)
         
         eachMountAs<DisableableWeaponMount>(mnt){
             it.write(write)
         }
-        
+
+        eachSpellAs(spl){
+            it.write(write)
+        }
     }
 
     override fun read(read: Reads){
@@ -312,6 +338,12 @@ open class YellowUnitEntity: UnitEntity(){
         val revision = read.s().toInt()
 
         internalLog("REVISION: $revision")
+
+        //i love init times
+        spells = arrayOfNulls(type().spells.size)
+        for(i in 0..type().spells.size - 1){
+            spells[i] = type().spells[i].spellType[type().spells[i]]
+        }
 
         when(revision){
             0 -> {
@@ -327,6 +359,26 @@ open class YellowUnitEntity: UnitEntity(){
                 forceIdle = read.bool()
 
                 eachMountAs<DisableableWeaponMount>(read.i()){
+                    it.read(read)
+                }
+            }
+            1 -> {
+                inited = read.bool()
+                firstDeath = read.bool()
+                allowsHealing = read.bool()
+                panicMode = read.bool()
+                panicModeTypeTwo = read.bool()
+                lives = read.i()
+                franticTeleportTime = read.f()
+                idleTime = read.f()
+                enableAutoIdle = read.bool()
+                forceIdle = read.bool()
+
+                eachMountAs<DisableableWeaponMount>(read.i()){
+                    it.read(read)
+                }
+
+                eachSpellAs(read.i()){
                     it.read(read)
                 }
             }
