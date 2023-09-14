@@ -20,7 +20,7 @@ public class YellowBlocks{
             solid = false;
         }};
         yellowShrine = new SummoningShrine(yellow){{
-            health = 1685;
+            health = 100;
             size = 1;
             setSummonTime(180f);
             setOneOnly(true);

@@ -11,7 +11,7 @@ import yellow.internal.util.YellowUtils.getAndWrite
 import yellow.ui.YellowSettings
 
 object YellowAutoUpdater{
-    val vtype = if(YellowVars.getSelf().meta.version.contains(".")) "release" else "bleeding-edge"
+    val vtype = if(YellowVars.getSelf().meta.version.contains(".")) "release" else "nightly"
     val jsr = JsonReader()
 
     @JvmStatic
@@ -22,15 +22,15 @@ object YellowAutoUpdater{
                     val res = response.resultAsString
 
                     try{
-                        val version = jsr.parse(res)[0]["tag_name"].asString().replace("v", "")
-                        val kr = if(version.toFloatOrNull() != null) version.toFloat() else 0f
-                        val rk = YellowVars.getSelf().meta.version.replace("v", "")
-                        val krk = if(rk.toFloatOrNull() != null) rk.toFloat() else 99999.99f
+                        val versionNet = jsr.parse(res)[0]["tag_name"].asString().replace("v", "")
+                        val parsedNet = if(versionNet.toFloatOrNull() != null) versionNet.toFloat() else 0f
+                        val versionLocal = YellowVars.getSelf().meta.version.replace("v", "")
+                        val parsedLocal = if(versionLocal.toFloatOrNull() != null) versionLocal.toFloat() else 99999.99f
 
-                        internalLog(version)
-                        internalLog("$kr")
+                        internalLog(versionNet)
+                        internalLog("$parsedNet")
 
-                        if(kr > krk){
+                        if(parsedNet > parsedLocal){
                             showTitledConfirm("New yellow-java release!", "Update now?"){
                                 getAndWrite(YellowPermVars.sourceReleaseRepo, YellowSettings.tmpDir, true){ file ->
                                     Vars.mods.importMod(file)
@@ -49,36 +49,7 @@ object YellowAutoUpdater{
                     }
                 })
             }
-            "bleeding-edge" -> {
-                Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java-builds/releases", {
-                    val res = it.resultAsString
-            
-                    try{
-                        val version = jsr.parse(res)[0]["tag_name"].asString()
-                        val kr = if(version.toIntOrNull() != null) version.toInt() else 0 //anything can happen.
-                        val rk = YellowVars.getSelf().meta.version
-                        val krk = if(rk.toIntOrNull() != null) rk.toInt() else 999999
-                        
-                        internalLog(version)
-                        internalLog("$kr")
-                        
-                        if(kr > krk) showTitledConfirm("Update", "Found a new bleeding edge version for Yellow.\nUpdate now? (current: $krk, new: $kr)"){
-                            getAndWrite(YellowPermVars.sourceBERepo, YellowSettings.tmpDir, true){
-                                Vars.mods.importMod(it)
-                                it.delete()
-                                showInfo("Mod updated. Restart the game."){ Core.app.exit() }
-                            }
-                        }
-                    }catch(e: Exception){
-                        Log.err(e)
-                    }
-                }, {
-                    Core.app.post{
-                        it.printStackTrace()
-                        Log.err(it)
-                    }
-                })
-            }
+            "nightly" -> internalLog("using nightly yellow build")
             else -> {}
         }
     }
