@@ -6,15 +6,22 @@ import mindustry.gen.*;
 import yellow.entities.units.entity.*;
 import yellow.internal.*;
 
-public class Spell implements Namec {
-    public String name, displayName = nameLocalized();
-    public float x, y, cooldown;
+public class Spell implements Namec, YContent {
+    public String name, displayName, description;
+    public float x, y;
+    public int cooldown;
     public Cons<Unit> onCast = unit -> {};
     public Func<Spell, SpellBind> spellType = SpellBind::new;
 
-    public Spell(String name){
+    public Spell(String name) {
         this.name = name;
-        this.x = this.y = this.cooldown = 0f;
+        this.x = this.y = this.cooldown = 0;
+
+        this.displayName = nameLocalized();
+        this.description = descriptionLocalized();
+
+        YellowContent.spells.add(this);
+        YellowContent.all.add(this);
     }
 
     @Override

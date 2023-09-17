@@ -7,12 +7,13 @@ import arc.scene.ui.layout.Table
 import arc.struct.ObjectMap
 import arc.struct.ObjectSet
 import arc.struct.Seq
+import com.github.mnemotechnician.mkui.extensions.dsl.addLabel
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
 import yellow.internal.util.yesNo
 import yellow.type.NameableWeapon
 
-open class WeaponInfoDialog : BaseDialog("Weapon Info"){
+open class WeaponInfoDialog : BaseDialog("@weaponinfo"){
     
     init{
         addCloseButton()
@@ -38,13 +39,21 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
             it.add("[accent]${weapon.nameLocalized()}[]")
         }.row()
         
-        info.add("Description").color(Pal.accent).fillX().padTop(10f).row()
+        info.add("@description").color(Pal.accent).fillX().padTop(10f).row()
         
         info.add(weapon.description).color(Color.lightGray).fillX().get().setWrap(true)
         info.row()
         
-        info.add("General Stats").color(Pal.accent).fillX().padTop(3f).row()
-        
+        info.add("@general").color(Pal.accent).fillX().padTop(3f).row()
+
+        info.addLabel(Core.bundle.format("weapon.reload", weapon.reload / 60, "@unit.seconds"), wrap = false).growX().left().row()
+        info.addLabel(Core.bundle.format("weapon.x-y", weapon.x, weapon.y), wrap = false).growX().left().row()
+        info.addLabel(Core.bundle.format("weapon.rotate", weapon.rotate.yesNo()), wrap = false).growX().left().row()
+        info.addLabel(Core.bundle.format("weapon.shootcone", weapon.shootCone), wrap = false).growX().left().row()
+        info.addLabel(if(weapon.rotate) Core.bundle.format("weapon.rotatespeed", weapon.rotateSpeed) else Core.bundle.format("weapon.baserotation", weapon.baseRotation), wrap = false).growX().left().row()
+
+        /*
+
         info.add(buildString{
             append("[lightgray]Reload:[] ${weapon.reload / 60f} seconds\n")
             append("[lightgray]X, Y:[] ${weapon.x}, ${weapon.y}\n")
@@ -53,7 +62,9 @@ open class WeaponInfoDialog : BaseDialog("Weapon Info"){
             if(!weapon.rotate) append("[lightgray]Base Rotation:[] ${weapon.baseRotation} degrees\n")
             if(weapon.rotate) append("[lightgray]Rotate Speed:[] ${weapon.rotateSpeed} degrees\n")
         })
-        
+
+        */
+
         val paenu = ScrollPane(info)
         cont.add(paenu)
         

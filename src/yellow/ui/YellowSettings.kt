@@ -3,12 +3,11 @@ package yellow.ui
 import arc.Core
 import arc.files.Fi
 import com.github.mnemotechnician.mkui.extensions.dsl.textButton
-import mindustry.Vars
 import mindustry.Vars.ui
 import mindustry.gen.Icon
+import mindustry.ui.dialogs.SettingsMenuDialog
 import yellow.*
 import yellow.content.YellowNotifications
-import yellow.internal.util.YellowUtils
 
 object YellowSettings{
 
@@ -18,15 +17,15 @@ object YellowSettings{
     fun load(){
         ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
             
-            table.checkPref("Internal Logging", false){
+            table.checkPref("internalloggering", false){
                 YellowPermVars.internalLoggering = it
             }
             
-            table.checkPref("Disable Allied Yellow Unit Weapons On World Reload", true){
+            table.checkPref("weaponsanity", true){
                 YellowPermVars.weaponSanityCheck = it
             }
             
-            table.textPref("Source BE Repo", YellowPermVars.sourceBERepo){
+            table.textPref("sourceberepo", YellowPermVars.sourceBERepo){
                 if(it.isBlank()){
                     YellowPermVars.sourceBERepo = "https://github.com/SMOLKEYS/yellow-java-builds/releases/latest/download/yellow-java.jar"
                 }else{
@@ -34,7 +33,7 @@ object YellowSettings{
                 }
             }
             
-            table.textPref("Source Repo", YellowPermVars.sourceReleaseRepo){
+            table.textPref("sourcerepo", YellowPermVars.sourceReleaseRepo){
                 if(it.isBlank()){
                     YellowPermVars.sourceReleaseRepo = "https://github.com/SMOLKEYS/yellow-java/releases/latest/download/yellow-java.jar"
                 }else{
@@ -42,27 +41,22 @@ object YellowSettings{
                 }
             }
 
-            table.row()
-
-            table.textButton("Update\n(Do not spam!)", wrap = false){
-                YellowUtils.getAndWrite(YellowPermVars.sourceBERepo, tmpDir, true){
-                    Vars.mods.importMod(it)
-                    it.delete()
-                    ui.showInfoOnHidden("Mod updated. Restart the game."){ Core.app.exit() }
-                }
-            }
-
-            table.row()
-
-            table.textButton("Notifications", wrap = false){
+            table.pref(ButtonSetting("notifs"){
                 YellowVars.notifs.show(Notification.instances)
-            }
+            })
 
-            table.row()
-
-            table.textButton("Call Notification", wrap = false){
+            table.pref(ButtonSetting("callnotif"){
                 YellowNotifications.hi.add()
-            }
+            })
+        }
+    }
+
+    class ButtonSetting(name: String, var clicked: () -> Unit): SettingsMenuDialog.SettingsTable.Setting(name){
+
+        override fun add(table: SettingsMenuDialog.SettingsTable) {
+            table.textButton(title, wrap = false){
+                clicked()
+            }.growX().row()
         }
     }
 }

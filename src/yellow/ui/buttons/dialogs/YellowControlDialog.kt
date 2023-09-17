@@ -2,17 +2,21 @@ package yellow.ui.buttons.dialogs
 
 import arc.flabel.FLabel
 import arc.graphics.Color
+import arc.scene.event.Touchable
 import arc.scene.ui.ScrollPane
 import arc.scene.ui.TextButton
 import arc.scene.ui.layout.Table
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.Vars
 import mindustry.entities.units.WeaponMount
+import mindustry.gen.Icon
 import mindustry.ui.Bar
+import mindustry.ui.MobileButton
 import mindustry.ui.Styles
 import mindustry.ui.dialogs.BaseDialog
 import yellow.*
 import yellow.entities.units.DisableableWeaponMount
+import yellow.entities.units.entity.SpellBind
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.*
 import yellow.type.*
@@ -22,9 +26,7 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
         addCloseButton()
     }
 
-    fun show(weapon: Array<WeaponMount>) = show(weapon, null)
-
-    fun show(weapon: Array<WeaponMount>, unit: YellowUnitEntity?) {
+    fun show(weapon: Array<WeaponMount>, spell: Array<SpellBind>, unit: YellowUnitEntity?) {
         cont.clear()
 
         val weapons = Table()
@@ -103,6 +105,20 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
             }.grow()
         }.grow()
 
+        spells.addTable {
+            addLabel("@spells").row()
+            image().color(Color.darkGray).height(6f).growX()
+        }.growX().top().row()
+        spells.addTable {
+            scrollPane {
+                spell.forEach {bind ->
+                    textButton(bind.spell.displayName){
+                        bind.cast(unit)
+                    }.update { touchable = if(bind.ready()) Touchable.enabled else Touchable.disabled }.growX().row()
+                }
+            }.grow()
+        }.grow()
+
         info.addTable {
             addLabel("@unitinfo").row()
             image().color(Color.darkGray).height(6f).growX()
@@ -118,11 +134,18 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
             }.grow()
         }.grow()
 
-        buttone.clicked {
-            cont.clear()
+
+        //shitcode one
+
+        fun back(){
             cont.textButton("@weapons"){
                 cont.clear()
                 cont.add(weapons).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@spells"){
+                cont.clear()
+                cont.add(spells).grow().row()
                 cont.add(buttone).growX()
             }.growX().row()
             cont.textButton("@unitinfo"){
@@ -137,21 +160,12 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
             }.growX().row()
         }
 
-        cont.textButton("@weapons"){
+        buttone.clicked {
             cont.clear()
-            cont.add(weapons).grow().row()
-            cont.add(buttone).growX()
-        }.growX().row()
-        cont.textButton("@unitinfo"){
-            cont.clear()
-            cont.add(info).grow().row()
-            cont.add(buttone).growX()
-        }.growX().row()
-        cont.textButton("@misc"){
-            cont.clear()
-            cont.add(misc).grow().row()
-            cont.add(buttone).growX()
-        }.growX().row()
+            back()
+        }
+
+        back()
 
         super.show()
     }

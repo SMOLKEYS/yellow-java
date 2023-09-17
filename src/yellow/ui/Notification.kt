@@ -2,7 +2,9 @@ package yellow.ui
 
 import arc.scene.ui.layout.Table
 import arc.struct.Seq
+import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.gen.*
+import mindustry.graphics.Pal
 
 open class Notification{
 
@@ -18,20 +20,18 @@ open class Notification{
 
     var table = Table().apply{
         background = Tex.pane
-        table{
-            it.background = Tex.pane
-            it.add(title).grow().update{rl ->
-                rl.setText(title)
-            }
-            it.button(Icon.trashSmall){
+        addTable {
+            background = Tex.pane
+            name = "titletable: $title"
+
+            addLabel({ title }, wrap = false).growX().row()
+            imageButton(Icon.trashSmall.tint(Pal.remove)){
                 this@Notification.remove()
             }
         }.growX().row()
 
-        pane{
-            it.add(message).grow().update{bl ->
-                bl.setText(message)
-            }.get().setWrap(true)
+        scrollPane {
+            addLabel({ message }, wrap = true)
         }.grow().row()
     }
 

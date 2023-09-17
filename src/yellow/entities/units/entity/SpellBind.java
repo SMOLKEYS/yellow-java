@@ -9,14 +9,14 @@ import static yellow.internal.util.YellowUtils.*;
 
 public class SpellBind implements Savec {
     public Spell spell;
-    public float cooldown;
+    public int cooldown;
 
     public SpellBind(Spell spell){
         this.spell = spell;
     }
 
     public void update(){
-        if(cooldown >= 0) cooldown--;
+        if(cooldown > 0) cooldown--;
     }
 
     public void cast(Unit unit){
@@ -26,20 +26,21 @@ public class SpellBind implements Savec {
     }
 
     public boolean ready(){
-        return cooldown >= 0f;
+        return cooldown <= 0;
     }
 
     @Override
     public void write(Writes write){
         internalLog("begin write for " + spell);
-        write.f(cooldown);
+        write.i(cooldown);
         internalLog("write complete");
     }
 
+    //cant wait to add a revision byte to this thing because i felt curious/did something wrong
     @Override
     public void read(Reads read){
         internalLog("begin read for " + spell);
-        cooldown = read.f();
+        cooldown = read.i();
         internalLog("read complete");
     }
 }

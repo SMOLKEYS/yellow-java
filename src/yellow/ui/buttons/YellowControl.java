@@ -31,7 +31,7 @@ public class YellowControl {
 
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
-                if(player.unit() instanceof YellowUnitEntity) dialog.show(player.unit().mounts);
+                if(player.unit() instanceof YellowUnitEntity) dialog.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit());
             });
             YellowUtils.mobileHudButton(Icon.down, () -> {
                 if(player.unit() instanceof YellowUnitEntity){
@@ -66,7 +66,7 @@ public class YellowControl {
                 cont.top().right();
                 cont.marginRight(width - padding);
     
-                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, (YellowUnitEntity) player.unit()));
+                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit()));
     
                 // show buttons only when player controls yellow air
                 cont.visible(() -> player.unit() instanceof YellowUnitEntity && !disableUI);

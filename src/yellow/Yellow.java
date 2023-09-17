@@ -26,9 +26,9 @@ public class Yellow extends Mod{
             YellowVars.load();
             YellowNotifications.load();
             YellowSettings.load();
+            YellowConsoleBind.load();
             YellowAutoUpdater.start();
         });
-        
     }
 
     @Override

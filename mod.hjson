@@ -13,7 +13,7 @@ main: "yellow.Yellow"
 description: "Very pog."
 
 #the mod version
-version: "PC-2023-09-14-01_spells"
+version: 0.73
 
 #the minimum game build required to run this mod
 minGameVersion: 145

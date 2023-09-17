@@ -6,8 +6,8 @@ import arc.util.serialization.JsonReader
 import kotmindy.mindustry.ui.*
 import mindustry.Vars
 import yellow.*
-import yellow.internal.util.YellowUtils.internalLog
 import yellow.internal.util.YellowUtils.getAndWrite
+import yellow.internal.util.YellowUtils.internalLog
 import yellow.ui.YellowSettings
 
 object YellowAutoUpdater{
@@ -49,7 +49,7 @@ object YellowAutoUpdater{
                     }
                 })
             }
-            "nightly" -> internalLog("using nightly yellow build")
+            "nightly" -> internalLog("Using nightly Yellow build.")
             else -> {}
         }
     }
