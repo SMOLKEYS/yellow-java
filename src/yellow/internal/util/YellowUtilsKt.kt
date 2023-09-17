@@ -37,7 +37,7 @@ fun UnitType.exists(team: Team): Boolean{
 
 fun String.tint(color: Color) = "[#$color]$this[]"
 
-fun Boolean.yesNo() = if(this) "Yes" else "No"
+fun Boolean.yesNo() = if(this) "@yes" else "@no"
 
 object YellowUtilsKt{
     private val jsr = JsonReader()

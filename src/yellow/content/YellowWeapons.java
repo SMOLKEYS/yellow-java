@@ -1,4 +1,4 @@
-package yellow.weapons;
+package yellow.content;
 
 import arc.*;
 import arc.graphics.*;
@@ -10,7 +10,6 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
-import yellow.content.*;
 import yellow.entities.bullet.*;
 import yellow.type.*;
 

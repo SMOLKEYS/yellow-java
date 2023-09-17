@@ -2,16 +2,21 @@ package yellow.ui.buttons.dialogs
 
 import arc.flabel.FLabel
 import arc.graphics.Color
+import arc.scene.event.Touchable
 import arc.scene.ui.ScrollPane
+import arc.scene.ui.TextButton
 import arc.scene.ui.layout.Table
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.Vars
 import mindustry.entities.units.WeaponMount
+import mindustry.gen.Icon
 import mindustry.ui.Bar
+import mindustry.ui.MobileButton
 import mindustry.ui.Styles
 import mindustry.ui.dialogs.BaseDialog
 import yellow.*
 import yellow.entities.units.DisableableWeaponMount
+import yellow.entities.units.entity.SpellBind
 import yellow.entities.units.entity.YellowUnitEntity
 import yellow.internal.util.*
 import yellow.type.*
@@ -21,16 +26,18 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
         addCloseButton()
     }
 
-    fun show(weapon: Array<WeaponMount>) = show(weapon, null)
-
-    fun show(weapon: Array<WeaponMount>, unit: YellowUnitEntity?) {
+    fun show(weapon: Array<WeaponMount>, spell: Array<SpellBind>, unit: YellowUnitEntity?) {
         cont.clear()
 
         val weapons = Table()
+        val spells = Table()
         val misc = Table()
         val info = Table()
 
-        if(!Vars.mobile && unit != null){
+        val buttone = TextButton("@exit")
+
+
+        if(unit != null){
             misc.addTable {
                 addLabel("@misc").row()
                 image().color(Color.darkGray).height(6f).growX()
@@ -98,6 +105,20 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
             }.grow()
         }.grow()
 
+        spells.addTable {
+            addLabel("@spells").row()
+            image().color(Color.darkGray).height(6f).growX()
+        }.growX().top().row()
+        spells.addTable {
+            scrollPane {
+                spell.forEach {bind ->
+                    textButton(bind.spell.displayName){
+                        bind.cast(unit)
+                    }.update { touchable = if(bind.ready()) Touchable.enabled else Touchable.disabled }.growX().row()
+                }
+            }.grow()
+        }.grow()
+
         info.addTable {
             addLabel("@unitinfo").row()
             image().color(Color.darkGray).height(6f).growX()
@@ -109,21 +130,42 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
                     addLabel({ "Lives: ${unit.lives}/${unit.type().maxLives}" }).left().row()
                     addLabel({ "Shield: ${unit.shield}" }).left().row()
                     addLabel({ "Idle Time: ${unit.idleTime}" }).left().row()
-                    add(FLabel("i am clearly not making use of any of this space\nNOR properly using ui")).left().row()
                 }
             }.grow()
         }.grow()
 
-        cont.add(weapons).grow().let { if(Vars.mobile) row() }
 
-        if(!Vars.mobile){
-            val subTable = Table()
-            subTable.add(misc).grow().row()
-            subTable.add(info).grow().row()
-            cont.add(subTable).grow()
-        }else{
-            cont.add(info).grow()
+        //shitcode one
+
+        fun back(){
+            cont.textButton("@weapons"){
+                cont.clear()
+                cont.add(weapons).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@spells"){
+                cont.clear()
+                cont.add(spells).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@unitinfo"){
+                cont.clear()
+                cont.add(info).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
+            cont.textButton("@misc"){
+                cont.clear()
+                cont.add(misc).grow().row()
+                cont.add(buttone).growX()
+            }.growX().row()
         }
+
+        buttone.clicked {
+            cont.clear()
+            back()
+        }
+
+        back()
 
         super.show()
     }

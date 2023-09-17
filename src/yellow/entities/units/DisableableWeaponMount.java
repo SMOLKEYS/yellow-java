@@ -4,11 +4,12 @@ import arc.util.*;
 import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
+import yellow.internal.*;
 import yellow.type.*;
 
 import static yellow.internal.util.YellowUtils.*;
 
-public class DisableableWeaponMount extends WeaponMount{
+public class DisableableWeaponMount extends WeaponMount implements Savec {
     /** whether or not the weapon is enabled */
     public boolean enabled = true;
     
@@ -19,13 +20,15 @@ public class DisableableWeaponMount extends WeaponMount{
     }
 
 
-    //TODO
+    //TODO stability
+    @Override
     public void write(Writes write){
         internalLog("begin write for " + weapon);
         write.bool(enabled);
         internalLog("write complete");
     }
-    
+
+    @Override
     public void read(Reads read){
         try{
             internalLog("begin read for " + weapon);
