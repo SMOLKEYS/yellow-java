@@ -10,6 +10,7 @@ import yellow.internal.util.YellowUtils.getAndWrite
 import yellow.internal.util.YellowUtils.internalLog
 import yellow.ui.YellowSettings
 
+@Suppress("MemberVisibilityCanBePrivate")
 object YellowAutoUpdater{
     val vtype = if(YellowVars.getSelf().meta.version.contains(".")) "release" else "nightly"
     val jsr = JsonReader()
@@ -31,11 +32,11 @@ object YellowAutoUpdater{
                         internalLog("$parsedNet")
 
                         if(parsedNet > parsedLocal){
-                            showTitledConfirm("New yellow-java release!", "Update now?"){
+                            showTitledConfirm("@yellow.newrelease", Core.bundle.format("updatenow", parsedLocal, parsedNet)){
                                 getAndWrite(YellowPermVars.sourceReleaseRepo, YellowSettings.tmpDir, true){ file ->
                                     Vars.mods.importMod(file)
                                     file.delete()
-                                    showInfo("Mod imported. The game will now restart."){ Core.app.exit() }
+                                    showInfo("@modimported"){ Core.app.exit() }
                                 }
                             }
                         }
