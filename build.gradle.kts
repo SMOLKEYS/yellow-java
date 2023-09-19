@@ -128,5 +128,14 @@ task<Copy>("copy") {
     println("Copying mod...")
     from("$buildDir/libs")
     into("${System.getenv("APPDATA")}\\Mindustry\\mods")
-    include("*.jar")
+    include("${project.name}Desktop.jar")
+}
+
+task<Copy>("copyDeploy") {
+    dependsOn("deploy")
+
+    println("Copying mod...")
+    from("$buildDir/libs")
+    into("${System.getenv("APPDATA")}\\Mindustry\\mods")
+    include("${project.name}.jar")
 }

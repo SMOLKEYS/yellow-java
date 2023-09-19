@@ -13,7 +13,7 @@ main: "yellow.Yellow"
 description: "Very pog."
 
 #the mod version
-version: 0.71
+version: 0.711
 
 #the minimum game build required to run this mod
 minGameVersion: 145

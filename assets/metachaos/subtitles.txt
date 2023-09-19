@@ -12,6 +12,7 @@ Lorem ipsum dolor
 Haha!
 Quieres?
 Made in Java, for Java!
+Also try Fictional Octo System!
 [red]I disapprove![]
 [green]I approve![]
 *clang*

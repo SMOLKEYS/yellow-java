@@ -6,6 +6,7 @@ import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.gen.*
 import mindustry.graphics.Pal
 
+
 open class Notification{
 
     @JvmField
@@ -24,18 +25,18 @@ open class Notification{
             background = Tex.pane
             name = "titletable: $title"
 
-            addLabel({ title }, wrap = false).growX().row()
+            addLabel({ title }, wrap = false).growX()
             imageButton(Icon.trashSmall.tint(Pal.remove)){
                 this@Notification.remove()
-            }
+            }.growX().right()
         }.growX().row()
 
         scrollPane {
-            addLabel({ message }, wrap = true)
+            addLabel({ message }, wrap = true).grow()
         }.grow().row()
     }
 
-    private var removed = false
+    private var removed = true
     
     /** Creates a Notification with the specified priority level. */
     constructor(priority: NotificationPriority){

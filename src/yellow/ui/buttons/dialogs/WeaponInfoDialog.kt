@@ -5,8 +5,6 @@ import arc.graphics.Color
 import arc.scene.ui.*
 import arc.scene.ui.layout.Table
 import arc.struct.ObjectMap
-import arc.struct.ObjectSet
-import arc.struct.Seq
 import com.github.mnemotechnician.mkui.extensions.dsl.addLabel
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog

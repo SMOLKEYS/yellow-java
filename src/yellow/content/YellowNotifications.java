@@ -10,7 +10,7 @@ public class YellowNotifications{
     public static void load(){
         hi = new Notification(){{
             title = "Hello!";
-            message = "A notification system is partway complete.";
+            message = "En voyage!";
         }};
     }
 }

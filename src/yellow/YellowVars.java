@@ -31,9 +31,7 @@ public class YellowVars{
 
         MetaChaos.load();
 
-        YellowUtils.loop(1f, () -> {
-            MetaChaos.update(meta);
-        });
+        YellowUtils.loop(1f, () -> MetaChaos.update(meta));
     }
 
     public static void onImport(){
