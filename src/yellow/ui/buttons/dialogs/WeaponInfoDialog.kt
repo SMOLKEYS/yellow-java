@@ -11,6 +11,7 @@ import mindustry.ui.dialogs.BaseDialog
 import yellow.internal.util.yesNo
 import yellow.type.NameableWeapon
 
+@Suppress("LeakingThis", "unused")
 open class WeaponInfoDialog : BaseDialog("@weaponinfo"){
     
     init{
@@ -44,7 +45,7 @@ open class WeaponInfoDialog : BaseDialog("@weaponinfo"){
         
         info.add("@general").color(Pal.accent).fillX().padTop(3f).row()
 
-        info.addLabel(Core.bundle.format("weapon.reload", weapon.reload / 60, "@unit.seconds"), wrap = false).growX().left().row()
+        info.addLabel(Core.bundle.format("weapon.reload", weapon.reload / 60, "seconds"), wrap = false).growX().left().row()
         info.addLabel(Core.bundle.format("weapon.x-y", weapon.x, weapon.y), wrap = false).growX().left().row()
         info.addLabel(Core.bundle.format("weapon.rotate", weapon.rotate.yesNo()), wrap = false).growX().left().row()
         info.addLabel(Core.bundle.format("weapon.shootcone", weapon.shootCone), wrap = false).growX().left().row()
