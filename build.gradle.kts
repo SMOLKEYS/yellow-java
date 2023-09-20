@@ -31,7 +31,7 @@ dependencies {
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
     implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
-    implementation("com.github.mnemotechnician:mkui:v1.2.2")
+    implementation("com.github.mnemotechnician:mkui:v1.3.2")
 }
 
 configurations.all {
@@ -64,11 +64,13 @@ tasks.register("jarAndroid") {
                 configurations.runtimeClasspath.get().toList() +
                 listOf(File(platformRoot, "android.jar"))
         val dependencies = allDependencies.joinToString(" ") { "--classpath ${it.path}" }
+        //windows is weird
+        val d8 = if(System.getProperty("os.name").toLowerCase().contains("windows")) "d8.bat" else "d8"
         //dex and desugar files - this requires d8 in your PATH
         val paras = "$dependencies --min-api 14 --output ${project.name}Android.jar ${project.name}Desktop.jar"
         try {
             exec {
-                commandLine = "d8 $paras".split(' ')
+                commandLine = "$d8 $paras".split(' ')
                 workingDir = File("$buildDir/libs")
                 standardOutput = System.out
                 errorOutput = System.err

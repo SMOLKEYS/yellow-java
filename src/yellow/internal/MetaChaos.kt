@@ -1,15 +1,11 @@
 package yellow.internal
 
-import arc.Core
 import arc.files.Fi
 import arc.struct.Seq
 import mindustry.Vars
 import mindustry.mod.Mods
-import yellow.YellowPermVars
 
-fun List<String>.filterComments(): List<String>{
-    return this.filter{ !it.startsWith("#") }
-}
+fun List<String>.filterComments(): List<String> = this.filter {it.isBlank() || !it.startsWith("#") || !it.startsWith("--") || !it.startsWith("//")}
 
 fun Fi.readLines(): List<String>{
     return this.readString().split('\n').filterComments()

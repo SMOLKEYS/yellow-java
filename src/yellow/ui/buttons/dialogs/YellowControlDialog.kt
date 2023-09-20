@@ -1,24 +1,15 @@
 package yellow.ui.buttons.dialogs
 
-import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.scene.event.Touchable
-import arc.scene.ui.ScrollPane
 import arc.scene.ui.TextButton
 import arc.scene.ui.layout.Table
 import com.github.mnemotechnician.mkui.extensions.dsl.*
-import mindustry.Vars
 import mindustry.entities.units.WeaponMount
-import mindustry.gen.Icon
-import mindustry.ui.Bar
-import mindustry.ui.MobileButton
-import mindustry.ui.Styles
 import mindustry.ui.dialogs.BaseDialog
-import yellow.*
+import yellow.YellowVars
 import yellow.entities.units.DisableableWeaponMount
-import yellow.entities.units.entity.SpellBind
-import yellow.entities.units.entity.YellowUnitEntity
-import yellow.internal.util.*
+import yellow.entities.units.entity.*
 import yellow.type.*
 
 open class YellowControlDialog: BaseDialog("@yellowcontrol") {

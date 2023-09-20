@@ -1,20 +1,16 @@
 package yellow.internal.util
 
 import arc.Core
-import arc.files.Fi
-import arc.flabel.FLabel
 import arc.graphics.Color
 import arc.scene.event.Touchable
-import arc.scene.ui.*
+import arc.scene.ui.Image
 import arc.scene.ui.layout.*
 import arc.struct.Seq
-import arc.util.*
 import arc.util.serialization.*
 import kotmindy.mindustry.MUnit
 import mindustry.game.Team
 import mindustry.gen.Groups
 import mindustry.type.UnitType
-import mindustry.ui.Styles
 
 fun MUnit.healthFract() = this.health / this.type.health
 
