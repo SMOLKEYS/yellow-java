@@ -10,7 +10,6 @@ import yellow.internal.*;
 import yellow.type.*;
 import yellow.ui.*;
 
-import static mindustry.Vars.*;
 import static yellow.content.YellowWeapons.*;
 
 public class Yellow extends Mod{
@@ -33,18 +32,14 @@ public class Yellow extends Mod{
 
     @Override
     public void loadContent(){
-        try{
-            YellowBullets.load();
-            YellowWeapons.load();
-            YellowSpells.load();
-            YellowUnitTypes.load();
-            YellowWeapons.afterLoad();
-            YellowStatusEffects.load();
-            YellowBlocks.load();
+        YellowBullets.load();
+        YellowWeapons.load();
+        YellowSpells.load();
+        YellowUnitTypes.load();
+        YellowWeapons.afterLoad();
+        YellowStatusEffects.load();
+        YellowBlocks.load();
 
-            DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
-        }catch(Exception e){
-            Events.run(ClientLoadEvent.class, () -> ui.showCustomConfirm("[red]FATAL LOAD ERROR[]", "An error was thrown while content was being loaded from Yellow.\nClosing the game is heavily recommended.", "Close", "Keep Playing", () -> Core.app.exit(), () -> {}));
-        }
+        DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
     }
 }
