@@ -1,6 +1,7 @@
 //modded gradle file
 //origin "PKChaos/Ion"
 
+org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
@@ -45,6 +46,22 @@ configurations.all {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        // target java version - 8. do not increase unless you really need to
+        // this will not change a lot but will break mobile compatibility.
+        jvmTarget = "1.8"
+        // kotlin compiler argument
+        freeCompilerArgs += arrayOf(
+            // use the experimental kotlin compiler - x2 speed
+            "-Xuse-k2",
+            // enable context receivers
+            // note: context receivers seem to be kinda broken in the k2 compiler.
+            "-Xcontext-receivers"
+        )
+    }
 }
 
 
