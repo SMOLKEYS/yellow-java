@@ -1,7 +1,7 @@
 //modded gradle file
 //origin "PKChaos/Ion"
 
-org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
