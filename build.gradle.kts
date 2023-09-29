@@ -56,10 +56,10 @@ tasks.withType<KotlinCompile> {
         // kotlin compiler argument
         freeCompilerArgs += arrayOf(
             // use the experimental kotlin compiler - x2 speed
-            "-Xuse-k2",
+            "-Xuse-k2"
             // enable context receivers
             // note: context receivers seem to be kinda broken in the k2 compiler.
-            "-Xcontext-receivers"
+            //"-Xcontext-receivers" shant
         )
     }
 }
