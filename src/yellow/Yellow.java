@@ -27,7 +27,7 @@ public class Yellow extends Mod{
             YellowSettings.load();
             YellowAutoUpdater.start();
             
-            Time.run(120f, YellowConsoleBind::load)
+            Time.run(120f, YellowConsoleBind::load);
         });
     }
 
