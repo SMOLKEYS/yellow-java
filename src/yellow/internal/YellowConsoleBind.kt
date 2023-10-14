@@ -6,9 +6,8 @@ import yellow.internal.util.YellowUtils.internalLog
 
 object YellowConsoleBind{
 
-    private val classes = arrayOf("yellow.internal.YellowContent", "yellow.Yellow", "yellow.YellowPermVars", "yellow.YellowVars")
+    private val classes = arrayOf("yellow.internal", "yellow")
 
-    //TODO uhh not working fsr
     @JvmStatic
     fun load(){
         internalLog("YELLOW: STARTING CONSOLE BIND")
