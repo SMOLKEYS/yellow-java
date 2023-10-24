@@ -9,7 +9,7 @@ import yellow.type.*;
 
 import static yellow.internal.util.YellowUtils.*;
 
-public class DisableableWeaponMount extends WeaponMount implements Savec {
+public class DisableableWeaponMount extends WeaponMount implements Savec{
     /** whether or not the weapon is enabled */
     public boolean enabled = true;
     
@@ -23,7 +23,7 @@ public class DisableableWeaponMount extends WeaponMount implements Savec {
     //TODO stability
     @Override
     public void write(Writes write){
-        internalLog("begin write for " + weapon);
+        internalLog("begin write (" + enabled + ") for " + weapon);
         write.bool(enabled);
         internalLog("write complete");
     }
@@ -31,10 +31,9 @@ public class DisableableWeaponMount extends WeaponMount implements Savec {
     @Override
     public void read(Reads read){
         try{
-            internalLog("begin read for " + weapon);
             boolean b = read.bool();
+            internalLog("begin read (" + b + ") for " + weapon);
             enabled = b;
-            internalLog(b);
             internalLog("read complete");
         }catch(RuntimeException e){
             enabled = ((DisableableWeapon) weapon).enabledDefault;

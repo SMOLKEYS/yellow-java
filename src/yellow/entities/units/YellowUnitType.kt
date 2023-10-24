@@ -11,7 +11,7 @@ import mindustry.type.UnitType
 import mindustry.world.meta.*
 import yellow.*
 import yellow.entities.units.entity.YellowUnitEntity
-import yellow.internal.util.YellowUtilsKt.seperator
+import yellow.internal.util.seperator
 import yellow.type.*
 import yellow.world.meta.YellowStats
 

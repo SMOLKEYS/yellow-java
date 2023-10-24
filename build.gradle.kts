@@ -2,17 +2,24 @@
 //origin "PKChaos/Ion"
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.parsing.parseBoolean
 import java.io.ByteArrayOutputStream
-import java.io.FileNotFoundException
 
 version = "1.0"
+
+val mindustryVersion = "v146"
+
+val windows = System.getProperty("os.name").lowercase().contains("windows")
+
+//project properties (used in androidCopy)
+val useBE = project.hasProperty("adb.useBE") && parseBoolean(project.property("adb.useBE").toString())
+val quickstart = project.hasProperty("adb.quickstart") && parseBoolean(project.property("adb.quickstart").toString())
+
 plugins {
     java
     kotlin("jvm") version "1.9.0"
 }
 
-val mindustryVersion = "v146"
-val jabelCommitHash = "93fde537c7"
 repositories {
     mavenCentral()
     maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
@@ -48,6 +55,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         // target java version - 8. do not increase unless you really need to
@@ -59,6 +67,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.register("jarAndroid") {
     group = "build"
+    description = "Compiles an android-only jar."
     dependsOn("jar")
 
     doLast {
@@ -73,8 +82,8 @@ tasks.register("jarAndroid") {
                 configurations.runtimeClasspath.get().toList() +
                 listOf(File(platformRoot, "android.jar"))
         val dependencies = allDependencies.joinToString(" ") { "--classpath ${it.path}" }
-        //windows is weird
-        val d8 = if(System.getProperty("os.name").toLowerCase().contains("windows")) "d8.bat" else "d8"
+
+        val d8 = if(windows) "d8.bat" else "d8"
         //dex and desugar files - this requires d8 in your PATH
         val paras = "$dependencies --min-api 14 --output ${project.name}Android.jar ${project.name}Desktop.jar"
         try {
@@ -104,7 +113,6 @@ tasks.register("jarAndroid") {
 }
 
 tasks.jar {
-
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName.set("${project.name}Desktop.jar")
 
@@ -120,7 +128,10 @@ tasks.jar {
 }
 
 task<Jar>("deploy") {
+    group = "build"
+    description = "Compiles a multiplatform jar."
     dependsOn("jarAndroid")
+
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName.set("${project.name}.jar")
     from(
@@ -133,20 +144,62 @@ task<Jar>("deploy") {
     }
 }
 
-task<Copy>("copy") {
+val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"
+
+task("copy") {
+    group = "copy"
+    description = "Compiles a desktop-only jar and copies it to your mindustry data directory."
     dependsOn("jar")
 
-    println("Copying mod...")
-    from("$buildDir/libs")
-    into("${System.getenv("APPDATA")}\\Mindustry\\mods")
-    include("${project.name}Desktop.jar")
+    doLast {
+        println("Copying mod...")
+        copy {
+            from("$buildDir/libs")
+            into(dir)
+            include("${project.name}Desktop.jar")
+        }
+    }
 }
 
-task<Copy>("copyDeploy") {
+task("copyDeploy") {
+    group = "copy"
+    description = "Compiles a multiplatform jar and copies it to your mindustry data directory."
     dependsOn("deploy")
 
-    println("Copying mod...")
-    from("$buildDir/libs")
-    into("${System.getenv("APPDATA")}\\Mindustry\\mods")
-    include("${project.name}.jar")
+    doLast {
+        println("Copying mod...")
+        copy {
+            from("$buildDir/libs")
+            into(dir)
+            include("${project.name}.jar")
+        }
+    }
+}
+
+//TODO support for using different devices when multiple are connected (serial no.)
+task("androidCopy") {
+    group = "copy"
+    description = "Compiles a multiplatform jar and copies it to a connected device using ADB. This requires the device to have USB debugging enabled."
+    dependsOn("deploy")
+
+    val adb = if(windows) "adb.exe" else "adb"
+
+    doLast {
+        println("Copying mod to connected device...")
+
+        val target = if(useBE){ println("Using BE directory."); "io.anuke.mindustry.be" } else "io.anuke.mindustry"
+
+        exec {
+            commandLine = "$adb push $buildDir/libs/${project.name}.jar /sdcard/Android/data/$target/files/mods".split(' ')
+            standardOutput = System.out
+            errorOutput = System.err
+        }
+
+        if(quickstart) exec {
+            println("Starting Mindustry on connected device...")
+            commandLine = "$adb shell am start -n $target/mindustry.android.AndroidLauncher".split(' ')
+            standardOutput = System.out
+            errorOutput = System.err
+        }
+    }
 }

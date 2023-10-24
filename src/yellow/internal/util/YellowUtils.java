@@ -20,8 +20,8 @@ public class YellowUtils{
     private static int currentButtons = 0;
     private static boolean once = false;
 
-    public static Timer.Task loop(float delay, Runnable run){
-        return Timer.schedule(run, delay, delay, -1);
+    public static void loop(float delay, Runnable run){
+        Timer.schedule(run, delay, delay, -1);
     }
 
     /** Gets the resource from the inputted link and writes it to the specified file path. If the file already exists and is not empty, the overwrite parameter determines whether the file contents get overwritten. */
@@ -69,29 +69,25 @@ public class YellowUtils{
         
         if(!once){
             once = true;
-            but.row();
-        }
-        
-        if(currentButtons >= 5){
-            currentButtons = 0;
-            but.image().height(65f).width(4f).color(Color.darkGray);
-            but.row();
+            but.row(); //for first custom row
         }
         
         but.table(Styles.none, a -> {
             a.button(icon, Styles.cleari, listener).grow();
+            currentButtons++;
         });
-        
-        currentButtons++;
+
+        if(currentButtons == 5){
+            currentButtons = 0;
+            but.image().height(65f).width(4f).color(Color.darkGray);
+            but.row();
+        }
     }
 
     public static void emptyHudButtonRow(){
-        if(!Vars.mobile) return; //im gonna bomb this whole motherfucking plane
     	for(int i = 0; i < 5 - currentButtons; i++){
-    		mobileHudButton(Icon.none, () -> {});
+    		mobileHudButton(Icon.none.tint(Color.clear), () -> {});
     	}
-    	//god fucking damnit i hate ui
-    	Vars.ui.hudGroup.<Table>find("mobile buttons").image().height(65f).width(4f).color(Color.darkGray);
     }
 
 }

@@ -1,12 +1,10 @@
 package yellow.internal.util
 
-import arc.Core
 import arc.graphics.Color
 import arc.scene.event.Touchable
 import arc.scene.ui.Image
 import arc.scene.ui.layout.*
 import arc.struct.Seq
-import arc.util.serialization.*
 import kotmindy.mindustry.MUnit
 import mindustry.game.Team
 import mindustry.gen.Groups
@@ -35,26 +33,9 @@ fun String.tint(color: Color) = "[#$color]$this[]"
 
 fun Boolean.yesNo() = if(this) "@yes" else "@no"
 
-object YellowUtilsKt{
-    private val jsr = JsonReader()
-   
-    fun rangeOf(one: Int, two: Int) = one..two
-    
-    fun JsonValue.getValues(vararg values: String): String{
-        val aus = this
-        
-        return buildString{
-            values.forEach{
-                val sua = "${aus[it]}".split(":")
-                append(Core.bundle["status.${sua[0].replace("_", "-")}"] + ": ${sua[1].trim()}\n")
-            }
-        }
-    }
-    
-    
-    fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
+fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
 
-    fun seperator(table: Table, width: Float, height: Float): Cell<Image> = seperator(table, width, height, Color.darkGray)
-    
-    fun seperator(table: Table, width: Float, height: Float, color: Color): Cell<Image> = table.image().width(width).height(height).color(color)
-}
+fun seperator(table: Table, width: Float, height: Float): Cell<Image> = seperator(table, width, height, Color.darkGray)
+
+fun seperator(table: Table, width: Float, height: Float, color: Color): Cell<Image> = table.image().width(width).height(height).color(color)
+

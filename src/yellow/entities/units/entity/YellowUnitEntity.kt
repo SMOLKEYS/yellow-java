@@ -19,7 +19,6 @@ import yellow.YellowPermVars
 import yellow.content.YellowFx
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
-import yellow.internal.util.YellowUtils.internalLog
 import yellow.internal.util.ins
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -292,7 +291,10 @@ open class YellowUnitEntity: UnitEntity(){
         Tmp.v1.trns(Time.time, -r2, -r2)
         Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
 
-        if(isShooting()) Drawf.target(aimX, aimY, 12f, Color.yellow)
+        shootOpacity = Mathf.approachDelta(shootOpacity,  if(isShooting()) 1f else 0f, 0.2f)
+        targetSize = Mathf.approachDelta(targetSize, if(isShooting()) 12f else 23f, 0.37f)
+
+        Drawf.target(aimX, aimY, targetSize, shootOpacity, Color.yellow)
 
         when{
             lives <= 3 -> {
@@ -309,7 +311,6 @@ open class YellowUnitEntity: UnitEntity(){
         val mnt = mounts().size
         val spl = spells().size
 
-        write.s(1)
         write.bool(inited)
         write.bool(firstDeath)
         write.bool(allowsHealing)
@@ -332,11 +333,9 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
 
+    @Suppress("ReplaceRangeToWithRangeUntil")
     override fun read(read: Reads){
         super.read(read)
-        val revision = read.s().toInt()
-
-        internalLog("REVISION: $revision")
 
         //i love init times
         spells = arrayOfNulls(type().spells.size)
@@ -344,49 +343,35 @@ open class YellowUnitEntity: UnitEntity(){
             spells[i] = type().spells[i].spellType[type().spells[i]]
         }
 
-        when(revision){
-            0 -> {
-                inited = read.bool()
-                firstDeath = read.bool()
-                allowsHealing = read.bool()
-                panicMode = read.bool()
-                panicModeTypeTwo = read.bool()
-                lives = read.i()
-                franticTeleportTime = read.f()
-                idleTime = read.f()
-                enableAutoIdle = read.bool()
-                forceIdle = read.bool()
+        inited = read.bool()
+        firstDeath = read.bool()
+        allowsHealing = read.bool()
+        panicMode = read.bool()
+        panicModeTypeTwo = read.bool()
+        lives = read.i()
+        franticTeleportTime = read.f()
+        idleTime = read.f()
+        enableAutoIdle = read.bool()
+        forceIdle = read.bool()
 
-                eachMountAs<DisableableWeaponMount>(read.i()){
-                    it.read(read)
-                }
-            }
-            1 -> {
-                inited = read.bool()
-                firstDeath = read.bool()
-                allowsHealing = read.bool()
-                panicMode = read.bool()
-                panicModeTypeTwo = read.bool()
-                lives = read.i()
-                franticTeleportTime = read.f()
-                idleTime = read.f()
-                enableAutoIdle = read.bool()
-                forceIdle = read.bool()
+        val mnt = read.i()
+        val spl = read.i()
 
-                eachMountAs<DisableableWeaponMount>(read.i()){
-                    it.read(read)
-                }
+        eachMountAs<DisableableWeaponMount>(mnt){
+            it.read(read)
+        }
 
-                eachSpellAs(read.i()){
-                    it.read(read)
-                }
-            }
+        eachSpellAs(spl){
+            it.read(read)
         }
     }
     
     override fun classId() = mappingId
 
     companion object{
+        private var shootOpacity = 0f
+        private var targetSize = 23f
+
         val mappingId = EntityMapping.register("yellow-unit", ::YellowUnitEntity)
         
         @JvmStatic

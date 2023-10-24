@@ -7,7 +7,7 @@ import yellow.type.*;
 
 import static yellow.internal.util.YellowUtils.*;
 
-public class SpellBind implements Savec {
+public class SpellBind implements Savec{
     public Spell spell;
     public int cooldown;
 
@@ -31,16 +31,15 @@ public class SpellBind implements Savec {
 
     @Override
     public void write(Writes write){
-        internalLog("begin write for " + spell);
+        internalLog("begin write (" + cooldown + ") for " + spell);
         write.i(cooldown);
         internalLog("write complete");
     }
-
-    //cant wait to add a revision byte to this thing because i felt curious/did something wrong
     @Override
     public void read(Reads read){
-        internalLog("begin read for " + spell);
-        cooldown = read.i();
+        int i = read.i();
+        internalLog("begin read (" + i + ") for " + spell);
+        cooldown = i;
         internalLog("read complete");
     }
 }

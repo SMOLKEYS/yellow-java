@@ -28,7 +28,7 @@ open class Notification{
             addLabel({ title }, wrap = false).growX()
             imageButton(Icon.trashSmall.tint(Pal.remove)){
                 this@Notification.remove()
-            }.growX().right()
+            }.right()
         }.growX().row()
 
         scrollPane {
@@ -76,12 +76,17 @@ open class Notification{
         enum class NotificationPriority(val prio: Int){
             HIGH(3),
             MEDIUM(2),
-            LOW(1)
+            LOW(1),
+            ALL(-1)
         }
         
         /** Clears all notifications with the specified priority level. If -1 is used, all notifications will be cleared. */
         fun clearNotifications(prio: Int){
-            if(prio != -1) instances.clear() else instances.each{ if(it.priority == prio) instances.remove(it) }
+            instances.each{ if(prio == -1) it.remove() else if(it.priority == prio) it.remove() }
+        }
+
+        fun clearNotifications(priority: NotificationPriority){
+            clearNotifications(priority.prio)
         }
     }
 }

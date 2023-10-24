@@ -4,9 +4,9 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
+import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
-import mindustry.ui.*;
 import yellow.entities.effect.*;
 
 
@@ -40,29 +40,6 @@ public class YellowFx{
     }),
 
     ghostDespawnMulti = new RandomEffect(ghostDespawn, ghostDespawn2, ghostDespawn3),
-    
-    /** Inward and outward explosion effect.
-     * (-> center <-) and (<- center ->) at the same time
-     * Mercy to anyone with a low-end device.
-     */
-    yellowExplosionOutIn = new Effect(120f, e -> {
-        Draw.color(Color.yellow);
-        
-        Lines.stroke(e.fout() * 15);
-        Lines.circle(e.x, e.y, e.fin() * 25);
-        Lines.square(e.x, e.y, e.fin() * 50, Time.time * 7);
-        Lines.circle(e.x, e.y, e.fin() * 50);
-        Lines.square(e.x, e.y, e.fin() * 100, Time.time * 7);
-        Lines.circle(e.x, e.y, e.fin() * 25);
-        Lines.square(e.x, e.y, e.fin() * 50, -Time.time * 7);
-        Lines.circle(e.x, e.y, e.fin() * 50);
-        Lines.square(e.x, e.y, e.fin() * 100, -Time.time * 7);
-        Lines.stroke(e.fin() * 15);
-        Lines.circle(e.x, e.y, e.fout() * 50);
-        Lines.square(e.x, e.y, e.fout() * 100, Time.time * 7);
-        Lines.circle(e.x, e.y, e.fout() * 75);
-        Lines.square(e.x, e.y, e.fout() * 150, -Time.time * 7);
-    }),
     
     /** Outward explosion effect.
      * (<- center ->)
@@ -112,11 +89,13 @@ public class YellowFx{
         Lines.circle(e.x, e.y, e.finpow() * 130);
         Lines.circle(e.x, e.y, e.finpow() * 120);
         Lines.circle(e.x, e.y, e.finpow() * 110);
+
         Angles.randLenVectors(e.id, 50, e.finpow() * 100, (x, y) -> {
-        Lines.stroke(1);
-        Draw.color(Color.yellow, Color.orange, e.finpow());
-        Fill.circle(e.x + x, e.y + y, e.fout() * 10);
+            Lines.stroke(1);
+            Draw.color(Color.yellow, Color.orange, e.finpow());
+            Fill.circle(e.x + x, e.y + y, e.fout() * 10);
         });
+
         Draw.alpha(e.fout() * 4);
         Draw.rect("yellow-java-yellow", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
     }),
@@ -136,18 +115,29 @@ public class YellowFx{
         Lines.poly(e.x, e.y, 3, e.fin(Interp.pow5Out) * 130, Time.time * 6 - 180);
     }),
     
-    textIndicator = new Effect(25f, e -> {
-        if(!(e.data instanceof String)) return;
-        Draw.z(Layer.flyingUnit);
-        Fonts.def.draw((String)e.data, e.x, e.y + e.fin(Interp.pow3Out) * 15f);
-        
-    }),
-    
     despawn = new Effect(120f, e -> {
         Lines.stroke(e.fout() * 6f);
         
         Draw.color(Color.yellow, Color.white, e.fin());
         Lines.line(e.x, e.y - 2000f, e.x, e.y + 2000f);
+    }),
+
+
+    fireCircleEffect = new Effect(180f, e -> {
+        Draw.z(Layer.effect);
+        Lines.stroke(e.fout() * 40);
+
+        Draw.color(Pal.lightFlame, Color.orange, e.fin());
+        Lines.circle(e.x, e.y, e.fin() * 8*22);
+
+        Angles.randLenVectors(e.id, 40, e.finpow() * 200, (x, y) -> {
+            Fx.fire.at(e.x + x, e.y + y);
+        });
+
+        Angles.randLenVectors(e.id, 100, e.finpow() * 280, (x, y) -> {
+            Draw.color(Color.gray);
+            Fill.circle(e.x + x, e.y + y, e.foutpow() * 30);
+        });
     });
     
     
