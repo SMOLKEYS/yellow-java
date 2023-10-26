@@ -3,6 +3,6 @@ name: "yellow-java"
 author: "SMOLKEYS"
 main: "yellow.Yellow"
 description: "Very pog."
-version: 0.72
+version: 0.73
 minGameVersion: 146
 java: true

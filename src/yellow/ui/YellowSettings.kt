@@ -11,11 +11,11 @@ import yellow.content.YellowNotifications
 
 object YellowSettings{
 
-    val tmpDir: Fi = Core.settings.dataDirectory.child("yellow.jar")
+    val tmpDir: Fi = Core.settings.dataDirectory.child("yellow-java.jar")
 
     @JvmStatic
     fun load(){
-        ui.settings.addCategory("Yellow (Java)", Icon.right){ table ->
+        ui.settings.addCategory("Yellow", Icon.right){ table ->
             
             table.checkPref("internalloggering", false){
                 YellowPermVars.internalLoggering = it
@@ -47,6 +47,10 @@ object YellowSettings{
 
             table.pref(ButtonSetting("callnotif"){
                 YellowNotifications.hi.add()
+            })
+
+            table.pref(ButtonSetting("achievements"){
+                YellowVars.achievements.show()
             })
         }
     }

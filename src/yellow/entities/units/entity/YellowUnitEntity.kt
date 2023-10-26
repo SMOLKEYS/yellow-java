@@ -3,10 +3,10 @@ package yellow.entities.units.entity
 import arc.Events
 import arc.graphics.Color
 import arc.graphics.g2d.*
-import arc.math.Mathf
+import arc.math.*
 import arc.math.geom.Vec2
 import arc.struct.Seq
-import arc.util.*
+import arc.util.Time
 import arc.util.io.*
 import kotmindy.mindustry.MUnit
 import mindustry.Vars
@@ -19,6 +19,7 @@ import yellow.YellowPermVars
 import yellow.content.YellowFx
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
+import yellow.internal.util.YellowUtils.internalLog
 import yellow.internal.util.ins
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
@@ -70,7 +71,11 @@ open class YellowUnitEntity: UnitEntity(){
     private fun invalidateDeath(){
 
         //huh???
-        type().afterDeath[-lives + type().maxLives]?.get(this)
+        try {
+            type().afterDeath[-lives + type().maxLives]?.get(this)
+        }catch(_: ArrayIndexOutOfBoundsException){
+            //edge case for when yellow has m o r e lives than max lives
+        }
 
         lives -= 1
         health = type.health
@@ -132,6 +137,8 @@ open class YellowUnitEntity: UnitEntity(){
         invalidateVars()
         super.remove()
     }
+
+    fun isIdle() = elevation <= 0.1f
     
     inline fun <reified T : WeaponMount> eachMountAs(max: Int, cons: (T) -> Unit){
         var index = 0
@@ -275,7 +282,6 @@ open class YellowUnitEntity: UnitEntity(){
 
         val s = Mathf.absin(Time.time, 16f, 1f)
         val r1 = s * 25f
-        val r2 = s * 20f
 
         Draw.z(Layer.effect)
         Draw.color(Color.yellow)
@@ -285,11 +291,18 @@ open class YellowUnitEntity: UnitEntity(){
         Lines.square(x, y, 20f + r1, -Time.time)
 
         Draw.alpha(elevation)
-        Tmp.v1.trns(Time.time, r2, r2)
-
-        Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
-        Tmp.v1.trns(Time.time, -r2, -r2)
-        Fill.circle(x + Tmp.v1.x, y + Tmp.v1.y, 2f + s * 8f)
+        rand.setSeed(4)
+        Angles.circleVectors(5, 70f, Time.time){cx, cy ->
+            val rotational = Time.time * rand.random(2f, 4f)
+            if(lives <= 2) Draw.color(Pal.remove)
+            Lines.circle(cx + x, cy + y, 20f)
+            Lines.poly(cx + x, cy + y, lives, 16f, rotational)
+            Fill.circle(cx + x, cy + y, 3f)
+            Angles.circleVectors(lives, 17f, rotational){c2x, c2y ->
+                Fill.circle(c2x + cx + x, c2y + cy + y, 4f)
+            }
+            Draw.color(Color.yellow)
+        }
 
         shootOpacity = Mathf.approachDelta(shootOpacity,  if(isShooting()) 1f else 0f, 0.2f)
         targetSize = Mathf.approachDelta(targetSize, if(isShooting()) 12f else 23f, 0.37f)
@@ -307,6 +320,7 @@ open class YellowUnitEntity: UnitEntity(){
 
     override fun write(write: Writes){
         super.write(write)
+        write.s(0)
 
         val mnt = mounts().size
         val spl = spells().size
@@ -343,26 +357,33 @@ open class YellowUnitEntity: UnitEntity(){
             spells[i] = type().spells[i].spellType[type().spells[i]]
         }
 
-        inited = read.bool()
-        firstDeath = read.bool()
-        allowsHealing = read.bool()
-        panicMode = read.bool()
-        panicModeTypeTwo = read.bool()
-        lives = read.i()
-        franticTeleportTime = read.f()
-        idleTime = read.f()
-        enableAutoIdle = read.bool()
-        forceIdle = read.bool()
+        val revision = read.s().toInt()
+        internalLog("REVISION: $revision")
 
-        val mnt = read.i()
-        val spl = read.i()
+        when(revision){
+            0 -> {
+                inited = read.bool()
+                firstDeath = read.bool()
+                allowsHealing = read.bool()
+                panicMode = read.bool()
+                panicModeTypeTwo = read.bool()
+                lives = read.i()
+                franticTeleportTime = read.f()
+                idleTime = read.f()
+                enableAutoIdle = read.bool()
+                forceIdle = read.bool()
 
-        eachMountAs<DisableableWeaponMount>(mnt){
-            it.read(read)
-        }
+                val mnt = read.i()
+                val spl = read.i()
 
-        eachSpellAs(spl){
-            it.read(read)
+                eachMountAs<DisableableWeaponMount>(mnt) {
+                    it.read(read)
+                }
+
+                eachSpellAs(spl) {
+                    it.read(read)
+                }
+            }
         }
     }
     
@@ -371,6 +392,7 @@ open class YellowUnitEntity: UnitEntity(){
     companion object{
         private var shootOpacity = 0f
         private var targetSize = 23f
+        private val rand = Rand()
 
         val mappingId = EntityMapping.register("yellow-unit", ::YellowUnitEntity)
         

@@ -1,20 +1,25 @@
 package yellow.internal.util
 
+import arc.Core
 import arc.graphics.Color
+import arc.math.Interp
 import arc.scene.event.Touchable
 import arc.scene.ui.Image
 import arc.scene.ui.layout.*
 import arc.struct.Seq
-import kotmindy.mindustry.MUnit
 import mindustry.game.Team
 import mindustry.gen.Groups
 import mindustry.type.UnitType
 
-fun MUnit.healthFract() = this.health / this.type.health
-
 infix fun Int.ins(other: Int) = this % other == 0
 
 infix fun Float.ins(other: Float) = this % other == 0f
+
+fun Float.interpolate(interp: Interp) = interp.apply(this)
+
+fun Float.interpolate(interp: Interp, multiplier: Float) = this@interpolate.interpolate(interp) * multiplier
+
+fun Float.perc() = 1f / this
 
 fun <T> seqOf(vararg items: T): Seq<T>{
     if(items.isEmpty()) return Seq.with();
@@ -31,7 +36,7 @@ fun UnitType.exists(team: Team): Boolean{
 
 fun String.tint(color: Color) = "[#$color]$this[]"
 
-fun Boolean.yesNo() = if(this) "@yes" else "@no"
+fun Boolean.yesNo() = Core.bundle[if(this) "yes" else "no"]
 
 fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
 

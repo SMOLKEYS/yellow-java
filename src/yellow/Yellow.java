@@ -6,9 +6,7 @@ import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.type.*;
 import yellow.content.*;
-import yellow.internal.*;
 import yellow.type.*;
-import yellow.ui.*;
 
 import static yellow.content.YellowWeapons.*;
 
@@ -21,14 +19,7 @@ public class Yellow extends Mod{
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         
-        Events.run(ClientLoadEvent.class, () -> {
-            YellowVars.load();
-            YellowNotifications.load();
-            YellowSettings.load();
-            YellowAutoUpdater.start();
-            
-            Time.run(120f, YellowConsoleBind::load);
-        });
+        Events.run(ClientLoadEvent.class, YellowVars::load);
     }
 
     @Override
