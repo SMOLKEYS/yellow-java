@@ -199,8 +199,10 @@ tasks.register("jarAndroid") {
 				"--classpath", "${platformRoot.absolutePath}/android.jar",
 				"--min-api", "14",
 				"--output", "$output",
-				"${layout.buildDirectory.get()}/libs/${project.name}.jar"
+				"${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"
 			)
+
+			errorOutput = ByteArrayOutputStream()
 		}
 
 		// finally, merge all dex files
