@@ -1,3 +1,9 @@
+# A Halt
+
+With Yellow's codebase and in-game functionality working as intended, the mod can now be put in a temporary halt.
+
+All development priorities will now be moved to [my long postponed project](https://github.com/MindyDevelopment/Reprojected). See you there!
+
 # Yellow
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
