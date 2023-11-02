@@ -199,7 +199,7 @@ tasks.register("jarAndroid") {
 				"--classpath", "${platformRoot.absolutePath}/android.jar",
 				"--min-api", "14",
 				"--output", "$output",
-				"${layout.buildDirectory.get()}/libs/$jarName.jar"
+				"${layout.buildDirectory.get()}/libs/${project.name}.jar"
 			)
 		}
 
