@@ -81,7 +81,7 @@ Because Android's a piece of shit, this section has to exist.
 ---
 
 > [!TIP]
-> **For Windows and Linux**: If you have access to ADB, you can connect your Android device to your machine either through USB or WiFi and run `./gradlew androidCopy`. This builds the mod and copies it Mindustry's mods directory in the device.
+> **For Windows and Linux**: If you have access to ADB, you can connect your Android device to your machine either through USB or WiFi and run `./gradlew androidCopy`. This builds the mod and copies it to Mindustry's mod directory in the device.
 >
 > **For Android**: You can install ADB with `pkg in android-tools` and connect it to your device. Once you do that, you can use `./gradlew androidCopy` in Termux too!
 >
