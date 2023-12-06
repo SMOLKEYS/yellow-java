@@ -26,6 +26,8 @@ public class YellowVars{
     public static AchievementListDialog achievements;
 
     public static void load(){
+        Time.mark();
+
         yellowControl = new YellowControl();
         weaponInfo = new WeaponInfoDialog();
         notifs = new NotificationListDialog();
@@ -55,6 +57,8 @@ public class YellowVars{
                 ui.menufrag.addButton(b);
             }
         }
+
+        Log.info("Loaded all of Yellow in @ seconds", Time.elapsed());
     }
 
     public static Mods.LoadedMod getSelf(){

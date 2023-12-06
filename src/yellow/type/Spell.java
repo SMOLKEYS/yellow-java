@@ -20,8 +20,8 @@ public class Spell implements Namec, YContent {
         this.displayName = nameLocalized();
         this.description = descriptionLocalized();
 
-        YellowContent.spells.add(this);
-        YellowContent.all.add(this);
+        YellowContentLoader.spells.add(this);
+        YellowContentLoader.all.add(this);
     }
 
     @Override

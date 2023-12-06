@@ -1,16 +1,13 @@
-package yellow.content;
+package yellow.content
 
-import yellow.ui.*;
+import yellow.game.Notification
 
-public class YellowNotifications{
-    public static Notification
+object YellowNotifications {
 
-    hi;
+    var hi: Notification? = null
 
-    public static void load(){
-        hi = new Notification(){{
-            title = "Hello!";
-            message = "En voyage!";
-        }};
+    @JvmStatic
+    fun load() {
+        hi = Notification("hi")
     }
 }

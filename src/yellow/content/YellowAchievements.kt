@@ -1,5 +1,6 @@
 package yellow.content
 
+import yellow.game.Achievement
 import yellow.game.YState.kills
 import yellow.game.YState.menuTime
 import yellow.game.achievement.*

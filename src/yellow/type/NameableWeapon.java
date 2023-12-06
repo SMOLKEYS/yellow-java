@@ -16,8 +16,8 @@ public class NameableWeapon extends Weapon implements Namec, YContent {
         this.displayName = nameLocalized();
         this.description = descriptionLocalized();
 
-        YellowContent.nameableWeapons.add(this);
-        YellowContent.all.add(this);
+        YellowContentLoader.nameableWeapons.add(this);
+        YellowContentLoader.all.add(this);
     }
 
     @Override

@@ -6,7 +6,6 @@ import mindustry.Vars
 import mindustry.game.EventType.Trigger
 import mindustry.game.EventType.UnitBulletDestroyEvent
 import yellow.entities.units.entity.YellowUnitEntity
-import yellow.game.achievement.Achievement
 
 object YState {
     val syn = "yellow-state"

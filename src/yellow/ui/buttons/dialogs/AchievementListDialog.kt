@@ -6,7 +6,7 @@ import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.gen.Tex
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
-import yellow.game.achievement.Achievement
+import yellow.game.Achievement
 
 open class AchievementListDialog: BaseDialog("Achievements") {
     init {

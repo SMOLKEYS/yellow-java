@@ -8,6 +8,7 @@ import mindustry.gen.Icon
 import mindustry.ui.dialogs.SettingsMenuDialog
 import yellow.*
 import yellow.content.YellowNotifications
+import yellow.game.Notification
 
 object YellowSettings{
 
@@ -46,7 +47,7 @@ object YellowSettings{
             })
 
             table.pref(ButtonSetting("callnotif"){
-                YellowNotifications.hi.add()
+                YellowNotifications.hi?.add()
             })
 
             table.pref(ButtonSetting("achievements"){

@@ -1,16 +1,21 @@
-package yellow.game.achievement
+package yellow.game
 
-import arc.Core
+import arc.*
+import arc.audio.Sound
 import arc.scene.style.Drawable
 import arc.struct.Seq
 import com.github.mnemotechnician.mkui.delegates.setting
 import mindustry.Vars
 import mindustry.gen.*
+import yellow.game.YEventType.AchievementUnlockEvent
+import yellow.game.achievement.AchievementGameStateCondition
 import yellow.internal.Namec
 
-open class Achievement(val name: String): Namec {
+@Suppress("MemberVisibilityCanBePrivate")
+open class Achievement(var name: String): Namec {
 
     private var unlocked by setting(false, "yellow-achievement-$name-")
+    protected var readyToUnlock by setting(false, "yellow-achievement-$name-")
 
     var parent: Achievement? = null
     var requiredAchievements: Array<Achievement>? = null
@@ -18,9 +23,9 @@ open class Achievement(val name: String): Namec {
     var description: String
     var icon: Drawable = Icon.lockOpen
     var iconLocked: Drawable = Icon.lock
-    var gameStateCondition = AchievementGameStateCondition.any
+    var gameStateCondition: AchievementGameStateCondition = AchievementGameStateCondition.any
     var condition: () -> Boolean = {true}
-    var unlockSound = Sounds.message
+    var unlockSound: Sound = Sounds.message
     var onUnlock: () -> Unit = {}
 
 
@@ -36,7 +41,7 @@ open class Achievement(val name: String): Namec {
     }
 
     fun unlock(){
-        if(unlocked) return
+        if(readyToUnlock) return
         unlockInvocation()
     }
 
@@ -47,16 +52,17 @@ open class Achievement(val name: String): Namec {
     fun isUnlocked() = unlocked
 
     fun update(){
-        if(!isUnlocked() && gameStateCondition.condition[Vars.state] && condition()) {
-            if(requiredAchievements != null) {
-                if(requiredAchievements?.all {it.unlocked} == true) unlockInvocation()
-            } else unlockInvocation()
+        readyToUnlock = if(requiredAchievements != null){
+            requiredAchievements!!.all {it.unlocked} && gameStateCondition.condition[Vars.state] && condition()
+        }else{
+            gameStateCondition.condition[Vars.state] && condition()
         }
     }
 
-    private fun unlockInvocation(){
+    protected fun unlockInvocation(){
         unlocked = true
         unlockSound.play()
+        Events.fire(AchievementUnlockEvent(this))
         onUnlock()
     }
 

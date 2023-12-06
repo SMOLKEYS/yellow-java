@@ -1,5 +1,5 @@
 package yellow.internal;
 
-// used for YellowContent.all
+// used for YellowContentLoader.all
 public interface YContent {
 }

@@ -33,11 +33,11 @@ public class YellowUtils{
 
                 cons.get(file);
             }catch(Exception e){
-                Vars.ui.showException("Http Get Error", e);
+                Vars.ui.showException("Error during file writing", e);
             }
         }, err -> Core.app.post(() -> {
             err.printStackTrace();
-            Vars.ui.showException("Error", err);
+            Vars.ui.showException("GET request error", err);
         }));
     }
 
@@ -48,11 +48,7 @@ public class YellowUtils{
     public static void internalLog(Object log){
         if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(log);
     }
-    
-    public static float combineInterp(Interp main, Interp other, float base){
-        return main.apply(other.apply(base));
-    }
-    
+
     public static void table(Table parent, Cons<Cell<Table>> child, Cons<Table> childContents){
         child.get(parent.table(childContents));
     }
@@ -62,7 +58,6 @@ public class YellowUtils{
     }
 
     //TODO use pages or scrollpane instead of rows
-    //resolves issue against scheme size top ui overlapping
     public static void mobileHudButton(Drawable icon, Runnable listener){
         if(!Vars.mobile) return; //bwehehe
         Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
@@ -82,7 +77,16 @@ public class YellowUtils{
             but.image().height(65f).width(4f).color(Color.darkGray);
             but.row();
         }
+
     }
+
+    //accepts icon1, run1, icon2, run2...
+    public static void mobileHudButtons(Object... each){
+        for(int i = 0; i < each.length / 2; i++){
+            mobileHudButton((Drawable) each[i], (Runnable) each[i + 1]);
+        }
+    }
+
 
     public static void emptyHudButtonRow(){
     	for(int i = 0; i < 5 - currentButtons; i++){

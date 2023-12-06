@@ -4,11 +4,7 @@ import arc.*;
 import arc.util.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import mindustry.type.*;
-import yellow.content.*;
-import yellow.type.*;
-
-import static yellow.content.YellowWeapons.*;
+import yellow.internal.*;
 
 public class Yellow extends Mod{
 
@@ -24,14 +20,8 @@ public class Yellow extends Mod{
 
     @Override
     public void loadContent(){
-        YellowBullets.load();
-        YellowWeapons.load();
-        YellowSpells.load();
-        YellowUnitTypes.load();
-        YellowWeapons.afterLoad();
-        YellowStatusEffects.load();
-        YellowBlocks.load();
-
-        DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
+        Time.mark();
+        YellowContentLoader.load();
+        Log.info("Loaded all Yellow content and special disableable weapon mirror in @ seconds", Time.elapsed());
     }
 }

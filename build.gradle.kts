@@ -3,10 +3,9 @@
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.parsing.parseBoolean
-import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 import java.security.MessageDigest
-import java.util.Base64
+import java.util.*
 
 version = "1.0"
 
@@ -68,161 +67,159 @@ tasks.withType<KotlinCompile> {
 }
 
 
-tasks.register("jarAndroid") {
+task("jarAndroid") {
+    fun hash(data: ByteArray): String =
+            MessageDigest.getInstance("MD5")
+                    .digest(data)
+                    .let { Base64.getEncoder().encodeToString(it) }
+                    .replace('/', '_')
+
     group = "build"
     description = "Compiles an android-only jar."
     dependsOn("jar")
-    
-    fun hash(data: ByteArray): String =
-		MessageDigest.getInstance("MD5")
-		.digest(data)
-		.let { Base64.getEncoder().encodeToString(it) }
-		.replace('/', '_')
-	
-	doLast {
-		val sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
-		
-		if(sdkRoot == null || sdkRoot.isEmpty() || !File(sdkRoot).exists()) {
-			throw GradleException("""
+
+    doLast {
+        val sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
+
+        if(sdkRoot == null || sdkRoot.isEmpty() || !File(sdkRoot).exists()) {
+            throw GradleException("""
 				No valid Android SDK found. Ensure that ANDROID_HOME is set to your Android SDK directory.
 				Note: if the gradle daemon has been started before ANDROID_HOME env variable was defined, it won't be able to read this variable.
-				In this case you have to run "./gradlew --stop" and try again
-			""".trimIndent());
-		}
-		
-		println("searching for an android sdk... ")
-		val platformRoot = File("$sdkRoot/platforms/").listFiles().filter { 
-			val fi = File(it, "android.jar")
-			val valid = fi.exists() && it.name.startsWith("android-")
-			
-			if (valid) {
-				print(it)
-				println(" — OK.")
-			}
-			return@filter valid
-		}.maxByOrNull {
-			it.name.substring("android-".length).toIntOrNull() ?: -1
-		}
-		
-		if (platformRoot == null) {
-			throw GradleException("No android.jar found. Ensure that you have an Android platform installed. (platformRoot = $platformRoot)")
-		} else {
-			println("using ${platformRoot.absolutePath}")
-		}
-		
-		//collect dependencies needed to translate java 8 bytecode code to android-compatible bytecode (yeah, android's dvm and art do be sucking)
-		val dependencies = 
-			(configurations.runtimeClasspath.get().files)
-			.map { it.path }
-		
-		val dexRoot = File("${layout.buildDirectory.get()}/dex/").also { it.mkdirs() }
-		val dexCacheRoot = dexRoot.resolve("cache").also { it.mkdirs() }
+				In this case you have to run "./gradlew --stop" and try again.
+			""".trimIndent())
+        }
 
-		// read the dex cache map (path-to-hash)
-		val dexCacheHashes = dexRoot.resolve("listing.txt")
-			.takeIf { it.exists() }
-			?.readText()
-			?.lineSequence()
-			?.map { it.split(" ") }
-			?.filter { it.size == 2 }
-			?.associate { it[0] to it[1] }
-			.orEmpty()
-			.toMutableMap()
+        println("Searching for an Android SDK... ")
+        val platformRoot = File("$sdkRoot/platforms/").listFiles()?.filter {
+            val fi = File(it, "android.jar")
+            val valid = fi.exists() && it.name.startsWith("android-")
 
-		// calculate hashes for all dependencies
-		val hashes = dependencies
-			.associate {
-				it to hash(File(it).readBytes())
-			}
+            if (valid) {
+                print(it)
+                println(" - OK.")
+            }
+            return@filter valid
+        }?.maxByOrNull {
+            it.name.substring("android-".length).toIntOrNull() ?: -1
+        }
 
-		// determime which dependencies can have their cached dex files reused and which can not
-		val reusable = ArrayList<String>()
-		val needReDex = HashMap<String, String>() // path-to-hash
-		hashes.forEach { (path, hash) ->
-			if (dexCacheHashes.getOrDefault(path, null) == hash) {
-				reusable += path
-			} else {
-				needReDex[path] = hash
-			}
-		}
+        if (platformRoot == null) {
+            throw GradleException("No android.jar found. Ensure that you have an Android platform installed. (platformRoot = $platformRoot)")
+        } else {
+            println("Using ${platformRoot.absolutePath}")
+        }
 
-		println("${reusable.size} dependencies are already desugared and can be reused.")
-		if (needReDex.isNotEmpty()) println("Desugaring ${needReDex.size} dependencies.")
+        //collect dependencies needed to translate java 8 bytecode code to android-compatible bytecode (yeah, android's dvm and art do be sucking)
+        val dependencies =
+                (configurations.runtimeClasspath.get().files)
+                        .map { it.path }
 
-		// for every non-reusable dependency, invoke d8 (d8.bat for windows) and save the new hash
+        val dexRoot = File("${layout.buildDirectory.get()}/dex/").also { it.mkdirs() }
+        val dexCacheRoot = dexRoot.resolve("cache").also { it.mkdirs() }
 
-		val d8 = if (windows) "d8.bat" else "d8"
+        // read the dex cache map (path-to-hash)
+        val dexCacheHashes = dexRoot.resolve("listing.txt")
+                .takeIf { it.exists() }
+                ?.readText()
+                ?.lineSequence()
+                ?.map { it.split(" ") }
+                ?.filter { it.size == 2 }
+                ?.associate { it[0] to it[1] }
+                .orEmpty()
+                .toMutableMap()
 
-		var index = 1
-		needReDex.forEach { (dependency, hash) ->
-			println("Processing ${index++}/${needReDex.size} ($dependency)")
+        // calculate hashes for all dependencies
+        val hashes = dependencies.associateWith {hash(File(it).readBytes())}
 
-			val outputDir = dexCacheRoot.resolve(hash(dependency.toByteArray()).replace("==", "")).also { it.mkdir() }
-			exec {
-				errorOutput = OutputStream.nullOutputStream()
-				commandLine(
-					d8,
-					"--intermediate",
-					"--classpath", "${platformRoot.absolutePath}/android.jar",
-					"--min-api", "14", 
-					"--output", outputDir.absolutePath, 
-					dependency
-				)
-			}
-			println()
-			dexCacheHashes[dependency] = hash
-		}
+        // determime which dependencies can have their cached dex files reused and which can not
+        val reusable = ArrayList<String>()
+        val needReDex = HashMap<String, String>() // path-to-hash
+        hashes.forEach { (path, hash) ->
+            if (dexCacheHashes.getOrDefault(path, null) == hash) {
+                reusable += path
+            } else {
+                needReDex[path] = hash
+            }
+        }
 
-		// write the updated hash map to the file
-		dexCacheHashes.asSequence()
-			.map { (k, v) -> "$k $v" }
-			.joinToString("\n")
-			.let { dexRoot.resolve("listing.txt").writeText(it) }
+        println("${reusable.size} dependencies are already desugared and can be reused.")
+        if (needReDex.isNotEmpty()) println("Desugaring ${needReDex.size} dependencies.")
 
-		if (needReDex.isNotEmpty()) println("Done.")
-		println("Preparing to desugar the project and merge dex files.")
+        // for every non-reusable dependency, invoke d8 (d8.bat for windows) and save the new hash
 
-		val dexPathes = dependencies.map { 
-			dexCacheRoot.resolve(hash(it.toByteArray())).also { it.mkdir() }
-		}
-		// assemble the list of classpath arguments for project dexing
-		val dependenciesStr = Array<String>(dependencies.size * 2) {
-			if (it % 2 == 0) "--classpath" else dexPathes[it / 2].absolutePath
-		}
-		
-		// now, compile the project
-		exec {
-			val output = dexCacheRoot.resolve("project").also { it.mkdirs() }
-			commandLine(
-				d8,
-				*dependenciesStr,
-				"--classpath", "${platformRoot.absolutePath}/android.jar",
-				"--min-api", "14",
-				"--output", "$output",
-				"${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"
-			)
+        val d8 = if (windows) "d8.bat" else "d8"
 
-			errorOutput = ByteArrayOutputStream()
-		}
+        var index = 1
+        needReDex.forEach { (dependency, hash) ->
+            println("Processing ${index++}/${needReDex.size} ($dependency)")
 
-		// finally, merge all dex files
-		exec {
-			val depDexes = dexPathes
-				.map { it.resolve("classes.dex") }.toTypedArray()
-				.filter { it.exists() } // some are empty
-				.map { it.absolutePath }
-				.toTypedArray()
+            val outputDir = dexCacheRoot.resolve(hash(dependency.toByteArray()).replace("==", "")).also { it.mkdir() }
+            exec {
+                errorOutput = object : OutputStream(){
+                    override fun write(b: Int) {
 
-			commandLine(
-				d8,
-				*depDexes,
-				dexCacheRoot.resolve("project/classes.dex").absolutePath,
-				"--output", "${layout.buildDirectory.get()}/libs/${project.name}Android.jar"
-			)
-		}
-	}
+                    }
+                }
+                commandLine(
+                        d8,
+                        "--intermediate",
+                        "--classpath", "${platformRoot.absolutePath}/android.jar",
+                        "--min-api", "14",
+                        "--output", outputDir.absolutePath,
+                        dependency
+                )
+            }
+            println()
+            dexCacheHashes[dependency] = hash
+        }
+
+        // write the updated hash map to the file
+        dexCacheHashes.asSequence()
+                .map { (k, v) -> "$k $v" }
+                .joinToString("\n")
+                .let { dexRoot.resolve("listing.txt").writeText(it) }
+
+        if (needReDex.isNotEmpty()) println("Done.")
+        println("Preparing to desugar the project and merge dex files.")
+
+        val dexPathes = dependencies.map {s ->
+            dexCacheRoot.resolve(hash(s.toByteArray())).also { it.mkdir() }
+        }
+        // assemble the list of classpath arguments for project dexing
+        val dependenciesStr = Array<String>(dependencies.size * 2) {
+            if (it % 2 == 0) "--classpath" else dexPathes[it / 2].absolutePath
+        }
+
+        // now, compile the project
+        exec {
+            val output = dexCacheRoot.resolve("project").also { it.mkdirs() }
+            commandLine(
+                    d8,
+                    *dependenciesStr,
+                    "--classpath", "${platformRoot.absolutePath}/android.jar",
+                    "--min-api", "14",
+                    "--output", "$output",
+                    "${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"
+            )
+        }
+
+        // finally, merge all dex files
+        exec {
+            val depDexes = dexPathes
+                    .map { it.resolve("classes.dex") }.toTypedArray()
+                    .filter { it.exists() } // some are empty
+                    .map { it.absolutePath }
+                    .toTypedArray()
+
+            commandLine(
+                    d8,
+                    *depDexes,
+                    dexCacheRoot.resolve("project/classes.dex").absolutePath,
+                    "--output", "${layout.buildDirectory.get()}/libs/${project.name}Android.jar"
+            )
+        }
+    }
 }
-
 
 tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE

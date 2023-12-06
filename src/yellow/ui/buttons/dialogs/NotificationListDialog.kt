@@ -3,7 +3,7 @@ package yellow.ui.buttons.dialogs
 import arc.scene.ui.Dialog
 import arc.struct.Seq
 import mindustry.ui.dialogs.BaseDialog
-import yellow.ui.Notification
+import yellow.game.Notification
 
 open class NotificationListDialog: BaseDialog("Notifications") {
     init {
