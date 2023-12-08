@@ -62,7 +62,9 @@ Because Android's a piece of shit, this section has to exist.
 
 ## Windows
 
-`//TODO: I forgot the steps. Windows sucks.`
+1. Run `setup-windows.bat`. This will download all necessary stuff needed to compile for Android.
+2. Restart the command line window you ran it on. If you ran it in an IDE, restart it so it detects the changes/
+3. Go back to the mod directory and run `.\gradlew deploy`. This should build a multiplatform JAR compatible for both Android and Desktop.
 
 ## Linux
 
@@ -72,10 +74,10 @@ Because Android's a piece of shit, this section has to exist.
 
 > <sub>Yes, you can build the mod for Android in Android.</sub>
 
-1.  Run `setup-sdk.sh` in the mod's root directory with `./setup-sdk.sh`. **This will only work in a Bash shell.**
+1.  Run `setup-android.sh` in the mod's root directory with `./setup-sdk.sh`. **This will only work in a Bash shell.**
   1.5. If it returns a permission denied error, `chmod 755 setup-sdk.sh` then run it again.
 2. Restart Termux.
-3. Go to the mod directory and run `./gradlew deploy`. This should build a multiplatform JAR compatible for both Android and Desktop. By getting this far you should at least know how to import it.
+3. Go back to the mod directory and run `./gradlew deploy`. This should build a multiplatform JAR compatible for both Android and Desktop. By getting this far you should at least know how to import it.
 
 ---
 
