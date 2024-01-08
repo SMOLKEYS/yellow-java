@@ -47,6 +47,7 @@ public class YellowUnitTypes{
 
             spells.addAll(YellowSpells.fireCircle);
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous, YellowWeapons.railer);
+            weapons.add(YellowWeapons.fleetOfFreedom);
         }};
         
         ghostFlare = new GhostUnitType("ghost-flare"){{

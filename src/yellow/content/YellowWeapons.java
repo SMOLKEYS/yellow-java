@@ -1,6 +1,8 @@
 package yellow.content;
 
 import arc.*;
+import arc.math.*;
+import arc.util.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.content.*;
@@ -17,6 +19,8 @@ public class YellowWeapons{
     public static Weapon
     
     meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, igneous, railer;
+    
+    public static Seq<OrbitalWeapon> fleetOfFreedom = new Seq<>();
     
     public static void load(){
         
@@ -348,6 +352,43 @@ public class YellowWeapons{
                 }};
             }};
         }};
+        
+        Rand rand = new Rand();
+        rand.setSeed(1837462882748);
+        
+        for(int i = 0; i > 100; i++){
+            fleetOfFreedom.add(new OrbitalWeapon("fleet-of-freedom-" + i){{
+                x = y = 0f;
+                reload = 60f * rand.random(2f, 5f);
+                orbitRange = 8f * rand.random(20f, 35f);
+                orbitSpeed = 2f + rand.random(1f, 10f);
+                
+                //temp
+                bullet = new BasicBulletType(){{
+                    damage = 15f;
+                    speed = 5f;
+                    lifetime = 180f;
+                    status = StatusEffects.burning;
+                    trailChance = 0.8f;
+                    trailEffect = Fx.fire;
+                    pierce = true;
+                    homingRange = 80f;
+                    homingPower = 0.01f;
+                    width = height = 16f;
+                    hitEffect = Fx.fireHit;
+                }
+                    @Override
+                    public void hitEntity(Bullet b, Hitboxc entity, float health) {
+                        super.hitEntity(b, entity, health);
+                        if(entity instanceof Statusc){
+                            Statusc un = (Statusc) entity;
+
+                            if(un.hasEffect(StatusEffects.burning)) un.apply(StatusEffects.melting, 30f);
+                        }
+                    }
+                };
+            }});
+        }
     }
     
     public static void afterLoad(){
