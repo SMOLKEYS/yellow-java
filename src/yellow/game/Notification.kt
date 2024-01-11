@@ -63,11 +63,6 @@ open class Notification(var name: String){
 
     fun getRemoved() = removed
 
-    fun loadBundle(){
-        title = if(title != null) title else Core.bundle["notification.$name.title"]
-        message = if(message != null) message else Core.bundle["notification.$name.message"]
-    }
-
     companion object{
         /** Notification instance list. Any created Notification instances will be added here. Notification instances may also be readded here. */
         val instances = Seq<Notification>()

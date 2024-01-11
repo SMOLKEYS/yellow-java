@@ -46,12 +46,12 @@ public class YellowVars{
         YellowUtils.loop(1f, () -> MetaChaos.update(meta));
 
         MenuFragment.MenuButton[] buttons = {
-                new MenuFragment.MenuButton("Achievements", Icon.tree, achievements::show),
-                new MenuFragment.MenuButton("Notifications", Icon.warning, notifs::show)
+                new MenuFragment.MenuButton("@menu.achievements", Icon.tree, achievements::show),
+                new MenuFragment.MenuButton("@menu.notifications", Icon.warning, () -> notifs.show(Notification.Companion.getInstances()))
         };
 
         if(!mobile){
-            ui.menufrag.addButton(new MenuFragment.MenuButton("Yellow", Icon.right, null, buttons));
+            ui.menufrag.addButton(new MenuFragment.MenuButton("@menu.yellow", Icon.right, null, buttons));
         }else{
             for(MenuFragment.MenuButton b: buttons){
                 ui.menufrag.addButton(b);
