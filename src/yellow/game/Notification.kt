@@ -13,9 +13,9 @@ open class Notification(var name: String){
     @JvmField
     var priority: Int = -1
     @JvmField
-    var title: String? = null
+    var title: String = "<notification generic title>"
     @JvmField
-    var message: String? = null
+    var message: String = "generic notification message."
 
     var sound = Sounds.message
     var reminderSound = Sounds.chatMessage
@@ -26,14 +26,14 @@ open class Notification(var name: String){
             background = Tex.pane
             name = "titletable: $title"
 
-            addLabel({ title!! }, wrap = false).growX()
+            addLabel({ title }, wrap = false).growX()
             imageButton(Icon.trashSmall.tint(Pal.remove)){
                 this@Notification.remove()
             }.right()
         }.growX().row()
 
         scrollPane {
-            addLabel({ message!! }, wrap = true).grow()
+            addLabel({ message }, wrap = true).grow()
         }.grow().row()
     }
 
