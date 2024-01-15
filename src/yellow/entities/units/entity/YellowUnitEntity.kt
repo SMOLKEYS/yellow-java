@@ -16,7 +16,7 @@ import mindustry.entities.units.WeaponMount
 import mindustry.gen.*
 import mindustry.graphics.*
 import yellow.YellowPermVars
-import yellow.content.YellowFx
+import yellow.content.*
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
 import yellow.internal.util.YellowUtils.internalLog
