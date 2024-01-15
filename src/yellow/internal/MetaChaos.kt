@@ -14,21 +14,16 @@ fun Fi.readLines(): List<String>{
 object MetaChaos{
     @JvmStatic
     val subtitles = Seq<String>()
-    @JvmStatic
-    val descriptions = Seq<String>()
 
 
     @JvmStatic
     fun load(){
         val sub = Vars.tree["metachaos/subtitles.txt"].readLines()
         subtitles.addAll(sub)
-        val desc = Vars.tree["metachaos/descriptions.txt"].readLines()
-        descriptions.addAll(desc)
     }
 
     @JvmStatic
     fun update(meta: Mods.ModMeta){
         meta.subtitle = subtitles.random()
-        meta.description = descriptions.random()
     }
 }

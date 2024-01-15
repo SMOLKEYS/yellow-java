@@ -21,9 +21,7 @@ public class YellowContentLoader{
         YellowWeapons.afterLoad();
         YellowStatusEffects.load();
         YellowBlocks.load();
-
-        Notification.Companion.getInstances().each(Notification::loadBundle);
-
+        
         DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
     }
 }

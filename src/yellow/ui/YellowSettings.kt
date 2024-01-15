@@ -7,7 +7,7 @@ import mindustry.Vars.ui
 import mindustry.gen.Icon
 import mindustry.ui.dialogs.SettingsMenuDialog
 import yellow.*
-import yellow.content.*
+import yellow.content.YellowNotifications
 import yellow.game.Notification
 
 object YellowSettings{

@@ -55,7 +55,7 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
             scrollPane {
                 weapon.forEach {mount ->
                     if(mount !is DisableableWeaponMount) return
-                    if(!(mount.weapon as DisableableWeapon).mirroredVersion) {
+                    if(!(mount.weapon as DisableableWeapon).mirroredVersion || !(mount.weapon as DisableableWeapon).invisible) {
                         check((mount.weapon as NameableWeapon).displayName, mount.enabled) {a: Boolean ->
                             mount.enabled = a
                             if(mount.enabled) mount.enabled() else mount.disabled()
@@ -65,6 +65,13 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
                             YellowVars.weaponInfo.show(mount.weapon as NameableWeapon)
                         }.row()
                     } else {
+                        check((mount.weapon as NameableWeapon).displayName, mount.enabled) {a: Boolean ->
+                            mount.enabled = a
+                            if(mount.enabled) mount.enabled() else mount.disabled()
+                        }.update{ it.isChecked = mount.enabled }.left().row()
+                    }
+                    
+                    if(YellowVars.debugMode && (mount.weapon as DisableableWeapon).invisible){
                         check((mount.weapon as NameableWeapon).displayName, mount.enabled) {a: Boolean ->
                             mount.enabled = a
                             if(mount.enabled) mount.enabled() else mount.disabled()

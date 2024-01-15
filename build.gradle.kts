@@ -180,7 +180,7 @@ task("jarAndroid") {
                 .let { dexRoot.resolve("listing.txt").writeText(it) }
 
         if (needReDex.isNotEmpty()) println("Done.")
-        println("Preparing to desugar the project and merge all dex files.")
+        println("Preparing to desugar the project and merge dex files.")
 
         val dexPathes = dependencies.map {s ->
             dexCacheRoot.resolve(hash(s.toByteArray())).also { it.mkdir() }

@@ -1,6 +1,8 @@
 package yellow.entities.units.entity
 
 import arc.Events
+import arc.graphics.Color
+import arc.graphics.g2d.*
 import arc.math.*
 import arc.math.geom.Vec2
 import arc.struct.Seq
