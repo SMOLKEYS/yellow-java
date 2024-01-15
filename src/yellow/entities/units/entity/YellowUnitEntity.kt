@@ -1,8 +1,6 @@
 package yellow.entities.units.entity
 
 import arc.Events
-import arc.graphics.Color
-import arc.graphics.g2d.*
 import arc.math.*
 import arc.math.geom.Vec2
 import arc.struct.Seq
@@ -280,40 +278,7 @@ open class YellowUnitEntity: UnitEntity(){
     override fun draw(){
         super.draw()
 
-        val s = Mathf.absin(Time.time, 16f, 1f)
-        val r1 = s * 25f
-
-        Draw.z(Layer.effect)
-        Draw.color(Color.yellow)
-
-        Lines.circle(x, y, 20f + r1)
-        Lines.square(x, y, 20f + r1, Time.time)
-        Lines.square(x, y, 20f + r1, -Time.time)
-
-        Draw.alpha(elevation)
-        rand.setSeed(4)
-        Angles.circleVectors(5, 70f, Time.time){cx, cy ->
-            val rotational = Time.time * rand.random(2f, 4f)
-            if(lives <= 2) Draw.color(Pal.remove)
-            Lines.circle(cx + x, cy + y, 20f)
-            Lines.poly(cx + x, cy + y, lives, 16f, rotational)
-            Fill.circle(cx + x, cy + y, 3f)
-            Angles.circleVectors(lives, 17f, rotational){c2x, c2y ->
-                Fill.circle(c2x + cx + x, c2y + cy + y, 4f)
-            }
-            Draw.color(Color.yellow)
-        }
-
-        shootOpacity = Mathf.approachDelta(shootOpacity,  if(isShooting()) 1f else 0f, 0.2f)
-        targetSize = Mathf.approachDelta(targetSize, if(isShooting()) 12f else 23f, 0.37f)
-
-        Drawf.target(aimX, aimY, targetSize, shootOpacity, Color.yellow)
-
-        when{
-            lives <= 3 -> {
-                if(Mathf.chance(0.1)) Fx.smoke.at(x, y)
-            }
-        }
+        YellowEffects.activeEffect.drawCode(this)
     }
     
     override fun toString() = if(isValid) "YellowUnitEntity#$id:${type.name}" else "(invalid) YellowUnitEntity#$id:${type.name}"
@@ -390,10 +355,6 @@ open class YellowUnitEntity: UnitEntity(){
     override fun classId() = mappingId
 
     companion object{
-        private var shootOpacity = 0f
-        private var targetSize = 23f
-        private val rand = Rand()
-
         val mappingId = EntityMapping.register("yellow-unit", ::YellowUnitEntity)
         
         @JvmStatic

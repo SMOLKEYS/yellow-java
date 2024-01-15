@@ -37,6 +37,7 @@ public class YellowVars{
         YellowNotifications.load();
         YellowSettings.load();
         YellowAutoUpdater.start();
+        YellowConsoleBind.load();
         YellowAchievements.installed.unlock();
         YState.INSTANCE.load();
         Time.run(120f, YellowConsoleBind::load);

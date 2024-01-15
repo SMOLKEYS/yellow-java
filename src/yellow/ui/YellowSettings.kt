@@ -7,7 +7,7 @@ import mindustry.Vars.ui
 import mindustry.gen.Icon
 import mindustry.ui.dialogs.SettingsMenuDialog
 import yellow.*
-import yellow.content.YellowNotifications
+import yellow.content.*
 import yellow.game.Notification
 
 object YellowSettings{
@@ -39,6 +39,15 @@ object YellowSettings{
                     YellowPermVars.sourceReleaseRepo = "https://github.com/SMOLKEYS/yellow-java/releases/latest/download/yellow-java.jar"
                 }else{
                     YellowPermVars.sourceReleaseRepo = it
+                }
+            }
+            
+            table.textPref("active", YellowEffects.activeEffect.name){
+                if(it.isBlank()){
+                    YellowEffects.activeEffect = YellowEffects.effects[0]
+                }else{
+                    var typed = YellowEffects.effects.find{ e -> e.name == it }
+                    YellowEffects.activeEffect = if(typed == null) YellowEffects.effects[0] else typed
                 }
             }
 
