@@ -9,7 +9,6 @@ import yellow.entities.units.entity.*;
 public class DisableableWeapon extends NameableWeapon{
     
     public boolean mirroredVersion = false;
-    public boolean invisible = false;
     public boolean enabledDefault = true;
     
     public DisableableWeapon(String name){
