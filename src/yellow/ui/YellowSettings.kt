@@ -42,7 +42,7 @@ object YellowSettings{
                 }
             }
             
-            table.textPref("active", YellowEffects.activeEffect.name){
+            table.areaTextPref("activeeffect", YellowEffects.activeEffect.name){
                 if(it.isBlank()){
                     YellowEffects.activeEffect = YellowEffects.effects[0]
                 }else{
