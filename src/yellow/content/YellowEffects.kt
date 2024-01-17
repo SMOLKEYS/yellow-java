@@ -62,9 +62,10 @@ object YellowEffects{
             for(i in 0..30){
                 Draw.color(Pal.lancerLaser, Pal.accent, Mathf.absin(Time.time + i * 5f, 10f, 1f))
                 Lines.line(it.x + Angles.trnsx(Time.time + i * space, size), it.y + Angles.trnsy(Time.time + i * space * 3f, size), it.x + Angles.trnsx(Time.time * 1.3f + i * space + space, size + b * 15f), it.y + Angles.trnsy(Time.time + i * space + space, size + b * 9f))
-           }
+            }
         }
-    )   
+    }
+    )
     
     var activeEffect = effects[0]
 }
