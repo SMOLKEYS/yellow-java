@@ -15,6 +15,7 @@ public class DisableableWeapon extends NameableWeapon{
         super(name);
         mountType = DisableableWeaponMount::new;
         mirror = false;
+        shootCone = 360f;
     }
 
     /** Utility for manually mirroring disableable weapons.

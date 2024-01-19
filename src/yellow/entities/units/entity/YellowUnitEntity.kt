@@ -1,26 +1,25 @@
 package yellow.entities.units.entity
 
 import arc.Events
-import arc.graphics.Color
-import arc.graphics.g2d.*
-import arc.math.*
+import arc.math.Mathf
 import arc.math.geom.Vec2
 import arc.struct.Seq
-import arc.util.Time
 import arc.util.io.*
 import kotmindy.mindustry.MUnit
 import mindustry.Vars
-import mindustry.content.*
+import mindustry.content.UnitTypes
 import mindustry.entities.Units
-import mindustry.entities.units.WeaponMount
+import mindustry.entities.units.*
 import mindustry.gen.*
-import mindustry.graphics.*
+import mindustry.type.Weapon
 import yellow.YellowPermVars
+import yellow.ai.BullethellAI
 import yellow.content.*
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
 import yellow.internal.util.YellowUtils.internalLog
 import yellow.internal.util.ins
+import yellow.type.BullethellWeapon
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
@@ -156,6 +155,16 @@ open class YellowUnitEntity: UnitEntity(){
             cons(it!!)
             index++
         }
+    }
+
+    fun findMount(weapon: Weapon) = mounts().find { it.weapon == weapon }
+
+    fun testSession(target: MUnit, difficulty: Int, gamemode: Int, weapons: Seq<BullethellWeapon>): UnitController{
+        val c = BullethellAI(target, controller(), difficulty, gamemode, weapons)
+        c.unit(this)
+        c.initWeapons()
+        controller(c)
+        return c
     }
 
     override fun wobble(){}

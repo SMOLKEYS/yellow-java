@@ -24,6 +24,7 @@ public class YellowVars{
     public static WeaponInfoDialog weaponInfo;
     public static NotificationListDialog notifs;
     public static AchievementListDialog achievements;
+    public static BullethellSessionManagerDialog bullethellSessionManager;
 
     public static void load(){
         Time.mark();
@@ -32,6 +33,7 @@ public class YellowVars{
         weaponInfo = new WeaponInfoDialog();
         notifs = new NotificationListDialog();
         achievements = new AchievementListDialog();
+        bullethellSessionManager = new BullethellSessionManagerDialog();
         yellowControl.build(ui.hudGroup);
 
         YellowNotifications.load();

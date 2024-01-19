@@ -3,7 +3,6 @@ package yellow.internal;
 import arc.struct.*;
 import mindustry.type.*;
 import yellow.content.*;
-import yellow.game.*;
 import yellow.type.*;
 
 import static yellow.content.YellowWeapons.*;

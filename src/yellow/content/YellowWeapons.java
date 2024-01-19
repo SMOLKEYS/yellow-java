@@ -1,8 +1,6 @@
 package yellow.content;
 
 import arc.*;
-import arc.math.*;
-import arc.util.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import mindustry.content.*;
@@ -11,14 +9,15 @@ import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.type.*;
 import yellow.entities.bullet.*;
 import yellow.type.*;
 
 public class YellowWeapons{
-    public static Weapon
-    
+    public static DisableableWeapon
     meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, igneous, railer;
+
+    public static BullethellWeapon
+    firefall;
     
     public static void load(){
         
@@ -44,7 +43,8 @@ public class YellowWeapons{
             }};
             
         }};
-        
+
+        //not an actual bullethell weapon, somehow
         bullethell = new DisableableWeapon("bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
@@ -348,6 +348,22 @@ public class YellowWeapons{
                         }};
                     }};
                 }};
+            }};
+        }};
+
+        firefall = new BullethellWeapon("firefall", "static"){{
+            reload = 120f;
+            x = y = 0f;
+
+            shoot = new ShootSpread(60, 3){{
+                shotDelay = 1;
+            }};
+
+            bullet = new BasicBulletType(){{
+                damage = 15f;
+                speed = 3f;
+                lifetime = 240f;
+                width = height = 16f;
             }};
         }};
     }

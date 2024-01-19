@@ -5,7 +5,7 @@ import arc.struct.Seq
 import mindustry.ui.dialogs.BaseDialog
 import yellow.game.Notification
 
-open class NotificationListDialog: BaseDialog("Notifications") {
+open class NotificationListDialog: BaseDialog("@notifications") {
     init {
         addCloseButton()
     }
@@ -20,6 +20,7 @@ open class NotificationListDialog: BaseDialog("Notifications") {
                 }.row()
             }
         }.grow()
+
         return super.show()
     }
 }
