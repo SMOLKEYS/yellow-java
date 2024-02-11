@@ -12,6 +12,7 @@ object YellowPermVars {
     var removeAllowed = false
     var internalLoggering by setting(false, syn)
     var weaponSanityCheck by setting(true, syn)
+    var enableRpc by setting(false, syn)
 
     private var _affinity by setting(0f, syn)
     var affinity

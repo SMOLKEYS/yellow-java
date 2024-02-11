@@ -1,6 +1,7 @@
-package yellow.internal.util
+package yellow.util
 
 import arc.Core
+import arc.files.Fi
 import arc.graphics.Color
 import arc.math.Interp
 import arc.scene.event.Touchable
@@ -34,9 +35,13 @@ fun UnitType.exists(team: Team): Boolean{
     return Groups.unit.contains{ it.type == this && it.team == team }
 }
 
-fun String.tint(color: Color) = "[#$color]$this[]"
-
 fun Boolean.yesNo() = Core.bundle[if(this) "yes" else "no"]
+
+fun List<String>.filterComments(): List<String> = this.filter {it.isBlank() || !it.startsWith("#") || !it.startsWith("--") || !it.startsWith("//")}
+
+fun Fi.readLines(): List<String>{
+    return this.readString().split('\n').filterComments()
+}
 
 fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)
 

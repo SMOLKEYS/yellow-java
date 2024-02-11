@@ -6,18 +6,17 @@ import arc.scene.ui.ImageButton.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 import yellow.entities.units.entity.*;
-import yellow.internal.util.*;
+import yellow.util.*;
 import yellow.ui.buttons.dialogs.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
     /**
-     * Adds a button anchored to the minimap
-     * @author xzxADIxzx
+     * Adds a button anchored to the minimap, or a new row of buttons on mobile.
+     * Originally made by xzxADIxzx.
      */
 public class YellowControl {
-    /** minimap width, not scaled */
     private static final float width = 150f;
     private static final float padding = 4f;
     private static final float isize = 48f;
@@ -27,7 +26,7 @@ public class YellowControl {
     public void build(Group parent){
         Drawable icon = atlas.drawable("status-disarmed");
 
-        dialog = new YellowControlDialog(); // do not create new ones until the client loads
+        dialog = new YellowControlDialog();
 
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
@@ -52,7 +51,6 @@ public class YellowControl {
                 if(player.unit() instanceof YellowUnitEntity) player.unit().kill();
             });
         }else{
-            //TODO adapt with foo's custom corner ui
             ImageButtonStyle style = new ImageButtonStyle(){{
                 up = Tex.pane;
                 down = Styles.flatDown;
@@ -67,8 +65,7 @@ public class YellowControl {
                 cont.marginRight(width - padding);
     
                 cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit()));
-    
-                // show buttons only when player controls yellow air
+
                 cont.visible(() -> player.unit() instanceof YellowUnitEntity && !disableUI);
             });
         }

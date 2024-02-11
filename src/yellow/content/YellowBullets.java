@@ -7,7 +7,7 @@ import yellow.entities.bullet.*;
 public class YellowBullets{
     public static BulletType
     
-    standardMissile, standardMissileCaller, glowOrb;
+    standardMissile, standardMissileCaller, wave;
 
     public static void load(){
 
@@ -27,7 +27,7 @@ public class YellowBullets{
         
         standardMissileCaller = new AirstrikeFlare(standardMissile);
 
-        glowOrb = new BasicBulletType(5, 680){{
+        wave = new BasicBulletType(5, 680){{
             lifetime = 120f;
             width = height = 48f;
             shrinkX = shrinkY = 0f;

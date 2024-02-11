@@ -12,15 +12,16 @@ import yellow.game.achievement.AchievementGameStateCondition
 import yellow.internal.Namec
 
 @Suppress("MemberVisibilityCanBePrivate")
-open class Achievement(var name: String): Namec {
+open class YAchievement(var name: String): Namec {
 
     private var unlocked by setting(false, "yellow-achievement-$name-")
     protected var readyToUnlock by setting(false, "yellow-achievement-$name-")
 
-    var parent: Achievement? = null
-    var requiredAchievements: Array<Achievement>? = null
+    var parent: YAchievement? = null
+    var requiredAchievements: Array<YAchievement>? = null
     var displayName: String
     var description: String
+    var hint: String
     var icon: Drawable = Icon.lockOpen
     var iconLocked: Drawable = Icon.lock
     var gameStateCondition: AchievementGameStateCondition = AchievementGameStateCondition.any
@@ -29,13 +30,14 @@ open class Achievement(var name: String): Namec {
     var onUnlock: () -> Unit = {}
 
 
-    constructor(name: String, parent: Achievement?): this(name) {
+    constructor(name: String, parent: YAchievement?): this(name) {
         this.parent = parent
     }
 
     init {
         displayName = this.nameLocalized()
         description = this.descriptionLocalized()
+        hint = this.hintLocalized()
 
         instances.add(this)
     }
@@ -70,8 +72,14 @@ open class Achievement(var name: String): Namec {
 
     override fun descriptionLocalized() = Core.bundle["achievement.$name.description"]
 
+    fun hintLocalized(): String{
+        val b = Core.bundle.getOrNull("achievement.$name.hint") ?: return "..."
+
+        return b
+    }
+
     companion object{
         @JvmStatic
-        val instances = Seq<Achievement>()
+        val instances = Seq<YAchievement>()
     }
 }

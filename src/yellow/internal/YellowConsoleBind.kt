@@ -2,11 +2,11 @@ package yellow.internal
 
 import mindustry.Vars
 import rhino.*
-import yellow.internal.util.YellowUtils.internalLog
+import yellow.util.YellowUtils.internalLog
 
 object YellowConsoleBind{
 
-    private val classes = arrayOf("yellow", "yellow.internal", "yellow.internal.util", "yellow.ui", "yellow.content", "yellow.ai")
+    private val classes = arrayOf("yellow", "yellow.internal", "yellow.util", "yellow.ui", "yellow.content", "yellow.ai", "yellow.game", "yellow.input")
 
     @JvmStatic
     fun load(){

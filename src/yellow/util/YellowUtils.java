@@ -1,12 +1,10 @@
-package yellow.internal.util;
+package yellow.util;
 
 import arc.*;
 import arc.files.*;
 import arc.func.*;
 import arc.graphics.*;
-import arc.math.*;
 import arc.scene.style.*;
-import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import arc.util.io.*;
@@ -14,8 +12,9 @@ import mindustry.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 import yellow.*;
+import yellow.entities.units.entity.*;
 
-@SuppressWarnings("CallToPrintStackTrace")
+@SuppressWarnings({"CallToPrintStackTrace", "unused"})
 public class YellowUtils{
     private static int currentButtons = 0;
     private static boolean once = false;
@@ -41,10 +40,6 @@ public class YellowUtils{
         }));
     }
 
-    public static <T> T random(T[] arr){
-        return arr[Mathf.random(arr.length)];
-    }
-
     public static void internalLog(Object log){
         if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(log);
     }
@@ -52,15 +47,11 @@ public class YellowUtils{
     public static void table(Table parent, Cons<Cell<Table>> child, Cons<Table> childContents){
         child.get(parent.table(childContents));
     }
-    
-    public static void dialogTable(Dialog parent, Cons<Cell<Table>> tableParent, Cons<Table> tableContents){
-        tableParent.get(parent.cont.table(tableContents));
-    }
 
     //TODO use pages or scrollpane instead of rows
     public static void mobileHudButton(Drawable icon, Runnable listener){
         if(!Vars.mobile) return; //bwehehe
-        Table but = Vars.ui.hudGroup.<Table>find("mobile buttons");
+        Table but = Vars.ui.hudGroup.find("mobile buttons");
         
         if(!once){
             once = true;
@@ -92,6 +83,14 @@ public class YellowUtils{
     	for(int i = 0; i < 5 - currentButtons; i++){
     		mobileHudButton(Icon.none.tint(Color.clear), () -> {});
     	}
+    }
+
+    public static YellowUnitEntity getActiveYellow(){
+        Unit yellow = Groups.unit.find(a -> a instanceof YellowUnitEntity);
+
+        if(yellow == null) return null;
+
+        return (YellowUnitEntity) yellow;
     }
 
 }

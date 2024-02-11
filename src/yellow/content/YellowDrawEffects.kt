@@ -1,21 +1,21 @@
 package yellow.content
 
-import arc.util.*
-import arc.struct.*
 import arc.graphics.Color
 import arc.graphics.g2d.*
 import arc.math.*
-import mindustry.content.*
+import arc.struct.Seq
+import arc.util.Time
+import mindustry.content.Fx
 import mindustry.graphics.*
-import yellow.entities.units.entity.*
+import yellow.entities.units.entity.YellowUnitEntity
 
-object YellowEffects{
+object YellowDrawEffects{
     
     private var shootOpacity = 0f
     private var targetSize = 23f
     private val rand = Rand()
     
-    val effects = Seq.with(
+    val effects: Seq<DrawEffect> = Seq.with(
     DrawEffect("the origin"){
         val s = Mathf.absin(Time.time, 16f, 1f)
         val r1 = s * 25f
@@ -67,7 +67,7 @@ object YellowEffects{
     }
     )
     
-    var activeEffect = effects[0]
+    var activeEffect: DrawEffect = effects[0]
 }
 
 open class DrawEffect(var name: String, var drawCode: (YellowUnitEntity) -> Unit)

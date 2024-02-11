@@ -1,4 +1,4 @@
-package yellow.internal.util;
+package yellow.util;
 
 import arc.scene.ui.layout.*;
 import mindustry.type.*;

@@ -22,6 +22,10 @@ plugins {
     kotlin("jvm") version "1.9.0"
 }
 
+buildscript {
+
+}
+
 repositories {
     mavenCentral()
     maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
@@ -40,6 +44,7 @@ sourceSets {
 dependencies {
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
+    implementation("com.github.Anuken.Arc:discord:$mindustryVersion")
     implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
     implementation("com.github.mnemotechnician:mkui:v1.3.2")
 }
@@ -247,10 +252,15 @@ task<Jar>("deploy") {
         zipTree("${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"),
         zipTree("${layout.buildDirectory.get()}/libs/${project.name}Android.jar")
     )
+    /*
+
+    this causes jarAndroid to fail on a second run.
+
     doLast {
         delete { delete("${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar") }
         delete { delete("${layout.buildDirectory.get()}/libs/${project.name}Android.jar") }
     }
+     */
 }
 
 val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"

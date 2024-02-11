@@ -21,10 +21,10 @@ public class YEventType{
     }
 
     public static class AchievementUnlockEvent{
-        public final Achievement achievement;
+        public final YAchievement YAchievement;
 
-        public AchievementUnlockEvent(Achievement achievement){
-            this.achievement = achievement;
+        public AchievementUnlockEvent(YAchievement YAchievement){
+            this.YAchievement = YAchievement;
         }
     }
 }

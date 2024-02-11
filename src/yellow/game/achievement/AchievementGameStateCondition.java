@@ -15,6 +15,7 @@ public class AchievementGameStateCondition{
     custom = new AchievementGameStateCondition(s -> s.isGame() && !s.isCampaign()),
     survival = new AchievementGameStateCondition(s -> s.isGame() && !s.isCampaign() && !s.rules.infiniteResources),
     sandbox = new AchievementGameStateCondition(s -> s.isGame() && !s.isCampaign() && s.rules.infiniteResources),
+    ingame = new AchievementGameStateCondition(GameState::isGame),
     any = new AchievementGameStateCondition(s -> true);
 
     public final int id;

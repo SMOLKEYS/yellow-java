@@ -5,47 +5,59 @@ import arc.struct.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
 import yellow.type.*;
 
 import java.util.*;
 
 public class BullethellAI extends AIController{
 
-    private final UnitController originalAI;
+    public final UnitController originalAI;
 
-    public int gamemode;
-
-    // 0 - still
-    // 1 - approach
-    // 2 - follow
-    // 3 - rigid follow
-    public int moveMode = 0;
-    public Unit target;
-    public int remainingWeaponTime, remainingSessionTime;
+    //active move mode; see cases below
+    public int moveMode;
+    //remaining time before a weapon change and overall remaining session time
+    public float remainingWeaponTime, remainingSessionTime;
+    //difficulty of current session; weapons with difficulty values equal to or below will be used
     public int difficulty;
+    //determines if a weapon can have more than one go in a row
     public boolean allowWeaponRepeating;
-    public Vec2 offset = new Vec2();
+    //weapons to be used for this session
     public Seq<BullethellWeapon> weapons;
+    //currently active weapon to be fired at the target
     public BullethellWeapon activeWeapon;
 
-    public BullethellAI(Unit target, UnitController originalAI, int difficulty, int gamemode, Seq<BullethellWeapon> weapons){
+    //specifics for move modes
+
+    //case 1 - orbiting
+
+    public float orbitRange = 8*25f;
+
+    //case 2 - shifting
+
+    //offset distance from target (at least 14-27 blocks away by default)
+    //randomized after some time (usually 1-2 seconds after a weapon shoots)
+    public Vec2 offset = new Vec2();
+
+    public float remainingShiftTime;
+
+    public BullethellAI(Unit target, UnitController originalAI, int difficulty, int moveMode, Seq<BullethellWeapon> weapons){
         super();
 
         this.target = target;
         this.originalAI = originalAI;
         this.difficulty = difficulty;
-        this.gamemode = gamemode;
-        this.weapons = weapons.select(e -> e.difficulty == this.difficulty);
+        this.moveMode = moveMode;
+        this.weapons = weapons.select(e -> e.difficulty <= this.difficulty);
 
         this.activeWeapon = this.weapons.random();
         this.remainingWeaponTime = this.activeWeapon.time.random();
         this.moveMode = this.activeWeapon.moveMode;
 
         this.remainingSessionTime = this.activeWeapon.time.end;
+        this.remainingShiftTime = this.activeWeapon.reload + 120f;
     }
 
-    public void initWeapons(){
+    public void handleWeapons(){
         for(WeaponMount m : unit().mounts()){
             if(m instanceof BullethellWeaponMount){
                 BullethellWeaponMount b = (BullethellWeaponMount) m;
@@ -54,44 +66,38 @@ public class BullethellAI extends AIController{
         }
     }
 
-    @Override
-    public void updateUnit(){
-        super.updateUnit();
+    private void genericShoot(){
+        BullethellWeaponMount weapon = Objects.requireNonNull(mount(activeWeapon));
 
-        if(remainingSessionTime <= 0) unit.controller(originalAI);
-
-        remainingWeaponTime--;
-        remainingSessionTime--;
-
-        if(remainingWeaponTime <= 0){
-
-            BullethellWeapon nextWeapon;
-
-            if(allowWeaponRepeating){
-                nextWeapon = weapons.random(activeWeapon);
-            }else{
-                nextWeapon = weapons.random();
-            }
-
-            activeWeapon = nextWeapon;
-            remainingWeaponTime = nextWeapon.time.random();
-            moveMode = nextWeapon.moveMode;
-        }
+        weapon.target = target;
+        weapon.shoot = true;
     }
 
-    @Override
-    public void updateWeapons(){
+    private BullethellWeaponMount mount(BullethellWeapon weapon){
+        for(WeaponMount w: Objects.requireNonNull(unit).mounts){
+            if(w instanceof BullethellWeaponMount && w.weapon == weapon) return (BullethellWeaponMount) w;
+        }
+        return null;
+    }
 
+    private void updateOffsetting(){
+        //how
     }
 
     @Override
     public void updateMovement(){
         switch(moveMode){
-            case 0:
-                BullethellWeaponMount weapon = (BullethellWeaponMount) Objects.requireNonNull(((YellowUnitEntity) unit).findMount(activeWeapon));
+            case 0: //no movement
+                faceTarget();
+                genericShoot();
+                break;
+            case 1: //orbit
+                circle(target, orbitRange);
+                faceTarget();
+                genericShoot();
+                break;
+            case 2: //movement mimic; TODO
 
-                weapon.target = target;
-                weapon.shoot = true;
                 break;
         }
     }

@@ -14,6 +14,7 @@ object YState {
     var menuTime = 0
     var totalMenuTime by setting(0, syn)
     var kills by setting(0, syn)
+    var dashes by setting(0, syn)
 
     fun load(){
         Events.run(Trigger.update){ update() }
@@ -35,6 +36,6 @@ object YState {
             menuTime = 0
         }
 
-        Achievement.instances.each { it.update() }
+        YAchievement.instances.each { it.update() }
     }
 }

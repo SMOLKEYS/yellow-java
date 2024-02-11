@@ -40,7 +40,7 @@ public class DisableableWeapon extends NameableWeapon{
     //breaks with normal mirror implementation
     @Override
     public void update(Unit unit, WeaponMount mount){
-        //compatibility with ESR Flarogus
+        //compatibility layer
         if(!(unit instanceof YellowUnitEntity)){
             super.update(unit, mount);
             return;

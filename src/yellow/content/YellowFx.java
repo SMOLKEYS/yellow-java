@@ -4,17 +4,18 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
+import mindustry.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
+import mindustry.world.*;
 import yellow.entities.effect.*;
 
 
 public class YellowFx{
     
     public static final Effect
-    
-    /** A circle effect that expands and quickly fades away. */
+
     ghostDespawn = new Effect(10f, e -> {
         Draw.z(Layer.effect);
         Draw.alpha(e.fout() * 3);
@@ -138,6 +139,17 @@ public class YellowFx{
             Draw.color(Color.gray);
             Fill.circle(e.x + x, e.y + y, e.foutpow() * 30);
         });
+    }),
+
+    groundBreaker = new Effect(180f, e -> {
+        Tile t = Vars.world.tile((int) (e.x / 8), (int) (e.y / 8));
+        if(t != null && t.floor() != Blocks.empty.asFloor()){
+            Mathf.rand.setSeed(e.id);
+
+            Angles.randLenVectors(e.id, 1, e.fin(Interp.pow10Out) * Mathf.random(70, 150), e.rotation + Mathf.random(20, 40), 30, (x, y) -> {
+                Draw.rect(t.floor().region, e.x + x, e.y + y, Mathf.random(360));
+            });
+        }
     });
     
     

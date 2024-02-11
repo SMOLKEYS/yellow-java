@@ -14,11 +14,8 @@ import yellow.type.*;
 
 public class YellowWeapons{
     public static DisableableWeapon
-    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, igneous, railer;
+    meltdownBurstAttack, bullethell, antiMothSpray, decimation, airstrikeFlareLauncher, disruptor, ghostCall, ghostRain, speedEngine, dualSpeedEngine, igneous;
 
-    public static BullethellWeapon
-    firefall;
-    
     public static void load(){
         
         meltdownBurstAttack = new DisableableWeapon("meltdown-burst"){{
@@ -26,7 +23,6 @@ public class YellowWeapons{
             x = 56f;
             mirror = false;
             shootSound = Sounds.explosionbig;
-            minWarmup = 0.99f;
             
             shoot = new ShootSpread(){{
                 shots = 15;
@@ -44,14 +40,13 @@ public class YellowWeapons{
             
         }};
 
-        //not an actual bullethell weapon, somehow
+        //not an actual bullethell weapon and cant work as one, somehow
         bullethell = new DisableableWeapon("bullethell"){{
             reload = 900f;
             ejectEffect = YellowFx.bullethellShootEffect;
             x = 0f;
             y = 0f;
             mirror = false;
-            minWarmup = 0.99f;
             
             shoot = new ShootSpread(){{
                 shots = 690;
@@ -94,7 +89,7 @@ public class YellowWeapons{
             mirror = false;
             shoot.shots = 25;
             inaccuracy = 15f;
-            minWarmup = 0.99f;
+
             bullet = new BasicBulletType(){{
                 damage = 20f;
                 lifetime = 60f;
@@ -111,7 +106,6 @@ public class YellowWeapons{
             mirror = false;
             shoot.shots = 8;
             inaccuracy = 35f;
-            minWarmup = 0.99f;
 
             shootSound = Sounds.artillery;
 
@@ -163,7 +157,7 @@ public class YellowWeapons{
             x = 0f;
             y = 0f;
             mirror = false;
-            minWarmup = 0.99f;
+
             bullet = YellowBullets.standardMissileCaller;
         }};
 
@@ -172,7 +166,6 @@ public class YellowWeapons{
             x = 0f;
             y = 0f;
             mirror = false;
-            minWarmup = 0.99f;
             inaccuracy = 360f;
 
             shoot.shots = 350;
@@ -199,7 +192,6 @@ public class YellowWeapons{
             x = 24f;
             y = 0f;
             mirror = false;
-            minWarmup = 0.99f;
             
             shoot.shots = 35;
         }};
@@ -209,7 +201,7 @@ public class YellowWeapons{
             x = 80f;
             y = 0f;
             mirror = false;
-            minWarmup = 0.99f;
+
             inaccuracy = 360f;
             
             shoot.shots = 20;
@@ -309,62 +301,6 @@ public class YellowWeapons{
                     }
                 }
             };
-        }};
-
-        railer = new DisableableWeapon("railer"){{
-            reload = 600f;
-            x = y = 0f;
-
-            shootSound = Sounds.boom;
-
-            //the bullshit i commit to sometimes
-            bullet = new LaserBulletType(){{
-                damage = 100f;
-                length = 5000f;
-                width = 30f;
-                drawSize = 300f;
-                pierce = false;
-                fragBullets = 6;
-                fragBullet = new LaserBulletType(){{
-                    damage = 65f;
-                    length = 5000f;
-                    width = 30f;
-                    drawSize = 300f;
-                    pierce = false;
-                    fragBullets = 6;
-                    fragBullet = new LaserBulletType(){{
-                        damage = 40f;
-                        length = 5000f;
-                        width = 30f;
-                        drawSize = 300f;
-                        pierce = false;
-                        fragBullets = 6;
-                        fragBullet = new LaserBulletType(){{
-                            damage = 35f;
-                            length = 5000f;
-                            width = 30f;
-                            drawSize = 300f;
-                            pierce = false;
-                        }};
-                    }};
-                }};
-            }};
-        }};
-
-        firefall = new BullethellWeapon("firefall", "static"){{
-            reload = 120f;
-            x = y = 0f;
-
-            shoot = new ShootSpread(60, 3){{
-                shotDelay = 1;
-            }};
-
-            bullet = new BasicBulletType(){{
-                damage = 15f;
-                speed = 3f;
-                lifetime = 240f;
-                width = height = 16f;
-            }};
         }};
     }
     

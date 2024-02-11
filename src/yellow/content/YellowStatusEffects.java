@@ -20,7 +20,10 @@ public class YellowStatusEffects{
             @Override
             public void update(Unit unit, float time){
                 super.update(unit, time);
-                
+
+                unit.health(0f);
+                unit.shield(0f);
+                unit.armor(0f);
                 unit.kill();
             }
         };

@@ -32,7 +32,7 @@ public class YeetBulletType extends BasicBulletType{
         if(b.fdata <= 0f && b.drag != 0f){
             if(throwEffect != null) throwEffect.at(b.x, b.y);
             b.vel().trns(Angles.angle(b.x, b.y, b.aimX, b.aimY), throwForce);
-            b.drag = 0f;
+            b.drag(0f);
         }
     }
 }

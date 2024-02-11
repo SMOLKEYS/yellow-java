@@ -4,6 +4,7 @@ import arc.math.*;
 import arc.util.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
+import mindustry.world.blocks.storage.CoreBlock.*;
 import yellow.content.*;
 import yellow.entities.units.entity.*;
 
@@ -11,7 +12,7 @@ public class YellowOrbiterAI extends AIController{
     
     protected float dist = 80f, wavedist = 20f;
     protected YellowUnitEntity follow;
-    protected Building core;
+    protected CoreBuild core;
     
     @Override
     public void init(){

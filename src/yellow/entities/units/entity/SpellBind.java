@@ -1,27 +1,31 @@
 package yellow.entities.units.entity;
 
+import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
 import yellow.internal.*;
 import yellow.type.*;
 
-import static yellow.internal.util.YellowUtils.*;
+import static yellow.util.YellowUtils.*;
 
 public class SpellBind implements Savec{
     public Spell spell;
-    public int cooldown;
+    public float cooldown;
 
     public SpellBind(Spell spell){
         this.spell = spell;
     }
 
     public void update(){
-        if(cooldown > 0) cooldown--;
+        if(cooldown > 0) cooldown -= Time.delta;
     }
 
     public void cast(Unit unit){
         if(!ready()) return;
-        spell.onCast.get(unit);
+        spell.castEffect.at(unit);
+        spell.casts.each(e -> {
+            e.apply(unit);
+        });
         cooldown = spell.cooldown;
     }
 
@@ -32,14 +36,14 @@ public class SpellBind implements Savec{
     @Override
     public void write(Writes write){
         internalLog("begin write (" + cooldown + ") for " + spell);
-        write.i(cooldown);
+        write.f(cooldown);
         internalLog("write complete");
     }
     @Override
     public void read(Reads read){
-        int i = read.i();
-        internalLog("begin read (" + i + ") for " + spell);
-        cooldown = i;
+        float f = read.f();
+        internalLog("begin read (" + f + ") for " + spell);
+        cooldown = f;
         internalLog("read complete");
     }
 }

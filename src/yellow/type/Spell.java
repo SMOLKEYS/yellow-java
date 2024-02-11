@@ -2,16 +2,23 @@ package yellow.type;
 
 import arc.*;
 import arc.func.*;
-import mindustry.gen.*;
+import arc.struct.*;
+import mindustry.content.*;
+import mindustry.entities.*;
 import yellow.entities.units.entity.*;
+import yellow.input.*;
 import yellow.internal.*;
+import yellow.type.spell.*;
 
+@SuppressWarnings("rawtypes")
 public class Spell implements Namec, YContent {
     public String name, displayName, description;
     public float x, y;
-    public int cooldown;
-    public Cons<Unit> onCast = unit -> {};
+    public float cooldown;
+    public Effect castEffect = Fx.none;
+    public Seq<CommonCastComponent> casts = new Seq<>();
     public Func<Spell, SpellBind> spellType = SpellBind::new;
+    public CommonKeyListener castListener;
 
     public Spell(String name) {
         this.name = name;

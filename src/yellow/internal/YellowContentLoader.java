@@ -1,6 +1,8 @@
 package yellow.internal;
 
+import arc.*;
 import arc.struct.*;
+import mindustry.game.*;
 import mindustry.type.*;
 import yellow.content.*;
 import yellow.type.*;
@@ -20,6 +22,9 @@ public class YellowContentLoader{
         YellowWeapons.afterLoad();
         YellowStatusEffects.load();
         YellowBlocks.load();
+        KeyCheats.load();
+
+        Events.run(EventType.Trigger.update, YellowUpdateCore::update);
         
         DisableableWeapon.mirror(new Weapon[]{meltdownBurstAttack, antiMothSpray, decimation, airstrikeFlareLauncher, ghostCall, ghostRain, dualSpeedEngine, igneous}, true, true, true, YellowUnitTypes.yellow);
     }

@@ -2,7 +2,9 @@ package yellow.ui
 
 import arc.Core
 import arc.files.Fi
+import arc.discord.*
 import com.github.mnemotechnician.mkui.extensions.dsl.textButton
+import mindustry.Vars
 import mindustry.Vars.ui
 import mindustry.gen.Icon
 import mindustry.ui.dialogs.SettingsMenuDialog
@@ -25,6 +27,10 @@ object YellowSettings{
             table.checkPref("weaponsanity", true){
                 YellowPermVars.weaponSanityCheck = it
             }
+
+            if(!Vars.mobile) table.checkPref("enablerpc", false){
+                YellowPermVars.enableRpc = it
+            }
             
             table.textPref("sourceberepo", YellowPermVars.sourceBERepo){
                 if(it.isBlank()){
@@ -42,12 +48,12 @@ object YellowSettings{
                 }
             }
             
-            table.areaTextPref("activeeffect", YellowEffects.activeEffect.name){
+            table.areaTextPref("activeeffect", YellowDrawEffects.activeEffect.name){
                 if(it.isBlank()){
-                    YellowEffects.activeEffect = YellowEffects.effects[0]
-                }else{
-                    var typed = YellowEffects.effects.find{ e -> e.name == it }
-                    YellowEffects.activeEffect = if(typed == null) YellowEffects.effects[0] else typed
+                    YellowDrawEffects.activeEffect = YellowDrawEffects.effects[0]
+                }else {
+                    YellowDrawEffects.activeEffect = YellowDrawEffects.effects.find {e -> e.name == it}
+                            ?: YellowDrawEffects.effects[0]
                 }
             }
 

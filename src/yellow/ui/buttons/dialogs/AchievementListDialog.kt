@@ -6,8 +6,9 @@ import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.gen.Tex
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
-import yellow.game.Achievement
+import yellow.game.YAchievement
 
+@Suppress("LeakingThis")
 open class AchievementListDialog: BaseDialog("Achievements") {
     init {
         addCloseButton()
@@ -17,7 +18,7 @@ open class AchievementListDialog: BaseDialog("Achievements") {
         cont.clear()
 
         cont.scrollPane {
-            Achievement.instances.each {ach ->
+            YAchievement.instances.each {ach ->
                 addTable {
                     background = Tex.pane
 
@@ -29,7 +30,7 @@ open class AchievementListDialog: BaseDialog("Achievements") {
                         addLabel(if(ach.isUnlocked()) ach.displayName else "[darkgray]???[]").growX().padBottom(4f).row()
                         image().color(Pal.accent).height(5f).growX().row()
                         scrollPane {
-                            addLabel(if(ach.isUnlocked()) ach.description else "[darkgray]< locked >[]", wrap = true).grow()
+                            addLabel(if(ach.isUnlocked()) ach.description else "[darkgray]< locked >[]\n${ach.hint}", wrap = true).grow()
                         }.grow()
                     }.grow().padLeft(5f)
                 }.growX().height(170f).row()

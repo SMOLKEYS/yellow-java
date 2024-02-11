@@ -6,9 +6,10 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.Table
 import arc.struct.ObjectMap
 import com.github.mnemotechnician.mkui.extensions.dsl.addLabel
+import mindustry.entities.bullet.ContinuousFlameBulletType
 import mindustry.graphics.Pal
 import mindustry.ui.dialogs.BaseDialog
-import yellow.internal.util.yesNo
+import yellow.util.yesNo
 import yellow.type.NameableWeapon
 
 @Suppress("LeakingThis", "unused")
@@ -35,21 +36,26 @@ open class WeaponInfoDialog : BaseDialog("@weaponinfo"){
         
         info.table{
             it.image(Core.atlas.drawable("status-disarmed")).size(50f)
-            it.add("[accent]${weapon.nameLocalized()}[]")
+
+            val dat = if(Core.settings.getBool("console")) "\n[gray]${weapon.name}[]" else ""
+
+            it.add("[accent]${weapon.nameLocalized()}[]$dat").padLeft(5f)
         }.row()
         
         info.add("@description").color(Pal.accent).fillX().padTop(10f).row()
         
-        info.add(weapon.description).color(Color.lightGray).fillX().get().setWrap(true)
+        info.add(weapon.description).color(Color.lightGray).fillX().padLeft(10f)
         info.row()
         
         info.add("@general").color(Pal.accent).fillX().padTop(3f).row()
 
-        info.addLabel(Core.bundle.format("weapon.reload", weapon.reload / 60, "seconds"), wrap = false).growX().left().row()
-        info.addLabel(Core.bundle.format("weapon.x-y", weapon.x, weapon.y), wrap = false).growX().left().row()
-        info.addLabel(Core.bundle.format("weapon.rotate", weapon.rotate.yesNo()), wrap = false).growX().left().row()
-        info.addLabel(Core.bundle.format("weapon.shootcone", weapon.shootCone), wrap = false).growX().left().row()
-        info.addLabel(if(weapon.rotate) Core.bundle.format("weapon.rotatespeed", weapon.rotateSpeed) else Core.bundle.format("weapon.baserotation", weapon.baseRotation), wrap = false).growX().left().row()
+        if(weapon.bullet !is ContinuousFlameBulletType) info.addLabel(Core.bundle.format("weapon.reload", weapon.reload / 60, "seconds"), wrap = false).left().padLeft(10f).row()
+        info.addLabel(Core.bundle.format("weapon.damage", weapon.bullet.damage, weapon.bullet.estimateDPS()), wrap = false).left().padLeft(10f).row()
+        info.addLabel(Core.bundle.format("weapon.range", weapon.range() / 8), wrap = false).left().padLeft(10f).row()
+        info.addLabel(Core.bundle.format("weapon.offset", weapon.x, weapon.y), wrap = false).left().padLeft(10f).row()
+        info.addLabel(Core.bundle.format("weapon.rotate", weapon.rotate.yesNo()), wrap = false).left().padLeft(10f).row()
+        info.addLabel(Core.bundle.format("weapon.shootcone", weapon.shootCone), wrap = false).left().padLeft(10f).row()
+        info.addLabel(if(weapon.rotate) Core.bundle.format("weapon.rotatespeed", weapon.rotateSpeed) else Core.bundle.format("weapon.baserotation", weapon.baseRotation), wrap = false).left().padLeft(10f).row()
 
         /*
 
@@ -65,7 +71,7 @@ open class WeaponInfoDialog : BaseDialog("@weaponinfo"){
         */
 
         val paenu = ScrollPane(info)
-        cont.add(paenu)
+        cont.add(paenu).grow().left()
         
         return super.show()
     }

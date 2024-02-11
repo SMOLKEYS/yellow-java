@@ -13,13 +13,11 @@ import mindustry.entities.units.*
 import mindustry.gen.*
 import mindustry.type.Weapon
 import yellow.YellowPermVars
-import yellow.ai.BullethellAI
 import yellow.content.*
 import yellow.entities.units.*
 import yellow.game.YEventType.DeathInvalidationEvent
-import yellow.internal.util.YellowUtils.internalLog
-import yellow.internal.util.ins
-import yellow.type.BullethellWeapon
+import yellow.util.YellowUtils.internalLog
+import yellow.util.ins
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 open class YellowUnitEntity: UnitEntity(){
@@ -49,7 +47,7 @@ open class YellowUnitEntity: UnitEntity(){
         panicModeTypeTwo = Mathf.chance(0.124)
 
         spells = arrayOfNulls(type().spells.size)
-        for(i in 0..type().spells.size - 1){
+        for(i in 0 ..< type().spells.size){
             spells[i] = type().spells[i].spellType[type().spells[i]]
         }
 
@@ -159,14 +157,6 @@ open class YellowUnitEntity: UnitEntity(){
 
     fun findMount(weapon: Weapon) = mounts().find { it.weapon == weapon }
 
-    fun testSession(target: MUnit, difficulty: Int, gamemode: Int, weapons: Seq<BullethellWeapon>): UnitController{
-        val c = BullethellAI(target, controller(), difficulty, gamemode, weapons)
-        c.unit(this)
-        c.initWeapons()
-        controller(c)
-        return c
-    }
-
     override fun wobble(){}
 
     override fun type(): YellowUnitType{
@@ -243,6 +233,8 @@ open class YellowUnitEntity: UnitEntity(){
 
         spells().forEach{
             it?.update()
+            //cuh
+            it?.spell?.castListener?.update(this)
         }
         
         //heal surrounding units; normal units gain 70 health, player units gain either no health or a third of their current health
@@ -289,7 +281,7 @@ open class YellowUnitEntity: UnitEntity(){
     override fun draw(){
         super.draw()
 
-        YellowEffects.activeEffect.drawCode(this)
+        YellowDrawEffects.activeEffect.drawCode(this)
     }
     
     override fun toString() = if(isValid) "YellowUnitEntity#$id:${type.name}" else "(invalid) YellowUnitEntity#$id:${type.name}"
@@ -367,6 +359,15 @@ open class YellowUnitEntity: UnitEntity(){
 
     companion object{
         val mappingId = EntityMapping.register("yellow-unit", ::YellowUnitEntity)
+
+        private val blankAI = object: UnitController {
+            override fun unit(unit: mindustry.gen.Unit?) {
+            }
+
+            override fun unit(): mindustry.gen.Unit {
+                return Nulls.unit
+            }
+        }
         
         @JvmStatic
         val entities = Seq<YellowUnitEntity>()

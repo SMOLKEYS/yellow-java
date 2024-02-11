@@ -8,10 +8,12 @@ import yellow.internal.*;
 
 public class Yellow extends Mod{
 
+    public static boolean cheats = false;
+
     public Yellow(){
         //YellowVars.onImport();
 
-        String yellow = "yellow! ";
+        String yellow = "yellow time! ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         

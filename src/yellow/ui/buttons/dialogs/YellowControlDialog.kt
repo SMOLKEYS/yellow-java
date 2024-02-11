@@ -13,7 +13,9 @@ import yellow.entities.units.DisableableWeaponMount
 import yellow.entities.units.entity.*
 import yellow.type.*
 
+@Suppress("LeakingThis")
 open class YellowControlDialog: BaseDialog("@yellowcontrol") {
+
     init {
         addCloseButton()
     }

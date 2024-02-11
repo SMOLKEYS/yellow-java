@@ -8,6 +8,7 @@ import mindustry.entities.Effect
 import mindustry.gen.*
 import yellow.entities.units.GhostUnitType
 
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 open class GhostUnitEntity: UnitEntity() {
     var ghostLifetime = 0f
     var despawnEffect: Effect = Fx.none

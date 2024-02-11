@@ -31,5 +31,4 @@ public class NameableWeapon extends Weapon implements Namec, YContent {
         return Core.bundle.get("weapon." + name + ".description");
     }
 
-
 }

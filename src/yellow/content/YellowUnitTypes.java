@@ -1,6 +1,7 @@
 package yellow.content;
 
 import arc.*;
+import mindustry.ai.*;
 import mindustry.ai.types.*;
 import mindustry.type.*;
 import yellow.ai.*;
@@ -26,27 +27,30 @@ public class YellowUnitTypes{
             speed = 3f;
             accel = 0.08f;
             drag = 0.03f;
-            range = 1250f;
-            maxRange = 1250f;
-            mineSpeed = 5000f;
-            mineTier = 5000;
+            range = 8*30f;
+            maxRange = 8*30f;
+            mineSpeed = 500f;
+            mineTier = 500;
             itemCapacity = 8500;
-            buildSpeed = 95000f;
+            buildSpeed = 950f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             alwaysShootWhenMoving = true;
             allowedInPayloads = false;
             createScorch = false;
             createWreck = false;
+
+            commands = new UnitCommand[]{YellowUnitCommand.wander, UnitCommand.assistCommand};
+            defaultCommand = UnitCommand.assistCommand;
             
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");
 
             getAfterDeath()[0] = a -> {
-                for(int i = 0; i < 360; i++) YellowBullets.glowOrb.create(a, a.x, a.y, i);
+                for(int i = 0; i < 360; i++) YellowBullets.wave.create(a, a.x, a.y, i);
             };
 
-            spells.addAll(YellowSpells.fireCircle);
-            weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous, YellowWeapons.railer, YellowWeapons.firefall);
+            spells.addAll(YellowSpells.fireCircle, YellowSpells.dash);
+            weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous);
         }};
         
         ghostFlare = new GhostUnitType("ghost-flare"){{

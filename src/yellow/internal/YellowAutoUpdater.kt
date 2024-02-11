@@ -6,8 +6,8 @@ import arc.util.serialization.JsonReader
 import kotmindy.mindustry.ui.*
 import mindustry.Vars
 import yellow.*
-import yellow.internal.util.YellowUtils.getAndWrite
-import yellow.internal.util.YellowUtils.internalLog
+import yellow.util.YellowUtils.getAndWrite
+import yellow.util.YellowUtils.internalLog
 import yellow.ui.YellowSettings
 
 @Suppress("MemberVisibilityCanBePrivate")

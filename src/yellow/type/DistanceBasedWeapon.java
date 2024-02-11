@@ -1,6 +1,7 @@
 package yellow.type;
 
 import arc.*;
+import arc.input.*;
 import arc.math.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
@@ -34,7 +35,7 @@ public class DistanceBasedWeapon extends DisableableWeapon{
                 mount1.shootTime = 0f;
             }
 
-            if(mount1.bullet != null && mount1.shootTime >= holdTime) {
+            if(mount1.bullet != null && mount1.shootTime >= holdTime && !Core.input.keyDown(KeyCode.shiftLeft)) {
                 mount1.bullet.keepAlive = shooter;
                 if(shooter) mount1.bullet.time = 8f;
             } else {
@@ -42,8 +43,6 @@ public class DistanceBasedWeapon extends DisableableWeapon{
                     shoot(unit, mount1, unit.x, unit.y, unit.rotation - 90f + baseRotation);
                 }
             }
-
-            //internalLog(shooter);
         }
     }
 }

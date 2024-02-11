@@ -1,24 +1,25 @@
 package yellow;
 
+import arc.discord.*;
 import arc.util.*;
 import mindustry.*;
+import mindustry.core.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.ui.fragments.*;
 import yellow.content.*;
 import yellow.game.*;
 import yellow.internal.*;
-import yellow.internal.util.*;
+import yellow.util.*;
 import yellow.ui.*;
 import yellow.ui.buttons.*;
 import yellow.ui.buttons.dialogs.*;
 
+import java.util.*;
+
 import static mindustry.Vars.*;
 
 public class YellowVars{
-
-
-    public static boolean debugMode = false;
 
     public static YellowControl yellowControl;
     public static WeaponInfoDialog weaponInfo;
@@ -55,10 +56,30 @@ public class YellowVars{
 
         if(!mobile){
             ui.menufrag.addButton(new MenuFragment.MenuButton("@menu.yellow", Icon.right, null, buttons));
+
+            Log.info("Yellow RPC backend ready for use.");
+            if(YellowPermVars.INSTANCE.getEnableRpc()){
+                try{
+                    //yellow's rpc dependency is seperate from the one in mindus
+                    //TODO do not use rhino for doing this, also occasionally does not work, fuck.
+                    Vars.mods.getScripts().runConsole("Packages.arc.discord.DiscordRPC.close()");
+                    RichPresenceChaos.load();
+                    DiscordRPC.connect(1204425960037027900L);
+                    YellowRPC.send();
+                }catch(Exception e){
+                    Log.err(e);
+                }
+            }
+
+            YellowUtils.loop(30, () -> {
+                if(YellowPermVars.INSTANCE.getEnableRpc()) YellowRPC.send();
+            });
+
         }else{
             for(MenuFragment.MenuButton b: buttons){
                 ui.menufrag.addButton(b);
             }
+
         }
 
         Log.info("Loaded all of Yellow in @ seconds", Time.elapsed());
@@ -66,5 +87,9 @@ public class YellowVars{
 
     public static Mods.LoadedMod getSelf(){
         return Vars.mods.getMod("yellow-java");
+    }
+
+    public static boolean isCustomClient(){
+        return Objects.equals(Version.type, "custom");
     }
 }

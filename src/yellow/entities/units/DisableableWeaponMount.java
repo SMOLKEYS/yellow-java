@@ -7,11 +7,11 @@ import mindustry.type.*;
 import yellow.internal.*;
 import yellow.type.*;
 
-import static yellow.internal.util.YellowUtils.*;
+import static yellow.util.YellowUtils.*;
 
 public class DisableableWeaponMount extends WeaponMount implements Savec{
-    /** whether or not the weapon is enabled */
-    public boolean enabled = true;
+    /** whether the weapon is enabled */
+    public boolean enabled;
     
     public DisableableWeaponMount(Weapon weapon){
         super(weapon);
@@ -19,8 +19,6 @@ public class DisableableWeaponMount extends WeaponMount implements Savec{
         enabled = ((DisableableWeapon) weapon).enabledDefault;
     }
 
-
-    //TODO stability
     @Override
     public void write(Writes write){
         internalLog("begin write (" + enabled + ") for " + weapon);

@@ -23,10 +23,9 @@ open class AirstrikeFlare(var missileBullet: BulletType): ArtilleryBulletType() 
     var missileLifetimeRandomization = 3f
     var posRandomization = 120f
     var randomizeMissileCount = true
-    var randomizeArrivalDelays = true
 
-    fun misRng(): Int {
-        var yes: Int
+    private fun misRng(): Int {
+        val yes: Int
 
         if(randomizeMissileCount) {
             yes = Mathf.random(minMissileCount, missileCount)
@@ -40,8 +39,8 @@ open class AirstrikeFlare(var missileBullet: BulletType): ArtilleryBulletType() 
     override fun despawned(b: Bullet) {
         super.despawned(b)
 
-        var x = b.x
-        var y = b.y
+        val x = b.x
+        val y = b.y
 
         for(i in 0..misRng()) {
             Time.run(Mathf.random(minArrivalDelay, arrivalDelay)) {

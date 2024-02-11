@@ -1,23 +1,21 @@
+@file:Suppress("unused")
+
 package yellow.world.blocks.units
 
-import arc.graphics.Color
-import arc.graphics.g2d.*
 import arc.math.Mathf
 import arc.scene.event.Touchable
 import arc.scene.ui.layout.Table
-import arc.util.*
+import arc.util.Time
 import arc.util.io.*
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.content.Fx
 import mindustry.entities.Effect
 import mindustry.gen.Building
-import mindustry.graphics.*
 import mindustry.type.*
 import mindustry.world.Block
 import mindustry.world.meta.*
-import yellow.internal.util.*
+import yellow.util.*
 
-@Suppress("GrazieInspection") //headass lmao
 open class SummoningShrine(
     /** What unit to summon.  */
     var unit: UnitType
@@ -57,16 +55,15 @@ open class SummoningShrine(
 
         private var currentlySummoning = false
         private var placed = false
-        private var a = 0f
-        private var size = 0f
 
         override fun buildConfiguration(table: Table) {
             table.addTable {
                 addLabel("${this@SummoningShrine.localizedName} (${unit.localizedName})", wrap = false).growX().row()
                 textButton("@summon", wrap = false){
                     currentlySummoning = true
+                    request()
                     Time.run(summonTime){
-                        unit.spawn(this@SummoningShrineBuild, team)
+                        summonUnit()
                         currentlySummoning = false
                     }
                 }.update{
@@ -75,33 +72,17 @@ open class SummoningShrine(
             }.grow()
         }
 
+        private fun request(){
+            requestEffect.at(this)
+        }
+
+        private fun summonUnit(){
+            unit.spawn(this, team)
+        }
+
         override fun placed() {
             super.placed()
             placed = true
-        }
-
-        override fun draw() {
-            if (drawBlock) {
-                Drawf.shadow(region, x, y, 0f)
-                Draw.rect(region, x, y, 0f)
-            }
-            val lerpA = if (currentlySummoning) 1f else 0f
-            val sus = Mathf.absin(10f, 10f)
-            
-            a = Mathf.lerp(a, lerpA, 0.04f)
-            
-            val lerpSize = if (placed) 20f else 0f
-            size = Mathf.lerp(size, lerpSize, 0.043f)
-            Draw.z(Layer.effect)
-            Draw.color(Tmp.c1.set(Color.yellow).lerp(Color.cyan, Mathf.absin(10f, 1f)))
-            Fill.circle(x, y, size - 15f + Mathf.absin(10f, 2f))
-            Lines.circle(x, y, size)
-            Lines.square(x, y, size - 1f, Time.time)
-            Lines.square(x, y, size - 1f, -Time.time)
-            Draw.alpha(a)
-            Lines.circle(x, y, 25f + sus)
-            Lines.square(x, y, 25f + sus, Time.time)
-            Lines.square(x, y, 25f + sus, -Time.time)
         }
 
         override fun write(write: Writes) {
