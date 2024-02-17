@@ -13,7 +13,7 @@ public class Yellow extends Mod{
     public Yellow(){
         //YellowVars.onImport();
 
-        String yellow = "yellow time! ";
+        var yellow = "yellow time! ";
         for(int i = 0; i < 5; i++) yellow += yellow;
         Log.info(yellow);
         

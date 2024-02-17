@@ -49,7 +49,7 @@ public class YellowVars{
         MetaChaos.load();
         YellowUtils.loop(1f, () -> MetaChaos.update(meta));
 
-        MenuFragment.MenuButton[] buttons = {
+        var buttons = new MenuFragment.MenuButton[]{
                 new MenuFragment.MenuButton("@menu.achievements", Icon.tree, achievements::show),
                 new MenuFragment.MenuButton("@menu.notifications", Icon.warning, () -> notifs.show(Notification.Companion.getInstances()))
         };

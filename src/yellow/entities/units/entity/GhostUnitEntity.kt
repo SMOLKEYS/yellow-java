@@ -32,6 +32,8 @@ open class GhostUnitEntity: UnitEntity() {
         ghostLifetime = (type as GhostUnitType).ghostLifetime + Mathf.random(60f)
         despawnEffect = (type as GhostUnitType).despawnEffect
     }
+
+    override fun type() = type as GhostUnitType
     
     override fun kill(){
         Fx.unitDespawn.at(x, y, 0f, this)

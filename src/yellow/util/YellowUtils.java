@@ -86,11 +86,8 @@ public class YellowUtils{
     }
 
     public static YellowUnitEntity getActiveYellow(){
-        Unit yellow = Groups.unit.find(a -> a instanceof YellowUnitEntity);
 
-        if(yellow == null) return null;
-
-        return (YellowUnitEntity) yellow;
+        return (YellowUnitEntity) Groups.unit.find(a -> a instanceof YellowUnitEntity);
     }
 
 }

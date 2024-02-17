@@ -1,5 +1,3 @@
-//modded gradle file
-//origin "PKChaos/Ion"
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.parsing.parseBoolean
@@ -9,25 +7,27 @@ import java.util.*
 
 version = "1.0"
 
-val mindustryVersion = "v146"
-
 val windows = System.getProperty("os.name").lowercase().contains("windows")
+
+val mindustryVersion = "v146"
+val entVersion = "v146.0.2"
 
 //project properties (used in androidCopy)
 val useBE = project.hasProperty("adb.useBE") && parseBoolean(project.property("adb.useBE").toString())
 val quickstart = project.hasProperty("adb.quickstart") && parseBoolean(project.property("adb.quickstart").toString())
 
+
 plugins {
     java
     kotlin("jvm") version "1.9.0"
-}
-
-buildscript {
-
+    //kotlin("kapt") version "1.9.0"
+    //id("com.github.GlennFolker.EntityAnno") version "v146.0.2"
 }
 
 repositories {
     mavenCentral()
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://oss.sonatype.org/content/repositories/releases/")
     maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
     maven("https://www.jitpack.io")
 }
@@ -41,12 +41,29 @@ sourceSets {
     }
 }
 
+/* hehehehaw
+entityAnno {
+    modName = "yellow-java"
+    mindustryVersion = "v146"
+    isJitpack = false
+    revisionDir = layout.projectDirectory.dir("revisions").asFile
+    fetchPackage = "yellow.fetched"
+    genSrcPackage = "yellow.entities.comp"
+    genPackage = "yellow.gen"
+}
+*/
+
 dependencies {
+    //compileOnly("com.github.GlennFolker.EntityAnno:entity:$entVersion")
+    //kapt("com.github.GlennFolker.EntityAnno:entity:$entVersion")
+
     compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
     compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
     implementation("com.github.Anuken.Arc:discord:$mindustryVersion")
     implementation("com.github.SMOLKEYS:kotmindy:9787d228d6")
     implementation("com.github.mnemotechnician:mkui:v1.3.2")
+
+    annotationProcessor("com.github.GlennFolker.EntityAnno:downgrader:$entVersion")
 }
 
 configurations.all {
@@ -57,18 +74,17 @@ configurations.all {
     }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        // target java version - 8. do not increase unless you really need to
-        // this will not change a lot but will break mobile compatibility.
         jvmTarget = "1.8"
     }
+}
+
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "17"
+    options.release.set(8)
+    options.encoding = "UTF-8"
+    options.isIncremental = true
 }
 
 

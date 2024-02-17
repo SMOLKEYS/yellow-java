@@ -4,7 +4,7 @@ import arc.scene.ui.Dialog
 import mindustry.ui.dialogs.BaseDialog
 import yellow.entities.units.entity.YellowUnitEntity
 
-@Suppress("LeakingThis")
+@Suppress("LeakingThis", "UNUSED_PARAMETER")
 open class BullethellSessionManagerDialog: BaseDialog("@bullethell-session-manager") {
 
     init {

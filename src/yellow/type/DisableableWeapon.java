@@ -21,8 +21,8 @@ public class DisableableWeapon extends NameableWeapon{
     /** Utility for manually mirroring disableable weapons.
      * Why does this exist? Simple, disableable weapons are pure jank with the usual mirror implementation. */
     public static void mirror(Weapon[] in, boolean nameable, boolean disableable, boolean alternate, UnitType unit){
-        for (Weapon weapon : in) {
-            Weapon mog = weapon.copy();
+        for (var weapon : in) {
+            var mog = weapon.copy();
             mog.x = weapon.x - (weapon.x * 2);
             mog.baseRotation = weapon.baseRotation * -1f;
             if (alternate) {
@@ -45,7 +45,8 @@ public class DisableableWeapon extends NameableWeapon{
             super.update(unit, mount);
             return;
         }
-        if(!((DisableableWeaponMount) mount).enabled) return;
+
+        if(mount instanceof DisableableWeaponMount d && !d.enabled) return;
         super.update(unit, mount);
     }
     
@@ -55,7 +56,7 @@ public class DisableableWeapon extends NameableWeapon{
             super.draw(unit, mount);
             return;
         }
-        if(!((DisableableWeaponMount) mount).enabled) return;
+        if(mount instanceof DisableableWeaponMount d && !d.enabled) return;
         super.draw(unit, mount);
     }
 }

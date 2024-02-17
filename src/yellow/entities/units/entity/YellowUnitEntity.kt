@@ -136,6 +136,14 @@ open class YellowUnitEntity: UnitEntity(){
     }
 
     fun isIdle() = elevation <= 0.1f
+
+    fun lives() = lives
+    
+    fun lives(new: Int) {
+        lives = new
+    }
+
+    fun livesf() = (lives / type().maxLives).toFloat()
     
     inline fun <reified T : WeaponMount> eachMountAs(max: Int, cons: (T) -> Unit){
         var index = 0
@@ -159,9 +167,7 @@ open class YellowUnitEntity: UnitEntity(){
 
     override fun wobble(){}
 
-    override fun type(): YellowUnitType{
-        return type as YellowUnitType
-    }
+    override fun type() = type as YellowUnitType
     
     override fun kill(){
         destroy() //just call destroy(), no point in waiting
