@@ -39,7 +39,7 @@ public class YellowUnitTypes{
             createScorch = false;
             createWreck = false;
 
-            commands = new UnitCommand[]{YellowUnitCommand.wander, UnitCommand.assistCommand};
+            commands = new UnitCommand[]{YellowUnitCommand.wander, YellowUnitCommand.fly, UnitCommand.assistCommand, UnitCommand.moveCommand};
             defaultCommand = UnitCommand.assistCommand;
             
             aiController = FlyingAI::new;
