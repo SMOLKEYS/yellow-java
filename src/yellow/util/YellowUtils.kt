@@ -3,11 +3,13 @@ package yellow.util
 import arc.Core
 import arc.files.Fi
 import arc.graphics.Color
-import arc.math.Interp
+import arc.math.*
+import arc.scene.Element
 import arc.scene.event.Touchable
-import arc.scene.ui.Image
+import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.struct.Seq
+import arc.util.*
 import mindustry.game.Team
 import mindustry.gen.Groups
 import mindustry.type.UnitType
@@ -41,6 +43,10 @@ fun List<String>.filterComments(): List<String> = this.filter {it.isBlank() || !
 
 fun Fi.readLines(): List<String>{
     return this.readString().split('\n').filterComments()
+}
+
+fun <T: Element?> Cell<T>.pulseTooltip(text: CharSequence?, from: Color?, to: Color?, scl: Float): Cell<T> {
+    return this.tooltip {b: Table -> b.add(text).update {l: Label -> l.setColor(Tmp.c1.set(from).lerp(to, Mathf.absin(Time.time, scl, 1f)))}}
 }
 
 fun seperator(table: Table, width: Float): Cell<Image> = seperator(table, width, 10f)

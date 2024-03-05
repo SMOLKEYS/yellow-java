@@ -22,8 +22,8 @@ public class NameableWeapon extends Weapon implements Namec, YContent {
 
     @Override
     public String nameLocalized(){
-        displayName = Core.bundle.get("weapon." + name + ".name");
-        return displayName;
+        if(displayName != null) return displayName;
+        return displayName = Core.bundle.get("weapon." + name + ".name");
     }
 
     @Override

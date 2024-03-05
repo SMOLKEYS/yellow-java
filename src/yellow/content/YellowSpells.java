@@ -2,11 +2,13 @@ package yellow.content;
 
 import arc.input.*;
 import mindustry.content.*;
+import mindustry.gen.*;
 import yellow.entities.units.entity.*;
 import yellow.game.*;
+import yellow.input.*;
 import yellow.type.*;
 import yellow.type.spell.*;
-import yellow.input.*;
+import yellow.util.*;
 
 public class YellowSpells{
 
@@ -28,10 +30,12 @@ public class YellowSpells{
             cooldown = 30;
 
             //TODO probably bad
-            castListener = new KeyTapListener<YellowUnitEntity>(KeyCode.period, 1, 10, e -> {
-                if(e != null){
-                    for(SpellBind b: e.spells()){
-                        if(b.spell == this && b.ready()) b.cast(e);
+            castListener = new KeyTapListener<Unit>(KeyCode.period, 1, 10, e -> {
+                var u = YellowUtils.getActiveYellow(e.team);
+
+                if(u != null){
+                    for(SpellBind b: u.spells()){
+                        if(b.spell == this && b.ready()) b.cast(u);
                     }
                 }
             });

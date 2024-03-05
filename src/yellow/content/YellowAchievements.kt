@@ -51,7 +51,7 @@ object YellowAchievements {
     val grass = YAchievement("grass").apply {
         gameStateCondition = AchievementGameStateCondition.ingame
         condition = {
-            val yellow = YellowUtils.getActiveYellow()
+            val yellow = YellowUtils.getActiveYellow(Vars.player.team())
 
             if(yellow != null) yellow.isIdle() && Vars.world.tile((yellow.x / 8).toInt(), (yellow.y / 8).toInt())!!.floor()!! == Blocks.grass.asFloor() else false
         }
@@ -61,7 +61,7 @@ object YellowAchievements {
     val eepy = YAchievement("eepy-yellow").apply {
         gameStateCondition = AchievementGameStateCondition.ingame
         condition = {
-            val yellow = YellowUtils.getActiveYellow()
+            val yellow = YellowUtils.getActiveYellow(Vars.player.team())
 
             if(yellow != null) yellow.idleTime > 6000f else false
         }

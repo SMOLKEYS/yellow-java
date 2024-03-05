@@ -62,10 +62,6 @@ open class GhostUnitEntity: UnitEntity() {
         }
     }
 
-    override fun cap(): Int {
-        return count() + 1
-    }
-
     override fun write(write: Writes) {
         super.write(write)
         write.f(ghostLifetime)

@@ -2,7 +2,6 @@ package yellow.ui
 
 import arc.Core
 import arc.files.Fi
-import arc.discord.*
 import com.github.mnemotechnician.mkui.extensions.dsl.textButton
 import mindustry.Vars
 import mindustry.Vars.ui
@@ -58,7 +57,7 @@ object YellowSettings{
             }
 
             table.pref(ButtonSetting("notifs"){
-                YellowVars.notifs.show(Notification.instances)
+                YellowVars.ui.notifs.show(Notification.instances)
             })
 
             table.pref(ButtonSetting("callnotif"){
@@ -66,7 +65,7 @@ object YellowSettings{
             })
 
             table.pref(ButtonSetting("achievements"){
-                YellowVars.achievements.show()
+                YellowVars.ui.achievements.show()
             })
         }
     }

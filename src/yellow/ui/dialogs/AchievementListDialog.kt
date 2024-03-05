@@ -1,4 +1,4 @@
-package yellow.ui.buttons.dialogs
+package yellow.ui.dialogs
 
 import arc.scene.ui.Dialog
 import arc.util.Scaling

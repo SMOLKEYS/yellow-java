@@ -4,6 +4,7 @@ import arc.Events
 import arc.math.Mathf
 import arc.math.geom.Vec2
 import arc.struct.Seq
+import arc.util.Time
 import arc.util.io.*
 import kotmindy.mindustry.MUnit
 import mindustry.Vars
@@ -11,7 +12,7 @@ import mindustry.content.UnitTypes
 import mindustry.entities.Units
 import mindustry.entities.units.*
 import mindustry.gen.*
-import mindustry.type.Weapon
+import mindustry.type.*
 import yellow.YellowPermVars
 import yellow.content.*
 import yellow.entities.units.*
@@ -26,10 +27,11 @@ open class YellowUnitEntity: UnitEntity(){
     private var firstDeath = false
     private var franticTeleportTime = 60f
     private val everywhere = Vec2()
-    
+
     //turn into private field?
     var lives = 0
-    
+    var iframes = 0f
+
     var allowsHealing = false
     var panicMode = false
     var panicModeTypeTwo = false
@@ -62,7 +64,6 @@ open class YellowUnitEntity: UnitEntity(){
         dead = true
         health = 0f
         shield = 0f
-        entities.remove(this)
     }
     
     private fun invalidateDeath(){
@@ -101,8 +102,7 @@ open class YellowUnitEntity: UnitEntity(){
             x += Mathf.range(25f * 8f)
             y += Mathf.range(25f * 8f)
         }
-        
-        //fire the death invalidation event after everything
+
         Events.fire(DeathInvalidationEvent(this))
     }
     
@@ -122,11 +122,8 @@ open class YellowUnitEntity: UnitEntity(){
         return x > Vars.world.width() * 8f || x < 0f || y > Vars.world.height() * 8f || y < 0f
     }
 
-
     fun forceKill(){
-        while(lives > 0){
-            kill()
-        }
+        destroyFull()
     }
 
     fun despawn(){
@@ -163,6 +160,8 @@ open class YellowUnitEntity: UnitEntity(){
         }
     }
 
+    fun isInvulnerable() = iframes > 0
+
     fun findMount(weapon: Weapon) = mounts().find { it.weapon == weapon }
 
     override fun wobble(){}
@@ -174,6 +173,7 @@ open class YellowUnitEntity: UnitEntity(){
     }
 
     override fun destroy(){
+        if(isInvulnerable()) return
         
         if(lives > 1){
             invalidateDeath()
@@ -189,13 +189,24 @@ open class YellowUnitEntity: UnitEntity(){
             return
         }
 
-
         removeFull()
     }
+
+    override fun rawDamage(amount: Float){
+        var finalDamage = amount
     
-    
-    //just call the damage(float) method
-    //disregards withEffect entirely
+    	if(!isInvulnerable()){
+    		iframes = Mathf.random(30f, 80f)
+    		return
+    	}
+
+    	//cap damage to remaining health
+    	//TODO do i?
+    	//finalDamage = if(amount > health) health + 10f else amount
+
+    	super.rawDamage(amount)
+    }
+
     override fun damage(amount: Float){
         super.damage(amount)
     }
@@ -212,12 +223,24 @@ open class YellowUnitEntity: UnitEntity(){
         damage(amount)
     }
 
+    override fun damageContinuous(amount: Float) {
+        if(!isInvulnerable()) super.damageContinuous(amount)
+    }
+
+    override fun damageContinuousPierce(amount: Float) {
+        if(!isInvulnerable()) super.damageContinuousPierce(amount)
+    }
+
+    override fun apply(effect: StatusEffect, time: Float) {
+        if(!isInvulnerable()) super.apply(effect, time)
+    }
+
     override fun speed(): Float{
-        if(forceIdle){
+        return if(forceIdle){
             vel.set(0f, 0f)
-            return 0f
+            0f
         }else{
-            return super.speed()
+            super.speed()
         }
     }
 
@@ -228,6 +251,9 @@ open class YellowUnitEntity: UnitEntity(){
             initVars()
         }
 
+        if(isInvulnerable()) iframes -= Time.delta
+
+        //mfw meep testing utils
         spawnedByCore = false
 
         if(team.data().countType(type) > 1) {

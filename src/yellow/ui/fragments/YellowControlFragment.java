@@ -1,13 +1,13 @@
-package yellow.ui.buttons;
+package yellow.ui.fragments;
 
 import arc.scene.*;
 import arc.scene.style.*;
 import arc.scene.ui.ImageButton.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
+import yellow.*;
 import yellow.entities.units.entity.*;
 import yellow.util.*;
-import yellow.ui.buttons.dialogs.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -16,31 +16,26 @@ import static mindustry.Vars.*;
      * Adds a button anchored to the minimap, or a new row of buttons on mobile.
      * Originally made by xzxADIxzx.
      */
-public class YellowControl {
+public class YellowControlFragment{
     private static final float width = 150f;
     private static final float padding = 4f;
     private static final float isize = 48f;
 
-    private YellowControlDialog dialog;
 
     public void build(Group parent){
         Drawable icon = atlas.drawable("status-disarmed");
 
-        dialog = new YellowControlDialog();
-
         if(mobile){
             YellowUtils.mobileHudButton(icon, () -> {
-                if(player.unit() instanceof YellowUnitEntity) dialog.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit());
+                if(player.unit() instanceof YellowUnitEntity) YellowVars.ui.yellowControl.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit());
             });
             YellowUtils.mobileHudButton(Icon.down, () -> {
-                if(player.unit() instanceof YellowUnitEntity){
-                    YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
+                if(player.unit() instanceof YellowUnitEntity aegis){
                     aegis.setForceIdle(!aegis.getForceIdle());
                 }
             });
             YellowUtils.mobileHudButton(Icon.effect, () -> {
-                if(player.unit() instanceof YellowUnitEntity){
-                    YellowUnitEntity aegis = (YellowUnitEntity) player.unit();
+                if(player.unit() instanceof YellowUnitEntity aegis){
                     aegis.setEnableAutoIdle(!aegis.getEnableAutoIdle());
                 }
             });
@@ -57,16 +52,16 @@ public class YellowControl {
                 over = Styles.flatOver;
             }};
             
-            parent.fill(cont -> {
-                cont.name = "weapon switch";
-                cont.defaults().size(width / 2f);
+            parent.fill(t -> {
+                t.name = "weapon switch";
+                t.defaults().size(width / 2f);
     
-                cont.top().right();
-                cont.marginRight(width - padding);
+                t.top().right();
+                t.marginRight(width - padding);
     
-                cont.button(icon, style, isize, () -> dialog.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit()));
+                t.button(icon, style, isize, () -> YellowVars.ui.yellowControl.show(player.unit().mounts, ((YellowUnitEntity) player.unit()).spells(), (YellowUnitEntity) player.unit()));
 
-                cont.visible(() -> player.unit() instanceof YellowUnitEntity && !disableUI);
+                t.visible(() -> player.unit() instanceof YellowUnitEntity && !disableUI);
             });
         }
     }

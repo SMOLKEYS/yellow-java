@@ -77,6 +77,8 @@ configurations.all {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
+        //TODO dumb stupid idiot
+        //languageVersion = "2.0"
     }
 }
 

@@ -4,11 +4,13 @@ import arc.*;
 import arc.files.*;
 import arc.func.*;
 import arc.graphics.*;
+import arc.math.*;
 import arc.scene.style.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.*;
+import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 import yellow.*;
@@ -51,7 +53,7 @@ public class YellowUtils{
     //TODO use pages or scrollpane instead of rows
     public static void mobileHudButton(Drawable icon, Runnable listener){
         if(!Vars.mobile) return; //bwehehe
-        Table but = Vars.ui.hudGroup.find("mobile buttons");
+        var but = Vars.ui.hudGroup.<Table>find("mobile buttons");
         
         if(!once){
             once = true;
@@ -74,7 +76,7 @@ public class YellowUtils{
     //accepts icon1, run1, icon2, run2...
     public static void mobileHudButtons(Object... each){
         for(int i = 0; i < each.length / 2; i++){
-            mobileHudButton((Drawable) each[i], (Runnable) each[i + 1]);
+            if(each[i] instanceof Drawable d && each[i + 1] instanceof Runnable r) mobileHudButton(d, r);
         }
     }
 
@@ -85,9 +87,31 @@ public class YellowUtils{
     	}
     }
 
-    public static YellowUnitEntity getActiveYellow(){
-
-        return (YellowUnitEntity) Groups.unit.find(a -> a instanceof YellowUnitEntity);
+    public static YellowUnitEntity getActiveYellow(Team team){
+        return (YellowUnitEntity) Groups.unit.find(a -> a instanceof YellowUnitEntity && a.team == team);
     }
 
+    public static <T> T safeGet(Object object, String field){
+        try{
+            return Reflect.get(object, field);
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    public static void safeSet(Object object, String field, Object value){
+        try{
+            Reflect.set(object, field, value);
+        }catch(Exception ignored){
+
+        }
+    }
+
+    public static Color pulse(Color from, Color to, float scl){
+        return Tmp.c1.set(from).lerp(to, Mathf.absin(Time.time, scl, 1f));
+    }
+
+    public static Color pulse(Color to, float scl){
+        return pulse(Color.white, to, scl);
+    }
 }

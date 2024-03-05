@@ -8,7 +8,7 @@ import yellow.internal.*;
 
 public class Yellow extends Mod{
 
-    public static boolean cheats = false;
+    public static boolean cheats = false, debug = false;
 
     public Yellow(){
         //YellowVars.onImport();

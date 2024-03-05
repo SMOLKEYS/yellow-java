@@ -6,7 +6,7 @@ import yellow.util.YellowUtils.internalLog
 
 object YellowConsoleBind{
 
-    private val classes = arrayOf("yellow", "yellow.internal", "yellow.util", "yellow.ui", "yellow.content", "yellow.ai", "yellow.game", "yellow.input")
+    private val classes = arrayOf("yellow", "yellow.internal", "yellow.util", "yellow.ui", "yellow.ui.fragments", "yellow.content", "yellow.ai", "yellow.game", "yellow.input", "yellow.goodies.vn")
 
     @JvmStatic
     fun load(){

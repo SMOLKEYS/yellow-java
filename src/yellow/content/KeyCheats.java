@@ -1,6 +1,6 @@
 package yellow.content;
 
-import arc.util.*;
+import mindustry.*;
 import mindustry.gen.*;
 import yellow.*;
 import yellow.entities.units.entity.*;
@@ -15,7 +15,7 @@ public class KeyCheats{
          nuhUh = KeySequenceListener.listenTaps("n u h space u h", 30f, true, e -> {
             if(!Yellow.cheats) return;
 
-            YellowUnitEntity u = YellowUtils.getActiveYellow();
+            YellowUnitEntity u = YellowUtils.getActiveYellow(Vars.player.team());
 
             Sounds.wind3.play(20f);
 
@@ -28,14 +28,14 @@ public class KeyCheats{
                     no.remove();
                     no.damage(Float.MAX_VALUE);
 
-                    //here in nuhuh country, we do not have favorites
-                    //and so god help me because i mean it in every way possible
-                    try{
-                        Reflect.set(no, "trueHealth", 0f);
-                        Reflect.set(no, "trueMaxHealth", 0f);
-                    }catch(Exception ignored){
-
+                    if(no instanceof YellowUnitEntity guh){
+                        YellowUtils.safeSet(guh, "lastHealth", 0f);
+                        YellowUtils.safeSet(guh, "lastMaxHealth", 0f);
                     }
+
+                    //nuh uh
+                    YellowUtils.safeSet(no, "trueHealth", 0f);
+                    YellowUtils.safeSet(no, "trueMaxHealth", 0f);
                 });
             }
         });

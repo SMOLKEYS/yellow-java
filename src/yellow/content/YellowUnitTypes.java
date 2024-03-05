@@ -35,12 +35,13 @@ public class YellowUnitTypes{
             buildSpeed = 950f;
             deathExplosionEffect = YellowFx.yellowDeathEffect;
             alwaysShootWhenMoving = true;
+            faceTarget = true;
             allowedInPayloads = false;
             createScorch = false;
             createWreck = false;
 
             commands = new UnitCommand[]{YellowUnitCommand.wander, YellowUnitCommand.fly, UnitCommand.assistCommand, UnitCommand.moveCommand};
-            defaultCommand = UnitCommand.assistCommand;
+            defaultCommand = YellowUnitCommand.fly;
             
             aiController = FlyingAI::new;
             region = Core.atlas.find("yellow");

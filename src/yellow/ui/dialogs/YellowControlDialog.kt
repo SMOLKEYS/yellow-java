@@ -1,4 +1,4 @@
-package yellow.ui.buttons.dialogs
+package yellow.ui.dialogs
 
 import arc.scene.Element
 import arc.scene.event.Touchable
@@ -8,7 +8,6 @@ import mindustry.entities.units.WeaponMount
 import mindustry.graphics.Pal
 import mindustry.ui.Bar
 import mindustry.ui.dialogs.BaseDialog
-import yellow.YellowVars
 import yellow.entities.units.DisableableWeaponMount
 import yellow.entities.units.entity.*
 import yellow.type.*
@@ -61,11 +60,7 @@ open class YellowControlDialog: BaseDialog("@yellowcontrol") {
                         check((mount.weapon as NameableWeapon).displayName, mount.enabled) {a: Boolean ->
                             mount.enabled = a
                             if(mount.enabled) mount.enabled() else mount.disabled()
-                        }.update{ it.isChecked = mount.enabled }.left()
-
-                        textButton("?") {
-                            YellowVars.weaponInfo.show(mount.weapon as NameableWeapon)
-                        }.row()
+                        }.update{ it.isChecked = mount.enabled }.left().row()
                     } else {
                         check((mount.weapon as NameableWeapon).displayName, mount.enabled) {a: Boolean ->
                             mount.enabled = a

@@ -24,10 +24,10 @@ public class DistanceBasedWeapon extends DisableableWeapon{
     public void update(Unit unit, WeaponMount mount){
         super.update(unit, mount);
 
-        if(unit instanceof YellowUnitEntity){
+        if(unit instanceof YellowUnitEntity && unit.isPlayer()){
             DistanceBasedWeaponMount mount1 = (DistanceBasedWeaponMount) mount;
 
-            boolean shooter = unit.isPlayer() && (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && mount1.enabled;
+            boolean shooter = (Mathf.round(Mathf.dst(unit.x, unit.y, Core.camera.position.x, Core.camera.position.y)) >= distance) && mount1.enabled;
 
             if(shooter) {
                 mount1.shootTime++;
