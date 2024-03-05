@@ -4,7 +4,7 @@ import arc.audio.Sound
 import arc.struct.*
 import mindustry.gen.Sounds
 
-@Suppress("KotlinConstantConditions")
+@Suppress("KotlinConstantConditions", "unused")
 object DialogueParser {
 
     var testString = """
@@ -21,11 +21,9 @@ object DialogueParser {
     """.trimIndent()
 
     private var lastKeyword = "nothing"
-    private val cache = ObjectMap<String, Dialogue>()
 
     @JvmStatic
     fun parseString(input: String): Dialogue {
-        //very basic and wip
         val parts = input.trimIndent().split("\n")
         val map = ObjectMap<Int, DialogueIndex>()
 
@@ -235,7 +233,7 @@ object DialogueParser {
                                 sound += c1
                             }
                             1 -> {
-                                if(!c1.isDigit()){
+                                if(!c1.isDigit() && !c1.isWhitespace()){
                                     argP++
                                     return@p2
                                 }
@@ -278,12 +276,13 @@ object DialogueParser {
 
 
 
+    @Suppress("MemberVisibilityCanBePrivate")
     open class DialogueIndex{
         var character: InteractiveCharacter? = null
         var dialogueStart: () -> Unit = {}
         var dialogueEnd: () -> Unit = {}
-        var startSfx = Sounds.none
-        var endSfx = Sounds.none
+        var startSfx: Sound = Sounds.none
+        var endSfx: Sound = Sounds.none
         var sfxVol = 1f
         var autoskip = false
         var autoskipDelay = 0f
