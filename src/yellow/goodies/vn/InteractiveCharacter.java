@@ -1,24 +1,46 @@
 package yellow.goodies.vn;
 
 import arc.*;
+import arc.graphics.*;
+import arc.scene.ui.*;
 import arc.struct.*;
+import yellow.*;
 import yellow.internal.*;
+import yellow.util.*;
 
 import java.util.*;
 
 public class InteractiveCharacter implements Namec{
 
-    private static final Seq<InteractiveCharacter> instances = new Seq<>();
+    public static final Seq<InteractiveCharacter> instances = new Seq<>();
 
     public String name, displayName;
     public String shorthand;
+    public Color color = Color.white;
 
     public static InteractiveCharacter
-            narrator = new InteractiveCharacter("narrator"){{
+            none = new InteractiveCharacter("none"){{
                 displayName = "";
             }},
-            smol = new InteractiveCharacter("smol", "s"),
-            yellow = new InteractiveCharacter("yellow", "y");
+            smol = new InteractiveCharacter("smol"){{
+                color = Color.blue;
+            }
+                @Override
+                public void update(Label b){
+                    b.setColor(YellowUtils.pulse(Color.white, Color.blue, 15f));
+                }
+            },
+            yellow = new InteractiveCharacter("yellow", "y"){{
+                color = Color.yellow;
+            }},
+            player = new InteractiveCharacter("player", "pl"){{
+                color = Color.forest;
+            }
+                @Override
+                public String nameLocalized(){
+                    return YellowPermVars.INSTANCE.getStoryName();
+                }
+            };
 
     public InteractiveCharacter(String name, String shorthand){
         this.name = name;
@@ -36,6 +58,10 @@ public class InteractiveCharacter implements Namec{
 
     public static InteractiveCharacter getByShorthand(String s){
         return instances.find(e -> Objects.equals(e.shorthand, s));
+    }
+
+    public void update(Label b){
+
     }
 
     @Override

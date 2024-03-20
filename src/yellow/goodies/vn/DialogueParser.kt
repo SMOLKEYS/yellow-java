@@ -3,13 +3,16 @@ package yellow.goodies.vn
 import arc.audio.Sound
 import arc.struct.*
 import mindustry.gen.Sounds
+import yellow.YellowPermVars
 
 @Suppress("KotlinConstantConditions", "unused")
 object DialogueParser {
 
+    @JvmStatic
     var testString = """
+    name test
     s "This is a test-run of the dialogue parser I made."
-    s "Right now, it's very simple and buggy."
+    s "Right now, it's almost done, but may have some more things."
     y "It will receive improvements, though!"
     s "Well then..."
     s "Uh-" autoskip 12
@@ -17,10 +20,18 @@ object DialogueParser {
     s "Err-" autoskip 12
     s "Mhh-" autoskip 12
     s "Anyways...!"
-    s "See you later" nl "for now" nl 2 "I guess."
+    s "See you later{pause}" nl "for now" nl 2 "I guess."
     """.trimIndent()
 
     private var lastKeyword = "nothing"
+
+    private val specialKeywords = Seq<SpecialKeywordReplacement>().apply{
+        addAll(
+                SpecialKeywordReplacement("[[player]]"){
+                    return@SpecialKeywordReplacement YellowPermVars.storyName
+                }
+        )
+    }
 
     @JvmStatic
     fun parseString(input: String): Dialogue {
@@ -32,8 +43,16 @@ object DialogueParser {
         var index = -1
         var emptyLines = 0
 
+        var name = parts[0]
+        val named = name.startsWith("name") && InteractiveCharacter.getByShorthand("name") == null
 
         parts.forEach parts@{p ->
+            if(p == name && named){
+                if(named){
+                    name = name.removePrefix("name").trimStart()
+                }
+                return@parts
+            }
             var dquotes = 0
             var encounteredWhitespace = false
             var p1 = p
@@ -42,6 +61,10 @@ object DialogueParser {
             if(p1.isBlank()){
                 emptyLines++
                 return@parts
+            }
+
+            specialKeywords.each {r ->
+                p1 = p1.replace(r.old, r.read())
             }
 
             index++
@@ -120,7 +143,7 @@ object DialogueParser {
         }
 
         //caster blaster
-        return Dialogue(tfStrings.toArray(String::class.java), map)
+        return Dialogue(name, tfStrings.toArray(String::class.java), map)
     }
 
     private fun parseKeywords(source: Array<String?>, input: String?, dataOutput: DialogueIndex?, index: Int){
@@ -274,7 +297,15 @@ object DialogueParser {
         }
     }
 
+    data class SpecialKeywordReplacement(val old: String, private val new: () -> String){
 
+        var current: String = "???"
+
+        fun read(): String{
+            current = new()
+            return current
+        }
+    }
 
     @Suppress("MemberVisibilityCanBePrivate")
     open class DialogueIndex{

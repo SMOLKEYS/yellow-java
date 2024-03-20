@@ -30,6 +30,7 @@ Contribute to the mod here:
 
 Let me know of anything directly through my Discord profile, [blue]@smolkeys_[]!
 '''
-version: 0.8
+version: 0.74
 minGameVersion: 146
 java: true
+hideBrowser: true

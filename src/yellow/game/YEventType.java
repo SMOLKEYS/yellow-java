@@ -1,6 +1,7 @@
 package yellow.game;
 
 import mindustry.gen.*;
+import yellow.goodies.vn.*;
 
 public class YEventType{
 
@@ -21,10 +22,26 @@ public class YEventType{
     }
 
     public static class AchievementUnlockEvent{
-        public final YAchievement YAchievement;
+        public final YAchievement achievement;
 
         public AchievementUnlockEvent(YAchievement YAchievement){
-            this.YAchievement = YAchievement;
+            this.achievement = YAchievement;
+        }
+    }
+
+    public static class DialogueStartEvent{
+        public final Dialogue dialogue;
+
+        public DialogueStartEvent(Dialogue dialogue){
+            this.dialogue = dialogue;
+        }
+    }
+
+    public static class DialogueEndEvent{
+        public final Dialogue dialogue;
+
+        public DialogueEndEvent(Dialogue dialogue){
+            this.dialogue = dialogue;
         }
     }
 }

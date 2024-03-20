@@ -46,6 +46,10 @@ public class YellowUtils{
         if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(log);
     }
 
+    public static void internalLog(String text, Object... args){
+        if(YellowPermVars.INSTANCE.getInternalLoggering()) Log.info(text, args);
+    }
+
     public static void table(Table parent, Cons<Cell<Table>> child, Cons<Table> childContents){
         child.get(parent.table(childContents));
     }
@@ -91,6 +95,22 @@ public class YellowUtils{
         return (YellowUnitEntity) Groups.unit.find(a -> a instanceof YellowUnitEntity && a.team == team);
     }
 
+    public static <T> T safeInvoke(Object object, String methodName){
+        try{
+            return Reflect.invoke(object, methodName);
+        }catch(Exception ignored){
+            return null;
+        }
+    }
+
+    public static <T> T safeInvoke(Object object, String methodName, Object... args){
+        try{
+            return Reflect.invoke(object, methodName, args);
+        }catch(Exception ignored){
+            return null;
+        }
+    }
+
     public static <T> T safeGet(Object object, String field){
         try{
             return Reflect.get(object, field);
@@ -102,6 +122,38 @@ public class YellowUtils{
     public static void safeSet(Object object, String field, Object value){
         try{
             Reflect.set(object, field, value);
+        }catch(Exception ignored){
+
+        }
+    }
+
+    public static <T> T safeInvoke(String className, String methodName){
+        try{
+            return Reflect.invoke(Class.forName(className, true, Vars.mods.mainLoader()), methodName);
+        }catch(Exception ignored){
+            return null;
+        }
+    }
+
+    public static <T> T safeInvoke(String className, String methodName, Object... args){
+        try{
+            return Reflect.invoke(Class.forName(className, true, Vars.mods.mainLoader()), methodName, args);
+        }catch(Exception ignored){
+            return null;
+        }
+    }
+
+    public static <T> T safeGet(String className, String field){
+        try{
+            return Reflect.get(Class.forName(className, true, Vars.mods.mainLoader()), field);
+        }catch(Exception ignored){
+            return null;
+        }
+    }
+
+    public static void safeSet(String className, String field, Object value){
+        try{
+            Reflect.set(Class.forName(className, true, Vars.mods.mainLoader()), field, value);
         }catch(Exception ignored){
 
         }

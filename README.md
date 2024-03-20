@@ -1,3 +1,33 @@
+# Rewrite
+
+With Yellow's effectively brainrotting codebase, and for my general sanity, Yellow will be rewritten from scratch.
+
+This repository will be archived.
+
+## Q&A
+
+> Why?
+
+The codebase has become substantially too large and unstable for me to maintain. I wasn't really expecting this mod to reach this magnitude, and now that it's getting to me, I realize trying to hold this codebase up will probably drive me insane.
+
+> Where can I find the rewritten version?
+
+[Here.](https://giithub.com/SMOLKEYS/yellow-rewritten)
+
+> What will happen to the old content?
+
+Nothing. All content will be ported to the rewritten version, but with some minor changes.
+
+> Why a new repository?
+
+Aside from the codebase being a disaster, this repository is general is also a disaster.
+
+> Why can Yellow be permanently disabled in-game?
+
+For the sake of stopping those who don't know any better from reporting any bugs/issues Yellow has.
+
+---
+
 # Yellow
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)

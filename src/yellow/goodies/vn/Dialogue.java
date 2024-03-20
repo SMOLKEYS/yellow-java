@@ -3,28 +3,25 @@ package yellow.goodies.vn;
 import arc.struct.*;
 
 public class Dialogue{
+    public String name;
     public String[] dialogues;
-    public ObjectMap<Integer, DialogueParser.DialogueIndex> characterSwitches;
+    public ObjectMap<Integer, DialogueParser.DialogueIndex> indexes;
 
     public int increment = 0;
-    private InteractiveCharacter curr;
 
-    public Dialogue(String[] dialogues, ObjectMap<Integer, DialogueParser.DialogueIndex> characterSwitches){
+    public Dialogue(String name, String[] dialogues, ObjectMap<Integer, DialogueParser.DialogueIndex> indexes){
+        this.name = name;
         this.dialogues = dialogues;
-        this.characterSwitches = characterSwitches;
-
-        if(characterSwitches.get(0) == null) throw new IllegalArgumentException("index 0 of characterSwitches must have an InteractiveCharacter.");
-
-        curr = characterSwitches.get(0).getCharacter();
+        this.indexes = indexes;
     }
 
 
     public DialogueParser.DialogueIndex currentData(){
-        return characterSwitches.get(increment);
+        return indexes.get(increment);
     }
 
     public InteractiveCharacter currentCharacter(){
-        return characterSwitches.get(increment).getCharacter();
+        return indexes.get(increment).getCharacter();
     }
 
     public String currentString(){

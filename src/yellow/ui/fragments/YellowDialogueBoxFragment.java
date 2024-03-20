@@ -10,6 +10,7 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
+import yellow.game.*;
 import yellow.goodies.vn.*;
 import yellow.util.*;
 
@@ -104,6 +105,13 @@ public class YellowDialogueBoxFragment{
         });
     }
 
+    public void update(){
+        if(activeDialogue != null){
+            InteractiveCharacter cc = activeDialogue.currentCharacter();
+            cc.update(nameText);
+        }
+    }
+
     public void show(Dialogue dialogu){
         activeDialogue = dialogu;
         autoTime = 0f;
@@ -114,6 +122,7 @@ public class YellowDialogueBoxFragment{
         dialogue.restart(activeDialogue.currentString());
         visible = true;
         playing = true;
+        Events.fire(new YEventType.DialogueStartEvent(activeDialogue));
     }
 
     public void hide(){
@@ -129,17 +138,25 @@ public class YellowDialogueBoxFragment{
     private void prog(){
     	if(activeDialogue != null){
             hasEnded = false;
+            if(dialogue.isPaused()){
+                dialogue.resume();
+                return;
+            }
     		if(!dialogue.hasEnded()){
     			dialogue.skipToTheEnd();
-    			dialogue.cancelSkipping();
-    		}
+                return;
+    		}else{
+                dialogue.cancelSkipping();
+            }
     		activeDialogue.next();
     		if(activeDialogue.completed()){
+                Events.fire(new YEventType.DialogueEndEvent(activeDialogue));
     			hide();
     			return;
     		}
             activeDialogue.currentData().getStartSfx().play(activeDialogue.currentData().getSfxVol());
     		nameText.setText(activeDialogue.currentCharacter().nameLocalized());
+    		nameText.setColor(activeDialogue.currentCharacter().color);
     		dialogue.restart(activeDialogue.currentString());
     	}
     }
@@ -150,9 +167,8 @@ public class YellowDialogueBoxFragment{
             hasEnded = false;
     		activeDialogue.prev();
     		nameText.setText(activeDialogue.currentCharacter().nameLocalized());
+    		nameText.setColor(activeDialogue.currentCharacter().color);
     		dialogue.restart(activeDialogue.currentString());
-    		dialogue.skipToTheEnd();
-    		dialogue.cancelSkipping();
     	}
     }
 

@@ -23,11 +23,12 @@ import mindustry.ui.*
 import mindustry.world.meta.*
 import yellow.YellowPermVars
 import yellow.entities.units.entity.YellowUnitEntity
+import yellow.goodies.vn.*
 import yellow.type.*
 import yellow.util.*
 import yellow.world.meta.YellowStats
 
-open class YellowUnitType(name: String): UnitType(name) {
+open class YellowUnitType(name: String): UnitType(name), CharacterUnit {
 
     var maxLives = 5
     var afterDeath: Array<Cons<YellowUnitEntity>?> = arrayOfNulls(maxLives)
@@ -132,4 +133,6 @@ open class YellowUnitType(name: String): UnitType(name) {
         stats.add(YellowStats.age, "23", YellowStats.yearsOld)
         stats.add(YellowStats.affinity, "${YellowPermVars.affinity} / 100")
     }
+
+    override fun getCharacter(): InteractiveCharacter? = null
 }

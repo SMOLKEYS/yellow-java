@@ -1,15 +1,19 @@
 package yellow;
 
+import arc.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.core.*;
+import mindustry.game.*;
 import mindustry.mod.*;
 import yellow.content.*;
 import yellow.core.*;
+import yellow.flabel.*;
 import yellow.game.*;
 import yellow.internal.*;
 import yellow.ui.*;
 import yellow.util.*;
+import yellow.goodies.vn.*;
 
 import java.util.*;
 
@@ -33,9 +37,13 @@ public class YellowVars{
             YState.INSTANCE.load();
         }
 
+        FRegistry.load();
+
         Mods.ModMeta meta = getSelf().meta;
         MetaChaos.load();
         YellowUtils.loop(1f, () -> MetaChaos.update(meta));
+
+        Events.run(EventType.Trigger.update, YellowUpdateCore::updateNoncontent);
 
         Log.info("Loaded all of Yellow in @ seconds", Time.elapsed());
     }

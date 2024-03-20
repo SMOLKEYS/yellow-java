@@ -28,11 +28,6 @@ public class KeyCheats{
                     no.remove();
                     no.damage(Float.MAX_VALUE);
 
-                    if(no instanceof YellowUnitEntity guh){
-                        YellowUtils.safeSet(guh, "lastHealth", 0f);
-                        YellowUtils.safeSet(guh, "lastMaxHealth", 0f);
-                    }
-
                     //nuh uh
                     YellowUtils.safeSet(no, "trueHealth", 0f);
                     YellowUtils.safeSet(no, "trueMaxHealth", 0f);

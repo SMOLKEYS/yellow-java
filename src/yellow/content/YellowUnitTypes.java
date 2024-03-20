@@ -6,6 +6,7 @@ import mindustry.ai.types.*;
 import mindustry.type.*;
 import yellow.ai.*;
 import yellow.entities.units.*;
+import yellow.goodies.vn.*;
 
 public class YellowUnitTypes{
 
@@ -52,7 +53,12 @@ public class YellowUnitTypes{
 
             spells.addAll(YellowSpells.fireCircle, YellowSpells.dash);
             weapons.addAll(YellowWeapons.meltdownBurstAttack, YellowWeapons.bullethell, YellowWeapons.airstrikeFlareLauncher, YellowWeapons.antiMothSpray, YellowWeapons.decimation, YellowWeapons.disruptor, YellowWeapons.ghostCall, YellowWeapons.ghostRain, YellowWeapons.speedEngine, YellowWeapons.dualSpeedEngine, YellowWeapons.igneous);
-        }};
+        }
+            @Override
+            public InteractiveCharacter getCharacter(){
+                return InteractiveCharacter.yellow;
+            }
+        };
         
         ghostFlare = new GhostUnitType("ghost-flare"){{
             flying = true;

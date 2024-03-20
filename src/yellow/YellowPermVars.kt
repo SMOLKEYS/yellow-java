@@ -14,6 +14,11 @@ object YellowPermVars {
     var weaponSanityCheck by setting(true, syn)
     var enableRpc by setting(false, syn)
 
+    var disabled by setting(false)
+
+    /** Name of the player in the main story. */
+    var storyName by setting("Zen", syn)
+
     private var _affinity by setting(0f, syn)
     var affinity
       get() = _affinity
