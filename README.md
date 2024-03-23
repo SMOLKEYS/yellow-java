@@ -12,7 +12,7 @@ The codebase has become substantially too large and unstable for me to maintain.
 
 > Where can I find the rewritten version?
 
-[Here.](https://giithub.com/SMOLKEYS/yellow-rewritten)
+[Here.](https://github.com/SMOLKEYS/yellow-rewritten)
 
 > What will happen to the old content?
 
