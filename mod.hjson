@@ -1,36 +1,12 @@
-displayName: "Yellow"
+displayName: "Yellow (Java)"
 name: "yellow-java"
 author: "SMOLKEYS"
 main: "yellow.Yellow"
 description: '''
-Chaos in a mod!
-
-Uprising from a basic shitpost JS mod to the very Java mod that defines my shitposting...
-...meet [yellow]Yellow[]!
-
-Features:
-
-    - Yellow, the unit stronger than vanilla units but weaker than most modded units
-    - 10+ disableable weapons for Yellow of varying powers
-    - Spells (or Abilities)! Things that make Yellow do funny stuff
-    - 5 lives for Yellow, which invoke different effects for each life lost (this is 4/5th lie 1/5th truth)
-    
-As time passes, even more features will arrive. Come along!
-
-Have a chat about Yellow and other mods by me:
-[cyan]https://discord.com/invite/uAddT46bFx[]
-
-Send in any bugs and crashes here:
-[red]https://github.com/SMOLKEYS/yellow-java/issues[]
-Suggestions may also be sent here.
-
-Contribute to the mod here:
-[green]https://github.com/SMOLKEYS/yellow-java/pulls[]
-
-
-Let me know of anything directly through my Discord profile, [blue]@smolkeys_[]!
+Another go, once more.
 '''
-version: 0.74
+version: 0.1
 minGameVersion: 146
 java: true
+# hide at the moment
 hideBrowser: true

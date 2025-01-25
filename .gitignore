@@ -160,3 +160,13 @@ android/libs/
 *.c
 dev-*
 number
+
+## Discord Extension
+/discord/build
+
+## Development Quotas
+QUOTA*
+
+## Specials
+/story-stuff/*
+ENTRY*

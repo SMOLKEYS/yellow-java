@@ -1,49 +1,35 @@
 package yellow;
 
 import arc.*;
+import arc.scene.actions.*;
+import arc.scene.ui.*;
 import arc.util.*;
-import mindustry.*;
-import mindustry.game.EventType.*;
+import mindustry.game.*;
 import mindustry.mod.*;
-import yellow.internal.*;
+import mindustry.ui.dialogs.*;
 
 public class Yellow extends Mod{
 
-    public static boolean cheats = false, debug = false;
-
     public Yellow(){
-        if(YellowPermVars.INSTANCE.getDisabled()) return;
-        Events.run(ClientLoadEvent.class, () -> Vars.ui.showCustomConfirm(
-                "Yellow: Rewritten",
-                "@yellow.finalver",
-                "Disable",
-                "Ignore",
-                () -> {
-                    YellowPermVars.INSTANCE.setDisabled(true);
-                    Vars.ui.showCustomConfirm(
-                            "Finished",
-                            "[red]This version of Yellow has been permanently disabled.[]\n\nRefer to the buttons below to see why Yellow is being rewritten.",
-                            "README.md",
-                            "Rewritten",
-                            () -> Core.app.openURI("https://github.com/SMOLKEYS/yellow-java"),
-                            () -> Core.app.openURI("https://github.com/SMOLKEYS/yellow-rewritten")
-                    );
-                },
-                () -> {}
-        ));
+        Events.run(EventType.ClientLoadEvent.class, () -> {
+            BaseDialog wip = new BaseDialog("Yellow");
 
-        var yellow = "yellow time! ";
-        for(int i = 0; i < 5; i++) yellow += yellow;
-        Log.info(yellow);
-        
-        Events.run(ClientLoadEvent.class, YellowVars::load);
-    }
+            wip.cont.labelWrap("Hello there!\nYellow is entering a third rewrite, and the code is currently empty.\nYou probably shouldn't be here.\n\n\nYet.").labelAlign(Align.center).row();
+            Image i = wip.cont.image(Core.atlas.find("yellow-java-yellow")).get();
 
-    @Override
-    public void loadContent(){
-        if(YellowPermVars.INSTANCE.getDisabled()) return;
-        Time.mark();
-        YellowContentLoader.load();
-        Log.info("Loaded all Yellow content and special disableable weapon mirror in @ seconds", Time.elapsed());
+            i.clicked(() -> {
+                i.actions(Actions.sequence(
+                        Actions.scaleBy(0.5f, -0.5f),
+                        Actions.scaleBy(-0.5f, 0.5f, 0.25f)
+                ));
+            });
+
+            wip.cont.row();
+            wip.cont.button("Noted", () -> {
+                wip.hide(Actions.fadeOut(2));
+            }).size(150, 50);
+
+            wip.show();
+        });
     }
 }

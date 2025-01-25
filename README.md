@@ -8,13 +8,10 @@ Hello hello! This repo shall be seeing use once more~
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
-[![BE Builds](https://img.shields.io/badge/Bleeding%20Edge%20Builds-Stable%3F%20Who%20knows!-red?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java-builds/releases)
-
-[![Release Builds](https://img.shields.io/badge/Release%20Builds-Stable%3F%20Yep!-green?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+[![Release Builds](https://img.shields.io/badge/Release%20Builds-Stable%3F%20I%20Think%20So%3F-green?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
 ![Stars](https://img.shields.io/github/stars/SMOLKEYS/yellow-java?style=for-the-badge)
 
-![Languages](https://img.shields.io/github/languages/count/SMOLKEYS/yellow-java?style=for-the-badge)
 
 A random piece of chaos I made. Mostly just a mod containing whatever comes in mind for me.
 
