@@ -2,6 +2,62 @@
 
 Hello hello! This repo shall be seeing use once more~
 
+Developer Quota for third rewrite:
+
+```
+TBSC - to be scrapped
+TBSH - to be shelved
+I - idea
+```
+
+- [] Initial Code - v0.001
+  * [X] Startup warning for v0.001
+  * [] Basic update checker
+- [] Content
+  * [] Entity classes
+    * [] Weapon master entities
+    * [] Multi-life entities
+    * [] Ghost entities
+    * [] Magic entities (TBSH?)
+  * [] Weapon classes
+    * [] Named weapons
+    * [] Toggle weapons
+      * [] Basic control UI
+  * [] Bullet classes
+    * [] Invincibility bypass bullets
+    * [] Flying continuous lasers
+  * [] Yellow
+    * [] Balancing attempt (I)
+    * [] VFX
+  * [] Weapons from legacy codebases + New weapons
+    * [] "Reasonable" weapons
+      * [] Rapid-fire Blasters
+      * [] Explosive Artillery Cannons
+      * [] High-powered Railgun
+    * [] Unreasonably overpowered weapons
+      * [] Laser Barrage
+      * [] Bullet Storms 
+      * [] Homing Bomber Flares
+      * [] H.E. Rounds
+      * [] Electromagnetic Pulse Wave
+      * [] Ghost Call
+      * [] High-speed Booster
+      * [] 8X Rotating Lasers
+      * [] H.EN. Electric Orbs
+      * [] 4X Railguns
+  * [] Spells (TBSH?)
+- [] UI (complete implementation)
+  * [] Own implementation of loading screen (I)
+  * [] Notifications
+  * [] Life counter
+  * [] Weapon manager
+  * [] Spell controller (TBSH?)
+- [] Others
+  * [] Automatic update checker
+    * [] Downloader
+    * [] Popup (Notification)
+  * Discord RPC (TBSC?)
+
 ---
 
 # Yellow

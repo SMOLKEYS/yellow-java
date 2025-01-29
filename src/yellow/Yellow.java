@@ -4,6 +4,7 @@ import arc.*;
 import arc.scene.actions.*;
 import arc.scene.ui.*;
 import arc.util.*;
+import mindustry.*;
 import mindustry.game.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;

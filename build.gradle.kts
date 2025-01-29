@@ -294,11 +294,11 @@ tasks.jar {
     from("$rootDir/assets/") { include("**") }
 }
 
-project(":discord") {
-    dependencies {
-        compileOnly(arc(":discord"))
-    }
-}
+//project(":discord") {
+//    dependencies {
+//        compileOnly(arc(":discord"))
+//    }
+//}
 
 task("copy") {
     group = "copy"
