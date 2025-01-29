@@ -8,5 +8,5 @@ Another go, once more.
 version: 0.001
 minGameVersion: 146
 java: true
-# hide at the moment
-hideBrowser: true
+# welcome back
+hideBrowser: false
