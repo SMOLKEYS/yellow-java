@@ -1,7 +1,5 @@
 # Rewrite (3rd Attempt)
 
-Hello hello! This repo shall be seeing use once more~
-
 Developer Quota for third rewrite:
 
 ```
@@ -10,9 +8,13 @@ TBSH - to be shelved
 I - idea
 ```
 
-- [] Initial Code - v0.001
+`author comment: oh my fucking god`
+
+Completed Rewrites: `3/48`
+
+- [X] Initial Code - v0.001
   * [X] Startup warning for v0.001
-  * [] Basic update checker
+  * [X] Basic update checker
 - [] Content
   * [] Entity classes
     * [] Weapon master entities
@@ -56,7 +58,8 @@ I - idea
   * [] Automatic update checker
     * [] Downloader
     * [] Popup (Notification)
-  * Discord RPC (TBSC?)
+  * [] Discord RPC (TBSC?)
+  * [] Extensions (TBSH?)
 
 ---
 
