@@ -176,10 +176,12 @@ Janssendel - David's Star effect for Bullethell
 |[The Original Project Repository (JS)](https://github.com/SMOLKEYS/yellow)|
 
 
-|Time|Event|Info|
-|---|---|---|
-|August 5, 2021; 8:41PM PST|Prologue|The first image of the flare|
-|August 5, 2021; 8:44PM PST|Prologue|Designation of name "Yellow" to the flare (by ffx#0370)|
-|August 5, 2021; 8:48PM PST|Beginning|Project commited to GitHub|
-|August 21, 2021; ??? PST|Beginning|Uploaded yellow sprite|
-|December 6, 2021: ??? PST|New Beginning|Creation of the java version of the project, aka this repository|
+| Date             | Event  | Info                                                                                         |
+|------------------|--------|----------------------------------------------------------------------------------------------|
+| August 5, 2021   | Part 1 | The first image of the flare                                                                 |
+| August 5, 2021   | Part 1 | Flare named "Yellow" (by ffx#0370)                                                           |
+| August 5, 2021   | Part 1 | Project commited to GitHub                                                                   |
+| August 21, 2021  | Part 1 | Uploaded yellow sprite                                                                       |
+| December 6, 2021 | Part 2 | Creation of the Java version of the project, aka this repository (+ archival of old JS repo) |
+| March 22, 2024   | Part 3 | Rewrite of entire codebase in pure Java (+ archival of this repo)                            |
+| January 2, 2025  | Part 4 | Second rewrite of entire codebase, with this repo                                            |
