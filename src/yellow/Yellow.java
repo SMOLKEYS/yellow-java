@@ -34,9 +34,11 @@ public class Yellow extends Mod{
             });
 
             wip.cont.row();
-            wip.cont.button("Noted", () -> {
-                wip.hide(Actions.fadeOut(0.2f));
-            }).size(150, 50).row();
+            wip.cont.button("Noted", wip::hide).size(150, 50).row();
+
+            wip.cont.button("Repository", () -> {
+                Core.app.openURI("https://github.com/SMOLKEYS/yellow-java");
+            }).size(450, 50).row();
 
             s.set("Checking for updates...");
             wip.cont.labelWrap(s::get).labelAlign(Align.center);
@@ -49,7 +51,7 @@ public class Yellow extends Mod{
                 String cur = Vars.mods.getMod(Yellow.class).meta.version;
                 String lat = ver[0];
 
-                if(Objects.equals(cur, lat)){
+                if(!Objects.equals(cur, lat)){
                     s.set("New update available!\n[accent]" + cur + "[] -> [accent]" + lat + "[]\nYou can update from the mods list.");
                 }else{
                     s.set("No new updates found.");
