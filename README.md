@@ -120,7 +120,9 @@ There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) i
 > [!WARNING]
 > Because of [limitations that Google applied to Android 14+](https://android.googlesource.com/platform/art/+/master/runtime/native/dalvik_system_DexFile.cc#380), **Mindustry v147 and beyond on such Android versions may fail loading Java mods entirely, depending on how OEMs implement said versions.**
 >
-> **This is something us modders nor Anuke can fix or work around on.**
+> **This is something us modders nor Anuke can fix.**
+> 
+> "Google, fuck you."
 
 > [!NOTE]
 > It is more than recommended to see how it works by following the steps above for the PC-only jar.

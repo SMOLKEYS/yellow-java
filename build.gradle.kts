@@ -8,7 +8,7 @@ version = "1.0"
 
 val windows = System.getProperty("os.name").lowercase().contains("windows")
 
-val mindustryVersion = "v146"
+val mindustryVersion = "v147"
 val entVersion = "v146.0.10"
 
 //project properties (used in androidCopy)
