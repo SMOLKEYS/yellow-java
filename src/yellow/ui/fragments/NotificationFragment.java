@@ -161,8 +161,10 @@ public class NotificationFragment implements CommonFragment{
         });
 
         if(persist){
+            t.tooltip("@yellow-persnotif-info", true);
             tr.actions(Actions.translateBy(-width, 0, 1, Interp.pow3Out));
         }else{
+            t.tooltip("@yellow-notif-info", true);
             tr.hovered(() -> {
                 if(tr.getActions().peek() instanceof SequenceAction s && s.getActions().peek() instanceof DelayAction) tr.getActions().clear();
             });
@@ -208,8 +210,10 @@ public class NotificationFragment implements CommonFragment{
         });
 
         if(persist){
+            t.tooltip("@yellow-persnotif-info", true);
             tr.actions(Actions.translateBy(-width, 0, 1, Interp.pow3Out));
         }else{
+            t.tooltip("@yellow-notif-info", true);
             tr.hovered(() -> {
                 if(tr.getActions().peek() instanceof SequenceAction s && s.getActions().peek() instanceof DelayAction) tr.getActions().clear();
             });

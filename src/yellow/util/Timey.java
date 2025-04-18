@@ -9,7 +9,7 @@ public class Timey{
     hour = 60*60*1000L,
     day = 60*60*24*1000L,
     febLeapMonth = 60*60*24*29*1000L,
-    shortMonth = 60*60*24*30*1000L,
+    standardMonth = 60*60*24*30*1000L,
     longMonth = 60*60*24*31*1000L;
 
     public static void runLoop(Runnable r, float intervalSeconds){

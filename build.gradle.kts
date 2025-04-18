@@ -11,7 +11,7 @@ val windows = System.getProperty("os.name").lowercase().contains("windows")
 val mindustryVersion = "v147"
 val entVersion = "v146.0.10"
 
-//project properties (used in androidCopy)
+//project properties
 val useBE = project.hasProperty("adb.useBE") && parseBoolean(project.property("adb.useBE").toString())
 val quickstart = project.hasProperty("adb.quickstart") && parseBoolean(project.property("adb.quickstart").toString())
 
@@ -31,9 +31,9 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven("https://oss.sonatype.org/content/repositories/snapshots/")
-        maven("https://oss.sonatype.org/content/repositories/releases/")
-        maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://oss.sonatype.org/content/repositories/releases")
+        maven("https://maven.xpdustry.com/mindustry")
         maven("https://raw.githubusercontent.com/GlennFolker/EntityAnnoMaven/main")
         maven("https://www.jitpack.io")
     }
@@ -49,6 +49,8 @@ allprojects {
 
     dependencies {
         compileOnly(arc(":arc-core"))
+        compileOnly(arc(":discord"))
+        compileOnly(arc(":backend-sdl"))
         compileOnly(mindustry(":core"))
 
         //oh yeah

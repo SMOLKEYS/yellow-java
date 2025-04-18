@@ -10,27 +10,23 @@ I - idea
 
 `author comment: oh my fucking god`
 
-Completed Rewrites: `3/48`
-
-- [X] Initial Code - v0.001
-  * [X] Startup warning for v0.001
-  * [X] Basic update checker
+- [X] Initial Code - 0.001
 - [] Content
   * [] Entity classes
     * [] Weapon master entities
     * [] Multi-life entities
-    * [] Ghost entities
-    * [] Magic entities (TBSH?)
+    * [X] Ghost entities - 0.002
+    * [] ~~Magic entities~~ (Shelved)
   * [] Weapon classes
-    * [] Named weapons
-    * [] Toggle weapons
+    * [X] Named weapons - 0.002
+    * [X] Toggle weapons - 0.002
       * [] Basic control UI
   * [] Bullet classes
     * [] Invincibility bypass bullets
     * [] Flying continuous lasers
   * [] Yellow
-    * [] Balancing attempt (I)
-    * [] VFX
+    * [] ~~Balancing attempt~~ (nah)
+    * [X] VFX (TODO) - 0.002
   * [] Weapons from legacy codebases + New weapons
     * [] "Reasonable" weapons
       * [] Rapid-fire Blasters
@@ -47,18 +43,17 @@ Completed Rewrites: `3/48`
       * [] 8X Rotating Lasers
       * [] H.EN. Electric Orbs
       * [] 4X Railguns
-  * [] Spells (TBSH?)
+  * [] ~~Spells~~ (Shelved)
 - [] UI (complete implementation)
-  * [] Own implementation of loading screen (I)
-  * [] Notifications
+  * [X] Notifications - 0.002
   * [] Life counter
   * [] Weapon manager
-  * [] Spell controller (TBSH?)
+  * [] ~~Spell controller~~ (Shelved)
 - [] Others
-  * [] Automatic update checker
+  * [X] Automatic update checker - 0.002
     * [] Downloader
-    * [] Popup (Notification)
-  * [] Discord RPC (TBSC?)
+    * [X] Popup (Notification) - 0.002
+  * [] Discord RPC
   * [] Extensions (TBSH?)
 
 ---

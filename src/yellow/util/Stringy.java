@@ -9,6 +9,7 @@ public class Stringy{
 
     static String collection = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
     static Rand r = new Rand();
+    static StringBuilder b = new StringBuilder();
 
     /** Accepts a list of strings and returns the first non-null one. Returns null if the entire list is all nulls. */
     public static String alternative(String... inputs){
@@ -26,6 +27,23 @@ public class Stringy{
     /** Returns a random char from the inputted string using the specified random source. */
     public static char random(String input, Rand rand){
         return input.charAt(rand.random(0, input.length() - 1));
+    }
+
+    public static float handleNumber(String input){
+        b.setLength(0);
+        b.trimToSize();
+        boolean finished = false;
+
+        for(int i = 0; i < input.length(); i++){
+            char ind = input.charAt(i);
+            if((Character.isDigit(ind) || ind == '.') && !finished){
+                b.append(ind);
+            }else{
+                finished = true;
+            }
+        }
+
+        return Strings.parseFloat(b.toString());
     }
 
     public static String formatStat(Stat stat, Object text, @Nullable Color wrapColor){

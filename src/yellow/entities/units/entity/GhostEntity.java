@@ -7,7 +7,6 @@ import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
 import yellow.entities.units.*;
-import yellow.io.*;
 
 public class GhostEntity extends UnitEntity{
     private static final int mappingId = EntityMapping.register("ghost-unit", GhostEntity::new);

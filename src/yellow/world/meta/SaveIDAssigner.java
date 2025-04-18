@@ -1,11 +1,12 @@
 package yellow.world.meta;
 
 import arc.struct.*;
-import java.util.*;
 import mindustry.*;
 import mindustry.game.*;
 import mindustry.type.*;
 import yellow.util.*;
+
+import java.util.*;
 
 public class SaveIDAssigner{
 

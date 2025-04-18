@@ -1,8 +1,9 @@
 package yellow.util;
 
 import arc.util.*;
-import java.lang.reflect.*;
 import mindustry.*;
+
+import java.lang.reflect.*;
 
 @SuppressWarnings("UnusedReturnValue")
 public class SafeReflect{
