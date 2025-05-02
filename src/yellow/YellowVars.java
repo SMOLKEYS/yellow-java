@@ -3,6 +3,9 @@ package yellow;
 import arc.*;
 import arc.scene.event.*;
 import arc.scene.ui.layout.*;
+import mindustry.*;
+import yellow.combat.*;
+import yellow.cutscene.*;
 import yellow.ui.fragments.*;
 import yellow.util.*;
 
@@ -15,6 +18,9 @@ public class YellowVars{
     public static NotificationFragment notifrag;
 
     public static WidgetGroup overlayGroup;
+
+    public static Cutscenes cutscenes;
+    public static CombatMode combat;
 
     static Date date;
 
@@ -36,6 +42,12 @@ public class YellowVars{
         ltfrag.build(overlayGroup);
         blankfrag.build(overlayGroup);
         notifrag.build(overlayGroup);
+
+        cutscenes = new Cutscenes();
+        cutscenes.init();
+
+        combat = new CombatMode();
+        combat.init();
     }
 
     public static void onImport(){

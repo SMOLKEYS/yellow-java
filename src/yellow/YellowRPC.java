@@ -6,7 +6,6 @@ import mindustry.*;
 import mindustry.gen.*;
 import yellow.util.*;
 
-//somewhat broken when dealing with arRPC, no clue on how to fix :bigsad:
 @SuppressWarnings("unused")
 public class YellowRPC{
 

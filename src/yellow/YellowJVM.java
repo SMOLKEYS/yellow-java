@@ -6,10 +6,9 @@ import mindustry.*;
 import java.util.*;
 
 @SuppressWarnings("SameParameterValue")
-final class YellowJVM{
+public final class YellowJVM{
 
     private static String source = "sun.java.command";
-
 
     static void setSource(String newSource){
         source = newSource;

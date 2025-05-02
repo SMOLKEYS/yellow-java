@@ -19,6 +19,12 @@ import yellow.ui.*;
 import yellow.util.*;
 
 public class NotificationFragment implements CommonFragment{
+    
+    public float enterExitTime = 1.0f, flickTime = 0.2f;
+    
+    public Interp enterInterp = Interp.pow3Out,
+            exitInterp = Interp.pow3In,
+            flickInterp = Interp.fastSlow;
 
     private Table table;
     private Drawable persistent, error;
@@ -132,7 +138,7 @@ public class NotificationFragment implements CommonFragment{
 
         tr.clicked(KeyCode.mouseLeft, () -> {
             tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, 1, Interp.pow3In),
+                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
                     Actions.run(() -> {
                         table.getCells().remove(t);
                         if(clicked != null) clicked.run();
@@ -144,7 +150,7 @@ public class NotificationFragment implements CommonFragment{
         //flick out notification
         tr.clicked(KeyCode.mouseRight, () -> {
             tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, 0.2f, Interp.fastSlow),
+                    Actions.translateBy(width, 0, flickTime, flickInterp),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));
@@ -154,7 +160,7 @@ public class NotificationFragment implements CommonFragment{
             float len = Mathf.len(dx, dy);
             //Log.info("len @, dx @, dy @", len, dx, dy);
             if(len >= 10f) tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, 0.2f, Interp.fastSlow),
+                    Actions.translateBy(width, 0, flickTime, flickInterp),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));
@@ -162,7 +168,7 @@ public class NotificationFragment implements CommonFragment{
 
         if(persist){
             t.tooltip("@yellow-persnotif-info", true);
-            tr.actions(Actions.translateBy(-width, 0, 1, Interp.pow3Out));
+            tr.actions(Actions.translateBy(-width, 0, enterExitTime, enterInterp));
         }else{
             t.tooltip("@yellow-notif-info", true);
             tr.hovered(() -> {
@@ -171,15 +177,15 @@ public class NotificationFragment implements CommonFragment{
             tr.exited(() -> {
                 if(tr.getActions().isEmpty()) tr.actions(Actions.sequence(
                         Actions.delay(YellowVars.getNotificationTime()),
-                        Actions.translateBy(width, 0, 1, Interp.pow3In),
+                        Actions.translateBy(width, 0, enterExitTime, exitInterp),
                         Actions.run(() -> table.getCells().remove(t)),
                         Actions.remove()
                 ));
             });
             tr.actions(Actions.sequence(
-                    Actions.translateBy(-width, 0, 1, Interp.pow3Out),
+                    Actions.translateBy(-width, 0, enterExitTime, enterInterp),
                     Actions.delay(YellowVars.getNotificationTime()),
-                    Actions.translateBy(width, 0, 1, Interp.pow3In),
+                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));
@@ -203,7 +209,7 @@ public class NotificationFragment implements CommonFragment{
             tr.exited(() -> {});
             tr.clicked(() -> {});
             tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, 1, Interp.pow3In),
+                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));
@@ -211,7 +217,7 @@ public class NotificationFragment implements CommonFragment{
 
         if(persist){
             t.tooltip("@yellow-persnotif-info", true);
-            tr.actions(Actions.translateBy(-width, 0, 1, Interp.pow3Out));
+            tr.actions(Actions.translateBy(-width, 0, enterExitTime, enterInterp));
         }else{
             t.tooltip("@yellow-notif-info", true);
             tr.hovered(() -> {
@@ -220,15 +226,15 @@ public class NotificationFragment implements CommonFragment{
             tr.exited(() -> {
                 if(tr.getActions().isEmpty()) tr.actions(Actions.sequence(
                         Actions.delay(YellowVars.getNotificationTime()),
-                        Actions.translateBy(width, 0, 1, Interp.pow3In),
+                        Actions.translateBy(width, 0, enterExitTime, exitInterp),
                         Actions.run(() -> table.getCells().remove(t)),
                         Actions.remove()
                 ));
             });
             tr.actions(Actions.sequence(
-                    Actions.translateBy(-width, 0, 1, Interp.pow3Out),
+                    Actions.translateBy(-width, 0, enterExitTime, enterInterp),
                     Actions.delay(YellowVars.getNotificationTime()),
-                    Actions.translateBy(width, 0, 1, Interp.pow3In),
+                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));

@@ -8,10 +8,9 @@ version = "1.0"
 
 val windows = System.getProperty("os.name").lowercase().contains("windows")
 
-val mindustryVersion = "v147"
+val mindustryVersion = "v149"
 val entVersion = "v146.0.10"
 
-//project properties
 val useBE = project.hasProperty("adb.useBE") && parseBoolean(project.property("adb.useBE").toString())
 val quickstart = project.hasProperty("adb.quickstart") && parseBoolean(project.property("adb.quickstart").toString())
 
@@ -53,9 +52,6 @@ allprojects {
         compileOnly(arc(":backend-sdl"))
         compileOnly(mindustry(":core"))
 
-        //oh yeah
-        //implementation(arc(":box2d"))
-
         annotationProcessor("com.github.GlennFolker.EntityAnno:downgrader:$entVersion")
     }
 
@@ -84,7 +80,7 @@ allprojects {
                         .replace('/', '_')
 
         group = "build"
-        description = "Compiles an android-only jar."
+        description = "Builds the needed dex bytecode for a multiplatform jar."
         dependsOn("jar")
 
         doLast {
@@ -296,15 +292,9 @@ tasks.jar {
     from("$rootDir/assets/") { include("**") }
 }
 
-//project(":discord") {
-//    dependencies {
-//        compileOnly(arc(":discord"))
-//    }
-//}
-
 task("copy") {
     group = "copy"
-    description = "Compiles a desktop-only jar and copies it to your mindustry data directory."
+    description = "Compiles a desktop-only jar and copies it to your Mindustry data directory."
     dependsOn("jar")
 
     val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"
@@ -329,6 +319,48 @@ task("copy") {
     }
 }
 
+task("copyDeploy") {
+    group = "copy"
+    description = "Compiles a multiplatform jar and copies it to your Mindustry data directory."
+    dependsOn("deploy")
+
+    val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry" else "${System.getenv("HOME")}/.local/share/Mindustry"
+    val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
+
+    doLast {
+        println("Copying mod...")
+
+        val fDir = if(project.hasProperty("copy.target")) dirC else dir
+
+        if(!fDir?.let {File(it).exists()}!!){
+            println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
+            if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
+            return@doLast
+        }
+
+        copy {
+            from("${layout.buildDirectory.get()}/libs")
+            into("$fDir/mods")
+            include("${project.name}.jar")
+        }
+
+        println("Mod copied.")
+
+        val java = if(windows) "java.exe" else "java"
+        val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
+        val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
+
+        if(jarFilePathString != null) exec {
+            val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
+            println("Java runtime cmdline: \"$fJava\"")
+
+            commandLine = fJava.split(' ')
+            standardOutput = System.out
+            errorOutput = System.err
+        }
+    }
+}
+
 
 //TODO support for using different devices when multiple are connected (serial no.)
 task("androidCopy") {
@@ -337,28 +369,32 @@ task("androidCopy") {
     dependsOn("deploy")
 
     val adb = if(windows) "adb.exe" else "adb"
+    val serial = if(project.hasProperty("adb.serial")) "-s \"${project.property("adb.serial").toString()}\"" else ""
+
+    val adbCmd = "$adb $serial"
 
     doLast {
         println("Copying mod to connected device...")
+        if(serial.isNotEmpty()) println("Target device: $serial")
 
         val target = if(useBE){ println("Using BE directory."); "io.anuke.mindustry.be" } else "io.anuke.mindustry"
 
         exec {
-            commandLine = "$adb push ${layout.buildDirectory.get()}/libs/${project.name}.jar /sdcard/Android/data/$target/files/mods".split(' ')
+            commandLine = "$adbCmd push ${layout.buildDirectory.get()}/libs/${project.name}.jar /sdcard/Android/data/$target/files/mods".split(' ')
             standardOutput = System.out
             errorOutput = System.err
         }
 
         //piece of shit.
         exec {
-        	commandLine = "$adb shell chmod 755 /sdcard/Android/data/$target/files/mods/${project.name}.jar".split(' ')
+        	commandLine = "$adbCmd shell chmod 755 /sdcard/Android/data/$target/files/mods/${project.name}.jar".split(' ')
         	standardOutput = System.out
         	errorOutput = System.err
         }
 
         if(quickstart) exec {
             println("Starting Mindustry on connected device...")
-            commandLine = "$adb shell am start -n $target/mindustry.android.AndroidLauncher".split(' ')
+            commandLine = "$adbCmd shell am start -n $target/mindustry.android.AndroidLauncher".split(' ')
             standardOutput = System.out
             errorOutput = System.err
         }
@@ -383,4 +419,3 @@ task<Copy>("buildAll") {
         }
     }
 }
-

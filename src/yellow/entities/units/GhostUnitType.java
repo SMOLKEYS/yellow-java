@@ -16,7 +16,7 @@ import mindustry.ui.*;
 import yellow.content.*;
 import yellow.entities.units.entity.*;
 
-/** A "ghost" unit that despawns after a set period of time. Unaffected by map boundaries. */
+/** A "ghost" unit that despawns after a set period of enterExitTime. Unaffected by map boundaries. */
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */
     public float lifetime = 900f;
