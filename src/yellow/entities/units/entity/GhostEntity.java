@@ -70,7 +70,9 @@ public class GhostEntity extends UnitEntity{
 
     @Override
     public void draw(){
+        Draw.mixcol(Color.white, lifetimef());
         super.draw();
+        Draw.mixcol();
 
         Fill.light(x, y, 10, Mathf.lerp(hitSize * 1.9f, hitSize * 0.9f, lifetimef()), Color.white, Color.clear);
     }

@@ -1,8 +1,9 @@
-package yellow.equality;
+package yellow.entities.bullet;
 
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
+import yellow.equality.*;
 
 public class BasicEqualityBulletType extends BasicBulletType{
 

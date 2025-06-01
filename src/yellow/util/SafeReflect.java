@@ -127,4 +127,12 @@ public class SafeReflect{
             return null;
         }
     }
+
+    public static <T> T make(String type){
+        try{
+            return Reflect.make(type);
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

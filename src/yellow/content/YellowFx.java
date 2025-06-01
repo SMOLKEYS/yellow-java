@@ -82,7 +82,7 @@ public class YellowFx{
         });
 
         Draw.alpha(e.fout() * 4);
-        Draw.rect("yellow-yellow", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
+        Draw.rect("yellow-java-yellow", e.x, e.y, e.finpow() * 200, e.finpow() * 200);
     });
 
     public static final Effect despawn = new Effect(120f, e -> {
@@ -106,6 +106,19 @@ public class YellowFx{
         Angles.randLenVectors(e.id, 100, e.finpow() * 280, (x, y) -> {
             Draw.color(Color.gray);
             Fill.circle(e.x + x, e.y + y, e.foutpow() * 30);
+        });
+    });
+
+    public static final Effect energySphereExplosion = new Effect(120f, e -> {
+        Draw.z(Layer.effect);
+        Draw.color(Pal.lancerLaser);
+
+        Lines.stroke(e.fout() * 10);
+        Lines.circle(e.x, e.y, e.finpow() * 8*15);
+
+        Angles.randLenVectors(e.id, 10, e.finpow() * 8*30, (x, y) -> {
+            Lines.line(e.x, e.y, e.x + x, e.y + y);
+            Fill.circle(e.x + x, e.y + y, e.fout() * 20);
         });
     });
 

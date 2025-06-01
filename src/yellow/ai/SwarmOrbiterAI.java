@@ -3,20 +3,17 @@ package yellow.ai;
 import arc.func.*;
 import arc.math.*;
 import arc.math.geom.*;
-import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.world.blocks.storage.*;
 import yellow.math.*;
 
 /** An AI that orbits a target unit. If no target is found, defaults to the team core. If that is also not found (somehow), does nothing. */
-public class SwarmOrbiterAI extends AIController{
+public class SwarmOrbiterAI extends OwnerAI{
     public static float dstCap = 8*65f;
 
     /** The target unit type to scan for. */
-    public Boolf<Unit> targetUnit = p -> true;
+    public Boolf<Unit> targetUnit = p -> false;
 
-    /** The current unit to orbit. */
-    protected Unit follow;
     /** The target core building to orbit. */
     protected CoreBlock.CoreBuild core;
     protected float dst = 80f, maxDst = 680f;
@@ -44,10 +41,10 @@ public class SwarmOrbiterAI extends AIController{
     @Override
     public void updateMovement(){
 
-        if(follow == null){
-            follow = Groups.unit.find(e -> e.team == unit.team && targetUnit.get(e));
-        }else if(follow.team != unit.team || follow.dead() || !follow.isValid()){
-            follow = null;
+        if(owner == null){
+            owner = Groups.unit.find(e -> e.team == unit.team && targetUnit.get(e));
+        }else if(owner.team != unit.team || owner.dead() || !owner.isValid()){
+            owner = null;
         }
 
         if(core == null){
@@ -55,7 +52,7 @@ public class SwarmOrbiterAI extends AIController{
         }
 
         //prefer unit
-        Position target = follow != null ? follow : core;
+        Position target = owner != null ? owner : core;
 
         float dMul = target != null ? Mathy.lerpc(1f, peakSpeedRD, Mathy.dstPos(unit, target) - dst, dstCap) : 0f;
         float fSpeed = unit.speed() * (dMul);

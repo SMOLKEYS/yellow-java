@@ -2,22 +2,21 @@ package yellow.ai;
 
 import arc.math.*;
 import arc.math.geom.*;
-import mindustry.entities.units.*;
 
 //relative carbon copy of AssemblerAI for other purposes
-public class ShielderAI extends AIController{
+public class ShielderAI extends OwnerAI{
     public Vec2 pos = new Vec2();
     public float angle;
 
     @Override
     public void updateMovement(){
+        if(owner == null) return;
+
         if(!pos.isZero()){
-            moveTo(pos, 1f, 3f);
+            moveTo(pos, 1f, 0.7f);
         }
 
-        if(unit.within(pos, 5f)){
-            unit.lookAt(angle);
-        }
+        unit.lookAt(Angles.angle(owner.x, owner.y, unit.x, unit.y) - 180f); //look behind
     }
 
     public boolean lockedIn(){

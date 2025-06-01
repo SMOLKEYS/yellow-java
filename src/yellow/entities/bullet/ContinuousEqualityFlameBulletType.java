@@ -1,16 +1,18 @@
-package yellow.equality;
+package yellow.entities.bullet;
 
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
+import yellow.equality.*;
 
-public class EqualityBulletType extends BulletType{
+@SuppressWarnings("unused")
+public class ContinuousEqualityFlameBulletType extends ContinuousFlameBulletType{
 
-    public EqualityBulletType(float speed, float damage){
-        super(speed, damage);
+    public ContinuousEqualityFlameBulletType(float damage){
+        super(damage);
     }
 
-    public EqualityBulletType(){
+    public ContinuousEqualityFlameBulletType(){
         super();
     }
 

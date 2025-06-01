@@ -1,6 +1,5 @@
 package yellow.combat;
 
-import arc.*;
 import arc.input.*;
 import arc.struct.*;
 import mindustry.type.*;

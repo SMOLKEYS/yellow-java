@@ -87,11 +87,7 @@ public class YellowSettings{
             if(Yellow.debug){
                 seperatorPref(t, "yellow-debug-section", Icon.wrench, Icon.settings);
 
-                t.textPref("yellow-crash-text", "manually initiated crash");
-
-                buttonPref(t, "yellow-crash-manual", () -> {
-                    throw new RuntimeException(SafeSettings.getString("yellow-crash-text", "manually initiated crash", "manually initiated crash"));
-                });
+                YellowDebugSettings.build(t);
             }
         });
     }
@@ -253,10 +249,4 @@ public class YellowSettings{
         }
     }
 
-    private static class Formatter{
-
-        public static String format(String name, Object... objs){
-            return Core.bundle.format("setting." + name + ".text", objs);
-        }
-    }
 }

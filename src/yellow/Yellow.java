@@ -2,14 +2,10 @@ package yellow;
 
 import arc.*;
 import arc.files.*;
-import arc.func.*;
-import arc.math.*;
-import arc.scene.*;
-import arc.scene.ui.*;
+import arc.util.*;
 import mindustry.*;
 import mindustry.game.*;
 import mindustry.mod.*;
-import yellow.combat.*;
 import yellow.content.*;
 import yellow.ui.*;
 import yellow.util.*;
@@ -21,13 +17,13 @@ import yellow.util.*;
 })
 public class Yellow extends Mod{
 
-    public static final boolean debug = YellowJVM.hasParameter("yellow-debug");
+    public static final boolean debug = YellowJVM.hasParameter("yellow-debug", str -> Log.infoTag(str, "Yellow debug mode enabled."));
 
     public Yellow(){
         if(Vars.clientLoaded) YellowVars.onImport();
 
         Events.run(EventType.ClientLoadEvent.class, () -> {
-            YellowVars.initUI();
+            YellowVars.init();
             if(!Vars.mobile && SafeSettings.getBool("yellow-enable-rpc", true, true)) YellowRPC.init();
             YellowSettings.load();
 
@@ -39,14 +35,6 @@ public class Yellow extends Mod{
                     "yellow.util", "yellow.equality", "yellow.combat", "yellow.cutscene",
                     "yellow.cutscene.controllers"
             );
-
-            Element e = Vars.ui.menuGroup.find("menu container");
-
-            e.update(() -> {
-                Dialog d = Core.scene.getDialog();
-
-                if(d != null) e.color.a(Interp.reverse.apply(d.color.a));
-            });
         });
     }
 
@@ -66,6 +54,8 @@ public class Yellow extends Mod{
 
     @Override
     public void loadContent(){
+        YellowWeapons.load();
         YellowUnitTypes.load();
+        YellowWeapons.afterLoad();
     }
 }

@@ -5,7 +5,8 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import mindustry.*;
 import yellow.combat.*;
-import yellow.cutscene.*;
+import yellow.ui.*;
+import yellow.ui.dialogs.*;
 import yellow.ui.fragments.*;
 import yellow.util.*;
 
@@ -13,21 +14,30 @@ import java.util.*;
 
 public class YellowVars{
 
+    public static WeaponManagerDialog weapons;
+
     public static LoadTextFragment ltfrag;
     public static BlankFragment blankfrag;
     public static NotificationFragment notifrag;
+    public static DialogFragment dialogfrag;
+    public static ManagerFragment managefrag;
 
     public static WidgetGroup overlayGroup;
 
-    public static Cutscenes cutscenes;
+    public static ChaosRenderer chaosRenderer;
+
     public static CombatMode combat;
 
     static Date date;
 
-    public static void initUI(){
+    public static void init(){
+        weapons = new WeaponManagerDialog();
+
         ltfrag = new LoadTextFragment();
         blankfrag = new BlankFragment();
         notifrag = new NotificationFragment();
+        dialogfrag = new DialogFragment();
+        managefrag = new ManagerFragment();
 
         overlayGroup = new WidgetGroup();
 
@@ -42,9 +52,10 @@ public class YellowVars{
         ltfrag.build(overlayGroup);
         blankfrag.build(overlayGroup);
         notifrag.build(overlayGroup);
+        dialogfrag.build(overlayGroup);
+        managefrag.build(Vars.ui.hudGroup);
 
-        cutscenes = new Cutscenes();
-        cutscenes.init();
+        SafeReflect.set(Vars.ui.menufrag, "renderer", chaosRenderer = new ChaosRenderer());
 
         combat = new CombatMode();
         combat.init();

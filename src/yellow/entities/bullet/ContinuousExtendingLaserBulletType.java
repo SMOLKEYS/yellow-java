@@ -1,4 +1,4 @@
-package yellow.equality;
+package yellow.entities.bullet;
 
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -8,10 +8,11 @@ import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import yellow.equality.*;
 
-public class ContinuousEqualityLaserBulletType extends ContinuousLaserBulletType{
+public class ContinuousExtendingLaserBulletType extends ContinuousLaserBulletType{
+    private static final Rand rand = new Rand(1934);
 
-    private static final Rand rand = new Rand(1997);
 
     /** If true, this laser will anchor to the shooter weapon properly. */
     public boolean anchor = true;
@@ -36,11 +37,11 @@ public class ContinuousEqualityLaserBulletType extends ContinuousLaserBulletType
     /** Interpolation used for laser shrinking. */
     public Interp shrinkInterp = Interp.smooth;
 
-    public ContinuousEqualityLaserBulletType(float damage){
+    public ContinuousExtendingLaserBulletType(float damage){
         super(damage);
     }
 
-    public ContinuousEqualityLaserBulletType(){
+    public ContinuousExtendingLaserBulletType(){
         super();
     }
 
@@ -56,13 +57,15 @@ public class ContinuousEqualityLaserBulletType extends ContinuousLaserBulletType
     public void draw(Bullet b){
         //copypasted code with some changes, woe is thine
 
+        rand.setSeed(b.id);
+        float gRand = rand.range(growDelayRandRange);
+        float sRand = rand.range(shrinkDelayRandRange);
+
         float fout = Mathf.clamp(b.time > b.lifetime - fadeTime ? 1f - (b.time - (lifetime - fadeTime)) / fadeTime : 1f);
         float tLength = length * fout;
 
-        rand.setSeed(b.id);
-
-        float gInterp = interp.apply(Mathf.clamp(Math.max(0, b.time - (growDelay + rand.range(growDelayRandRange))) / growTime));
-        float sInterp = shrinkInterp.apply(Mathf.clamp(Math.max(0, b.time - (shrinkDelay + rand.range(shrinkDelayRandRange))) / shrinkTime));
+        float gInterp = interp.apply(Mathf.clamp(Math.max(0, b.time - (growDelay + gRand)) / growTime));
+        float sInterp = shrinkInterp.apply(Mathf.clamp(Math.max(0, b.time - (shrinkDelay + sRand)) / shrinkTime));
 
         //Log.info("@ gi, @ si, @ gtime-del, @ stime-del", gInterp, sInterp, b.time - growTime, b.time - shrinkDelay);
 
@@ -112,8 +115,12 @@ public class ContinuousEqualityLaserBulletType extends ContinuousLaserBulletType
     public float currentLength(Bullet b){
         float tLength = super.currentLength(b);
 
-        float gInterp = interp.apply(Mathf.clamp(Math.max(0, b.time - growDelay) / growTime));
-        float sInterp = shrinkInterp.apply(Mathf.clamp(Math.max(0, b.time - shrinkDelay) / shrinkTime));
+        rand.setSeed(b.id);
+        float gRand = rand.range(growDelayRandRange);
+        float sRand = rand.range(shrinkDelayRandRange);
+
+        float gInterp = interp.apply(Mathf.clamp(Math.max(0, b.time - (growDelay + gRand)) / growTime));
+        float sInterp = shrinkInterp.apply(Mathf.clamp(Math.max(0, b.time - (shrinkDelay + sRand)) / shrinkTime));
 
         float gLength = Mathf.lerp(0, tLength, gInterp);
         float sLength = Mathf.lerp(0, tLength, sInterp);

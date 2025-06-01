@@ -120,6 +120,10 @@ public class EqualityDamage{
         if(showDeathEffect && target instanceof Unitc u && u.type() != null) u.type().deathExplosionEffect.at(u.x(), u.y(), u.bounds() / 2f / 8f);
     }
 
+    public static void groupWipe(Entityc target){
+        Groups.all.remove(target);
+    }
+
     public static void theSpeedOfA(float speed){
         Class<?> sMain = SafeReflect.clazz("flame.special.SpecialMain");
         Class<?> stage4 = SafeReflect.clazz("flame.special.state.Stage4");
@@ -189,6 +193,7 @@ public class EqualityDamage{
             }, dmgEnt);
         }
 
+        source.type.handlePierce(source, health, entity.x(), entity.y());
 
         Tmp.v3.set(entity).sub(source).nor().scl(source.type.knockback * 80f);
         if(source.type.impact) Tmp.v3.setAngle(source.rotation() + (source.type.knockback < 0 ? 180f : 0f));
@@ -201,7 +206,5 @@ public class EqualityDamage{
             Events.fire(new EventType.UnitBulletDestroyEvent(entity, source));
             annihilate(entity, false, true, null, null);
         }
-
-        source.type.handlePierce(source, health, entity.x(), entity.y());
     }
 }

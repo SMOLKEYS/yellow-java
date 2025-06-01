@@ -8,10 +8,12 @@ import arc.util.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.input.*;
+import yellow.util.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
+/** A special ULTRAKILL-inspired input system. */
 public class CombatInput extends DesktopInput{
     private InputHandler lastInput;
 
@@ -20,7 +22,7 @@ public class CombatInput extends DesktopInput{
 
     public CombatInput(){
         super();
-        swapKey = KeyBind.add("swap_mode", KeyCode.h, "yellow_combat");
+        swapKey = YellowKeyBind.add("swap_mode", KeyCode.h, "combat");
         lastInput = control.input;
     }
 

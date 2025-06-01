@@ -34,6 +34,13 @@ public class ToggleWeapon extends NamedWeapon{
         }
     }
 
+    public boolean isEnabled(WeaponMount mount){
+        if(mount instanceof ToggleWeaponMount t){
+            return t.enabled;
+        }
+        return true;
+    }
+
     //stop as many methods as possible
     @Override
     public void drawOutline(Unit unit, WeaponMount mount){

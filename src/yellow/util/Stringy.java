@@ -7,14 +7,16 @@ import mindustry.world.meta.*;
 
 public class Stringy{
 
-    static String collection = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
-    static Rand r = new Rand();
-    static StringBuilder b = new StringBuilder();
+    // ???
+    private static String collection = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-";
+    private static Rand r = new Rand();
+    private static StringBuilder b = new StringBuilder();
 
-    /** Accepts a list of strings and returns the first non-null one. Returns null if the entire list is all nulls. */
-    public static String alternative(String... inputs){
-        for(String s: inputs){
-            if(s != null) return s;
+    /** Accepts a list of the specified type and returns the first non-null one. Returns null if the entire list is all nulls. */
+    @SafeVarargs
+    public static <T> T alternative(T... inputs){
+        for(T t: inputs){
+            if(t != null) return t;
         }
         return null;
     }
