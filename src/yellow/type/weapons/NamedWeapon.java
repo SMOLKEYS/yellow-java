@@ -2,6 +2,8 @@ package yellow.type.weapons;
 
 import arc.*;
 import arc.scene.ui.layout.*;
+import arc.util.*;
+import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import yellow.util.*;
@@ -20,7 +22,13 @@ public class NamedWeapon extends Weapon{
     @Override
     public void addStats(UnitType u, Table t){
         t.row();
-        t.add(Stringy.formatStat(YellowStats.name, displayName, Pal.accent));
+        t.add(Stringy.formatStat(YellowStats.name, displayName, Pal.accent)).row();
+        if(Core.bundle.has("weapon." + name + ".description")){
+            t.table(Tex.pane, tb -> {
+                tb.left();
+                tb.add(Strings.format("\"@\"", description)).wrap().grow();
+            }).padTop(10f).padBottom(10f).grow();
+        }
         super.addStats(u, t);
     }
 

@@ -1,421 +1,292 @@
+import arc.util.OS
+import arc.util.serialization.Jval
+import ent.EntityAnnoExtension
+import java.io.BufferedWriter
 
-import org.jetbrains.kotlin.parsing.parseBoolean
-import java.io.OutputStream
-import java.security.MessageDigest
-import java.util.*
+val arcVersion: String by project
+val mindustryVersion: String by project
+val entVersion: String by project
 
-version = "1.0"
+val modFetch: String by project
+val modGenSrc: String by project
+val modGen: String by project
 
-val windows = System.getProperty("os.name").lowercase().contains("windows")
+val androidSdkVersion: String by project
+val androidBuildVersion: String by project
+val androidMinVersion: String by project
 
-val mindustryVersion = "v149"
-val entVersion = "v146.0.10"
+val useBE = project.hasProperty("adb.useBE") && project.property("adb.useBE").toString().toBoolean()
+val quickstart = project.hasProperty("adb.quickstart") && project.property("adb.quickstart").toString().toBoolean()
 
-val useBE = project.hasProperty("adb.useBE") && parseBoolean(project.property("adb.useBE").toString())
-val quickstart = project.hasProperty("adb.quickstart") && parseBoolean(project.property("adb.quickstart").toString())
-
-fun arc(module: String) = "com.github.Anuken.Arc$module:$mindustryVersion"
+fun arc(module: String) = "com.github.Anuken.Arc$module:$arcVersion"
 
 fun mindustry(module: String) = "com.github.Anuken.Mindustry$module:$mindustryVersion"
 
-fun kPlugin(module: String) = "org.jetbrains.kotlin.$module:org.jetbrains.kotlin.$module.gradle.plugin:1.9.0"
+fun entity(module: String) = "com.github.GglLfr.EntityAnno$module:$entVersion"
+
+buildscript{
+    val arcVersion: String by project
+
+    dependencies{
+        classpath("com.github.Anuken.Arc:arc-core:$arcVersion")
+    }
+
+    repositories{
+        maven("https://maven.xpdustry.com/mindustry")
+        maven("https://jitpack.io")
+    }
+}
 
 plugins {
     java
-    kotlin("jvm") version "1.9.20"
+    id("com.github.GglLfr.EntityAnno") apply false
 }
+
 
 allprojects {
     apply(plugin = "java")
+    sourceSets["main"].java.setSrcDirs(listOf(layout.projectDirectory.dir("src")))
 
-    repositories {
-        mavenCentral()
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
-        maven("https://oss.sonatype.org/content/repositories/releases")
-        maven("https://maven.xpdustry.com/mindustry")
-        maven("https://raw.githubusercontent.com/GlennFolker/EntityAnnoMaven/main")
-        maven("https://www.jitpack.io")
-    }
-
-    sourceSets {
-        main {
-            java.srcDirs("src")
-        }
-        test {
-            java.srcDir("test")
+    configurations.configureEach{
+        resolutionStrategy.eachDependency{
+            if(requested.group == "com.github.Anuken.Arc"){
+                useVersion(arcVersion)
+            }
         }
     }
 
     dependencies {
+        annotationProcessor(entity(":downgrader"))
+    }
+
+    repositories{
+        // Necessary Maven repositories to pull dependencies from.
+        mavenCentral()
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven("https://oss.sonatype.org/content/repositories/releases/")
+        maven("https://raw.githubusercontent.com/GglLfr/EntityAnnoMaven/main")
+        maven("https://maven.xpdustry.com/mindustry")
+        maven("https://jitpack.io")
+    }
+
+    tasks.withType<JavaCompile>().configureEach{
+        // Use Java 17+ syntax, but target Java 8 bytecode version.
+        sourceCompatibility = "17"
+        options.apply{
+            release = 8
+            compilerArgs.add("-Xlint:-options")
+            //compilerArgs.add("-Xlint:unchecked")
+
+            isIncremental = true
+            encoding = "UTF-8"
+        }
+    }
+}
+
+project(":"){
+    apply(plugin = "com.github.GglLfr.EntityAnno")
+    configure<EntityAnnoExtension> {
+        modName = project.properties["modName"].toString()
+        mindustryVersion = project.properties["mindustryVersion"].toString()
+        revisionDir = layout.projectDirectory.dir("revisions").asFile
+        fetchPackage = modFetch
+        genSrcPackage = modGenSrc
+        genPackage = modGen
+    }
+
+    dependencies {
+        compileOnly(entity(":entity"))
+        add("kapt", entity(":entity"))
+
+        compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
         compileOnly(arc(":discord"))
-        compileOnly(arc(":backend-sdl"))
-        compileOnly(mindustry(":core"))
-
-        annotationProcessor("com.github.GlennFolker.EntityAnno:downgrader:$entVersion")
     }
 
-    configurations.all {
-        resolutionStrategy.eachDependency {
-            if(requested.group == "com.github.Anuken.Arc") {
-                useVersion(mindustryVersion)
-            }
-        }
+    val jar = tasks.named<Jar>("jar"){
+        archiveFileName = "${project.name}Desktop.jar"
 
-        exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib")
-    }
-
-    tasks.withType<JavaCompile> {
-        sourceCompatibility = "17"
-        options.release.set(8)
-        options.encoding = "UTF-8"
-        options.isIncremental = true
-    }
-
-    task("jarAndroid") {
-        fun hash(data: ByteArray): String =
-                MessageDigest.getInstance("MD5")
-                        .digest(data)
-                        .let { Base64.getEncoder().encodeToString(it) }
-                        .replace('/', '_')
-
-        group = "build"
-        description = "Builds the needed dex bytecode for a multiplatform jar."
-        dependsOn("jar")
-
-        doLast {
-            val sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
-
-            if(sdkRoot == null || sdkRoot.isEmpty() || !File(sdkRoot).exists()) {
-                throw GradleException("""
-				No valid Android SDK found. Ensure that ANDROID_HOME is set to your Android SDK directory.
-				Note: if the gradle daemon has been started before ANDROID_HOME env variable was defined, it won't be able to read this variable.
-				In this case you have to run "./gradlew --stop" and try again.
-			""".trimIndent())
-            }
-
-            println("Searching for an Android SDK... ")
-            val platformRoot = File("$sdkRoot/platforms/").listFiles()?.filter {
-                val fi = File(it, "android.jar")
-                val valid = fi.exists() && it.name.startsWith("android-")
-
-                if (valid) {
-                    print(it)
-                    println(" - OK.")
-                }
-                return@filter valid
-            }?.maxByOrNull {
-                it.name.substring("android-".length).toIntOrNull() ?: -1
-            }
-
-            if (platformRoot == null) {
-                throw GradleException("No android.jar found. Ensure that you have an Android platform installed. (platformRoot = $platformRoot)")
-            } else {
-                println("Using ${platformRoot.absolutePath}")
-            }
-
-            //collect dependencies needed to translate java 8 bytecode code to android-compatible bytecode (yeah, android's dvm and art do be sucking)
-            val dependencies =
-                    (configurations.runtimeClasspath.get().files)
-                            .map { it.path }
-
-            val dexRoot = File("${layout.buildDirectory.get()}/dex/").also { it.mkdirs() }
-            val dexCacheRoot = dexRoot.resolve("cache").also { it.mkdirs() }
-
-            // read the dex cache map (path-to-hash)
-            val dexCacheHashes = dexRoot.resolve("listing.txt")
-                    .takeIf { it.exists() }
-                    ?.readText()
-                    ?.lineSequence()
-                    ?.map { it.split(" ") }
-                    ?.filter { it.size == 2 }
-                    ?.associate { it[0] to it[1] }
-                    .orEmpty()
-                    .toMutableMap()
-
-            // calculate hashes for all dependencies
-            val hashes = dependencies.associateWith {hash(File(it).readBytes())}
-
-            // determime which dependencies can have their cached dex files reused and which can not
-            val reusable = ArrayList<String>()
-            val needReDex = HashMap<String, String>() // path-to-hash
-            hashes.forEach { (path, hash) ->
-                if (dexCacheHashes.getOrDefault(path, null) == hash) {
-                    reusable += path
-                } else {
-                    needReDex[path] = hash
-                }
-            }
-
-            println("${reusable.size} dependencies are already desugared and can be reused.")
-            if (needReDex.isNotEmpty()) println("Desugaring ${needReDex.size} dependencies.")
-
-            // for every non-reusable dependency, invoke d8 (d8.bat for windows) and save the new hash
-
-            val d8 = if (windows) "d8.bat" else "d8"
-
-            var index = 1
-            needReDex.forEach { (dependency, hash) ->
-                println("Processing ${index++}/${needReDex.size} ($dependency)")
-
-                val outputDir = dexCacheRoot.resolve(hash(dependency.toByteArray()).replace("==", "")).also { it.mkdir() }
-                exec {
-                    errorOutput = object : OutputStream(){
-                        override fun write(b: Int) {
-
-                        }
-                    }
-                    commandLine(
-                            d8,
-                            "--intermediate",
-                            "--classpath", "${platformRoot.absolutePath}/android.jar",
-                            "--min-api", "14",
-                            "--output", outputDir.absolutePath,
-                            dependency
-                    )
-                }
-                println()
-                dexCacheHashes[dependency] = hash
-            }
-
-            // write the updated hash map to the file
-            dexCacheHashes.asSequence()
-                    .map { (k, v) -> "$k $v" }
-                    .joinToString("\n")
-                    .let { dexRoot.resolve("listing.txt").writeText(it) }
-
-            if (needReDex.isNotEmpty()) println("Done.")
-            println("Preparing to desugar the project and merge dex files.")
-
-            val dexPathes = dependencies.map {s ->
-                dexCacheRoot.resolve(hash(s.toByteArray())).also { it.mkdir() }
-            }
-            // assemble the list of classpath arguments for project dexing
-            val dependenciesStr = Array<String>(dependencies.size * 2) {
-                if (it % 2 == 0) "--classpath" else dexPathes[it / 2].absolutePath
-            }
-
-            // now, compile the project
-            exec {
-                val output = dexCacheRoot.resolve("project").also { it.mkdirs() }
-                commandLine(
-                        d8,
-                        *dependenciesStr,
-                        "--classpath", "${platformRoot.absolutePath}/android.jar",
-                        "--min-api", "14",
-                        "--output", "$output",
-                        "${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"
-                )
-            }
-
-            // finally, merge all dex files
-            exec {
-                val depDexes = dexPathes
-                        .map { it.resolve("classes.dex") }.toTypedArray()
-                        .filter { it.exists() } // some are empty
-                        .map { it.absolutePath }
-                        .toTypedArray()
-
-                commandLine(
-                        d8,
-                        *depDexes,
-                        dexCacheRoot.resolve("project/classes.dex").absolutePath,
-                        "--output", "${layout.buildDirectory.get()}/libs/${project.name}Android.jar"
-                )
-            }
-        }
-    }
-
-    task<Jar>("deploy") {
-        group = "build"
-        description = "Compiles a multiplatform jar."
-        dependsOn("jarAndroid")
-
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        archiveFileName.set("${project.name}.jar")
+        val meta = layout.projectDirectory.file("$temporaryDir/mod.json")
         from(
-                zipTree("${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar"),
-                zipTree("${layout.buildDirectory.get()}/libs/${project.name}Android.jar")
+            files(sourceSets["main"].output.classesDirs),
+            files(sourceSets["main"].output.resourcesDir),
+            configurations.runtimeClasspath.map{conf -> conf.map{if(it.isDirectory) it else zipTree(it)}},
+
+            files(layout.projectDirectory.dir("assets")),
+            layout.projectDirectory.file("icon.png"),
+            meta
         )
-        /*
 
-        this causes jarAndroid to fail on a second run.
+        metaInf.from(layout.projectDirectory.file("LICENSE"))
+        doFirst{
+            // Deliberately check if the mod meta is actually written in HJSON, since, well, some people actually use
+            // it. But this is also not mentioned in the `README.md`, for the mischievous reason of driving beginners
+            // into using JSON instead.
+            val metaJson = layout.projectDirectory.file("mod.json")
+            val metaHjson = layout.projectDirectory.file("mod.hjson")
 
+            if(metaJson.asFile.exists() && metaHjson.asFile.exists()){
+                throw IllegalStateException("Ambiguous mod meta: both `mod.json` and `mod.hjson` exist.")
+            }else if(!metaJson.asFile.exists() && !metaHjson.asFile.exists()){
+                throw IllegalStateException("Missing mod meta: neither `mod.json` nor `mod.hjson` exist.")
+            }
+
+            val isJson = metaJson.asFile.exists()
+            val map = (if(isJson) metaJson else metaHjson).asFile
+                .reader(Charsets.UTF_8)
+                .use{Jval.read(it)}
+
+            map.put("name", project.name)
+            meta.asFile.writer(Charsets.UTF_8).use{file -> BufferedWriter(file).use{map.writeTo(it, Jval.Jformat.formatted)}}
+        }
+    }
+
+    val dex = tasks.register<Jar>("dex"){
+        inputs.files(jar)
+        archiveFileName = "${project.name}.jar"
+
+        val desktopJar = jar.flatMap{it.archiveFile}
+        val dexJar = File(temporaryDir, "Dex.jar")
+
+        from(zipTree(desktopJar), zipTree(dexJar))
+        doFirst{
+            logger.lifecycle("Running `d8`.")
+            providers.exec{
+                // Find Android SDK root.
+                val sdkRoot = File(
+                    OS.env("ANDROID_SDK_ROOT") ?: OS.env("ANDROID_HOME") ?:
+                    throw IllegalStateException("Neither `ANDROID_SDK_ROOT` nor `ANDROID_HOME` is set.")
+                )
+
+                // Find `d8`.
+                val d8 = File(sdkRoot, "build-tools/$androidBuildVersion/${if(OS.isWindows) "d8.bat" else "d8"}")
+                if(!d8.exists()) throw IllegalStateException("Android SDK `build-tools;$androidBuildVersion` isn't installed or is corrupted")
+
+                // Initialize a release build.
+                val input = desktopJar.get().asFile
+                val command = arrayListOf("$d8", "--release", "--min-api", androidMinVersion, "--output", "$dexJar", "$input")
+
+                // Include all compile and runtime classpath.
+                (configurations.compileClasspath.get().toList() + configurations.runtimeClasspath.get().toList()).forEach{
+                    if(it.exists()) command.addAll(arrayOf("--classpath", it.path))
+                }
+
+                // Include Android platform as library.
+                val androidJar = File(sdkRoot, "platforms/android-$androidSdkVersion/android.jar")
+                if(!androidJar.exists()) throw IllegalStateException("Android SDK `platforms;android-$androidSdkVersion` isn't installed or is corrupted")
+
+                command.addAll(arrayOf("--lib", "$androidJar"))
+                if(OS.isWindows) command.addAll(0, arrayOf("cmd", "/c").toList())
+
+                // Run `d8`.
+                commandLine(command)
+            }.result.get().rethrowFailure()
+        }
+    }
+
+    val copy = tasks.register<DefaultTask>("copy") {
+        group = "copy"
+        description = "Compiles a desktop-only jar and copies it to your Mindustry data directory."
+        dependsOn(jar)
+
+        val dir = if(OS.isWindows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"
+        val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
 
         doLast {
-            delete { delete("${layout.buildDirectory.get()}/libs/${project.name}Desktop.jar") }
-            delete { delete("${layout.buildDirectory.get()}/libs/${project.name}Android.jar") }
-        }
-         */
-    }
-}
+            println("Copying mod...")
 
-subprojects {
-    val supportsAndroid: String? by this
-    val supportsAndroidBool = supportsAndroid?.let {parseBoolean(it)} ?: false
+            val fDir = if(project.hasProperty("copy.target")) dirC else dir
 
-    dependencies{
-        compileOnly(rootProject)
-    }
+            if(!fDir?.let {File(it).exists()}!!){
+                println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
+                if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
+                return@doLast
+            }
 
-    tasks.jar {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        archiveFileName.set(if(supportsAndroidBool) "${project.name}Desktop.jar" else "${project.name}.jar")
-
-        from(*configurations.runtimeClasspath.get().files.map { if (it.isDirectory) it else zipTree(it) }.toTypedArray())
-
-        from("$rootDir/${project.name}") {
-            include("ext.hjson")
+            copy {
+                from("${layout.buildDirectory.get()}/libs")
+                into(fDir)
+                include("${project.name}Desktop.jar")
+            }
         }
     }
 
-    tasks.named("jarAndroid") {
-        enabled = supportsAndroidBool
-    }
+    val copyDeploy = tasks.register<DefaultTask>("copyDeploy") {
+        group = "copy"
+        description = "Compiles a multiplatform jar and copies it to your Mindustry data directory."
+        dependsOn(dex)
 
-    tasks.named("deploy") {
-        enabled = supportsAndroidBool
-    }
-}
+        val dir = if(OS.isWindows) "${System.getenv("APPDATA")}\\Mindustry" else "${System.getenv("HOME")}/.local/share/Mindustry"
+        val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
 
-tasks.jar {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    archiveFileName.set("${project.name}Desktop.jar")
+        doLast {
+            println("Copying mod...")
 
-    from(*configurations.runtimeClasspath.get().files.map { if (it.isDirectory) it else zipTree(it) }.toTypedArray())
+            val fDir = if(project.hasProperty("copy.target")) dirC else dir
 
-    from(rootDir) {
-        include("mod.hjson")
-        include("icon.png")
-    }
+            if(!fDir?.let {File(it).exists()}!!){
+                println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
+                if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
+                return@doLast
+            }
 
-    from("$rootDir/assets/") { include("**") }
-}
+            copy {
+                from("${layout.buildDirectory.get()}/libs")
+                into("$fDir/mods")
+                include("${project.name}.jar")
+            }
 
-task("copy") {
-    group = "copy"
-    description = "Compiles a desktop-only jar and copies it to your Mindustry data directory."
-    dependsOn("jar")
+            println("Mod copied.")
 
-    val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"
-    val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
+            val java = if(OS.isWindows) "java.exe" else "java"
+            val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
+            val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
 
-    doLast {
-        println("Copying mod...")
+            if(jarFilePathString != null) exec {
+                val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
+                println("Java runtime cmdline: \"$fJava\"")
 
-        val fDir = if(project.hasProperty("copy.target")) dirC else dir
-
-        if(!fDir?.let {File(it).exists()}!!){
-            println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
-            if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
-            return@doLast
-        }
-
-        copy {
-            from("${layout.buildDirectory.get()}/libs")
-            into(fDir)
-            include("${project.name}Desktop.jar")
+                commandLine = fJava.split(' ')
+                standardOutput = System.out
+                errorOutput = System.err
+            }
         }
     }
-}
 
-task("copyDeploy") {
-    group = "copy"
-    description = "Compiles a multiplatform jar and copies it to your Mindustry data directory."
-    dependsOn("deploy")
+    val androidCopy = tasks.register("androidCopy") {
+        group = "copy"
+        description = "Compiles a multiplatform jar and copies it to a connected device using ADB. This requires the device to have USB debugging enabled."
+        dependsOn(dex)
 
-    val dir = if(windows) "${System.getenv("APPDATA")}\\Mindustry" else "${System.getenv("HOME")}/.local/share/Mindustry"
-    val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
+        val adb = if(OS.isWindows) "adb.exe" else "adb"
+        val serial = if(project.hasProperty("adb.serial")) "-s \"${project.property("adb.serial").toString()}\"" else ""
 
-    doLast {
-        println("Copying mod...")
+        val adbCmd = "$adb $serial".trim()
 
-        val fDir = if(project.hasProperty("copy.target")) dirC else dir
+        doLast {
+            println("Copying mod to connected device...")
+            if(serial.isNotEmpty()) println("Target device: $serial")
 
-        if(!fDir?.let {File(it).exists()}!!){
-            println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
-            if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
-            return@doLast
-        }
+            val target = if(useBE){ println("Using BE directory."); "io.anuke.mindustry.be" } else "io.anuke.mindustry"
 
-        copy {
-            from("${layout.buildDirectory.get()}/libs")
-            into("$fDir/mods")
-            include("${project.name}.jar")
-        }
+            exec {
+                commandLine = "$adbCmd push ${layout.buildDirectory.get()}/libs/${project.name}.jar /sdcard/Android/data/$target/files/mods".split(' ')
+                standardOutput = System.out
+                errorOutput = System.err
+            }
 
-        println("Mod copied.")
+            exec {
+                commandLine = "$adbCmd shell chmod 755 /sdcard/Android/data/$target/files/mods/${project.name}.jar".split(' ')
+                standardOutput = System.out
+                errorOutput = System.err
+            }
 
-        val java = if(windows) "java.exe" else "java"
-        val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
-        val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
-
-        if(jarFilePathString != null) exec {
-            val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
-            println("Java runtime cmdline: \"$fJava\"")
-
-            commandLine = fJava.split(' ')
-            standardOutput = System.out
-            errorOutput = System.err
-        }
-    }
-}
-
-
-//TODO support for using different devices when multiple are connected (serial no.)
-task("androidCopy") {
-    group = "copy"
-    description = "Compiles a multiplatform jar and copies it to a connected device using ADB. This requires the device to have USB debugging enabled."
-    dependsOn("deploy")
-
-    val adb = if(windows) "adb.exe" else "adb"
-    val serial = if(project.hasProperty("adb.serial")) "-s \"${project.property("adb.serial").toString()}\"" else ""
-
-    val adbCmd = "$adb $serial"
-
-    doLast {
-        println("Copying mod to connected device...")
-        if(serial.isNotEmpty()) println("Target device: $serial")
-
-        val target = if(useBE){ println("Using BE directory."); "io.anuke.mindustry.be" } else "io.anuke.mindustry"
-
-        exec {
-            commandLine = "$adbCmd push ${layout.buildDirectory.get()}/libs/${project.name}.jar /sdcard/Android/data/$target/files/mods".split(' ')
-            standardOutput = System.out
-            errorOutput = System.err
-        }
-
-        //piece of shit.
-        exec {
-        	commandLine = "$adbCmd shell chmod 755 /sdcard/Android/data/$target/files/mods/${project.name}.jar".split(' ')
-        	standardOutput = System.out
-        	errorOutput = System.err
-        }
-
-        if(quickstart) exec {
-            println("Starting Mindustry on connected device...")
-            commandLine = "$adbCmd shell am start -n $target/mindustry.android.AndroidLauncher".split(' ')
-            standardOutput = System.out
-            errorOutput = System.err
-        }
-    }
-}
-
-task<Copy>("buildAll") {
-    val taskList = arrayListOf<Task>()
-    val dirList = arrayListOf<String>()
-    allprojects.forEach {p ->
-        val supportsAndroid: String? by p
-
-        taskList.add(p.tasks.getByName("deploy"))
-        dirList.add("${p.layout.buildDirectory.get()}/libs/${p.name}.jar")
-    }
-    dependsOn(taskList)
-
-    doLast {
-        copy {
-            from(dirList)
-            into("${layout.buildDirectory.get()}/libs/")
+            if(quickstart) exec {
+                println("Starting Mindustry on connected device...")
+                commandLine = "$adbCmd shell am start -n $target/mindustry.android.AndroidLauncher".split(' ')
+                standardOutput = System.out
+                errorOutput = System.err
+            }
         }
     }
 }

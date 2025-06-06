@@ -1,4 +1,4 @@
-package yellow.entities.units;
+package yellow.type.unit;
 
 import arc.*;
 import arc.graphics.*;
@@ -14,7 +14,7 @@ import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.ui.*;
 import yellow.content.*;
-import yellow.entities.units.entity.*;
+import yellow.gen.*;
 
 /** A "ghost" unit that despawns after a set period of enterExitTime. Unaffected by map boundaries. */
 public class GhostUnitType extends UnitType{
@@ -29,7 +29,7 @@ public class GhostUnitType extends UnitType{
 
     public GhostUnitType(String name){
         super(name);
-        constructor = GhostEntity::new;
+
         bounded = false;
         isEnemy = false;
         physics = false;
@@ -48,11 +48,11 @@ public class GhostUnitType extends UnitType{
         table.table(bars -> {
             bars.defaults().growX().height(20f).pad(4);
 
-            GhostEntity ent = (GhostEntity) unit;
+            GhostUnit ent = (GhostUnit) unit;
 
             bars.add(new Bar("stat.health", Color.red, ent::healthf));
             bars.row();
-            bars.add(new Bar("stat.lifetime", Pal.lancerLaser, ent::lifetimef));
+            bars.add(new Bar("stat.lifetime", Pal.lancerLaser, () -> 1f - ent.lifetimef()));
             bars.row();
         }).growX();
 

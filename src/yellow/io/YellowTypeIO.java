@@ -8,26 +8,26 @@ public class YellowTypeIO{
 
     public static void writeToggleWeapons(WeaponMount[] mounts, Writes write){
         if(mounts.length == 0){
-            write.s(0);
+            write.i(0);
             return;
         }
 
-        short ss = 0;
+        int ss = 0;
         for(var w: mounts) if(w instanceof ToggleWeaponMount) ss++;
-        write.s(ss);
+        write.i(ss);
 
         for(var w: mounts) if(w instanceof ToggleWeaponMount s) s.write(write);
     }
 
     public static void readToggleWeapons(WeaponMount[] mounts, Reads read, boolean dumpIfNotEqual){
         if(mounts.length == 0){
-            for(int i = 0; i < read.s(); i++){
-                read.bool();
+            for(int i = 0; i < read.i(); i++){
+                ToggleWeaponMount.throwaway(read);
             }
             return;
         }
 
-        short oldMountLength = read.s(); //old amount of mounts
+        int oldMountLength = read.i(); //old amount of mounts
         short currentMountLength = 0; //current amount of mounts
         for(var w: mounts) if(w instanceof ToggleWeaponMount) currentMountLength++;
 
@@ -36,7 +36,7 @@ public class YellowTypeIO{
         }else{
             if(dumpIfNotEqual){
                 for(int i = 0; i < oldMountLength; i++){
-                    read.bool();
+                    ToggleWeaponMount.throwaway(read);
                 }
                 return;
             }
@@ -46,8 +46,7 @@ public class YellowTypeIO{
             //list down all current mounts
             for(var w: mounts){
                 if(w instanceof ToggleWeaponMount s){
-                    saveMounts[strayBytes] = s;
-                    strayBytes++;
+                    saveMounts[strayBytes++] = s;
                 }
             }
 
@@ -57,7 +56,7 @@ public class YellowTypeIO{
 
             //dump any unused bytes
             for(int i = 0; i < currentMountLength - strayBytes; i++){
-                read.bool();
+                ToggleWeaponMount.throwaway(read);
             }
         }
     }

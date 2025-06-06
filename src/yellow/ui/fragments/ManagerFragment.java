@@ -7,8 +7,8 @@ import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
 import yellow.*;
-import yellow.comp.*;
 import yellow.ui.*;
+import yellow.util.*;
 
 import static mindustry.Vars.*;
 
@@ -38,7 +38,7 @@ public class ManagerFragment implements CommonFragment{
                 }).size(120f, 35f).right();
             }).get();
 
-            t.visible(() -> player.unit() instanceof ToggleWeaponsc && ui.hudfrag.shown);
+            t.visible(() -> Validator.hasToggleWeapons(player.unit()) && ui.hudfrag.shown);
         });
     }
 

@@ -8,7 +8,6 @@ import mindustry.ai.types.*;
 import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import yellow.entities.units.entity.*;
 import yellow.util.*;
 
 public class EqualityDamage{
@@ -48,7 +47,6 @@ public class EqualityDamage{
             Groups.unit.remove(u);
             u.health = u.maxHealth = u.shield = u.armor = 0f;
             if(u instanceof TimedKillUnit tk) tk.lifetime = 0f;
-            if(u instanceof GhostEntity g) g.lifetime = 0f;
 
             Structs.each(s -> {
                 if(hasEntry(target, s)){

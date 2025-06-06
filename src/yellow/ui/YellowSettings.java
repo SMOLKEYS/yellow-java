@@ -15,7 +15,11 @@ import mindustry.ui.dialogs.*;
 import yellow.*;
 import yellow.util.*;
 
+import static arc.Core.*;
+
 public class YellowSettings{
+
+    private static String header;
 
     static SettingsMenuDialog.SettingsTable table;
     static boolean updateBlock = false;
@@ -57,8 +61,34 @@ public class YellowSettings{
                     b.setText("[" + (status ? "white" : "gray") + "]" + Core.bundle.get("setting.yellow-restart-rpc.name") + "[]");
                 }));
             }else{
-                labelPref(t, "yellow-unavailable-mobile", null);
+                labelPref(t, "yellow-unavailable-mobile", false, null);
             }
+
+            setHeader("yellow-chaos-renderer");
+
+            seperatorPref(t, "yellow-chaos-renderer-section", Icon.warning, Icon.settings);
+
+            buttonPref(t, form("shuffle-seed", false), YellowVars.chaosRenderer.config::shuffle);
+
+            t.sliderPref(form("tex-count", false), 500, 100, 2000, 100, proc -> Core.bundle.format(form("tex-count", true), proc));
+
+            //we must divide by ten NOW
+
+            floatSliderPref(t, form("outbound", false), 25, 10, 25, 1, proc -> Core.bundle.format(form("outbound", true), proc / 10f));
+
+            floatSliderPref(t, form("min-speed", false), 5, 0, 150, 1, proc -> Core.bundle.format(form("min-speed", true), proc / 10f));
+
+            floatSliderPref(t, form("max-speed", false), 25, 0, 150, 1, proc -> Core.bundle.format(form("max-speed", true), proc / 10f));
+
+            floatSliderPref(t, form("min-rot-speed", false), 5, 0, 150, 1, proc -> Core.bundle.format(form("min-rot-speed", true), proc / 10f));
+
+            floatSliderPref(t, form("max-rot-speed", false), 20, 0, 150, 1, proc -> Core.bundle.format(form("max-rot-speed", true), proc / 10f));
+
+            t.checkPref(form("reverse", false), false);
+
+            t.checkPref(form("reverse-rot", false), false);
+
+            t.checkPref(form("render-original-renderer", false), false);
 
             seperatorPref(t, "yellow-info-section", Icon.info, Icon.github);
 
@@ -146,6 +176,24 @@ public class YellowSettings{
 
     public static void tablePref(SettingsMenuDialog.SettingsTable target, String name, Cons<Table> builder){
         target.pref(new TableSetting(name, builder));
+    }
+
+    public static void floatSliderPref(SettingsMenuDialog.SettingsTable target, String name, float def, float min, float max, float step, TypedStringProcessor<Float> s){
+        target.pref(new FloatSliderSetting(name, def, min, max, step, s));
+    }
+
+    private static void setHeader(String h){
+        header = h;
+    }
+
+    private static String form(String h, boolean wl){
+        return wl ? "setting." + header + "-" + h + ".item" : header + "-" + h;
+    }
+
+    private static void multiples(Cons<String> builder, String... values){
+        for(String s : values){
+            builder.get(s);
+        }
     }
 
     public static class ButtonSetting extends SettingsMenuDialog.SettingsTable.Setting{
@@ -249,4 +297,46 @@ public class YellowSettings{
         }
     }
 
+    public static class FloatSliderSetting extends SettingsMenuDialog.SettingsTable.Setting{
+        public float def, min, max, step;
+        public TypedStringProcessor<Float> sp;
+
+        public FloatSliderSetting(String name, float def, float min, float max, float step, TypedStringProcessor<Float> sp){
+            super(name);
+            this.def = def;
+            this.min = min;
+            this.max = max;
+            this.step = step;
+            this.sp = sp;
+        }
+
+        @Override
+        public void add(SettingsMenuDialog.SettingsTable table){
+            Slider slider = new Slider(min, max, step, false);
+
+            slider.setValue(settings.getFloat(name));
+
+            Label value = new Label("", Styles.outlineLabel);
+            Table content = new Table();
+            content.add(title, Styles.outlineLabel).left().growX().wrap();
+            content.add(value).padLeft(10f).right();
+            content.margin(3f, 33f, 3f, 33f);
+            content.touchable = Touchable.disabled;
+
+            slider.changed(() -> {
+                settings.put(name, slider.getValue());
+                value.setText(sp.get(slider.getValue()));
+            });
+
+            slider.change();
+
+            addDesc(table.stack(slider, content).width(Math.min(Core.graphics.getWidth() / 1.2f, 460f)).left().padTop(4f).get());
+            table.row();
+        }
+    }
+
+
+    public interface TypedStringProcessor<T>{
+        String get(T t);
+    }
 }

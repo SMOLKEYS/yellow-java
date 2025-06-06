@@ -1,11 +1,8 @@
-package yellow.entities.units;
-
-import yellow.entities.units.entity.*;
+package yellow.type.unit;
 
 public class YellowUnitType extends SingleInstanceUnitType{
 
     public YellowUnitType(String name){
         super(name);
-        constructor = YellowUnitEntity::new;
     }
 }

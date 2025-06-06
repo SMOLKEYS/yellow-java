@@ -39,8 +39,8 @@ public class NotificationFragment implements CommonFragment{
             s.top().right();
             s.y = -100;
         });
-        persistent = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.accent.cpy().a(0.5f));
-        error = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.remove.cpy().a(0.5f));
+        persistent = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.accent.cpy());
+        error = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.remove.cpy());
         lstyle = Styles.outlineLabel;
     }
 

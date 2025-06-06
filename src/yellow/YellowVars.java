@@ -5,7 +5,7 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import mindustry.*;
 import yellow.combat.*;
-import yellow.ui.*;
+import yellow.graphics.*;
 import yellow.ui.dialogs.*;
 import yellow.ui.fragments.*;
 import yellow.util.*;
@@ -29,6 +29,10 @@ public class YellowVars{
     public static CombatMode combat;
 
     static Date date;
+
+    public static void preinit(){
+
+    }
 
     public static void init(){
         weapons = new WeaponManagerDialog();
@@ -57,8 +61,11 @@ public class YellowVars{
 
         SafeReflect.set(Vars.ui.menufrag, "renderer", chaosRenderer = new ChaosRenderer());
 
-        combat = new CombatMode();
-        combat.init();
+        if(!Vars.mobile){
+            combat = new CombatMode();
+            combat.init();
+        }
+
     }
 
     public static void onImport(){
@@ -82,5 +89,4 @@ public class YellowVars{
     public static void setNotificationTime(float time){
         Core.settings.put("yellow-notification-time", time);
     }
-
 }

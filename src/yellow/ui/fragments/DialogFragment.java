@@ -11,6 +11,7 @@ import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
+import yellow.compat.*;
 import yellow.ui.*;
 
 public class DialogFragment implements CommonFragment{
@@ -51,7 +52,7 @@ public class DialogFragment implements CommonFragment{
                             progress();
                         }
                     });
-                    f.setTypingListener(new FListener(){
+                    f.setTypingListener(new AndroidCompatibilityClasses.AFListener(){
                         @Override
                         public void event(String event){
                             //TODO dunno wtf to do with this yet

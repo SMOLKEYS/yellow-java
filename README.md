@@ -9,6 +9,7 @@ I - idea
 ```
 
 `author comment: oh my fucking god`
+<strike>
 
 - [X] Initial Code - 0.001
 - [] Content
@@ -56,6 +57,8 @@ I - idea
   * [] Discord RPC
   * [] Extensions (TBSH?)
 
+
+</strike>
 ---
 
 # Yellow

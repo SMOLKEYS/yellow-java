@@ -7,6 +7,7 @@ import mindustry.*;
 import mindustry.game.*;
 import mindustry.mod.*;
 import yellow.content.*;
+import yellow.gen.*;
 import yellow.ui.*;
 import yellow.util.*;
 
@@ -21,19 +22,20 @@ public class Yellow extends Mod{
 
     public Yellow(){
         if(Vars.clientLoaded) YellowVars.onImport();
+        if(!Vars.clientLoaded) YellowVars.preinit();
 
         Events.run(EventType.ClientLoadEvent.class, () -> {
             YellowVars.init();
             if(!Vars.mobile && SafeSettings.getBool("yellow-enable-rpc", true, true)) YellowRPC.init();
             YellowSettings.load();
 
-            UpdateChecker.loadNotifier();
+            if(SafeSettings.get("yellow-check-for-updates", false)) UpdateChecker.loadNotifier();
             JSLink.importPackage(
                     "yellow", "yellow.ui", "yellow.ui.fragments", "yellow.world.meta",
                     "yellow.ai", "yellow.content", "yellow.entities.units", "yellow.entities.effect",
                     "yellow.entities.units.entity", "yellow.io", "yellow.math", "yellow.type.weapons",
                     "yellow.util", "yellow.equality", "yellow.combat", "yellow.cutscene",
-                    "yellow.cutscene.controllers"
+                    "yellow.cutscene.controllers", "yellow.entities.abilities", "yellow.compat"
             );
         });
     }
@@ -54,6 +56,7 @@ public class Yellow extends Mod{
 
     @Override
     public void loadContent(){
+        EntityRegistry.register();
         YellowWeapons.load();
         YellowUnitTypes.load();
         YellowWeapons.afterLoad();

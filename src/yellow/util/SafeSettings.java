@@ -40,7 +40,7 @@ public class SafeSettings{
             return fallback;
         }
     }
-
+    
     public static int getInt(String key, int def){
         return getInt(key, def, def);
     }
@@ -76,4 +76,18 @@ public class SafeSettings{
             return fallback;
         }
     }
+
+    public static <T> T get(String key, T def){
+        return get(key, def, def);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static <T> T get(String key, T def, T fallback){
+        try{
+            return (T) Core.settings.get(key, def);
+        }catch(Exception e){
+            return fallback;
+        }
+    }
+
 }

@@ -30,7 +30,7 @@ public class LoadTextFragment implements CommonFragment{
         wt.table(r -> {
             r.name = "lt" + id;
             r.add(text).padRight(15).style(Styles.outlineLabel);
-            Image i = r.image(icon).padRight(10).get();
+            Image i = r.image(icon).padLeft(10).padRight(10).get();
 
             if(rotateIcon) i.actions(Actions.originCenter(), Actions.forever(Actions.rotateBy(-360, 2)));
         }).row();
@@ -69,10 +69,8 @@ public class LoadTextFragment implements CommonFragment{
         Table idt = wt.find("lt" + id);
         if(idt == null) return;
 
-        Time.run(delay, () -> {
-            if(actions.length == 0) idt.remove();
+        if(actions.length == 0) idt.remove();
 
-            idt.actions(Actions.sequence(actions), Actions.remove());
-        });
+        idt.actions(Actions.delay(delay/60f), Actions.sequence(actions), Actions.remove());
     }
 }

@@ -1,18 +1,14 @@
-package yellow.entities.units;
+package yellow.type.unit;
 
 import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import yellow.entities.units.entity.*;
 
 public class SingleInstanceUnitType extends UnitType{
 
-
     public SingleInstanceUnitType(String name){
         super(name);
-        constructor = SingleInstanceEntity::new;
-        allowedInPayloads = false;
     }
 
     @Override

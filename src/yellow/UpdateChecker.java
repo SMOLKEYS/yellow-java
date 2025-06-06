@@ -46,12 +46,14 @@ public class UpdateChecker{
                     updateQueued = false;
                     YellowVars.notifrag.showPersistentNotification(Icon.box, Strings.format("New update found! ([accent]@[] -> [accent]@[])\nTo update, open the mods list, find the mod and then reinstall.", cur, lat));
                     YellowVars.ltfrag.hide(id, 0, Actions.fadeOut(2));
+                    Log.info("New Yellow update available.");
                 },
                 () -> {
                     updateAvailable = false;
                     updateQueued = false;
                     YellowVars.ltfrag.reconfigure(id, "No new updates found.", Icon.cancel, false);
-                    YellowVars.ltfrag.hide(id, 60*5, Actions.fadeOut(2));
+                    YellowVars.ltfrag.hide(id, 60*3f, Actions.fadeOut(2));
+                    Log.info("No new Yellow updates found.");
                 },
                 err -> {
                     Log.err("========== CHECKING ERROR ==========");
@@ -62,7 +64,7 @@ public class UpdateChecker{
                     updateAvailable = false;
 
                     YellowVars.ltfrag.reconfigure(id, "Failed to check for updates!", Icon.cancel, false);
-                    YellowVars.ltfrag.hide(id, 60*3, Actions.fadeOut(2));
+                    YellowVars.ltfrag.hide(id, 60*3f, Actions.fadeOut(2));
                 }
         );
     }

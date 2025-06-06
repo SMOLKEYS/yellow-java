@@ -3,10 +3,11 @@ package yellow.entities.units;
 import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
-import yellow.comp.*;
 import yellow.type.weapons.*;
 
-public class ToggleWeaponMount extends WeaponMount implements Savec{
+public class ToggleWeaponMount extends WeaponMount{
+    private static final ToggleWeaponMount inst = new ToggleWeaponMount(new Weapon("do-not-touch-this"));
+
     public boolean enabled = true;
 
     public ToggleWeaponMount(Weapon weapon){
@@ -14,13 +15,15 @@ public class ToggleWeaponMount extends WeaponMount implements Savec{
         if(weapon instanceof ToggleWeapon w) enabled = w.enabledDefault;
     }
 
-    @Override
     public void read(Reads read){
         enabled = read.bool();
     }
 
-    @Override
     public void write(Writes write){
         write.bool(enabled);
+    }
+
+    public static void throwaway(Reads read){
+        inst.read(read);
     }
 }
