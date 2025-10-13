@@ -1,6 +1,9 @@
 
 version: 2.1
 
+orbs:
+  android: circleci/android@3.1.0
+
 jobs:
   build:
     docker:
@@ -15,6 +18,8 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
+      - run: echo "${ANDROID_HOME}/build-tools/34.0.0" >> $PATH
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -22,7 +27,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: ./gradlew jar
+      - run: ./gradlew deploy
 
       - save_cache:
           paths:
@@ -30,7 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle.kts" }}
 
       - store_artifacts:
-          path: ./build/libs/yellow-javaDesktop.jar
+          path: ./build/libs/yellow-java.jar
 
 workflows:
   compile:
