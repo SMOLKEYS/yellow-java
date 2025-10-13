@@ -25,7 +25,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: ./gradlew dex
+      - run: export PATH="$PATH;${ANDROID_HOME}/build-tools/34.0.0"; ./gradlew dex --stacktrace
 
       - save_cache:
           paths:
