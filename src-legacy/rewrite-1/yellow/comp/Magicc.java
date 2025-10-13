@@ -1,7 +1,6 @@
 package yellow.comp;
 
 import arc.math.geom.*;
-import yellow.entities.units.*;
 
 @SuppressWarnings("unused")
 public interface Magicc extends Position{

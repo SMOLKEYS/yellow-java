@@ -3,10 +3,6 @@ package yellow.entities.units;
 import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
-import yellow.internal.*;
-import yellow.type.*;
-
-import static yellow.util.YellowUtils.*;
 
 public class DisableableWeaponMount extends WeaponMount implements Savec{
     /** whether the weapon is enabled */

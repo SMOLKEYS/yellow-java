@@ -5,7 +5,6 @@ import java.util.*;
 import mindustry.*;
 import mindustry.game.*;
 import mindustry.type.*;
-import yellow.util.*;
 
 public class SaveIDAssigner{
 

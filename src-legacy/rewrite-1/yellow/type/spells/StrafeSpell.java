@@ -3,10 +3,6 @@ package yellow.type.spells;
 import arc.math.*;
 import mindustry.gen.*;
 import mindustry.world.meta.*;
-import yellow.comp.*;
-import yellow.entities.units.*;
-import yellow.type.*;
-import yellow.world.meta.*;
 
 public class StrafeSpell extends Spell{
 

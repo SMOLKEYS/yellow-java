@@ -14,17 +14,6 @@ import mindustry.core.*;
 import mindustry.game.EventType.*;
 import mindustry.game.*;
 import mindustry.graphics.*;
-import yellow.content.*;
-import yellow.core.*;
-import yellow.debug.*;
-import yellow.game.*;
-import yellow.mods.*;
-import yellow.ui.*;
-import yellow.util.*;
-import yellow.watchdog.*;
-import yellow.world.meta.*;
-
-import static yellow.game.YellowEventType.*;
 
 public class YellowVars{
 

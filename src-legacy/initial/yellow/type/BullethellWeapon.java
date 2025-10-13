@@ -5,9 +5,6 @@ import arc.math.*;
 import arc.struct.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
-import yellow.ai.*;
-import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
 
 public class BullethellWeapon extends DisableableWeapon{
     /** Weapon groups defined by the player in the Session Manager. */

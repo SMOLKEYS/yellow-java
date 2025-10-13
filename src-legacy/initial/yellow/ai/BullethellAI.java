@@ -4,8 +4,6 @@ import arc.math.geom.*;
 import arc.struct.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
-import yellow.entities.units.*;
-import yellow.type.*;
 
 import java.util.*;
 

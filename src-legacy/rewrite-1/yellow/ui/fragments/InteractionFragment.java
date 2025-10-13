@@ -3,7 +3,6 @@ package yellow.ui.fragments;
 import arc.graphics.*;
 import arc.scene.*;
 import arc.util.*;
-import yellow.ui.*;
 
 //TODO
 @SuppressWarnings({"GrazieInspection", "CodeBlock2Expr"}) //no grazie and no expr lamb

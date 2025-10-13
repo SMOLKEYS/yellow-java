@@ -1,8 +1,6 @@
 package yellow.entities.units.entity;
 
 import mindustry.gen.*;
-import yellow.entities.units.*;
-import yellow.equality.*;
 
 public class CharacterEntity extends UnitEntity{
 

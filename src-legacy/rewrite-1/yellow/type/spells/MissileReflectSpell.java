@@ -5,9 +5,6 @@ import mindustry.ai.types.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.world.meta.*;
-import yellow.comp.*;
-import yellow.entities.units.*;
-import yellow.world.meta.*;
 
 public class MissileReflectSpell extends AreaSpell{
 

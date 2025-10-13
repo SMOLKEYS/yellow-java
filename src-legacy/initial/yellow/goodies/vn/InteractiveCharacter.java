@@ -4,9 +4,6 @@ import arc.*;
 import arc.graphics.*;
 import arc.scene.ui.*;
 import arc.struct.*;
-import yellow.*;
-import yellow.internal.*;
-import yellow.util.*;
 
 import java.util.*;
 

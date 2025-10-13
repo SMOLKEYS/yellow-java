@@ -1,6 +1,7 @@
 pluginManagement{
     repositories{
         gradlePluginPortal()
+        maven("https://jitpack.io")
         maven("https://raw.githubusercontent.com/GglLfr/EntityAnnoMaven/main")
     }
 
@@ -15,3 +16,6 @@ if(JavaVersion.current().ordinal < JavaVersion.VERSION_17.ordinal) throw GradleE
 val modName: String by settings
 rootProject.name = modName
 
+
+include("core")
+include("native-loader")

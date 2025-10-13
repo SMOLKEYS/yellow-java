@@ -14,9 +14,6 @@ import mindustry.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.ui.*;
-import yellow.util.*;
 
 public class NotificationFragment implements CommonFragment{
 

@@ -1,7 +1,6 @@
 package yellow.game;
 
 import mindustry.gen.*;
-import yellow.goodies.vn.*;
 
 public class YEventType{
 

@@ -6,8 +6,6 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import yellow.entities.units.entity.*;
-import yellow.world.meta.*;
 
 public class MultiLifeUnitType extends CharacterUnitType{
     /** How many lives this unit has. */

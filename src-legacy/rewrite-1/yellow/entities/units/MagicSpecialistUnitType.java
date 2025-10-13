@@ -3,9 +3,6 @@ package yellow.entities.units;
 import arc.struct.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import yellow.entities.units.entity.*;
-import yellow.type.*;
-import yellow.world.meta.*;
 
 public class MagicSpecialistUnitType extends MultiLifeUnitType{
 

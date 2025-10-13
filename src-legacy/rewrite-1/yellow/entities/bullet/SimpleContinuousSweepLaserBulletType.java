@@ -2,7 +2,6 @@ package yellow.entities.bullet;
 
 import arc.math.*;
 import mindustry.gen.*;
-import yellow.equality.*;
 
 public class SimpleContinuousSweepLaserBulletType extends ContinuousEqualityLaserBulletType{
 

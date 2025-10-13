@@ -5,12 +5,6 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.ui.fragments.*;
-import yellow.*;
-import yellow.game.*;
-import yellow.internal.*;
-import yellow.ui.dialogs.*;
-import yellow.ui.fragments.*;
-import yellow.util.*;
 
 import static mindustry.Vars.*;
 

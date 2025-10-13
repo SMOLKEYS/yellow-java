@@ -2,7 +2,6 @@ package yellow.content;
 
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
-import yellow.entities.bullet.*;
 
 public class YellowBullets{
     public static BulletType

@@ -11,13 +11,6 @@ import mindustry.entities.abilities.*;
 import mindustry.entities.units.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import yellow.*;
-import yellow.entities.bullet.*;
-import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
-import yellow.equality.*;
-
-import static yellow.entities.bullet.SpinSpearBulletType.*;
 
 /** Checks states of content associated with Yellow. */
 public class Validation{

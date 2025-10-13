@@ -4,7 +4,6 @@ import arc.*;
 import arc.struct.*;
 import mindustry.*;
 import mindustry.game.*;
-import yellow.cutscene.*;
 
 public class CutsceneTester{
 

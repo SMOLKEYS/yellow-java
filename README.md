@@ -1,67 +1,6 @@
-# Rewrite (3rd Attempt)
-
-Developer Quota for third rewrite:
-
-```
-TBSC - to be scrapped
-TBSH - to be shelved
-I - idea
-```
-
-`author comment: oh my fucking god`
-<strike>
-
-- [X] Initial Code - 0.001
-- [] Content
-  * [] Entity classes
-    * [] Weapon master entities
-    * [] Multi-life entities
-    * [X] Ghost entities - 0.002
-    * [] ~~Magic entities~~ (Shelved)
-  * [] Weapon classes
-    * [X] Named weapons - 0.002
-    * [X] Toggle weapons - 0.002
-      * [] Basic control UI
-  * [] Bullet classes
-    * [] Invincibility bypass bullets
-    * [] Flying continuous lasers
-  * [] Yellow
-    * [] ~~Balancing attempt~~ (nah)
-    * [X] VFX (TODO) - 0.002
-  * [] Weapons from legacy codebases + New weapons
-    * [] "Reasonable" weapons
-      * [] Rapid-fire Blasters
-      * [] Explosive Artillery Cannons
-      * [] High-powered Railgun
-    * [] Unreasonably overpowered weapons
-      * [] Laser Barrage
-      * [] Bullet Storms 
-      * [] Homing Bomber Flares
-      * [] H.E. Rounds
-      * [] Electromagnetic Pulse Wave
-      * [] Ghost Call
-      * [] High-speed Booster
-      * [] 8X Rotating Lasers
-      * [] H.EN. Electric Orbs
-      * [] 4X Railguns
-  * [] ~~Spells~~ (Shelved)
-- [] UI (complete implementation)
-  * [X] Notifications - 0.002
-  * [] Life counter
-  * [] Weapon manager
-  * [] ~~Spell controller~~ (Shelved)
-- [] Others
-  * [X] Automatic update checker - 0.002
-    * [] Downloader
-    * [X] Popup (Notification) - 0.002
-  * [] Discord RPC
-  * [] Extensions (TBSH?)
-
-
-</strike>
----
-
 # Yellow
+
+![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci&link=https%3A%2F%2Fapp.circleci.com%2Fpipelines%2Fgithub%2FSMOLKEYS%2Fyellow-java)
 
 [![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
@@ -74,13 +13,21 @@ A random piece of chaos I made. Mostly just a mod containing whatever comes in m
 
 There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) if you need it for some reason.
 
+### Modules
+
+- `core` - Yellow's main source code
+- `native-loader` - Utility classes for loading native libraries in any platform, standalone
+
+When compiling Yellow, the final JAR should be located at `core/build/libs`, as either `coreDesktop.jar` (desktop-only), or `core.jar` (multiplatform) depending on what you choose.
+As for how to build, look below this text.
+
 # Building (Desktop-only)
 
 ## Windows
 
 1. Install [Java 17+ (Select either regular EXE installer or MSI installer)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and Git/GH (Optional) through `winget install -e --id Git.Git`/`winget install -e --id GitHub.cli`.
 2. Download the source code through GitHub or clone the repository with `git clone https://github.com/SMOLKEYS/yellow-java` or `gh repo clone SMOLKEYS/yellow-java`.
-3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `build/libs`. Import it into the game.
+3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `core/build/libs`. Import it into the game.
 
 ## Linux
 
@@ -88,7 +35,7 @@ There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) i
 
 1. Install [Java 17+ (Mindustry is run using Java, so you probably already have it installed)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and Git/GH (Optional) through your package manager.
 2. Download the source code through GitHub or clone the repository with `git clone https://github.com/SMOLKEYS/yellow-java` or `gh repo clone SMOLKEYS/yellow-java`.
-3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `build/libs`. Import it into the game.
+3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `core/build/libs`. Import it into the game.
 
 ## Android
 

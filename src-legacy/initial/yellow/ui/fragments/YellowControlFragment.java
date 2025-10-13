@@ -5,9 +5,6 @@ import arc.scene.style.*;
 import arc.scene.ui.ImageButton.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
-import yellow.util.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;

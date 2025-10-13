@@ -3,8 +3,6 @@ package yellow.entities.bullet;
 import arc.math.*;
 import arc.util.pooling.*;
 import mindustry.gen.*;
-import yellow.comp.*;
-import yellow.equality.*;
 
 public class SpinSpearBulletType extends BasicEqualityBulletType{
 

@@ -3,8 +3,6 @@ package yellow.entities.units;
 import arc.util.io.*;
 import mindustry.entities.units.*;
 import mindustry.type.*;
-import yellow.comp.*;
-import yellow.type.weapons.*;
 
 public class ToggleWeaponMount extends WeaponMount implements Savec{
     public boolean enabled = true;

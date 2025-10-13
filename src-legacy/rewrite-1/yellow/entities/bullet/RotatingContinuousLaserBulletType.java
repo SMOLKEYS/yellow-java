@@ -2,7 +2,6 @@ package yellow.entities.bullet;
 
 import arc.util.*;
 import mindustry.gen.*;
-import yellow.equality.*;
 
 public class RotatingContinuousLaserBulletType extends ContinuousEqualityLaserBulletType{
 

@@ -6,14 +6,6 @@ import mindustry.*;
 import mindustry.core.*;
 import mindustry.game.*;
 import mindustry.mod.*;
-import yellow.content.*;
-import yellow.core.*;
-import yellow.flabel.*;
-import yellow.game.*;
-import yellow.internal.*;
-import yellow.ui.*;
-import yellow.util.*;
-import yellow.goodies.vn.*;
 
 import java.util.*;
 

@@ -3,7 +3,6 @@ package yellow.world.meta;
 import arc.*;
 import arc.graphics.*;
 import mindustry.game.*;
-import yellow.core.*;
 
 /** The base class for characters. Comes with basic values, like location and location locking. */
 public class GameCharacter{

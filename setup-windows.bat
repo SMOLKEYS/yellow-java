@@ -1,12 +1,11 @@
-@echo off
 cd %userprofile%
 rem Build tools install dir
 mkdir android
 cd android
 mkdir build-tools\33.0.0
 
-curl https://dl.google.com/android/repository/build-tools_r33-windows.zip -o r33.zip
-curl https://dl.google.com/android/repository/commandlinetools-win-10406996_latest.zip -o cli_tools.zip
+if not exist r33.zip curl https://dl.google.com/android/repository/build-tools_r33-windows.zip -o r33.zip
+if not exist cli_tools.zip curl https://dl.google.com/android/repository/commandlinetools-win-10406996_latest.zip -o cli_tools.zip
 
 if %errorlevel% neq 0 exit /b %errorlevel%
 

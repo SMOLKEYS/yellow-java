@@ -11,7 +11,6 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.ui.dialogs.*;
-import yellow.*;
 
 public class YellowSettings{
 

@@ -6,15 +6,6 @@ import arc.math.geom.*;
 import mindustry.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
-import yellow.game.*;
-import yellow.graphics.*;
-import yellow.input.*;
-import yellow.type.*;
-import yellow.util.*;
-import yellow.watchdog.*;
-import yellow.world.meta.*;
 
 import static mindustry.game.EventType.*;
 

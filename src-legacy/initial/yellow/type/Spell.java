@@ -5,10 +5,6 @@ import arc.func.*;
 import arc.struct.*;
 import mindustry.content.*;
 import mindustry.entities.*;
-import yellow.entities.units.entity.*;
-import yellow.input.*;
-import yellow.internal.*;
-import yellow.type.spell.*;
 
 @SuppressWarnings("rawtypes")
 public class Spell implements Namec, YContent {

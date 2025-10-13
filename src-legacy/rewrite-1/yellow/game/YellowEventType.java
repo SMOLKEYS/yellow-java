@@ -1,8 +1,5 @@
 package yellow.game;
 
-import yellow.*;
-import yellow.entities.units.entity.*;
-
 @SuppressWarnings("ClassCanBeRecord")
 public class YellowEventType{
 

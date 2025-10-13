@@ -4,8 +4,6 @@ import arc.math.*;
 import arc.util.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
-import yellow.content.*;
-import yellow.equality.*;
 
 public class ThrowBulletType extends BasicEqualityBulletType{
     /** The amount of throwing force to apply to this bullet. */

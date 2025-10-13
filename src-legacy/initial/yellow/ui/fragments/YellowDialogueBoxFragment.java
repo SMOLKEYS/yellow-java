@@ -10,9 +10,6 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
-import yellow.game.*;
-import yellow.goodies.vn.*;
-import yellow.util.*;
 
 //TODO
 public class YellowDialogueBoxFragment{

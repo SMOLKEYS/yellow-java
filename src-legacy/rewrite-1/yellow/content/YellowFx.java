@@ -7,9 +7,6 @@ import arc.util.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
-import yellow.entities.effect.*;
-import yellow.graphics.*;
-import yellow.math.*;
 
 
 public class YellowFx{

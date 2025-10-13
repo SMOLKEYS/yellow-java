@@ -4,9 +4,6 @@ import arc.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
-import yellow.comp.*;
-import yellow.entities.units.*;
-import yellow.io.*;
 
 public class MagicSpecialistEntity extends MultiLifeUnitEntity implements Magicc{
 

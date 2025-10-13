@@ -6,8 +6,6 @@ import arc.scene.ui.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
-import yellow.comp.*;
-import yellow.entities.units.*;
 
 public class SpellManagerDialog extends BaseDialog{
 

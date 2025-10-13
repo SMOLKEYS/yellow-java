@@ -3,7 +3,6 @@ package yellow.type.weapons;
 import arc.*;
 import arc.scene.ui.layout.*;
 import mindustry.type.*;
-import yellow.world.meta.*;
 
 /** A weapon with a display name and description. */
 public class NamedWeapon extends Weapon{

@@ -9,7 +9,6 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.world.*;
-import yellow.entities.effect.*;
 
 
 public class YellowFx{

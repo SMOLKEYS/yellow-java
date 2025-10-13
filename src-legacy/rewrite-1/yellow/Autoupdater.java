@@ -12,7 +12,6 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
-import yellow.util.*;
 
 public final class Autoupdater{
 

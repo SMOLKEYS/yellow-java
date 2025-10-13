@@ -2,10 +2,6 @@ package yellow.content;
 
 import mindustry.*;
 import mindustry.gen.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
-import yellow.input.*;
-import yellow.util.*;
 
 public class KeyCheats{
 

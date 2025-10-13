@@ -8,7 +8,6 @@ import mindustry.*;
 import mindustry.core.*;
 import mindustry.maps.*;
 import mindustry.ui.*;
-import yellow.*;
 
 public class MultiUtils{
 

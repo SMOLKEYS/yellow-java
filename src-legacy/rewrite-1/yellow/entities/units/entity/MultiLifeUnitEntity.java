@@ -5,9 +5,6 @@ import arc.func.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
-import yellow.entities.abilities.*;
-import yellow.entities.units.*;
-import yellow.game.YellowEventType.*;
 
 public class MultiLifeUnitEntity extends WeaponSpecialistEntity{
     private static final int mappingId = EntityMapping.register("multilife-unit", MultiLifeUnitEntity::new);

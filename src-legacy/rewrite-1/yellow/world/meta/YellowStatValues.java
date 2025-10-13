@@ -3,7 +3,6 @@ package yellow.world.meta;
 import arc.struct.*;
 import mindustry.ui.*;
 import mindustry.world.meta.*;
-import yellow.type.*;
 
 public class YellowStatValues{
 

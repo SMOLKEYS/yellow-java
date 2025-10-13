@@ -8,7 +8,6 @@ import mindustry.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
-import yellow.world.meta.*;
 
 public class TeleportAbility extends DeathStopAbility{
 

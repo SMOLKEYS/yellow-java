@@ -5,7 +5,6 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import yellow.internal.*;
 
 public class Yellow extends Mod{
 

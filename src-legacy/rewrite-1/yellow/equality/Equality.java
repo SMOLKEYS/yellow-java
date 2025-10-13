@@ -9,10 +9,6 @@ import mindustry.ai.types.*;
 import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import yellow.*;
-import yellow.comp.*;
-import yellow.entities.units.entity.*;
-import yellow.util.*;
 
 public class Equality{
     static final EventType.UnitDamageEvent damageEvent = new EventType.UnitDamageEvent();

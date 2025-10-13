@@ -9,8 +9,6 @@ import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import yellow.entities.bullet.*;
-import yellow.type.*;
 
 public class YellowWeapons{
     public static DisableableWeapon

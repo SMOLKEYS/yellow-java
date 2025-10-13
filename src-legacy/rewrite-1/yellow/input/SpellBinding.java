@@ -3,7 +3,6 @@ package yellow.input;
 import arc.*;
 import arc.input.*;
 import arc.struct.*;
-import yellow.type.*;
 
 public class SpellBinding implements KeyBinds.KeyBind{
 

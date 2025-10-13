@@ -12,8 +12,6 @@ import mindustry.*;
 import mindustry.core.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import yellow.*;
-import yellow.util.*;
 
 public class YellowAchievement{
 

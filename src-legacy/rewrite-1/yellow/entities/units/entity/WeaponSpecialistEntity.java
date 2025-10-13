@@ -3,7 +3,6 @@ package yellow.entities.units.entity;
 import arc.*;
 import arc.util.io.*;
 import mindustry.gen.*;
-import yellow.io.*;
 
 public class WeaponSpecialistEntity extends CharacterEntity{
 

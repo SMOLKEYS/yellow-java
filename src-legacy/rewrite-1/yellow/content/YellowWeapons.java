@@ -10,10 +10,6 @@ import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import yellow.entities.bullet.*;
-import yellow.equality.*;
-import yellow.math.*;
-import yellow.type.weapons.*;
 
 public class YellowWeapons{
 

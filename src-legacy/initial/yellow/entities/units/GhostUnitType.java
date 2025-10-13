@@ -13,8 +13,6 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.ui.*;
-import yellow.content.*;
-import yellow.entities.units.entity.*;
 
 public class GhostUnitType extends UnitType{
     /** Unit lifetime in ticks. */

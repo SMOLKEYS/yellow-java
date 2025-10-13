@@ -2,7 +2,6 @@ package yellow.type;
 
 import arc.*;
 import mindustry.type.*;
-import yellow.internal.*;
 
 public class NameableWeapon extends Weapon implements Namec, YContent {
     /** The weapon display name, as shown in UI. */

@@ -33,7 +33,11 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle.kts" }}
           
       - store_artifacts:
-          path: ./build/libs/yellow-java.jar
+          path: ./core/build/libs/core.jar
+          destination: yellow-java.jar
+
+      - store_artifacts:
+          path: ./core/build/libs
 
 
 workflows:

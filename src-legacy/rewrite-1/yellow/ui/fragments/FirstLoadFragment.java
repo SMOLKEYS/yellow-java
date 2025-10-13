@@ -14,8 +14,6 @@ import mindustry.*;
 import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.ui.*;
 
 public class FirstLoadFragment implements CommonFragment{
 

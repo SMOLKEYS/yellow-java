@@ -5,8 +5,6 @@ import arc.input.*;
 import arc.math.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
-import yellow.entities.units.*;
-import yellow.entities.units.entity.*;
 
 
 public class DistanceBasedWeapon extends DisableableWeapon{

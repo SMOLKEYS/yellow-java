@@ -1,0 +1,12 @@
+displayName: "Yellow (Java)"
+name: "yellow-java"
+author: "SMOLKEYS"
+main: "yellow.Yellow"
+description: '''
+Another go, once more.
+'''
+version: 0.015
+minGameVersion: 150
+java: true
+hideBrowser: false
+

@@ -5,10 +5,6 @@ import arc.struct.*;
 import mindustry.*;
 import mindustry.game.*;
 import mindustry.type.*;
-import yellow.content.*;
-import yellow.type.*;
-
-import static yellow.content.YellowWeapons.*;
 
 public class YellowContentLoader{
     public static final Seq<YContent> all = new Seq<>();

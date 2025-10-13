@@ -4,8 +4,6 @@ import arc.scene.ui.*;
 import arc.util.*;
 import mindustry.entities.units.*;
 import mindustry.ui.dialogs.*;
-import yellow.entities.units.*;
-import yellow.type.weapons.*;
 
 public class WeaponManagerDialog extends BaseDialog{
 

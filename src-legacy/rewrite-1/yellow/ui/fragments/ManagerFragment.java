@@ -7,9 +7,6 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
-import yellow.ui.*;
 
 import static mindustry.Vars.*;
 

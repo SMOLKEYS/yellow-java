@@ -1,3 +1,6 @@
+//could you SHUT UP ALREADY
+@file:Suppress("unused")
+
 import arc.util.OS
 import arc.util.serialization.Jval
 import ent.EntityAnnoExtension
@@ -18,22 +21,19 @@ val androidMinVersion: String by project
 val useBE = project.hasProperty("adb.useBE") && project.property("adb.useBE").toString().toBoolean()
 val quickstart = project.hasProperty("adb.quickstart") && project.property("adb.quickstart").toString().toBoolean()
 
-fun arc(module: String) = "com.github.Anuken.Arc$module:$arcVersion"
+fun arc(module: String, arcv: String = arcVersion) = "com.github.Anuken.Arc$module:$arcv"
 
-fun mindustry(module: String) = "com.github.Anuken.Mindustry$module:$mindustryVersion"
+fun mindustry(module: String, mindv: String = mindustryVersion) = "com.github.Anuken.Mindustry$module:$mindv"
 
-fun entity(module: String) = "com.github.GglLfr.EntityAnno$module:$entVersion"
+fun entity(module: String, entv: String = entVersion) = "com.github.GglLfr.EntityAnno$module:$entv"
 
 buildscript{
-    val arcVersion: String by project
-
-    dependencies{
-        classpath("com.github.Anuken.Arc:arc-core:$arcVersion")
-    }
-
     repositories{
+        gradlePluginPortal()
+        mavenCentral()
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven("https://oss.sonatype.org/content/repositories/releases/")
         maven("https://maven.xpdustry.com/mindustry")
-        maven("https://jitpack.io")
     }
 }
 
@@ -41,7 +41,6 @@ plugins {
     java
     id("com.github.GglLfr.EntityAnno") apply false
 }
-
 
 allprojects {
     apply(plugin = "java")
@@ -55,8 +54,25 @@ allprojects {
         }
     }
 
+    buildscript {
+        val arcVersion: String by project
+
+        dependencies{
+            classpath("com.github.Anuken.Arc:arc-core:$arcVersion")
+        }
+
+        repositories{
+            gradlePluginPortal()
+            mavenCentral()
+            maven("https://maven.xpdustry.com/mindustry")
+        }
+    }
+
     dependencies {
         annotationProcessor(entity(":downgrader"))
+
+        compileOnly(mindustry(":core"))
+        compileOnly(arc(":arc-core"))
     }
 
     repositories{
@@ -83,8 +99,10 @@ allprojects {
     }
 }
 
-project(":"){
+
+project(":core"){
     apply(plugin = "com.github.GglLfr.EntityAnno")
+
     configure<EntityAnnoExtension> {
         modName = project.properties["modName"].toString()
         mindustryVersion = project.properties["mindustryVersion"].toString()
@@ -95,12 +113,18 @@ project(":"){
     }
 
     dependencies {
+        //core components
         compileOnly(entity(":entity"))
         add("kapt", entity(":entity"))
-
-        compileOnly(mindustry(":core"))
-        compileOnly(arc(":arc-core"))
         compileOnly(arc(":discord"))
+
+        //experimental
+        implementation(project(":native-loader"))
+        implementation(arc(":box2d"))
+        implementation(arc(":natives-box2d-android"))
+        implementation(arc(":natives-box2d-desktop"))
+
+        //mod integrations
     }
 
     val jar = tasks.named<Jar>("jar"){
@@ -111,7 +135,6 @@ project(":"){
             files(sourceSets["main"].output.classesDirs),
             files(sourceSets["main"].output.resourcesDir),
             configurations.runtimeClasspath.map{conf -> conf.map{if(it.isDirectory) it else zipTree(it)}},
-
             files(layout.projectDirectory.dir("assets")),
             layout.projectDirectory.file("icon.png"),
             meta
@@ -136,7 +159,6 @@ project(":"){
                 .reader(Charsets.UTF_8)
                 .use{Jval.read(it)}
 
-            map.put("name", project.name)
             meta.asFile.writer(Charsets.UTF_8).use{file -> BufferedWriter(file).use{map.writeTo(it, Jval.Jformat.formatted)}}
         }
     }
@@ -184,12 +206,12 @@ project(":"){
         }
     }
 
-    val copy = tasks.register<DefaultTask>("copy") {
+    val copy = tasks.register("copy") {
         group = "copy"
         description = "Compiles a desktop-only jar and copies it to your Mindustry data directory."
         dependsOn(jar)
 
-        val dir = if(OS.isWindows) "${System.getenv("APPDATA")}\\Mindustry\\mods" else "${System.getenv("HOME")}/.local/share/Mindustry/mods"
+        val dir = OS.getAppDataDirectoryString("Mindustry")
         val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
 
         doLast {
@@ -205,8 +227,21 @@ project(":"){
 
             copy {
                 from("${layout.buildDirectory.get()}/libs")
-                into(fDir)
+                into("$fDir/mods")
                 include("${project.name}Desktop.jar")
+            }
+
+            val java = if(OS.isWindows) "java.exe" else "java"
+            val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
+            val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
+
+            if(jarFilePathString != null) exec {
+                val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
+                println("Java runtime cmdline: \"$fJava\"")
+
+                commandLine = fJava.split(' ')
+                standardOutput = System.out
+                errorOutput = System.err
             }
         }
     }
@@ -237,19 +272,6 @@ project(":"){
             }
 
             println("Mod copied.")
-
-            val java = if(OS.isWindows) "java.exe" else "java"
-            val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
-            val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
-
-            if(jarFilePathString != null) exec {
-                val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
-                println("Java runtime cmdline: \"$fJava\"")
-
-                commandLine = fJava.split(' ')
-                standardOutput = System.out
-                errorOutput = System.err
-            }
         }
     }
 

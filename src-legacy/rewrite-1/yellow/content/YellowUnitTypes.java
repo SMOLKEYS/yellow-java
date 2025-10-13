@@ -3,10 +3,6 @@ package yellow.content;
 import mindustry.entities.abilities.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
-import yellow.ai.*;
-import yellow.entities.abilities.*;
-import yellow.entities.units.*;
-import yellow.type.weapons.*;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class YellowUnitTypes{

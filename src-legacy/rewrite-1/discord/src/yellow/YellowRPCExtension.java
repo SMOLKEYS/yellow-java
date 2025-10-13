@@ -4,9 +4,6 @@ import arc.discord.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.gen.*;
-import yellow.mods.*;
-import yellow.ui.fragments.*;
-import yellow.util.*;
 
 @SuppressWarnings("unused")
 public class YellowRPCExtension extends YellowExtension{

@@ -13,7 +13,6 @@ import arc.util.io.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
-import yellow.ui.fragments.*;
 
 import static mindustry.Vars.*;
 

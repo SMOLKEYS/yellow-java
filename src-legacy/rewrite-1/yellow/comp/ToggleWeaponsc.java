@@ -3,7 +3,6 @@ package yellow.comp;
 import arc.func.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
-import yellow.entities.units.*;
 
 public interface ToggleWeaponsc extends Weaponsc{
     

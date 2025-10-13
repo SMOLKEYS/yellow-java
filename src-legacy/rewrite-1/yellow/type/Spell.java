@@ -11,11 +11,6 @@ import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
-import yellow.comp.*;
-import yellow.core.*;
-import yellow.entities.units.*;
-import yellow.input.*;
-import yellow.world.meta.*;
 
 public class Spell{
 

@@ -5,9 +5,6 @@ import arc.scene.*;
 import arc.util.*;
 import mindustry.game.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
-import yellow.util.*;
 
 public class YellowDebugFragment{
 

@@ -13,8 +13,6 @@ import mindustry.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
-import yellow.*;
-import yellow.entities.units.entity.*;
 
 @SuppressWarnings({"CallToPrintStackTrace", "unused"})
 public class YellowUtils{

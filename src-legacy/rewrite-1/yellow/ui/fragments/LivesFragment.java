@@ -4,8 +4,6 @@ import arc.*;
 import arc.scene.*;
 import mindustry.*;
 import mindustry.ui.*;
-import yellow.entities.units.entity.*;
-import yellow.ui.*;
 
 public class LivesFragment implements CommonFragment{
 

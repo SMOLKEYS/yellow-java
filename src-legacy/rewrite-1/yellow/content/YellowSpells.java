@@ -1,8 +1,5 @@
 package yellow.content;
 
-import yellow.type.*;
-import yellow.type.spells.*;
-
 public class YellowSpells{
 
     public static Spell missileInverter, leftStrafe;

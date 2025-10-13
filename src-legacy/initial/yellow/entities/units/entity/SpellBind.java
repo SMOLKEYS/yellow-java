@@ -3,10 +3,6 @@ package yellow.entities.units.entity;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.gen.*;
-import yellow.internal.*;
-import yellow.type.*;
-
-import static yellow.util.YellowUtils.*;
 
 public class SpellBind implements Savec{
     public Spell spell;

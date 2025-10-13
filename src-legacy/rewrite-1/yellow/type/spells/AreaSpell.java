@@ -1,8 +1,6 @@
 package yellow.type.spells;
 
 import mindustry.world.meta.*;
-import yellow.type.*;
-import yellow.world.meta.*;
 
 public class AreaSpell extends Spell{
 

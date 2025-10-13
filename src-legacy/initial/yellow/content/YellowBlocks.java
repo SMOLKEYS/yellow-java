@@ -1,9 +1,6 @@
 package yellow.content;
 
 import mindustry.world.*;
-import yellow.world.blocks.units.*;
-
-import static yellow.content.YellowUnitTypes.*;
 
 public class YellowBlocks{
 

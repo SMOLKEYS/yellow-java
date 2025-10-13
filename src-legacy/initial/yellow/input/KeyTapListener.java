@@ -4,7 +4,6 @@ import arc.*;
 import arc.func.*;
 import arc.input.*;
 import arc.util.*;
-import yellow.internal.*;
 
 public class KeyTapListener<T> implements CommonKeyListener<T>{
     /** Amount of completed taps. Reset when time reaches 0. */

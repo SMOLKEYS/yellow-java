@@ -1,7 +1,6 @@
 package yellow.entities.units.entity;
 
 import mindustry.gen.*;
-import yellow.entities.units.*;
 
 public class YellowUnitEntity extends MagicSpecialistEntity{
 

@@ -7,7 +7,6 @@ import arc.scene.style.*;
 import arc.struct.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import yellow.*;
 
 
 @SuppressWarnings("ALL")

@@ -13,8 +13,6 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.ui.*;
-import yellow.content.*;
-import yellow.entities.units.entity.*;
 
 /** A "ghost" unit that despawns after a set period of time. Unaffected by map boundaries. */
 public class GhostUnitType extends UnitType{

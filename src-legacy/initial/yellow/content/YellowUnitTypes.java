@@ -4,9 +4,6 @@ import arc.*;
 import mindustry.ai.*;
 import mindustry.ai.types.*;
 import mindustry.type.*;
-import yellow.ai.*;
-import yellow.entities.units.*;
-import yellow.goodies.vn.*;
 
 public class YellowUnitTypes{
 

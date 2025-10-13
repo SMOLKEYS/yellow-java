@@ -1,10 +1,5 @@
 package yellow.content;
 
-import yellow.world.meta.*;
-import yellow.world.meta.character.*;
-
-import static yellow.world.meta.character.AffectionCharacter.*;
-
 @SuppressWarnings("SpellCheckingInspection")
 public class YellowCharacters{
 

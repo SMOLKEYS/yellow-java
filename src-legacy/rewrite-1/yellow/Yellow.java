@@ -8,13 +8,6 @@ import mindustry.*;
 import mindustry.core.*;
 import mindustry.game.EventType.*;
 import mindustry.mod.*;
-import yellow.content.*;
-import yellow.input.*;
-import yellow.mods.*;
-import yellow.util.*;
-
-import static yellow.game.YellowEventType.*;
-import static yellow.mods.ExtensionCore.*;
 
 public class Yellow extends Mod{
 

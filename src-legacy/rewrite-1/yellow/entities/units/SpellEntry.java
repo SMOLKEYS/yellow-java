@@ -2,8 +2,6 @@ package yellow.entities.units;
 
 import arc.util.*;
 import arc.util.io.*;
-import yellow.comp.*;
-import yellow.type.*;
 
 public class SpellEntry implements Savec{
     public Spell spell;

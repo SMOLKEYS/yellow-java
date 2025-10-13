@@ -3,12 +3,6 @@ package yellow.content;
 import arc.input.*;
 import mindustry.content.*;
 import mindustry.gen.*;
-import yellow.entities.units.entity.*;
-import yellow.game.*;
-import yellow.input.*;
-import yellow.type.*;
-import yellow.type.spell.*;
-import yellow.util.*;
 
 public class YellowSpells{
 

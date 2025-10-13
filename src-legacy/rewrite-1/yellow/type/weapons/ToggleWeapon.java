@@ -4,7 +4,6 @@ import arc.struct.*;
 import mindustry.entities.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
-import yellow.entities.units.*;
 
 /** A weapon that can be toggled. Toggling a weapon allows you to effectively enable/disable it when needed, stopping it from functioning. Does NOT support regular mirroring, use {@link Mirror} for that. */
 public class ToggleWeapon extends NamedWeapon{

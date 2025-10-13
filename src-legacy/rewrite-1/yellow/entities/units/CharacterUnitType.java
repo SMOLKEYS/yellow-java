@@ -7,8 +7,6 @@ import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
-import yellow.entities.units.entity.*;
-import yellow.world.meta.*;
 
 /** A special type of unit with an associated {@link GameCharacter}. Only one for each team may exist in an entire game save. */
 public class CharacterUnitType extends UnitType{

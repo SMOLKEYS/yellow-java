@@ -151,23 +151,19 @@ gradle-app.setting
 /ios/build/
 /ios-moe/build/
 
+/native-loader/build
+
+## JNI
+
+/core/jni
+/core/libs
+/libs
+/core/obj
+
 ## OS Specific
 .DS_Store
 Thumbs.db
 android/libs/
 
-## Devtools
-*.c
-dev-*
-number
-
-## Discord Extension
-/discord/build
-
 ## Development Quotas
 QUOTA*
-
-## Specials
-/story-stuff/*
-ENTRY*
-src-legacy/*

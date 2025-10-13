@@ -6,7 +6,6 @@ import arc.math.geom.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.world.blocks.storage.*;
-import yellow.math.*;
 
 /** An AI that orbits a target unit. If no target is found, defaults to the team core. If that is also not found (somehow), does nothing. */
 public class SwarmOrbiterAI extends AIController{

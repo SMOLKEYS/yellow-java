@@ -1,7 +1,6 @@
 package yellow.entities.bullet;
 
 import mindustry.gen.*;
-import yellow.equality.*;
 
 public class HarshPierceBulletType extends EqualityBulletType{
 

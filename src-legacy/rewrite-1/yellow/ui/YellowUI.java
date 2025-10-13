@@ -5,8 +5,6 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import mindustry.gen.*;
 import mindustry.ui.fragments.*;
-import yellow.ui.dialogs.*;
-import yellow.ui.fragments.*;
 
 import static mindustry.Vars.*;
 

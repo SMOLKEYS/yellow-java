@@ -4,8 +4,6 @@ import arc.*;
 import arc.scene.ui.*;
 import mindustry.gen.*;
 import mindustry.ui.dialogs.*;
-import yellow.mods.*;
-import yellow.util.*;
 
 public class ExtensionsDialog extends BaseDialog{
 

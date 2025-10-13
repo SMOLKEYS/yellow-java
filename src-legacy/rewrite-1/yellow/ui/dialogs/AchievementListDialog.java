@@ -6,7 +6,6 @@ import arc.util.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.dialogs.*;
-import yellow.game.*;
 
 public class AchievementListDialog extends BaseDialog{
 

@@ -4,7 +4,6 @@ import arc.math.*;
 import mindustry.entities.*;
 import mindustry.entities.bullet.*;
 import mindustry.gen.*;
-import yellow.content.*;
 
 public class YeetBulletType extends BasicBulletType{
     /** The amount of throwing force to apply to this bullet. */

@@ -5,8 +5,6 @@ import arc.util.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.world.blocks.storage.CoreBlock.*;
-import yellow.content.*;
-import yellow.entities.units.entity.*;
 
 public class YellowOrbiterAI extends AIController{
     
