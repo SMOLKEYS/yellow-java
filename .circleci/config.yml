@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/android:2025.08
+      - image: cimg/android:2025.03
 
     environment:
       # Customize the JVM maximum heap limit
