@@ -29,6 +29,9 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle.kts" }}
 
+      - store_artifacts:
+          path: ./build/libs/yellow-javaDesktop.jar
+
 workflows:
   compile:
     jobs:
