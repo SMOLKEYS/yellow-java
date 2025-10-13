@@ -1,0 +1,42 @@
+
+version: 2.1
+
+orbs:
+  android: circleci/android@3.1.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/android:2025.10
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
+    steps:
+      # Checkout the code as the first step.
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle.kts" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: ./gradlew dex
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle.kts" }}
+          
+      - store_artifacts:
+          path: ./build/libs/yellow-java.jar
+
+
+workflows:
+  compile:
+    jobs:
+      - build
