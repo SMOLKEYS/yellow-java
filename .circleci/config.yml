@@ -37,7 +37,12 @@ jobs:
           destination: yellow-java.jar
 
       - store_artifacts:
-          path: ./core/build/libs
+          path: ./core/build/libs/coreDesktop.jar
+          destination: yellow-java-desktop.jar
+
+      - store_artifacts:
+          path: ./native-loader/build/libs/native-loader.jar
+          destination: native-loader.jar
 
 
 workflows:
