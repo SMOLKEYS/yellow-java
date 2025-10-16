@@ -16,6 +16,13 @@ public class UpdateChecker{
     public static boolean updateAvailable, updateQueued;
 
     public static void checkUpdate(@Nullable ConsT<Http.HttpResponse, Exception> http, Cons2<Float, Float> found, Runnable notFound, Cons<Throwable> onErr){
+        String version = Vars.mods.getMod(Yellow.class).meta.version;
+
+        if(version.contains("rapid")){
+            Log.info("Using a rapid development build of Yellow. Skipping update check.");
+            return;
+        }
+
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", upd -> {
             if(http != null) http.get(upd);
 
@@ -23,7 +30,7 @@ public class UpdateChecker{
             String[] ver = new String[val.size];
             for(int r = 0; r < val.size; r++) ver[r] = val.get(r).getString("tag_name", "err");
 
-            float cur = Stringy.handleNumber(Vars.mods.getMod(Yellow.class).meta.version);
+            float cur = Stringy.handleNumber(version);
             float lat = Stringy.handleNumber(ver[0]);
 
             if(lat > cur){

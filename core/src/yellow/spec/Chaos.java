@@ -28,6 +28,7 @@ public class Chaos{
     private static final Boolp b = () -> true;
 
     public static void init(){
+        /*
         StageEntry s = stage();
 
         if(s == null) return;
@@ -47,6 +48,7 @@ public class Chaos{
                 }
             });
         });
+         */
     }
 
     public static StageEntry stage(){

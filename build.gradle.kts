@@ -162,12 +162,20 @@ project(":core"){
             val map = (if(isJson) metaJson else metaHjson).asFile
                 .reader(Charsets.UTF_8)
                 .use{
+                    fun Jval.appendString(value: String, append: String): Jval{
+                        val prm = getString(value)
+                        return put(value, "$prm$append")
+                    }
+
                     val jv = Jval.read(it)
-                    val version = jv.getString("version")
 
-                    val append = projParamOrNull("meta.append-version")
+                    val append = projParamOrNull("rapid.append-version")
 
-                    if(append != null) jv.put("version", "$version-$append")
+                    if(append != null){
+                        jv.appendString("version", "-rapid-$append")
+                        jv.put("displayName", "Yellow RDB (Java)")
+                        jv.appendString("description", "\n\n[RAPID DEVELOPMENT BUILD]")
+                    }
                     return@use jv
                 }
 
