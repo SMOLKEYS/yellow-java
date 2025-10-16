@@ -27,6 +27,10 @@ fun mindustry(module: String, mindv: String = mindustryVersion) = "com.github.An
 
 fun entity(module: String, entv: String = entVersion) = "com.github.GglLfr.EntityAnno$module:$entv"
 
+fun projParam(name: String, default: String = "") = projParamOrNull(name, default)
+
+fun projParamOrNull(name: String, default: String? = null) = if(project.hasProperty(name)) project.property(name) else default
+
 buildscript{
     repositories{
         gradlePluginPortal()
@@ -157,7 +161,15 @@ project(":core"){
             val isJson = metaJson.asFile.exists()
             val map = (if(isJson) metaJson else metaHjson).asFile
                 .reader(Charsets.UTF_8)
-                .use{Jval.read(it)}
+                .use{
+                    val jv = Jval.read(it)
+                    val version = jv.getString("version")
+
+                    val append = projParamOrNull("meta.append-version")
+
+                    if(append != null) jv.put("version", "$version-$append")
+                    return@use jv
+                }
 
             meta.asFile.writer(Charsets.UTF_8).use{file -> BufferedWriter(file).use{map.writeTo(it, Jval.Jformat.formatted)}}
         }

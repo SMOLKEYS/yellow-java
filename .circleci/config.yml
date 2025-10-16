@@ -25,7 +25,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: ./gradlew dex
+      - run: ./gradlew dex -Pmeta.append-version=<<pipeline.project.type>>-<<pipeline.git.branch>>-<<pipeline.git.revision>>
 
       - save_cache:
           paths:
