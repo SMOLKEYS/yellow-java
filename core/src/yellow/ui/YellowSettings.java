@@ -40,13 +40,19 @@ public class YellowSettings{
 
             t.checkPref("yellow-check-for-updates", true);
 
+            boolean rapid = Vars.mods.getMod(Yellow.class).meta.version.contains("rapid");
             buttonPref(t, "yellow-check-for-updates-now", () -> {
                 UpdateChecker.loadNotifier();
                 updateBlock = true;
                 Timer.schedule(() -> updateBlock = false, 10f);
             }, b -> b.update(() -> {
-                b.touchable = updateBlock ? Touchable.disabled : Touchable.enabled;
+                b.touchable = rapid ? Touchable.disabled : updateBlock ? Touchable.disabled : Touchable.enabled;
                 // what the fuck why
+                if(rapid){
+                    b.setText("[gray]" + Core.bundle.get("setting.yellow-check-for-updates-now.disabled-rdb") + "[]");
+                    return;
+                }
+
                 b.setText("[" + (updateBlock ? "gray" : "white") + "]" + Core.bundle.get("setting.yellow-check-for-updates-now.name") + (updateBlock ? "\n" + Core.bundle.get("setting.yellow-check-for-updates-now.halt") : "") + "[]");
             }));
 
