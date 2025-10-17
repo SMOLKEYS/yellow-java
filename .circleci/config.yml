@@ -40,7 +40,7 @@ jobs:
             mkdir finals
             mv ./core/build/libs/core.jar finals/yellow-java.jar
             mv ./core/build/libs/coreDesktop.jar finals/yellow-java-desktop-only.jar
-            mv ./core/build/libs/native-loader.jar finals/
+            mv ./native-loader/build/libs/native-loader.jar finals/
           
       - store_artifacts:
           path: ./finals
