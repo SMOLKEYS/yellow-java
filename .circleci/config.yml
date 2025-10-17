@@ -64,6 +64,7 @@ jobs:
           name: "Publish on builds repo"
           command: |
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -b "Built on <<pipeline.git.revision>> \
+            \
             *AHEM* this is an automated release" -delete $(expr 1000 + ${CIRCLE_BUILD_NUM} - 2) ./finals
 
 workflows:
