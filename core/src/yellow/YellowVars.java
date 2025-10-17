@@ -21,6 +21,8 @@ import java.util.*;
 
 public class YellowVars{
 
+    private static BuildType build = BuildType.unknown;
+
     public static WeaponManagerDialog weapons;
 
     public static LoadTextFragment ltfrag;
@@ -86,6 +88,8 @@ public class YellowVars{
 
     public static void init(){
         Events.fire(new YellowVarsPreInit());
+
+        build = Yellow.meta().version.contains("rapid") ? BuildType.rapid : BuildType.release;
 
         weapons = new WeaponManagerDialog();
 
@@ -155,11 +159,17 @@ public class YellowVars{
         Core.settings.put("yellow-notification-time", time);
     }
 
+    public static BuildType build(){
+        return build;
+    }
 
     public static class YellowEventType{
-
         public static class YellowPostInit{}
         public static class YellowVarsPreInit{}
         public static class YellowVarsPostInit{}
+    }
+
+    public enum BuildType{
+        unknown, release, rapid
     }
 }

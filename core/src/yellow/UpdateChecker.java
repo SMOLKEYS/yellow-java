@@ -7,6 +7,7 @@ import arc.util.*;
 import arc.util.serialization.*;
 import mindustry.*;
 import mindustry.gen.*;
+import yellow.YellowVars.*;
 import yellow.util.*;
 
 public class UpdateChecker{
@@ -15,10 +16,9 @@ public class UpdateChecker{
 
     public static boolean updateAvailable, updateQueued;
 
+    //TODO support for rapid builds
     public static void checkUpdate(@Nullable ConsT<Http.HttpResponse, Exception> http, Cons2<Float, Float> found, Runnable notFound, Cons<Throwable> onErr){
-        String version = Vars.mods.getMod(Yellow.class).meta.version;
-
-        if(version.contains("rapid")){
+        if(YellowVars.build() == BuildType.rapid){
             Log.info("Using a rapid development build of Yellow. Skipping update check.");
             return;
         }
@@ -26,6 +26,7 @@ public class UpdateChecker{
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", upd -> {
             if(http != null) http.get(upd);
 
+            String version = Vars.mods.getMod(Yellow.class).meta.version;
             JsonValue val = reader.parse(upd.getResultAsStream());
             String[] ver = new String[val.size];
             for(int r = 0; r < val.size; r++) ver[r] = val.get(r).getString("tag_name", "err");

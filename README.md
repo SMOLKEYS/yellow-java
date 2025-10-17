@@ -1,10 +1,12 @@
 # Yellow
 
-![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci&link=https%3A%2F%2Fapp.circleci.com%2Fpipelines%2Fgithub%2FSMOLKEYS%2Fyellow-java)
+![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci)
 
-[![Releases](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+[![Downloads](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
 
-[![Release Builds](https://img.shields.io/badge/Release%20Builds-Stable%3F%20I%20Think%20So%3F-green?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+[![Releases](https://img.shields.io/badge/Releases-Stable%3F%20I%20Think%20So%3F-green?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+
+[![Rapid Builds](https://img.shields.io/badge/Rapid%20Builds-Stable%3F%20Probably%20not.-orange?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java-builds/releases)
 
 ![Stars](https://img.shields.io/github/stars/SMOLKEYS/yellow-java?style=for-the-badge)
 

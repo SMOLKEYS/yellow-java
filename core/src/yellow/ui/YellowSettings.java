@@ -13,6 +13,7 @@ import mindustry.gen.*;
 import mindustry.ui.*;
 import mindustry.ui.dialogs.*;
 import yellow.*;
+import yellow.YellowVars.*;
 import yellow.util.*;
 
 import static arc.Core.*;
@@ -40,7 +41,7 @@ public class YellowSettings{
 
             t.checkPref("yellow-check-for-updates", true);
 
-            boolean rapid = Vars.mods.getMod(Yellow.class).meta.version.contains("rapid");
+            boolean rapid = YellowVars.build() == BuildType.rapid;
             buttonPref(t, "yellow-check-for-updates-now", () -> {
                 UpdateChecker.loadNotifier();
                 updateBlock = true;
