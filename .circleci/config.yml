@@ -55,9 +55,6 @@ jobs:
 
 
   publish:
-    requires:
-      - build
-
     docker:
       - image: cibuilds/github:0.10
 
