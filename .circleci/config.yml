@@ -63,7 +63,7 @@ jobs:
       - run:
           name: "Publish on builds repo"
           command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -c ${CIRCLE_SHA1} -delete $(expr 1000 + ${CIRCLE_BUILD_NUM}) ./finals
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -delete $(expr 1000 + ${CIRCLE_BUILD_NUM} - 1) ./finals
 
 workflows:
   compile:
