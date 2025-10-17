@@ -25,29 +25,41 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: ./gradlew dex -Prapid.append-version=<<pipeline.project.type>>-<<pipeline.git.branch>>-<<pipeline.git.revision>>
+      - run:
+          name: "Compile multiplatform"
+          command: ./gradlew dex -Prapid.append-version=<<pipeline.project.type>>-<<pipeline.git.branch>>-<<pipeline.git.revision>>
 
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle.kts" }}
+
+      - run:
+          name: "Place jars in better location"
+          command: |
+            mkdir finals
+            mv ./core/build/libs/core.jar finals/yellow-java.jar
+            mv ./core/build/libs/coreDesktop.jar finals/yellow-java-desktop-only.jar
+            mv ./core/build/libs/native-loader.jar finals/
           
       - store_artifacts:
-          path: ./core/build/libs/core.jar
-          destination: yellow-java.jar
+          path: ./finals
 
-      - store_artifacts:
-          path: ./core/build/libs/coreDesktop.jar
-          destination: yellow-java-desktop.jar
 
-      - store_artifacts:
-          path: ./native-loader/build/libs/native-loader.jar
-          destination: native-loader.jar
+  publish:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - run:
+          name: "Publish on builds repo"
+          command: |
+            VERSION=$(my-binary --version)
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -c ${CIRCLE_SHA1} -n <<pipeline.project.type>>-<<pipeline.git.branch>>-<<pipeline.git.revision>> -delete ${CIRCLE_BUILD_NUM} ./finals
 
 
 workflows:
   compile:
     jobs:
-
       - build
+      - publish
 
