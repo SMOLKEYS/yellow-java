@@ -64,17 +64,8 @@ public class AndroidCompatibilityClasses{
         }
     }
 
+    @SuppressWarnings("RedundantMethodOverride")
     public static class AInputProcessor implements InputProcessor{
-        @Override
-        public void connected(InputDevice device){
-
-        }
-
-        @Override
-        public void disconnected(InputDevice device){
-
-        }
-
         @Override
         public boolean keyDown(KeyCode keycode){
             return false;

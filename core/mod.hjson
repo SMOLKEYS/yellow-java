@@ -6,7 +6,7 @@ description: '''
 Another go, once more.
 '''
 version: 0.015
-minGameVersion: 150
+minGameVersion: 153
 java: true
 hideBrowser: false
 

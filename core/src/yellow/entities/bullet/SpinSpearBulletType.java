@@ -30,7 +30,6 @@ public class SpinSpearBulletType extends BasicEqualityBulletType{
         super.init(b);
         SpearBulletData d = Pools.obtain(SpearBulletData.class, SpearBulletData::new);
         b.lifetime(60*200);
-        b.drag(0);
         b.vel().setZero();
         b.rotation(d.startRotation = b.rotation() + Mathf.random(470, 750));
         d.targetRotation = Angles.angle(b.x, b.y, b.aimX, b.aimY);
@@ -49,7 +48,6 @@ public class SpinSpearBulletType extends BasicEqualityBulletType{
                 b.time(0f);
                 b.vel().trns(s.targetRotation, speed);
                 b.lifetime(lifetime);
-                b.drag(drag);
                 b.data = null;
                 s.reset();
             }

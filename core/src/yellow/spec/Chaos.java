@@ -211,5 +211,10 @@ public class Chaos{
         public void update(){
 
         }
+
+        @Override
+        public void useSchematic(Schematic schem, boolean checkHidden){
+
+        }
     }
 }

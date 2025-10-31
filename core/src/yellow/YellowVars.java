@@ -13,6 +13,8 @@ import yellow.YellowVars.YellowEventType.*;
 import yellow.graphics.*;
 import yellow.natives.*;
 import yellow.spec.*;
+import yellow.ui.*;
+import yellow.ui.OverlayPlayer.*;
 import yellow.ui.dialogs.*;
 import yellow.ui.fragments.*;
 import yellow.util.*;
@@ -30,6 +32,7 @@ public class YellowVars{
     public static NotificationFragment notifrag;
     public static DialogFragment dialogfrag;
     public static ManagerFragment managefrag;
+    public static OverlayFragment overlayfrag;
 
     public static WidgetGroup overlayGroup;
 
@@ -113,6 +116,7 @@ public class YellowVars{
         blankfrag.build(overlayGroup);
         notifrag.build(overlayGroup);
         dialogfrag.build(overlayGroup);
+        overlayfrag = OverlayPlayer.make(overlayGroup);
         managefrag.build(Vars.ui.hudGroup);
 
         SafeReflect.set(Vars.ui.menufrag, "renderer", menuRenderer = new YellowMenuRenderer());
