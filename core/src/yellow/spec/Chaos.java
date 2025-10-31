@@ -16,7 +16,6 @@ import mindustry.input.*;
 import mindustry.maps.*;
 import mindustry.type.*;
 import mindustry.ui.fragments.*;
-import yellow.spec.stage.*;
 import yellow.util.*;
 
 public class Chaos{
@@ -49,15 +48,6 @@ public class Chaos{
             });
         });
          */
-    }
-
-    public static StageEntry stage(){
-        curStage.set(() -> {
-            StageEntry s = new S1();
-            while(s.skip()) s = s.next();
-            return s;
-        });
-        return curStage.get();
     }
 
     public static int stageIndex(){

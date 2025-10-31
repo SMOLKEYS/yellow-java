@@ -48,7 +48,7 @@ public class Yellow extends Mod{
                     Strings.format(
                             "Chaos stage: [red]@[]\nActive class: [magenta]@[]",
                             Chaos.stageIndex(),
-                            Chaos.stage()
+                            null //Chaos.stage()
                     )
             );
 

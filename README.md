@@ -1,3 +1,5 @@
+## Progress mark: 0%  (pre-planning)
+
 # Yellow
 
 ![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci)
