@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: "Compile multiplatform"
-          command: ./gradlew dex -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-$(git rev-parse --short HEAD)
+          command: ./gradlew dex -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
 
       - save_cache:
           paths:
@@ -41,7 +41,7 @@ jobs:
             mv ./core/build/libs/core.jar finals/yellow-java.jar
             mv ./core/build/libs/coreDesktop.jar finals/yellow-java-desktop-only.jar
             mv ./native-loader/build/libs/native-loader.jar finals/
-          
+
       - store_artifacts:
           path: ./finals
 
@@ -63,7 +63,7 @@ jobs:
       - run:
           name: "Publish on builds repo"
           command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -b "=== Built on <<pipeline.git.revision>> -=- *AHEM* this is an automated release ===" -delete $(expr 1000 + <<pipeline.number>>) ./finals
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r yellow-java-builds -b "=== Built on <<pipeline.git.revision>> -=- *AHEM* this is an automated release ===" -delete $(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>> ./finals
 
 workflows:
   compile:
@@ -71,4 +71,4 @@ workflows:
       - build
       - publish:
           requires:
-           - build
+            - build
