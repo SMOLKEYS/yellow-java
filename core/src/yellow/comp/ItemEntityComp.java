@@ -16,8 +16,11 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.input.*;
 import mindustry.type.*;
+import yellow.*;
 import yellow.entities.*;
 import yellow.gen.*;
+
+import static yellow.YellowSettingValues.*;
 
 @EntityComponent(base = true)
 @EntityDef({ItemEntityc.class, Hitboxc.class, Drawc.class, Posc.class, Velc.class, Rotc.class})
@@ -56,7 +59,7 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc{
     public void update(){
         Groups.unit.each(Unitc::isPlayer, un -> {
             ItemStack carried = un.stack;
-            if(carried.item == null || carried.amount <= 0 || (carried.item == item && un.acceptsItem(item))){
+            if((gravitateOnEmptyInventory.get() && carried.item == null) || carried.amount <= 0 || (carried.item == item && un.acceptsItem(item))){
                 if(Mathf.dst(x, y, un.x, un.y) < 8*5f) vel.trns(Angles.angle(x, y, un.x, un.y), 1f);
 
                 if(Mathf.dst(x, y, un.x, un.y) < 8f || (Mathf.dst(x, y, un.x, un.y) < 8*12f && Mathf.dst(x, y, un.aimX, un.aimY) < 8*1f && Core.input.keyTap(KeyCode.mouseLeft))) pickup(un);

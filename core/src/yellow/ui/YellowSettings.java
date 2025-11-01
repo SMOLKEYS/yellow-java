@@ -109,6 +109,8 @@ public class YellowSettings{
 
             t.checkPref("yellow-enable-build-inv-drops", false);
 
+            t.checkPref("yellow-gravitate-on-empty-inventory", false);
+
             seperatorPref(t, "yellow-info-section", Icon.info, Icon.github);
 
             tablePref(t, "yellow-info-table", tb -> {
