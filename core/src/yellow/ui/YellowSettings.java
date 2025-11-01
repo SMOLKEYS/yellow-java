@@ -17,6 +17,7 @@ import yellow.YellowVars.*;
 import yellow.util.*;
 
 import static arc.Core.*;
+import static yellow.YellowSettingValues.*;
 
 public class YellowSettings{
 
@@ -63,7 +64,7 @@ public class YellowSettings{
                 t.checkPref("yellow-enable-rpc", true);
 
                 buttonPref(t, "yellow-restart-rpc", YellowRPC::restart, b -> b.update(() -> {
-                    boolean status = SafeSettings.getBool("yellow-enable-rpc", true, true);
+                    boolean status = enableRpc.get(true);
 
                     b.touchable = status ? Touchable.enabled : Touchable.disabled;
                     b.setText("[" + (status ? "white" : "gray") + "]" + Core.bundle.get("setting.yellow-restart-rpc.name") + "[]");
@@ -76,7 +77,7 @@ public class YellowSettings{
 
             seperatorPref(t, "yellow-chaos-renderer-section", Icon.warning, Icon.settings);
 
-            buttonPref(t, form("shuffle-seed", false), YellowVars.menuRenderer.config::shuffle);
+            buttonPref(t, form("shuffle-seed", false), YellowSettingValues::shuffleChaosRenderer);
 
             t.sliderPref(form("tex-count", false), 500, 100, 2000, 100, proc -> Core.bundle.format(form("tex-count", true), proc));
 
@@ -102,7 +103,11 @@ public class YellowSettings{
 
             t.checkPref("yellow-enable-load-renderer", false);
 
-            if(!SafeSettings.getBool("yellow-enable-special-stages", false)) t.checkPref("yellow-enable-special-stages", false);
+            t.checkPref("yellow-enable-unit-drops", false);
+
+            t.checkPref("yellow-enable-build-drops", false);
+
+            t.checkPref("yellow-enable-build-inv-drops", false);
 
             seperatorPref(t, "yellow-info-section", Icon.info, Icon.github);
 

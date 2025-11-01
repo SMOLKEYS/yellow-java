@@ -119,7 +119,7 @@ public class YellowRPC{
         init();
     }
 
-    //take a bet and a good ol' gander on whether or not this works under your JRE
+    //take a bet and a good ol' gander on whether this works under your JRE
     public static void init(){
         presence.startTimestamp = System.currentTimeMillis();
 

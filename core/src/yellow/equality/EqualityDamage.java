@@ -50,7 +50,13 @@ public class EqualityDamage{
         if(target instanceof Unit u){
             Groups.unit.remove(u);
             u.health = u.maxHealth = u.shield = u.armor = 0f;
+            u.dead = true;
             if(u instanceof TimedKillUnit tk) tk.lifetime = 0f;
+
+            SafeReflect.set(u.getClass(), u, "added", false);
+
+            u.team.data().updateCount(u.type, -1);
+            u.controller().removed(u);
 
             Structs.each(s -> {
                 if(hasEntry(target, s)){
@@ -119,7 +125,9 @@ public class EqualityDamage{
 
         if(entityAfter != null) entityAfter.get(target);
 
-        if(showDeathEffect && target instanceof Unitc u && u.type() != null) u.type().deathExplosionEffect.at(u.x(), u.y(), u.bounds() / 2f / 8f);
+        if(showDeathEffect && target instanceof Unitc u && u.type() != null){
+            u.type().deathExplosionEffect.at(u.x(), u.y(), u.bounds() / 2f / 8f);
+        }
     }
 
     public static void theSpeedOfA(float speed){
@@ -163,32 +171,19 @@ public class EqualityDamage{
 
         //if entity health is more than the expected health, begin proper damage checking
         if(entity.health > expectedHealth){
-            //calculate unapplied damage
-            float blockedDamage = entity.health - expectedHealth + (source.type.pierceArmor ? armorPierceExt : 0f);
+            clearInv(entity);
 
             //write damage to known variable names
             Structs.each(s -> {
                 if(hasEntry(entity, s)){
-                    SafeReflect.set(entity, s, entity.health - blockedDamage);
+                    SafeReflect.set(entity, s, expectedHealth);
                 }
             }, ent);
 
             //apply damage to health too
-            entity.health -= blockedDamage;
+            entity.health = expectedHealth;
 
-            //check for invincibility frame variables and last damage trackers
-            //if found, write zero to allow quick damaging
-            Structs.each(s -> {
-                if(hasEntry(entity, s)){
-                    SafeReflect.set(entity, s, 0f);
-                }
-            }, iframeEnt);
-
-            Structs.each(s -> {
-                if(hasEntry(entity, s)){
-                    SafeReflect.set(entity, s, 0f);
-                }
-            }, dmgEnt);
+            clearInv(entity);
         }
 
         source.type.handlePierce(source, health, entity.x(), entity.y());
@@ -200,9 +195,25 @@ public class EqualityDamage{
 
         Events.fire(damageEvent.set(entity, source));
 
-        if(!wasDead && entity.dead){
+        if((!wasDead && entity.dead) || entity.health <= 0f){
             Events.fire(new EventType.UnitBulletDestroyEvent(entity, source));
             annihilate(entity, false, true, null, null);
         }
+    }
+
+    public static void clearInv(Unit entity){
+        //check for invincibility frame variables and last damage trackers
+        //if found, write zero to allow quick damaging
+        Structs.each(s -> {
+            if(hasEntry(entity, s)){
+                SafeReflect.set(entity, s, 0f);
+            }
+        }, iframeEnt);
+
+        Structs.each(s -> {
+            if(hasEntry(entity, s)){
+                SafeReflect.set(entity, s, 0f);
+            }
+        }, dmgEnt);
     }
 }

@@ -123,7 +123,7 @@ public class SafeReflect{
 
     public static Class<?> clazz(String name){
         try{
-            return Vars.mods.mainLoader().loadClass(name);
+            return Class.forName(name, true, Vars.mods.mainLoader());
         }catch(Exception e){
             return null;
         }

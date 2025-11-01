@@ -29,8 +29,9 @@ public class OverlayPlayer{
             });
         }
 
-        public void annoy(ZipFi zip){
-            annoy(zip.child("main.png"), zip.child("main.mp3"));
+        public void annoy(Fi zip){
+            ZipFi ziph = zip instanceof ZipFi z ? z : new ZipFi(zip);
+            annoy(ziph.child("main.png"), ziph.child("main.mp3"));
         }
 
         public void annoy(Fi img, Fi sfx){
@@ -43,8 +44,14 @@ public class OverlayPlayer{
             sfxprov.play();
 
             tb.image(new TextureRegion(new Texture(img))).grow().fill().update(i -> {
-                if(!sfxprov.isPlaying()) tb.clear();
+                if(!sfxprov.isPlaying()) tb.clearChildren();
             });
+        }
+
+        public void stop(){
+            if(!sfxprov.isPlaying()) return;
+            sfxprov.stop();
+            tb.clearChildren();
         }
     }
 }

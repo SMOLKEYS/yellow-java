@@ -52,7 +52,7 @@ public class UpdateChecker{
                     updateQueued = false;
                     YellowVars.notifrag.showPersistentNotification(Icon.box, Core.bundle.format("yellow.updater-found-notification", cur, lat));
                     YellowVars.ltfrag.hide(id, 0, Actions.fadeOut(2));
-                    Log.info("New Yellow update available.");
+                    Log.info("New Yellow update available. (@ -> @)", cur, lat);
                 },
                 () -> {
                     updateAvailable = false;

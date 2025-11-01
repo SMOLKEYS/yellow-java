@@ -2,20 +2,28 @@ package yellow;
 
 import arc.*;
 import arc.files.*;
+import arc.math.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.game.*;
+import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
+import mindustry.world.blocks.units.*;
+import mindustry.world.modules.*;
 import yellow.YellowVars.YellowEventType.*;
 import yellow.content.*;
+import yellow.entities.*;
 import yellow.gen.*;
 import yellow.js.*;
 import yellow.spec.*;
 import yellow.ui.*;
 import yellow.util.*;
+import yellow.util.SettingBoundVariable.*;
 
 import java.util.*;
+
+import static yellow.YellowSettingValues.*;
 
 //third rewrite note: the more i do this the more i wanna throw my laptop against a wall
 @SuppressWarnings({
@@ -24,7 +32,7 @@ import java.util.*;
 })
 public class Yellow extends Mod{
 
-    static final SettingBoundVariable<Long> lastFileDate = new SettingBoundVariable<>("yellow-debug-lastfiledate", 1997L);
+    static final LongSetting lastFileDate = new LongSetting("yellow-debug-lastfiledate", 1997L);
 
     public static final boolean debug = YellowJVM.hasParameter("yellow-debug", /*() -> Objects.equals(OS.username, "smol"),*/ str -> {
         Log.infoTag(str, "Yellow debug mode enabled.");
@@ -70,16 +78,19 @@ public class Yellow extends Mod{
     public Yellow(){
         if(Vars.clientLoaded) YellowVars.onImport();
 
-        if(!Vars.clientLoaded) YellowVars.preInit();
+        if(!Vars.clientLoaded){
+            YellowGroups.init();
+            YellowVars.preInit();
+        }
 
         Events.run(EventType.ClientLoadEvent.class, () -> {
             YellowVars.init();
-            if(!Vars.mobile && SafeSettings.getBool("yellow-enable-rpc", true, true)) YellowRPC.init();
+            if(!Vars.mobile && enableRpc.get()) YellowRPC.init();
             YellowSettings.load();
             Rhinor.importMainModPackages(this);
             YellowVars.initNatives();
 
-            if(SafeSettings.get("yellow-check-for-updates", false)) UpdateChecker.loadNotifier();
+            if(enableAutoupdate.get()) UpdateChecker.loadNotifier();
         });
     }
 
@@ -103,5 +114,71 @@ public class Yellow extends Mod{
         YellowWeapons.load();
         YellowUnitTypes.load();
         YellowWeapons.afterLoad();
+        Events.run(Trigger.update, YellowGroups::update);
+
+        Events.on(UnitDestroyEvent.class, e -> {
+            if(!enableUnitDrops.get()) return;
+
+            UnitFactory blk = (UnitFactory) Vars.content.blocks().find(bl -> bl instanceof UnitFactory ul && ul.plans.contains(up -> up.unit == e.unit.type));
+            if(blk != null){
+                Structs.each(req -> {
+                    for(int i = 0; i < req.amount/0.5f; i++){
+                        ItemEntity en = ItemEntity.create();
+                        en.x = e.unit.x + Mathf.range(e.unit.hitSize);
+                        en.y = e.unit.y + Mathf.range(e.unit.hitSize);
+                        en.item = req.item;
+                        en.vel.set(Mathf.range(5.5f + (e.unit.hitSize/9f)), Mathf.range(5.5f + (e.unit.hitSize/9f)));
+                        en.drag = Mathf.random(0.05f, 0.1f);
+                        en.add();
+                    }
+                }, blk.plans.find(ul -> ul.unit == e.unit.type).requirements);
+            }else{
+                Reconstructor rec = (Reconstructor) Vars.content.blocks().find(bl -> bl instanceof Reconstructor ul && ul.upgrades.contains(erk -> Structs.contains(erk, e.unit.type)));
+                if(rec != null){
+                    Structs.each(itm -> {
+                        for(int i = 0; i < itm.amount/0.5f; i++){
+                            ItemEntity en = ItemEntity.create();
+                            en.x = e.unit.x + Mathf.range(e.unit.hitSize);
+                            en.y = e.unit.y + Mathf.range(e.unit.hitSize);
+                            en.item = itm.item;
+                            en.vel.set(Mathf.range(5.5f + (e.unit.hitSize/9f)), Mathf.range(5.5f + (e.unit.hitSize/9f)));
+                            en.drag = Mathf.random(0.05f, 0.1f);
+                            en.add();
+                        }
+                    }, rec.requirements);
+                }
+            }
+        });
+
+        Events.on(BlockDestroyEvent.class, e -> {
+            ItemModule mod = e.tile.build.items;
+            if(mod != null && !mod.empty() && enableBuildInventoryDrops.get()){
+                mod.each((item, amount) -> {
+                    for(int i = 0; i < amount; i++){
+                        ItemEntity en = ItemEntity.create();
+                        en.x = e.tile.x + Mathf.range(e.tile.block().size*8f);
+                        en.y = e.tile.y + Mathf.range(e.tile.block().size*8f);
+                        en.item = item;
+                        en.amount = 1;
+                        en.vel.set(Mathf.range(5.5f + e.tile.block().size), Mathf.range(5.5f + e.tile.block().size));
+                        en.drag = Mathf.random(0.05f, 0.1f);
+                        en.add();
+                    }
+                });
+            }
+
+            if(enableBuildDrops.get()) Structs.each(stk -> {
+                for(int i = 0; i < stk.amount/0.2f; i++){
+                    ItemEntity en = ItemEntity.create();
+                    en.x = e.tile.x + Mathf.range(e.tile.block().size*8f);
+                    en.y = e.tile.y + Mathf.range(e.tile.block().size*8f);
+                    en.item = stk.item;
+                    en.amount = 1;
+                    en.vel.set(Mathf.range(5.5f + e.tile.block().size), Mathf.range(5.5f + e.tile.block().size));
+                    en.drag = Mathf.random(0.05f, 0.1f);
+                    en.add();
+                }
+            }, e.tile.block().requirements);
+        });
     }
 }
