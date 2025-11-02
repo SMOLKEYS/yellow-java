@@ -15,7 +15,8 @@ public class YellowSettingValues{
             enableUnitDrops = new BooleanSetting(yellow("enable-unit-drops"), false),
             enableBuildDrops = new BooleanSetting(yellow("enable-build-drops"), false),
             enableBuildInventoryDrops = new BooleanSetting(yellow("enable-build-inv-drops"), false),
-            gravitateOnEmptyInventory = new BooleanSetting(yellow("gravitate-on-empty-inventory"), false);
+            gravitateOnEmptyInventory = new BooleanSetting(yellow("gravitate-on-empty-inventory"), false),
+            gravitateItems = new BooleanSetting(yellow("gravitate-items"), true);
 
     // endregion misc
 

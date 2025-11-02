@@ -1,6 +1,7 @@
 package yellow.util;
 
 import arc.func.*;
+import mindustry.gen.*;
 
 import java.lang.reflect.*;
 

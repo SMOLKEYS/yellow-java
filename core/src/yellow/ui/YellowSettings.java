@@ -111,6 +111,8 @@ public class YellowSettings{
 
             t.checkPref("yellow-gravitate-on-empty-inventory", false);
 
+            t.checkPref("yellow-gravitate-items", true);
+
             seperatorPref(t, "yellow-info-section", Icon.info, Icon.github);
 
             tablePref(t, "yellow-info-table", tb -> {

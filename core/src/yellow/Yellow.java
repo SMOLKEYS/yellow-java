@@ -122,11 +122,12 @@ public class Yellow extends Mod{
             UnitFactory blk = (UnitFactory) Vars.content.blocks().find(bl -> bl instanceof UnitFactory ul && ul.plans.contains(up -> up.unit == e.unit.type));
             if(blk != null){
                 Structs.each(req -> {
-                    for(int i = 0; i < req.amount/0.5f; i++){
+                    for(int i = 0; i < req.amount*0.5f; i++){
                         ItemEntity en = ItemEntity.create();
                         en.x = e.unit.x + Mathf.range(e.unit.hitSize);
                         en.y = e.unit.y + Mathf.range(e.unit.hitSize);
-                        en.item = req.item;
+                        en.stack.item = req.item;
+                        en.stack.amount = 1;
                         en.vel.set(Mathf.range(5.5f + (e.unit.hitSize/9f)), Mathf.range(5.5f + (e.unit.hitSize/9f)));
                         en.drag = Mathf.random(0.05f, 0.1f);
                         en.add();
@@ -136,11 +137,12 @@ public class Yellow extends Mod{
                 Reconstructor rec = (Reconstructor) Vars.content.blocks().find(bl -> bl instanceof Reconstructor ul && ul.upgrades.contains(erk -> Structs.contains(erk, e.unit.type)));
                 if(rec != null){
                     Structs.each(itm -> {
-                        for(int i = 0; i < itm.amount/0.5f; i++){
+                        for(int i = 0; i < itm.amount*0.5f; i++){
                             ItemEntity en = ItemEntity.create();
                             en.x = e.unit.x + Mathf.range(e.unit.hitSize);
                             en.y = e.unit.y + Mathf.range(e.unit.hitSize);
-                            en.item = itm.item;
+                            en.stack.item = itm.item;
+                            en.stack.amount = 1;
                             en.vel.set(Mathf.range(5.5f + (e.unit.hitSize/9f)), Mathf.range(5.5f + (e.unit.hitSize/9f)));
                             en.drag = Mathf.random(0.05f, 0.1f);
                             en.add();
@@ -156,10 +158,10 @@ public class Yellow extends Mod{
                 mod.each((item, amount) -> {
                     for(int i = 0; i < amount; i++){
                         ItemEntity en = ItemEntity.create();
-                        en.x = e.tile.x + Mathf.range(e.tile.block().size*8f);
-                        en.y = e.tile.y + Mathf.range(e.tile.block().size*8f);
-                        en.item = item;
-                        en.amount = 1;
+                        en.x = e.tile.x*8 + Mathf.range(e.tile.block().size*8f);
+                        en.y = e.tile.y*8 + Mathf.range(e.tile.block().size*8f);
+                        en.stack.item = item;
+                        en.stack.amount = 1;
                         en.vel.set(Mathf.range(5.5f + e.tile.block().size), Mathf.range(5.5f + e.tile.block().size));
                         en.drag = Mathf.random(0.05f, 0.1f);
                         en.add();
@@ -168,12 +170,12 @@ public class Yellow extends Mod{
             }
 
             if(enableBuildDrops.get()) Structs.each(stk -> {
-                for(int i = 0; i < stk.amount/0.2f; i++){
+                for(int i = 0; i < stk.amount*0.2f; i++){
                     ItemEntity en = ItemEntity.create();
-                    en.x = e.tile.x + Mathf.range(e.tile.block().size*8f);
-                    en.y = e.tile.y + Mathf.range(e.tile.block().size*8f);
-                    en.item = stk.item;
-                    en.amount = 1;
+                    en.x = e.tile.x*8 + Mathf.range(e.tile.block().size*8f);
+                    en.y = e.tile.y*8 + Mathf.range(e.tile.block().size*8f);
+                    en.stack.item = stk.item;
+                    en.stack.amount = 1;
                     en.vel.set(Mathf.range(5.5f + e.tile.block().size), Mathf.range(5.5f + e.tile.block().size));
                     en.drag = Mathf.random(0.05f, 0.1f);
                     en.add();

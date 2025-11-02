@@ -1,6 +1,7 @@
 package yellow.comp;
 
 import arc.*;
+import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.input.*;
 import arc.math.*;
@@ -8,40 +9,53 @@ import arc.math.geom.*;
 import arc.util.*;
 import arc.util.io.*;
 import ent.anno.Annotations.*;
-import mindustry.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.EntityCollisions.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.input.*;
 import mindustry.type.*;
-import yellow.*;
 import yellow.entities.*;
 import yellow.gen.*;
+import yellow.math.*;
 
 import static yellow.YellowSettingValues.*;
 
-@EntityComponent(base = true)
-@EntityDef({ItemEntityc.class, Hitboxc.class, Drawc.class, Posc.class, Velc.class, Rotc.class})
-abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc{
+@EntityComponent
+@EntityDef({ItemEntityc.class, Hitboxc.class, Drawc.class, Posc.class, Velc.class, Rotc.class, Itemsc.class})
+abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Itemsc{
 
-    @Import float x, y, drag, rotation;
+    @Import float x, y, drag, rotation, hitSize;
     @Import Vec2 vel;
+    @Import ItemStack stack = new ItemStack();
 
-    transient Item item = Items.copper;
-    transient int amount = 1;
+    int stackLimit = 1;
 
     public void pickup(Itemsc entity){
-        entity.addItem(item, amount);
+        if(!entity.acceptsItem(stack.item)) return;
+        for(int i = 0; i < stack.amount; i++){
+            entity.addItem(stack.item, 1);
+            stack.amount--;
+            if(stack.amount <= 0){
+                Fx.breakProp.at(x, y);
+                remove();
+            }
+        }
         Fx.itemTransfer.at(x, y, 0f, entity);
-        Fx.breakProp.at(x, y);
-        remove();
+    }
+
+    public boolean willGravitate(@Nullable Boolp extra){
+        return gravitateItems.get() && (extra == null || extra.get());
     }
 
     @Replace
     public SolidPred solidity(){
         return EntityCollisions::solid;
+    }
+
+    @Override
+    public int itemCapacity(){
+        return stackLimit;
     }
 
     @Override
@@ -57,37 +71,49 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc{
 
     @Override
     public void update(){
-        Groups.unit.each(Unitc::isPlayer, un -> {
-            ItemStack carried = un.stack;
-            if((gravitateOnEmptyInventory.get() && carried.item == null) || carried.amount <= 0 || (carried.item == item && un.acceptsItem(item))){
-                if(Mathf.dst(x, y, un.x, un.y) < 8*5f) vel.trns(Angles.angle(x, y, un.x, un.y), 1f);
+        Groups.unit.each(Unitc::isPlayer, unit -> {
+            ItemStack carried = unit.stack;
 
-                if(Mathf.dst(x, y, un.x, un.y) < 8f || (Mathf.dst(x, y, un.x, un.y) < 8*12f && Mathf.dst(x, y, un.aimX, un.aimY) < 8*1f && Core.input.keyTap(KeyCode.mouseLeft))) pickup(un);
+            boolean acceptsItem = carried.item == stack.item && unit.acceptsItem(stack.item);
+
+            if(!unit.hasItem() || acceptsItem){
+                float dst = Mathf.dst(x, y, unit.x, unit.y);
+
+                //click to collect
+                if(dst < 8*12f && Mathf.dst(x, y, unit.aimX, unit.aimY) < 8*1.5f && Core.input.keyTap(KeyCode.mouseLeft)) pickup(unit);
+
+                //gravitate
+                if(dst < 8*5f && willGravitate(
+                        () -> (!unit.hasItem() && gravitateOnEmptyInventory.get()) || (acceptsItem && unit.hasItem())
+                )){
+                    vel.trns(Angles.angle(x, y, unit.x, unit.y), 1);
+
+                    //auto pickup if close enough
+                    if(dst < unit.hitSize + 3f) pickup(unit);
+                }
             }
         });
     }
 
     @Override
     public void draw(){
-        if(item == null) return;
+        if(stack.item == null) return;
         Draw.z(Layer.block);
-        Draw.rect(item.fullIcon, x, y, rotation);
+        Draw.rect(stack.item.fullIcon, x, y, rotation);
     }
 
     @Override
     public void read(Reads read){
-        Item i = Vars.content.item(read.s());
-        if(i == null) i = Items.copper;
-
-        item = i;
-        amount = read.i();
         drag = read.f();
     }
 
     @Override
     public void write(Writes write){
-        write.s(item.id);
-        write.i(amount);
         write.f(drag);
+    }
+
+    @Override
+    public void afterReadAll(){
+        if(stack.item == null) remove();
     }
 }
