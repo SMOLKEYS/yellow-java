@@ -71,6 +71,7 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
 
     @Override
     public void update(){
+        //players only
         Groups.unit.each(Unitc::isPlayer, unit -> {
             ItemStack carried = unit.stack;
 
@@ -78,12 +79,13 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
 
             if(!unit.hasItem() || acceptsItem){
                 float dst = Mathf.dst(x, y, unit.x, unit.y);
+                float aimDst = Mathf.dst(x, y, unit.aimX, unit.aimY);
 
                 //click to collect
-                if(dst < 8*12f && Mathf.dst(x, y, unit.aimX, unit.aimY) < 8*1.5f && Core.input.keyTap(KeyCode.mouseLeft)) pickup(unit);
+                if(dst < unit.hitSize + (8*12f) && aimDst < 8*1.5f && Core.input.keyTap(KeyCode.mouseLeft)) pickup(unit);
 
                 //gravitate
-                if(dst < 8*5f && willGravitate(
+                if(dst < unit.hitSize + (8*5f) && willGravitate(
                         () -> (!unit.hasItem() && gravitateOnEmptyInventory.get()) || (acceptsItem && unit.hasItem())
                 )){
                     vel.trns(Angles.angle(x, y, unit.x, unit.y), 1);
@@ -105,11 +107,13 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
     @Override
     public void read(Reads read){
         drag = read.f();
+        hitSize = read.f();
     }
 
     @Override
     public void write(Writes write){
         write.f(drag);
+        write.f(hitSize);
     }
 
     @Override

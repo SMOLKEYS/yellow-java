@@ -1,0 +1,1 @@
+{version:3,fields:[{name:rotation,type:float},{name:stack,type:mindustry.type.ItemStack},{name:vel,type:arc.math.geom.Vec2},{name:x,type:float},{name:y,type:float}]}

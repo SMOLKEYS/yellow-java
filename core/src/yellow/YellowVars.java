@@ -1,15 +1,12 @@
 package yellow;
 
 import arc.*;
-import arc.files.*;
-import arc.graphics.*;
-import arc.math.*;
 import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
-import mindustry.game.EventType.*;
-import yellow.YellowVars.YellowEventType.*;
+import yellow.core.YellowEventType.*;
+import yellow.core.*;
 import yellow.graphics.*;
 import yellow.natives.*;
 import yellow.spec.*;
@@ -24,6 +21,8 @@ import java.util.*;
 public class YellowVars{
 
     private static BuildType build = BuildType.unknown;
+
+    public static YellowLogic logic;
 
     public static WeaponManagerDialog weapons;
 
@@ -93,6 +92,8 @@ public class YellowVars{
         Events.fire(new YellowVarsPreInit());
 
         build = Yellow.meta().version.contains("rapid") ? BuildType.rapid : BuildType.release;
+
+        logic = new YellowLogic();
 
         weapons = new WeaponManagerDialog();
 
@@ -165,12 +166,6 @@ public class YellowVars{
 
     public static BuildType build(){
         return build;
-    }
-
-    public static class YellowEventType{
-        public static class YellowPostInit{}
-        public static class YellowVarsPreInit{}
-        public static class YellowVarsPostInit{}
     }
 
     public enum BuildType{

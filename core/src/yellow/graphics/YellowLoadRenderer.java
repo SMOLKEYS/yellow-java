@@ -10,6 +10,7 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.core.*;
 import mindustry.graphics.*;
+import yellow.*;
 import yellow.util.*;
 
 import java.util.*;
@@ -90,23 +91,22 @@ public class YellowLoadRenderer extends LoadRenderer{
             f.draw(Vars.mods.orderedMods().size + " mods loaded", w/2, (h/2) - ((ofs+40)*s), Align.center);
             f.draw(assets.getQueuedAssets() + " assets queued, " + assets.getLoadedAssets() + " assets loaded", w/2, (h/2) - ((ofs+60)*s), Align.center);
 
-            /*
 
-            uhh, no./
 
-            f.draw(SafeReflect.get(Vars.mods, "totalSprites") + " Sprites", w/2, (h/2) - ((ofs+60)*s), Align.center);
-            f.draw(Vars.content.blocks().size + " Blocks", w/2, (h/2) - ((ofs+80)*s), Align.center);
-            f.draw(Vars.content.units().size + " Units", w/2, (h/2) - ((ofs+100)*s), Align.center);
-            f.draw(Vars.content.items().size + " Items", w/2, (h/2) - ((ofs+120)*s), Align.center);
-            f.draw(Vars.content.liquids().size + " Liquids", w/2, (h/2) - ((ofs+140)*s), Align.center);
-            f.draw(Vars.content.bullets().size + " Bullets", w/2, (h/2) - ((ofs+160)*s), Align.center);
-            f.draw(Vars.content.sectors().size + " Sectors", w/2, (h/2) - ((ofs+180)*s), Align.center);
-            f.draw(Vars.content.units().size + " Units", w/2, (h/2) - ((ofs+200)*s), Align.center);
-            f.draw(Vars.content.planets().size + " Planets", w/2, (h/2) - ((ofs+220)*s), Align.center);
-            f.draw(Vars.content.weathers().size + " Weathers", w/2, (h/2) - ((ofs+240)*s), Align.center);
-            f.draw(Vars.content.unitStances().size + " Unit Stances", w/2, (h/2) - ((ofs+260)*s), Align.center);
-            f.draw(Vars.content.unitCommands().size + " Unit Commands", w/2, (h/2) - ((ofs+280)*s), Align.center);
-            */
+            if(Yellow.debug){
+                f.draw(SafeReflect.get(Vars.mods, "totalSprites") + " Sprites", w / 2, (h / 2) - ((ofs + 60) * s), Align.center);
+                f.draw(Vars.content.blocks().size + " Blocks", w / 2, (h / 2) - ((ofs + 80) * s), Align.center);
+                f.draw(Vars.content.units().size + " Units", w / 2, (h / 2) - ((ofs + 100) * s), Align.center);
+                f.draw(Vars.content.items().size + " Items", w / 2, (h / 2) - ((ofs + 120) * s), Align.center);
+                f.draw(Vars.content.liquids().size + " Liquids", w / 2, (h / 2) - ((ofs + 140) * s), Align.center);
+                f.draw(Vars.content.bullets().size + " Bullets", w / 2, (h / 2) - ((ofs + 160) * s), Align.center);
+                f.draw(Vars.content.sectors().size + " Sectors", w / 2, (h / 2) - ((ofs + 180) * s), Align.center);
+                f.draw(Vars.content.units().size + " Units", w / 2, (h / 2) - ((ofs + 200) * s), Align.center);
+                f.draw(Vars.content.planets().size + " Planets", w / 2, (h / 2) - ((ofs + 220) * s), Align.center);
+                f.draw(Vars.content.weathers().size + " Weathers", w / 2, (h / 2) - ((ofs + 240) * s), Align.center);
+                f.draw(Vars.content.unitStances().size + " Unit Stances", w / 2, (h / 2) - ((ofs + 260) * s), Align.center);
+                f.draw(Vars.content.unitCommands().size + " Unit Commands", w / 2, (h / 2) - ((ofs + 280) * s), Align.center);
+            }
 
             f.draw("Yellow v" + mod().meta.version, w - (20f*s), 30f*s, Align.right);
 
