@@ -5,12 +5,14 @@ import arc.func.*;
 import arc.math.*;
 import mindustry.*;
 import mindustry.gen.*;
+import yellow.*;
+import yellow.util.*;
 
 public class CutscenePreset{
     public static CutscenePreset testCutscene = new CutscenePreset(
             "test-cutscene",
             () -> true,
-            () -> new CutsceneController[]{
+            () -> new CutsceneController<?>[]{
                     Controllers.delay(60 * 2f),
                     Controllers.moveCameraTo(() -> Vars.player.unit().team.cores().first(), 60 * 1f, Interp.smooth),
                     Controllers.delay(60 * 2f),

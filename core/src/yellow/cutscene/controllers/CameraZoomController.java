@@ -5,6 +5,7 @@ import arc.math.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.core.*;
+import yellow.cutscene.*;
 
 /** A controller for changing the camera zoom. */
 public class CameraZoomController extends CutsceneController<CameraZoomController>{

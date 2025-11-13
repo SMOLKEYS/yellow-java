@@ -10,8 +10,8 @@ import yellow.gen.*;
 import yellow.io.*;
 
 @EntityComponent
-@EntityDef({WeaponMasterUnitc.class, Unitc.class, Weaponsc.class})
-abstract class WeaponMasterUnitComp implements Unitc, Weaponsc{
+@EntityDef({WeaponMasterUnitc.class, Unitc.class})
+abstract class WeaponMasterUnitComp implements Unitc{
     @Import WeaponMount[] mounts;
     
     public void eachToggleMount(Cons<ToggleWeaponMount> cons){

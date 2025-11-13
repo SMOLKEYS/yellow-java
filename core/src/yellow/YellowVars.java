@@ -5,8 +5,12 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
+import yellow.async.*;
 import yellow.core.YellowEventType.*;
 import yellow.core.*;
+import yellow.cutscene.*;
+import yellow.entities.*;
+import yellow.gen.*;
 import yellow.graphics.*;
 import yellow.natives.*;
 import yellow.spec.*;
@@ -33,6 +37,8 @@ public class YellowVars{
     public static ManagerFragment managefrag;
     public static OverlayFragment overlayfrag;
 
+    public static Cutscenes cutscenes;
+
     public static WidgetGroup overlayGroup;
 
     public static YellowMenuRenderer menuRenderer;
@@ -41,6 +47,15 @@ public class YellowVars{
     static Date date;
 
     public static void preInit(){
+        Timey.init();
+        Chaos.init();
+
+        preInitComponents();
+
+        Events.fire(new YellowPostInit());
+    }
+
+    public static void preInitComponents(){
         boolean freeze = YellowJVM.hasParameter("freeze");
 
         Runnable input = () -> {
@@ -73,8 +88,9 @@ public class YellowVars{
             }
         }
 
-        Timey.init();
-        Chaos.init();
+        Vars.asyncCore.processes.add(
+                new PhysicsHandler<>(YellowGroups.physics)
+        );
 
         Core.app.post(() -> {
             try{
@@ -84,8 +100,6 @@ public class YellowVars{
                 Log.err(e);
             }
         });
-
-        Events.fire(new YellowPostInit());
     }
 
     public static void init(){
@@ -103,10 +117,13 @@ public class YellowVars{
         dialogfrag = new DialogFragment();
         managefrag = new ManagerFragment();
 
+        cutscenes = new Cutscenes();
+        cutscenes.init();
+
         overlayGroup = new WidgetGroup();
 
         overlayGroup.setFillParent(true);
-        overlayGroup.touchable = Touchable.childrenOnly; // :eyebrow_raised:
+        overlayGroup.touchable = Touchable.childrenOnly;
         overlayGroup.visible(() -> true);
 
         overlayGroup.update(() -> overlayGroup.toFront());
@@ -126,6 +143,7 @@ public class YellowVars{
     }
 
     public static void initNatives(){
+        /*
         LibLoader l = new LibLoader();
         AndroidLibLoader al = new AndroidLibLoader(Yellow.mod().root);
 
@@ -140,28 +158,24 @@ public class YellowVars{
         }catch(Exception e){
             Log.err(e);
         }
+         */
     }
 
     public static void onImport(){
-        if(!Core.settings.has("yellow-install-date")) Core.settings.put("yellow-install-date", System.currentTimeMillis());
+        if(!YellowSettingValues.installDate.exists()) YellowSettingValues.installDate.set(System.currentTimeMillis());
     }
 
-    public static long installTime(){
-        if(!Core.settings.has("yellow-install-date")) Core.settings.put("yellow-install-date", System.currentTimeMillis());
-        return SafeSettings.getLong("yellow-install-date", 0, 0);
-    }
-
-    public static Date installTimeAsDate(){
-        if(date == null) return date = new Date(installTime());
+    public static Date installedAt(){
+        if(date == null) return date = new Date(YellowSettingValues.installDate.get());
         return date;
     }
 
     public static float getNotificationTime(){
-        return SafeSettings.getFloat("yellow-notification-time", 5,  5);
+        return YellowSettingValues.notificationTime.get();
     }
 
     public static void setNotificationTime(float time){
-        Core.settings.put("yellow-notification-time", time);
+        YellowSettingValues.notificationTime.set(time);
     }
 
     public static BuildType build(){

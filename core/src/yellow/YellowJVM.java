@@ -39,7 +39,7 @@ public final class YellowJVM{
     static boolean hasParameter(String argument, Boolp alt, Cons<String> ifDetected){
         boolean s = hasParameter(argument);
         if(s) ifDetected.get(argument);
-        if(alt.get()) ifDetected.get("alt");
+        if(!s && alt.get()) ifDetected.get("alt");
         return s || alt.get();
     }
 }

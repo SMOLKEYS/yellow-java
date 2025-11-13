@@ -3,6 +3,8 @@ package yellow.cutscene.controllers;
 import arc.func.*;
 import arc.math.*;
 import arc.util.*;
+import yellow.*;
+import yellow.cutscene.*;
 
 public class CurtainController extends CutsceneController<CurtainController>{
 

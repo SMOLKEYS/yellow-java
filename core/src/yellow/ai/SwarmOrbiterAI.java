@@ -5,6 +5,7 @@ import arc.math.*;
 import arc.math.geom.*;
 import mindustry.gen.*;
 import mindustry.world.blocks.storage.*;
+import yellow.gen.*;
 import yellow.math.*;
 
 /** An AI that orbits a target unit. If no target is found, defaults to the team core. If that is also not found (somehow), does nothing. */
@@ -56,12 +57,13 @@ public class SwarmOrbiterAI extends OwnerAI{
 
         float dMul = target != null ? Mathy.lerpc(1f, peakSpeedRD, Mathy.dstPos(unit, target) - dst, dstCap) : 0f;
         float fSpeed = unit.speed() * (dMul);
+        float fDst = unit instanceof GhostUnit gh ? Mathf.lerp(dst, 8*6f, gh.lifetimef()) : dst;
 
         if(target != null){
             if(useOpposite){
-                circleOpposite(target, dst, fSpeed);
+                circleOpposite(target, fDst, fSpeed);
             }else{
-                circle(target, dst, fSpeed);
+                circle(target, fDst, fSpeed);
             }
         }
 

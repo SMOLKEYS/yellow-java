@@ -1,20 +1,25 @@
 package yellow.ui;
 
-import arc.*;
+import arc.audio.*;
 import arc.func.*;
 import arc.graphics.*;
 import arc.scene.event.*;
 import arc.scene.style.*;
 import arc.scene.ui.*;
+import arc.scene.ui.Label.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.gen.*;
 import mindustry.ui.*;
-import mindustry.ui.dialogs.*;
+import mindustry.ui.dialogs.SettingsMenuDialog.*;
+import mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable.*;
 import yellow.*;
 import yellow.YellowVars.*;
+import yellow.spec.*;
 import yellow.util.*;
+
+import java.util.concurrent.atomic.*;
 
 import static arc.Core.*;
 import static yellow.YellowSettingValues.*;
@@ -23,7 +28,7 @@ public class YellowSettings{
 
     private static String header;
 
-    static SettingsMenuDialog.SettingsTable table;
+    static SettingsTable table;
     static boolean updateBlock = false;
 
     public static void load(){
@@ -32,7 +37,7 @@ public class YellowSettings{
 
             seperatorPref(t, "yellow-general-section", (TextureRegionDrawable) Tex.alphaaaa, Icon.settings);
 
-            t.sliderPref("yellow-notification-time", 5, 3, 60, 1, s -> Core.bundle.format("setting.yellow-notification-time.text", s));
+            t.sliderPref("yellow-notification-time", 5, 3, 60, 1, s -> bundle.format("setting.yellow-notification-time.text", s));
 
             t.sliderPref("yellow-notification-length", 25, 25, 100, 1, s -> s + "%");
 
@@ -51,11 +56,11 @@ public class YellowSettings{
                 b.touchable = rapid ? Touchable.disabled : updateBlock ? Touchable.disabled : Touchable.enabled;
                 // what the fuck why
                 if(rapid){
-                    b.setText("[gray]" + Core.bundle.get("setting.yellow-check-for-updates-now.disabled-rdb") + "[]");
+                    b.setText("[gray]" + bundle.get("setting.yellow-check-for-updates-now.disabled-rdb") + "[]");
                     return;
                 }
 
-                b.setText("[" + (updateBlock ? "gray" : "white") + "]" + Core.bundle.get("setting.yellow-check-for-updates-now.name") + (updateBlock ? "\n" + Core.bundle.get("setting.yellow-check-for-updates-now.halt") : "") + "[]");
+                b.setText("[" + (updateBlock ? "gray" : "white") + "]" + bundle.get("setting.yellow-check-for-updates-now.name") + (updateBlock ? "\n" + bundle.get("setting.yellow-check-for-updates-now.halt") : "") + "[]");
             }));
 
             seperatorPref(t, "yellow-discord-section", Icon.discord, Icon.settings);
@@ -67,7 +72,7 @@ public class YellowSettings{
                     boolean status = enableRpc.get(true);
 
                     b.touchable = status ? Touchable.enabled : Touchable.disabled;
-                    b.setText("[" + (status ? "white" : "gray") + "]" + Core.bundle.get("setting.yellow-restart-rpc.name") + "[]");
+                    b.setText("[" + (status ? "white" : "gray") + "]" + bundle.get("setting.yellow-restart-rpc.name") + "[]");
                 }));
             }else{
                 labelPref(t, "yellow-unavailable-mobile", false, null);
@@ -79,19 +84,19 @@ public class YellowSettings{
 
             buttonPref(t, form("shuffle-seed", false), YellowSettingValues::shuffleChaosRenderer);
 
-            t.sliderPref(form("tex-count", false), 500, 100, 2000, 100, proc -> Core.bundle.format(form("tex-count", true), proc));
+            t.sliderPref(form("tex-count", false), 500, 100, 2000, 100, proc -> bundle.format(form("tex-count", true), proc));
 
             //we must divide by ten NOW
 
-            floatSliderPref(t, form("outbound", false), 25, 10, 25, 1, proc -> Core.bundle.format(form("outbound", true), proc / 10f));
+            floatSliderPref(t, form("outbound", false), 25, 10, 25, 1, proc -> bundle.format(form("outbound", true), proc / 10f));
 
-            floatSliderPref(t, form("min-speed", false), 5, 0, 150, 1, proc -> Core.bundle.format(form("min-speed", true), proc / 10f));
+            floatSliderPref(t, form("min-speed", false), 5, 0, 150, 1, proc -> bundle.format(form("min-speed", true), proc / 10f));
 
-            floatSliderPref(t, form("max-speed", false), 25, 0, 150, 1, proc -> Core.bundle.format(form("max-speed", true), proc / 10f));
+            floatSliderPref(t, form("max-speed", false), 25, 0, 150, 1, proc -> bundle.format(form("max-speed", true), proc / 10f));
 
-            floatSliderPref(t, form("min-rot-speed", false), 5, 0, 150, 1, proc -> Core.bundle.format(form("min-rot-speed", true), proc / 10f));
+            floatSliderPref(t, form("min-rot-speed", false), 5, 0, 150, 1, proc -> bundle.format(form("min-rot-speed", true), proc / 10f));
 
-            floatSliderPref(t, form("max-rot-speed", false), 20, 0, 150, 1, proc -> Core.bundle.format(form("max-rot-speed", true), proc / 10f));
+            floatSliderPref(t, form("max-rot-speed", false), 20, 0, 150, 1, proc -> bundle.format(form("max-rot-speed", true), proc / 10f));
 
             t.checkPref(form("reverse", false), false);
 
@@ -104,6 +109,8 @@ public class YellowSettings{
             t.checkPref("yellow-enable-load-renderer", false);
 
             t.checkPref("yellow-enable-unit-drops", false);
+
+            t.checkPref("yellow-enable-unit-inv-drops", false);
 
             t.checkPref("yellow-enable-build-drops", false);
 
@@ -122,18 +129,62 @@ public class YellowSettings{
                 tb.defaults().center();
 
                 tb.table(text -> {
-                    text.label(() -> Core.bundle.format(
+                    text.label(() -> bundle.format(
                             "yellow-version",
                             Yellow.meta().version,
-                            UpdateChecker.updateQueued ? "Waiting..." : UpdateChecker.updateAvailable ? Core.bundle.get("yellow-update-available") : Core.bundle.get("yellow-latest")
+                            UpdateChecker.updateQueued ? "Waiting..." : UpdateChecker.updateAvailable ? bundle.get("yellow-update-available") : bundle.get("yellow-latest")
                     )).row();
-                    text.add(Core.bundle.format("yellow-install-date", YellowVars.installTimeAsDate())).row();
-                    if(Yellow.debug) text.add(Core.bundle.get("yellow-debug-enabled")).row();
+                    text.add(bundle.format("yellow-install-date", YellowVars.installedAt())).row();
+                    if(Yellow.debug) text.add(bundle.get("yellow-debug-enabled")).row();
                 }).growX().row();
 
                 tb.table(buttons -> {
-                    button(buttons, "yellow-source-code", () -> Core.app.openURI("https://github.com/SMOLKEYS/yellow-java")).growX().uniformX();
-                    button(buttons, "yellow-issue-reports", () -> Core.app.openURI("https://github.com/SMOLKEYS/yellow-java/issues")).growX().uniformX().row();
+                    float[] fl = {0};
+                    MiscUtils.apply(button(buttons, "yellow-source-code", () -> app.openURI("https://github.com/SMOLKEYS/yellow-java")).growX().uniformX().get(), cb -> {
+                        boolean[] ticked = {false};
+
+                        cb.update(() -> {
+                            if(ticked[0]) return;
+
+                            if(cb.isPressed()){
+                                fl[0] += Time.delta;
+                            }else{
+                                fl[0] = 0f;
+                            }
+
+                            if(fl[0] >= (Yellow.debug ? 35 : 60*10)){
+                                fl[0] = -99999f;
+                                Chaos.kickFromSave();
+                                YellowVars.blankfrag.show();
+                                Chaos.hideAllDialogs(true);
+                                Chaos.stopAudioBus();
+                                AtomicReference<String> s = new AtomicReference<>("my brother in christ");
+                                AtomicReference<Table> tbl = new AtomicReference<>();
+                                YellowVars.blankfrag.table.fill(p -> {
+                                    p.center();
+                                    p.defaults().center();
+                                    p.label(s::get).fontScale(4).get().setStyle(new LabelStyle(YellowFonts.gothic, Color.white));
+
+                                    tbl.set(p);
+                                });
+                                Time.run(60, () -> {
+                                    s.set("boo");
+                                    Chaos.startAudioBus();
+                                    Sounds.wind3.setBus(new AudioBus());
+                                    Sounds.wind3.play(25);
+                                    Time.run(20, () -> {
+                                        tbl.get().remove();
+                                        Sounds.wind3.stop();
+                                        Sounds.wind3.setBus(audio.soundBus);
+                                        YellowVars.blankfrag.hide();
+                                        YellowVars.notifrag.showNotification(Icon.star, "youer are di d it");
+                                        ticked[0] = true;
+                                    });
+                                });
+                            }
+                        });
+                    });
+                    button(buttons, "yellow-issue-reports", () -> app.openURI("https://github.com/SMOLKEYS/yellow-java/issues")).growX().uniformX().row();
                 }).growX().padTop(10f).row();
             });
 
@@ -145,7 +196,7 @@ public class YellowSettings{
         });
     }
 
-    public static SettingsMenuDialog.SettingsTable table(){
+    public static SettingsTable table(){
         return table;
     }
 
@@ -156,52 +207,52 @@ public class YellowSettings{
     }
 
     public static Cell<TextButton> button(Table table, String text, @Nullable String description, Runnable post){
-        Cell<TextButton> b = table.button(Core.bundle.get(text, text), post);
-        Vars.ui.addDescTooltip(b.get(), Core.bundle.get(text + ".description", description));
+        Cell<TextButton> b = table.button(bundle.get(text, text), post);
+        Vars.ui.addDescTooltip(b.get(), bundle.get(text + ".description", description));
         return b;
     }
 
-    public static void addSection(String name, Cons<SettingsMenuDialog.SettingsTable> builder){
+    public static void addSection(String name, Cons<SettingsTable> builder){
         seperatorPref(table, name);
         builder.get(table);
     }
 
-    public static void addSection(String name, TextureRegionDrawable leftIcon, TextureRegionDrawable rightIcon, Cons<SettingsMenuDialog.SettingsTable> builder){
+    public static void addSection(String name, TextureRegionDrawable leftIcon, TextureRegionDrawable rightIcon, Cons<SettingsTable> builder){
         seperatorPref(table, name, leftIcon, rightIcon);
         builder.get(table);
     }
 
-    public static void buttonPref(SettingsMenuDialog.SettingsTable target, String name, Runnable clicked){
+    public static void buttonPref(SettingsTable target, String name, Runnable clicked){
         target.pref(new ButtonSetting(name, clicked));
     }
 
-    public static void buttonPref(SettingsMenuDialog.SettingsTable target, String name, Runnable clicked, Cons<TextButton> button){
+    public static void buttonPref(SettingsTable target, String name, Runnable clicked, Cons<TextButton> button){
         target.pref(new ButtonSetting(name, clicked){{
             buttonCons = button;
         }});
     }
 
-    public static void labelPref(SettingsMenuDialog.SettingsTable target, String name, @Nullable Func<SettingsMenuDialog.SettingsTable.Setting, CharSequence> supplier){
+    public static void labelPref(SettingsTable target, String name, @Nullable Func<Setting, CharSequence> supplier){
         target.pref(new LabelSetting(name, supplier));
     }
 
-    public static void labelPref(SettingsMenuDialog.SettingsTable target, String name, boolean wrap, @Nullable Func<SettingsMenuDialog.SettingsTable.Setting, CharSequence> supplier){
+    public static void labelPref(SettingsTable target, String name, boolean wrap, @Nullable Func<Setting, CharSequence> supplier){
         target.pref(new LabelSetting(name, wrap, supplier));
     }
 
-    public static void seperatorPref(SettingsMenuDialog.SettingsTable target, String name){
+    public static void seperatorPref(SettingsTable target, String name){
         target.pref(new NamedSeperatorSetting(name));
     }
 
-    public static void seperatorPref(SettingsMenuDialog.SettingsTable target, String name, TextureRegionDrawable leftIcon, TextureRegionDrawable rightIcon){
+    public static void seperatorPref(SettingsTable target, String name, TextureRegionDrawable leftIcon, TextureRegionDrawable rightIcon){
         target.pref(new NamedSeperatorSetting(name, leftIcon, rightIcon));
     }
 
-    public static void tablePref(SettingsMenuDialog.SettingsTable target, String name, Cons<Table> builder){
+    public static void tablePref(SettingsTable target, String name, Cons<Table> builder){
         target.pref(new TableSetting(name, builder));
     }
 
-    public static void floatSliderPref(SettingsMenuDialog.SettingsTable target, String name, float def, float min, float max, float step, TypedStringProcessor<Float> s){
+    public static void floatSliderPref(SettingsTable target, String name, float def, float min, float max, float step, TypedStringProcessor<Float> s){
         target.pref(new FloatSliderSetting(name, def, min, max, step, s));
     }
 
@@ -219,7 +270,7 @@ public class YellowSettings{
         }
     }
 
-    public static class ButtonSetting extends SettingsMenuDialog.SettingsTable.Setting{
+    public static class ButtonSetting extends Setting{
         public Runnable clicked;
         public Cons<TextButton> buttonCons;
 
@@ -235,7 +286,7 @@ public class YellowSettings{
         }
 
         @Override
-        public void add(SettingsMenuDialog.SettingsTable table){
+        public void add(SettingsTable table){
             TextButton b = new TextButton(title);
             b.clicked(() -> {
                 if(clicked != null) clicked.run();
@@ -247,24 +298,24 @@ public class YellowSettings{
         }
     }
 
-    public static class LabelSetting extends SettingsMenuDialog.SettingsTable.Setting{
+    public static class LabelSetting extends Setting{
         @Nullable
-        public Func<SettingsMenuDialog.SettingsTable.Setting, CharSequence> supplier;
+        public Func<Setting, CharSequence> supplier;
         public boolean wrap = true;
 
-        public LabelSetting(String name, @Nullable Func<SettingsMenuDialog.SettingsTable.Setting, CharSequence> supplier){
+        public LabelSetting(String name, @Nullable Func<Setting, CharSequence> supplier){
             super(name);
             this.supplier = supplier;
         }
 
-        public LabelSetting(String name, boolean wrap, @Nullable Func<SettingsMenuDialog.SettingsTable.Setting, CharSequence> supplier){
+        public LabelSetting(String name, boolean wrap, @Nullable Func<Setting, CharSequence> supplier){
             super(name);
             this.supplier = supplier;
             this.wrap = wrap;
         }
 
         @Override
-        public void add(SettingsMenuDialog.SettingsTable table){
+        public void add(SettingsTable table){
             Label l = new Label(title);
             l.setWrap(wrap);
             if(supplier != null) l.update(() -> {
@@ -279,7 +330,7 @@ public class YellowSettings{
     }
 
 
-    public static class NamedSeperatorSetting extends SettingsMenuDialog.SettingsTable.Setting{
+    public static class NamedSeperatorSetting extends Setting{
         public TextureRegionDrawable leftIcon, rightIcon;
 
         public NamedSeperatorSetting(String name){
@@ -293,7 +344,7 @@ public class YellowSettings{
         }
 
         @Override
-        public void add(SettingsMenuDialog.SettingsTable table){
+        public void add(SettingsTable table){
             table.table(t -> {
                 t.center();
                 if(leftIcon != null) t.image(() -> leftIcon.getRegion()).size(32f).scaling(Scaling.fit);
@@ -308,7 +359,7 @@ public class YellowSettings{
         }
     }
 
-    public static class TableSetting extends SettingsMenuDialog.SettingsTable.Setting{
+    public static class TableSetting extends Setting{
         public Cons<Table> builder;
 
         public TableSetting(String name, Cons<Table> builder){
@@ -317,12 +368,12 @@ public class YellowSettings{
         }
 
         @Override
-        public void add(SettingsMenuDialog.SettingsTable table){
+        public void add(SettingsTable table){
             table.table(builder).growX().padTop(10f).row();
         }
     }
 
-    public static class FloatSliderSetting extends SettingsMenuDialog.SettingsTable.Setting{
+    public static class FloatSliderSetting extends Setting{
         public float def, min, max, step;
         public TypedStringProcessor<Float> sp;
 
@@ -336,7 +387,7 @@ public class YellowSettings{
         }
 
         @Override
-        public void add(SettingsMenuDialog.SettingsTable table){
+        public void add(SettingsTable table){
             Slider slider = new Slider(min, max, step, false);
 
             slider.setValue(settings.getFloat(name));
@@ -355,7 +406,7 @@ public class YellowSettings{
 
             slider.change();
 
-            addDesc(table.stack(slider, content).width(Math.min(Core.graphics.getWidth() / 1.2f, 460f)).left().padTop(4f).get());
+            addDesc(table.stack(slider, content).width(Math.min(graphics.getWidth() / 1.2f, 460f)).left().padTop(4f).get());
             table.row();
         }
     }

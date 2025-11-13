@@ -1,6 +1,7 @@
 package yellow.cutscene.controllers;
 
 import arc.func.*;
+import yellow.cutscene.*;
 
 public class ConsController extends CutsceneController<ConsController>{
 

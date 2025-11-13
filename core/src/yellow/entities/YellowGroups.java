@@ -1,16 +1,17 @@
 package yellow.entities;
 
 import mindustry.entities.*;
+import mindustry.gen.*;
 import yellow.gen.*;
 
 public class YellowGroups{
-    public static EntityGroup<ItemEntityc> item;
+    public static EntityGroup<Physicsc> physics;
 
     public static void init(){
-        item = new EntityGroup<>(ItemEntityc.class, true, false);
+        physics = new EntityGroup<>(Physicsc.class, true, false);
     }
 
     public static void update(){
-        item.updatePhysics();
+        physics.updatePhysics();
     }
 }

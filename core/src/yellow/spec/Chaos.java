@@ -6,9 +6,8 @@ import arc.func.*;
 import arc.scene.*;
 import arc.scene.actions.*;
 import arc.scene.ui.*;
-import arc.util.*;
 import mindustry.*;
-import mindustry.game.EventType.*;
+import mindustry.core.GameState.*;
 import mindustry.game.*;
 import mindustry.game.Saves.*;
 import mindustry.gen.*;
@@ -17,11 +16,12 @@ import mindustry.maps.*;
 import mindustry.type.*;
 import mindustry.ui.fragments.*;
 import yellow.util.*;
+import yellow.util.variable.*;
 
 public class Chaos{
 
     private static final SettingBoundVariable<Integer> stage = new SettingBoundVariable<>("yellow-stage", 0, true);
-    private static final FinalLazyValue<StageEntry> curStage = new FinalLazyValue<>();
+    private static final FinalLazyVariable<StageEntry> curStage = new FinalLazyVariable<>();
     private static final InputHandler nullInp = new NullInput();
     private static InputHandler lastInp;
     private static final Boolp b = () -> true;
@@ -108,7 +108,7 @@ public class Chaos{
     public static void hideAllDialogs(boolean instant){
         Prov<Action> a = SafeReflect.get(Dialog.class, "defaultHideAction");
         while(Core.scene.getDialog() != null){
-            Core.scene.getDialog().hide(instant ? Actions.hide() : a != null ? a.get() : Actions.hide());
+            Core.scene.getDialog().hide(instant ? Actions.fadeOut(0) : a != null ? a.get() : Actions.fadeOut(0));
         }
     }
 
@@ -133,6 +133,10 @@ public class Chaos{
     public static void eraseUI(){
         Core.scene.clear();
         Core.scene.unfocusAll();
+    }
+
+    public static void takeUI(){
+
     }
 
     public static void addInputLock(){
@@ -167,6 +171,7 @@ public class Chaos{
                 //e.printStackTrace();
             }
             Vars.logic.reset();
+            Vars.state.set(State.menu);
         }
     }
 

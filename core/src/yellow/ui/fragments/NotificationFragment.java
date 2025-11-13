@@ -11,6 +11,7 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
+import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
@@ -138,7 +139,7 @@ public class NotificationFragment implements CommonFragment{
 
         tr.clicked(KeyCode.mouseLeft, () -> {
             tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
+                    Actions.alpha(0, 0.3f),
                     Actions.run(() -> {
                         table.getCells().remove(t);
                         if(clicked != null) clicked.run();
@@ -158,7 +159,7 @@ public class NotificationFragment implements CommonFragment{
 
         tr.dragged((dx, dy) -> {
             float len = Mathf.len(dx, dy);
-            //Log.info("len @, dx @, dy @", len, dx, dy);
+            float direction = Mathf.angle(dx, dy);
             if(len >= 10f) tr.actions(Actions.sequence(
                     Actions.translateBy(width, 0, flickTime, flickInterp),
                     Actions.run(() -> table.getCells().remove(t)),
@@ -168,27 +169,14 @@ public class NotificationFragment implements CommonFragment{
 
         if(persist){
             t.tooltip("@yellow.persnotif-info", true);
-            tr.actions(Actions.translateBy(-width, 0, enterExitTime, enterInterp));
+            tr.actions(stay(width));
         }else{
             t.tooltip("@yellow.notif-info", true);
-            tr.hovered(() -> {
-                if(tr.getActions().peek() instanceof SequenceAction s && s.getActions().peek() instanceof DelayAction) tr.getActions().clear();
-            });
+            tr.hovered(() -> hovered(tr));
             tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(Actions.sequence(
-                        Actions.delay(YellowVars.getNotificationTime()),
-                        Actions.translateBy(width, 0, enterExitTime, exitInterp),
-                        Actions.run(() -> table.getCells().remove(t)),
-                        Actions.remove()
-                ));
+                if(tr.getActions().isEmpty()) tr.actions(delayedExit(time(1f), width, t));
             });
-            tr.actions(Actions.sequence(
-                    Actions.translateBy(-width, 0, enterExitTime, enterInterp),
-                    Actions.delay(YellowVars.getNotificationTime()),
-                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
-                    Actions.run(() -> table.getCells().remove(t)),
-                    Actions.remove()
-            ));
+            tr.actions(enterExit(time(1f), width, t));
         }
 
         t.row();
@@ -209,37 +197,54 @@ public class NotificationFragment implements CommonFragment{
             tr.exited(() -> {});
             tr.clicked(() -> {});
             tr.actions(Actions.sequence(
-                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
+                    Actions.alpha(0, 0.1f),
                     Actions.run(() -> table.getCells().remove(t)),
                     Actions.remove()
             ));
         });
 
         if(persist){
-            t.tooltip("@yellow.persnotif-info", true);
-            tr.actions(Actions.translateBy(-width, 0, enterExitTime, enterInterp));
+            t.tooltip("@yellow.persnotif-info", Vars.mobile);
+            tr.actions(stay(width));
         }else{
             t.tooltip("@yellow.notif-info", true);
-            tr.hovered(() -> {
-                if(tr.getActions().peek() instanceof SequenceAction s && s.getActions().peek() instanceof DelayAction) tr.getActions().clear();
-            });
+            tr.hovered(() -> hovered(tr));
             tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(Actions.sequence(
-                        Actions.delay(YellowVars.getNotificationTime()),
-                        Actions.translateBy(width, 0, enterExitTime, exitInterp),
-                        Actions.run(() -> table.getCells().remove(t)),
-                        Actions.remove()
-                ));
+                if(tr.getActions().isEmpty()) tr.actions(delayedExit(time(1f), width, t));
             });
-            tr.actions(Actions.sequence(
-                    Actions.translateBy(-width, 0, enterExitTime, enterInterp),
-                    Actions.delay(YellowVars.getNotificationTime()),
-                    Actions.translateBy(width, 0, enterExitTime, exitInterp),
-                    Actions.run(() -> table.getCells().remove(t)),
-                    Actions.remove()
-            ));
+            tr.actions(enterExit(time(1f), width, t));
         }
 
         t.row();
+    }
+
+    float time(float divide){
+        return YellowVars.getNotificationTime() / divide;
+    }
+
+    Action stay(float width){
+        return Actions.translateBy(-width, 0, enterExitTime, enterInterp);
+    }
+
+    Action delayedExit(float time, float width, Cell<Table> removed){
+        return Actions.sequence(
+                Actions.delay(time),
+                Actions.translateBy(width, 0, enterExitTime, exitInterp),
+                Actions.run(() -> table.getCells().remove(removed)),
+                Actions.remove()
+        );
+    }
+
+    Action enterExit(float time, float width, Cell<Table> removed){
+        return Actions.sequence(
+                Actions.delay(YellowVars.getNotificationTime()),
+                Actions.translateBy(width, 0, enterExitTime, exitInterp),
+                Actions.run(() -> table.getCells().remove(removed)),
+                Actions.remove()
+        );
+    }
+
+    void hovered(Table tr){
+        if(tr.getActions().peek() instanceof SequenceAction s && s.getActions().peek() instanceof DelayAction) tr.getActions().clear();
     }
 }

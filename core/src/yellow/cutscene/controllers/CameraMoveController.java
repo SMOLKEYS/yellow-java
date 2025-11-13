@@ -5,6 +5,7 @@ import arc.func.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
+import yellow.cutscene.*;
 
 /** A controller for moving the camera. */
 @SuppressWarnings("unused")

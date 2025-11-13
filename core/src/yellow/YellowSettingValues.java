@@ -3,22 +3,41 @@ package yellow;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
-import yellow.util.SettingBoundVariable.*;
+import yellow.util.*;
+import yellow.util.variable.*;
+import yellow.util.variable.SettingBoundVariable.*;
 
 public class YellowSettingValues{
 
-    // region misc
+    // region common
 
     public static final BooleanSetting
             enableRpc = new BooleanSetting(yellow("enable-rpc"), false),
-            enableAutoupdate = new BooleanSetting(yellow("check-for-updates"), false),
+            enableAutoupdate = new BooleanSetting(yellow("check-for-updates"), false);
+
+    public static final LongSetting installDate = new LongSetting(yellow("install-date"), 0L){
+        @Override
+        public Long get(){
+            if(!exists()) set(System.currentTimeMillis());
+            return super.get();
+        }
+    };
+
+    public static final FloatSetting notificationTime = new FloatSetting(yellow("notification-time"), 5f);
+
+    // endregion common
+
+    // region item drops
+
+    public static final BooleanSetting
             enableUnitDrops = new BooleanSetting(yellow("enable-unit-drops"), false),
+            enableUnitInventoryDrops = new BooleanSetting(yellow("enable-unit-inv-drops"), false),
             enableBuildDrops = new BooleanSetting(yellow("enable-build-drops"), false),
             enableBuildInventoryDrops = new BooleanSetting(yellow("enable-build-inv-drops"), false),
             gravitateOnEmptyInventory = new BooleanSetting(yellow("gravitate-on-empty-inventory"), false),
             gravitateItems = new BooleanSetting(yellow("gravitate-items"), true);
 
-    // endregion misc
+    // endregion item drops
 
     // region menu renderer
 
@@ -42,6 +61,15 @@ public class YellowSettingValues{
     public static final BooleanSetting rendererEnableOriginalMenu = new BooleanSetting(chaosRend("render-original-renderer"), false);
 
     // endregion menu renderer
+
+    public static void reset(){
+        MiscUtils.eachClassField(false, YellowSettingValues.class, SettingBoundVariable.class, fl -> {
+            try{
+                ((SettingBoundVariable<?>)fl.get(null)).reset();
+            }catch(Exception ignored){
+            }
+        });
+    }
 
     public static void shuffleChaosRenderer(){
         rendererSeed.set(Mathf.random(999999));

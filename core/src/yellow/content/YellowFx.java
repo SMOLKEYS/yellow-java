@@ -12,6 +12,8 @@ import yellow.math.*;
 
 
 public class YellowFx{
+
+    private static final Rand rand = new Rand(1997);
     
     public static final Effect ghostDespawn = new Effect(25f, e -> {
         Lines.stroke(e.fout() * 7);
@@ -121,5 +123,4 @@ public class YellowFx{
             Fill.circle(e.x + x, e.y + y, e.fout() * 20);
         });
     });
-
 }

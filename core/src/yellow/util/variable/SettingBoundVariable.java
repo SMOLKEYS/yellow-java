@@ -1,10 +1,11 @@
-package yellow.util;
+package yellow.util.variable;
 
 import arc.*;
 import arc.func.*;
+import yellow.util.*;
 
 /** A variable bound to a setting entry. */
-public class SettingBoundVariable<T>{
+public class SettingBoundVariable<T> implements VariableDelegator<T>{
     private final String name;
     private final T def;
 
@@ -27,6 +28,7 @@ public class SettingBoundVariable<T>{
         return new SettingBoundVariable<>(name, def);
     }
 
+    @Override
     public T get(){
         return SafeSettings.get(name, def);
     }
@@ -35,13 +37,24 @@ public class SettingBoundVariable<T>{
         return SafeSettings.get(name, altDef);
     }
 
+    @Override
     public SettingBoundVariable<T> set(T object){
         Core.settings.put(name, object);
         return this;
     }
 
+    @Override
     public SettingBoundVariable<T> set(Func<T, T> prev){
-        return set(prev.get(get()));
+        set(prev.get(get()));
+        return this;
+    }
+
+    public boolean exists(){
+        return Core.settings.has(name);
+    }
+
+    public void reset(){
+        Core.settings.put(name, def);
     }
 
 

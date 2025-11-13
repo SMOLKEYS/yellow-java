@@ -44,7 +44,7 @@ public class UpdateChecker{
 
     public static void loadNotifier(){
         updateQueued = true;
-        int id = YellowVars.ltfrag.add( Core.bundle.get("yellow.updater-scanning"), Core.atlas.drawable("yellow-java-yellow"), true);
+        int id = YellowVars.ltfrag.add(Core.bundle.get("yellow.updater-scanning"), Core.atlas.drawable("yellow-java-yellow"), true);
         checkUpdate(
                 null,
                 (cur, lat) -> {

@@ -15,6 +15,7 @@ import mindustry.entities.EntityCollisions.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import yellow.content.*;
 import yellow.entities.*;
 import yellow.gen.*;
 import yellow.math.*;
@@ -22,10 +23,10 @@ import yellow.math.*;
 import static yellow.YellowSettingValues.*;
 
 @EntityComponent
-@EntityDef({ItemEntityc.class, Hitboxc.class, Drawc.class, Posc.class, Velc.class, Rotc.class, Itemsc.class})
-abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Itemsc{
+@EntityDef({ItemEntityc.class, PhysicsEntityc.class, Itemsc.class})
+abstract class ItemEntityComp implements PhysicsEntityc, Itemsc{
 
-    @Import float x, y, drag, rotation, hitSize;
+    @Import float x, y, rotation;
     @Import Vec2 vel;
     @Import ItemStack stack = new ItemStack();
 
@@ -61,18 +62,16 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
     @Override
     public void add(){
         rotation = Mathf.random(360f);
-        YellowGroups.item.add((ItemEntityc) this);
-    }
-
-    @Override
-    public void remove(){
-        YellowGroups.item.add((ItemEntityc) this);
     }
 
     @Override
     public void update(){
         //players only
-        Groups.unit.each(Unitc::isPlayer, unit -> {
+        //does this sync?
+        Groups.player.each(pl -> {
+            Unit unit = pl.unit();
+            if(unit == null) return;
+
             ItemStack carried = unit.stack;
 
             boolean acceptsItem = carried.item == stack.item && unit.acceptsItem(stack.item);
@@ -82,7 +81,7 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
                 float aimDst = Mathf.dst(x, y, unit.aimX, unit.aimY);
 
                 //click to collect
-                if(dst < unit.hitSize + (8*12f) && aimDst < 8*1.5f && Core.input.keyTap(KeyCode.mouseLeft)) pickup(unit);
+                if(dst < unit.hitSize + (8*12f) && aimDst < 8*1.5f && Core.input.keyTap(YellowBinds.pickupItem)) pickup(unit);
 
                 //gravitate
                 if(dst < unit.hitSize + (8*5f) && willGravitate(
@@ -102,18 +101,6 @@ abstract class ItemEntityComp implements Hitboxc, Drawc, Posc, Velc, Rotc, Items
         if(stack.item == null) return;
         Draw.z(Layer.block);
         Draw.rect(stack.item.fullIcon, x, y, rotation);
-    }
-
-    @Override
-    public void read(Reads read){
-        drag = read.f();
-        hitSize = read.f();
-    }
-
-    @Override
-    public void write(Writes write){
-        write.f(drag);
-        write.f(hitSize);
     }
 
     @Override

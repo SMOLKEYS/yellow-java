@@ -2,6 +2,7 @@ package yellow.cutscene.controllers;
 
 import arc.func.*;
 import arc.struct.*;
+import yellow.cutscene.*;
 
 /** Allows execution of multiple controllers at once.
  * May yield unruly results if two controllers of the same type are used. */

@@ -39,7 +39,7 @@ public class CurtainFragment implements CommonFragment{
                 curtainTimer += Time.delta;
                 curtainScl = Mathy.lerpc(curtainScl, curtainSpan / 2f, curtainTimer, curtainSpanTime);
 
-                //ref: https://github.com/Yuria-Shikibe/NewHorizonMod/blob/main/src/newhorizon/expand/cutscene/components/CutsceneUI.java#L129
+                //ref: https://github.com/Yuria-Shikibe/NewHorizonMod/blob/fe3aca69068046adbd84bd7d6c0a1ecd39442d77/src/newhorizon/expand/cutscene/components/CutsceneUI.java#L119
                 float heightC = height * curtainScl * enterExitInterp.apply(transitionValue);
 
                 Draw.color(Color.black);

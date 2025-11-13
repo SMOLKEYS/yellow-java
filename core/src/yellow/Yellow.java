@@ -4,10 +4,10 @@ import arc.*;
 import arc.files.*;
 import arc.util.*;
 import mindustry.*;
-import mindustry.game.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.mod.*;
+import mindustry.mod.Mods.*;
 import yellow.core.YellowEventType.*;
 import yellow.content.*;
 import yellow.entities.*;
@@ -15,22 +15,20 @@ import yellow.gen.*;
 import yellow.js.*;
 import yellow.spec.*;
 import yellow.ui.*;
-import yellow.util.SettingBoundVariable.*;
+import yellow.util.*;
+import yellow.util.variable.SettingBoundVariable.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.*;
 
 import static yellow.YellowSettingValues.*;
 
-//third rewrite note: the more i do this the more i wanna throw my laptop against a wall
-@SuppressWarnings({
-        "unused", //oh and shut the fuck up java
-        "GrazieInspection" //you too intellij
-})
+@SuppressWarnings({"unused", "SpellCheckingInspection"})
 public class Yellow extends Mod{
 
     static final LongSetting lastFileDate = new LongSetting("yellow-debug-lastfiledate", 1997L);
 
-    public static final boolean debug = YellowJVM.hasParameter("yellow-debug", /*() -> Objects.equals(OS.username, "smol"),*/ str -> {
+    public static final boolean debug = YellowJVM.hasParameter("yellow-debug", () -> Objects.equals(System.getenv("YELLOW_HAKAMAKADAJAKA"), "fumo"), str -> {
         Log.infoTag(str, "Yellow debug mode enabled.");
 
         Events.run(YellowVarsPostInit.class, () -> {
@@ -79,22 +77,25 @@ public class Yellow extends Mod{
             YellowVars.preInit();
         }
 
-        Events.run(EventType.ClientLoadEvent.class, () -> {
+        Events.run(ClientLoadEvent.class, () -> {
             YellowVars.init();
-            if(!Vars.mobile && enableRpc.get()) YellowRPC.init();
             YellowSettings.load();
-            Rhinor.importMainModPackages(this);
+            YellowFonts.load();
+            YellowStyles.load();
             YellowVars.initNatives();
+            Rhinor.importMainModPackages(this);
+
+            if(!Vars.mobile && enableRpc.get()) YellowRPC.init();
 
             if(enableAutoupdate.get()) UpdateChecker.loadNotifier();
         });
     }
 
-    public static Mods.ModMeta meta(){
+    public static ModMeta meta(){
         return Vars.mods.getMod(Yellow.class).meta;
     }
 
-    public static Mods.LoadedMod mod(){
+    public static LoadedMod mod(){
         return Vars.mods.getMod(Yellow.class);
     }
 

@@ -3,6 +3,7 @@ package yellow.cutscene.controllers;
 import arc.func.*;
 import mindustry.*;
 import mindustry.gen.*;
+import yellow.cutscene.*;
 
 /** A controller that immediately makes the player control the specified target. */
 public class TransferPlayerController extends CutsceneController<TransferPlayerController>{

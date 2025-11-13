@@ -124,9 +124,9 @@ project(":core"){
 
         //experimental
         implementation(project(":native-loader"))
-        implementation(arc(":box2d"))
-        implementation(arc(":natives-box2d-android"))
-        implementation(arc(":natives-box2d-desktop"))
+        //implementation(arc(":box2d"))
+        //implementation(arc(":natives-box2d-android"))
+        //implementation(arc(":natives-box2d-desktop"))
 
         //mod integrations
     }

@@ -5,6 +5,7 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.util.pooling.*;
 import mindustry.gen.*;
+import yellow.cutscene.controllers.*;
 
 public class Controllers{
 

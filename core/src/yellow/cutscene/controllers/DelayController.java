@@ -2,6 +2,7 @@ package yellow.cutscene.controllers;
 
 import arc.func.*;
 import arc.util.*;
+import yellow.cutscene.*;
 
 public class DelayController extends CutsceneController<DelayController>{
 

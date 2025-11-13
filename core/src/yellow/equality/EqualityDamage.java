@@ -10,6 +10,8 @@ import mindustry.game.*;
 import mindustry.gen.*;
 import yellow.util.*;
 
+import java.util.*;
+
 public class EqualityDamage{
     static final EventType.UnitDamageEvent damageEvent = new EventType.UnitDamageEvent();
 

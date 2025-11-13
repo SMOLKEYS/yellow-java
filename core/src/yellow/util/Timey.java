@@ -7,7 +7,7 @@ import mindustry.game.EventType.*;
 
 @SuppressWarnings("unused")
 public class Timey{
-    private static Seq<Tickdown> tickdowns = new Seq<>();
+    private static final Seq<Tickdown> tickdowns = new Seq<>();
 
     public static void runLoop(Runnable r, float intervalSeconds){
         Timer.schedule(r, 0, intervalSeconds, -1);

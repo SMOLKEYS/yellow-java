@@ -11,7 +11,7 @@ import mindustry.*;
 import mindustry.core.*;
 import mindustry.graphics.*;
 import yellow.*;
-import yellow.util.*;
+import yellow.util.variable.*;
 
 import java.util.*;
 
@@ -59,7 +59,7 @@ public class YellowLoadRenderer extends LoadRenderer{
             lastLength = assets.getLoadedAssets();
         }
 
-        float w = graphics.getWidth(), h = graphics.getHeight(), s = Scl.scl(), progress = assets.getProgress();
+        float w = graphics.getWidth(), h = graphics.getHeight(), s = Scl.scl(), progress = assets.getProgress(), midw = w / 2, midh = h / 2;
         float ofs = 85f, ofsH = 20f;
 
         // note: in-code placement order MATTERS
@@ -73,7 +73,7 @@ public class YellowLoadRenderer extends LoadRenderer{
         if(progress(0.8f)) Fill.light(w, h, 20, rad, c, Color.clear);
 
         fontDraw(f -> {
-            f.draw(assetText, 20*s, h - (20*s), Align.left);
+            f.draw("[darkgray]===== MINDUSTRY CONSOLE =====[]\n" + assetText, 20*s, h - (20*s), Align.left);
         });
 
         Draw.color(Color.gray);
@@ -83,32 +83,29 @@ public class YellowLoadRenderer extends LoadRenderer{
         Lines.line(0, 0, Pal.remove, progress * w, progress * h, Pal.accent);
 
         Draw.color(Color.white);
-        Draw.rect(sprites.get("yellow"), w/2, h/2, 120*s, 120*s);
+        Draw.rect(sprites.get("yellow"), midw, midh, 120*s, 120*s);
 
         fontDraw(f -> {
-            f.draw( Strings.autoFixed(progress*100f, 2) + "%", w/2, (h/2) - (ofs*s), Align.center);
-            f.draw("< " + (assets.getCurrentLoading() != null ? assets.getCurrentLoading().fileName.toLowerCase() : "system") + " >", w/2, (h/2) - ((ofs+20)*s), Align.center);
-            f.draw(Vars.mods.orderedMods().size + " mods loaded", w/2, (h/2) - ((ofs+40)*s), Align.center);
-            f.draw(assets.getQueuedAssets() + " assets queued, " + assets.getLoadedAssets() + " assets loaded", w/2, (h/2) - ((ofs+60)*s), Align.center);
-
-
+            f.draw( Strings.autoFixed(progress*100f, debug ? 6 : 2) + "%", midw, midh - (ofs*s), Align.center);
+            f.draw("< " + (assets.getCurrentLoading() != null ? assets.getCurrentLoading().fileName.toLowerCase() : "system") + " >", midw, midh - ((ofs+20)*s), Align.center);
+            f.draw(Vars.mods.orderedMods().size + " mods loaded", midw, midh - ((ofs+40)*s), Align.center);
+            f.draw(assets.getQueuedAssets() + " assets queued, " + assets.getLoadedAssets() + " assets loaded", midw, midh - ((ofs+60)*s), Align.center);
 
             if(Yellow.debug){
-                f.draw(SafeReflect.get(Vars.mods, "totalSprites") + " Sprites", w / 2, (h / 2) - ((ofs + 60) * s), Align.center);
-                f.draw(Vars.content.blocks().size + " Blocks", w / 2, (h / 2) - ((ofs + 80) * s), Align.center);
-                f.draw(Vars.content.units().size + " Units", w / 2, (h / 2) - ((ofs + 100) * s), Align.center);
-                f.draw(Vars.content.items().size + " Items", w / 2, (h / 2) - ((ofs + 120) * s), Align.center);
-                f.draw(Vars.content.liquids().size + " Liquids", w / 2, (h / 2) - ((ofs + 140) * s), Align.center);
-                f.draw(Vars.content.bullets().size + " Bullets", w / 2, (h / 2) - ((ofs + 160) * s), Align.center);
-                f.draw(Vars.content.sectors().size + " Sectors", w / 2, (h / 2) - ((ofs + 180) * s), Align.center);
-                f.draw(Vars.content.units().size + " Units", w / 2, (h / 2) - ((ofs + 200) * s), Align.center);
-                f.draw(Vars.content.planets().size + " Planets", w / 2, (h / 2) - ((ofs + 220) * s), Align.center);
-                f.draw(Vars.content.weathers().size + " Weathers", w / 2, (h / 2) - ((ofs + 240) * s), Align.center);
-                f.draw(Vars.content.unitStances().size + " Unit Stances", w / 2, (h / 2) - ((ofs + 260) * s), Align.center);
-                f.draw(Vars.content.unitCommands().size + " Unit Commands", w / 2, (h / 2) - ((ofs + 280) * s), Align.center);
+                f.draw(Vars.content.blocks().size + " Blocks", midw, midh - ((ofs + 80) * s), Align.center);
+                f.draw(Vars.content.units().size + " Units", midw, midh - ((ofs + 100) * s), Align.center);
+                f.draw(Vars.content.items().size + " Items", midw, midh - ((ofs + 120) * s), Align.center);
+                f.draw(Vars.content.liquids().size + " Liquids", midw, midh - ((ofs + 140) * s), Align.center);
+                f.draw(Vars.content.bullets().size + " Bullets", midw, midh - ((ofs + 160) * s), Align.center);
+                f.draw(Vars.content.sectors().size + " Sectors", midw, midh - ((ofs + 180) * s), Align.center);
+                f.draw(Vars.content.units().size + " Units", midw, midh - ((ofs + 200) * s), Align.center);
+                f.draw(Vars.content.planets().size + " Planets", midw, midh - ((ofs + 220) * s), Align.center);
+                f.draw(Vars.content.weathers().size + " Weathers", midw, midh - ((ofs + 240) * s), Align.center);
+                f.draw(Vars.content.unitStances().size + " Unit Stances", midw, midh - ((ofs + 260) * s), Align.center);
+                f.draw(Vars.content.unitCommands().size + " Unit Commands", midw, midh - ((ofs + 280) * s), Align.center);
             }
 
-            f.draw("Yellow v" + mod().meta.version, w - (20f*s), 30f*s, Align.right);
+            f.draw("Yellow v" + mod().meta.version + (debug ? "\n[orange]Debug mode[]" : ""), w - (20f*s), 30f*s, Align.right);
 
             f.draw(graphics.getFramesPerSecond() + " FPS", w - (20f*s), h - ((ofsH)*s), Align.right);
             f.draw(Version.combined() + " (" + Version.number + ")", w - (20f*s), h - ((ofsH+20)*s), Align.right);
@@ -122,8 +119,12 @@ public class YellowLoadRenderer extends LoadRenderer{
     }
 
     private void fontDraw(Cons<Font> ft){
-        if(assets.isLoaded("outline")){
-            Font f = assets.get("outline");
+        fontDraw("outline", ft);
+    }
+
+    private void fontDraw(String name, Cons<Font> ft){
+        if(assets.isLoaded(name)){
+            Font f = assets.get(name);
             f.getData().markupEnabled = true;
 
             ft.get(f);

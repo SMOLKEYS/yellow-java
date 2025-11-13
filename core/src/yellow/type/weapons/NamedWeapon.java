@@ -23,7 +23,9 @@ public class NamedWeapon extends Weapon{
     public void addStats(UnitType u, Table t){
         t.row();
         t.add(Stringy.formatStat(YellowStats.name, displayName, Pal.accent)).row();
+        Log.info("le reuve el namesto @", name);
         if(Core.bundle.has("weapon." + name + ".description")){
+            Log.info("le reuve @", name);
             t.table(Tex.pane, tb -> {
                 tb.left();
                 tb.add(Strings.format("\"@\"", description)).wrap().grow();

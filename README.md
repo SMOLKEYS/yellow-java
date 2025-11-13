@@ -113,33 +113,13 @@ If you already have the necessary tools, you can skip the steps here and run `./
 > **NOTE: This only works if your device has Development settings enabled and either Wireless/USB debugging turned on.**
 
 
-# Contributors/Suggestors
+# Credits
 
-## Contributors
-xzxADIxzx - Weapon Switch UI, Import handling
-
-Mnemotechnician - Weapon Switch Functionality
-
-## Suggestors
-Dryehm - "Menu Man 3" Achievement
-
-Janssendel - David's Star effect for Bullethell
+- xzxADIxzx - Legacy contributor, made the first rudimentary weapon control ui
+- Mnemotechnician - Legacy contributor, provided basic functionality for the weapon controls
 
 
-
-
-|Links|
-|---|
-|[SMOLHome Discord Server](https://discord.gg/uAddT46bFx)|
-|[The Original Project Repository (JS)](https://github.com/SMOLKEYS/yellow)|
-
-
-| Date             | Event  | Info                                                                                         |
-|------------------|--------|----------------------------------------------------------------------------------------------|
-| August 5, 2021   | Part 1 | The first image of the flare                                                                 |
-| August 5, 2021   | Part 1 | Flare named "Yellow" (by ffx#0370)                                                           |
-| August 5, 2021   | Part 1 | Project commited to GitHub                                                                   |
-| August 21, 2021  | Part 1 | Uploaded yellow sprite                                                                       |
-| December 6, 2021 | Part 2 | Creation of the Java version of the project, aka this repository (+ archival of old JS repo) |
-| March 22, 2024   | Part 3 | Rewrite of entire codebase in pure Java (+ archival of this repo)                            |
-| January 2, 2025  | Part 4 | Second rewrite of entire codebase, with this repo                                            |
+| Links                                                            |
+|------------------------------------------------------------------|
+| [SMOLHome Discord Server](https://discord.gg/uAddT46bFx)         |
+| [ Original Repository (JS)](https://github.com/SMOLKEYS/yellow)  |

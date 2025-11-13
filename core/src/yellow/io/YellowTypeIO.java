@@ -3,6 +3,7 @@ package yellow.io;
 import arc.util.io.*;
 import mindustry.entities.units.*;
 import yellow.entities.units.*;
+import yellow.gen.*;
 
 public class YellowTypeIO{
 
