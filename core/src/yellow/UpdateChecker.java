@@ -16,7 +16,6 @@ public class UpdateChecker{
 
     public static boolean updateAvailable, updateQueued;
 
-    //TODO support for rapid builds
     public static void checkUpdate(@Nullable ConsT<Http.HttpResponse, Exception> http, Cons2<Float, Float> found, Runnable notFound, Cons<Throwable> onErr){
         if(YellowVars.build() == BuildType.rapid){
             Log.info("Using a rapid development build of Yellow. Skipping update check.");
@@ -43,6 +42,11 @@ public class UpdateChecker{
     }
 
     public static void loadNotifier(){
+        if(YellowVars.build() == BuildType.rapid){
+            Log.info("Using a rapid development build of Yellow. Skipping update check.");
+            return;
+        }
+
         updateQueued = true;
         int id = YellowVars.ltfrag.add(Core.bundle.get("yellow.updater-scanning"), Core.atlas.drawable("yellow-java-yellow"), true);
         checkUpdate(
