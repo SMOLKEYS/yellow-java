@@ -45,14 +45,12 @@ public class GhostUnitType extends UnitType{
         }).growX().left();
         table.row();
 
-        table.table(bars -> {
+        if(unit instanceof GhostUnit ghost) table.table(bars -> {
             bars.defaults().growX().height(20f).pad(4);
 
-            GhostUnit ent = (GhostUnit) unit;
-
-            bars.add(new Bar("stat.health", Color.red, ent::healthf));
+            bars.add(new Bar("stat.health", Color.red, ghost::healthf));
             bars.row();
-            bars.add(new Bar("stat.lifetime", Pal.lancerLaser, () -> 1f - ent.lifetimef()));
+            bars.add(new Bar("stat.lifetime", Pal.lancerLaser, () -> 1f - ghost.lifetimef()));
             bars.row();
         }).growX();
 

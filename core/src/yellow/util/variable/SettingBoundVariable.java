@@ -68,6 +68,16 @@ public class SettingBoundVariable<T> implements VariableDelegator<T>{
         }
 
         @Override
+        public Float get(){
+            return super.get();
+        }
+
+        @Override
+        public Float get(Float altDef){
+            return super.get(altDef);
+        }
+
+        @Override
         public FloatSetting set(Float object){
             return (FloatSetting) super.set(object);
         }
@@ -85,6 +95,16 @@ public class SettingBoundVariable<T> implements VariableDelegator<T>{
 
         public IntSetting(String name, Integer def, boolean applyDefs){
             super(name, def, applyDefs);
+        }
+
+        @Override
+        public Integer get(){
+            return super.get();
+        }
+
+        @Override
+        public Integer get(Integer altDef){
+            return super.get(altDef);
         }
 
         @Override
@@ -108,6 +128,16 @@ public class SettingBoundVariable<T> implements VariableDelegator<T>{
         }
 
         @Override
+        public Boolean get(){
+            return super.get();
+        }
+
+        @Override
+        public Boolean get(Boolean altDef){
+            return super.get(altDef);
+        }
+
+        @Override
         public BooleanSetting set(Boolean object){
             return (BooleanSetting) super.set(object);
         }
@@ -125,6 +155,16 @@ public class SettingBoundVariable<T> implements VariableDelegator<T>{
 
         public LongSetting(String name, Long def, boolean applyDefs){
             super(name, def, applyDefs);
+        }
+
+        @Override
+        public Long get(){
+            return super.get();
+        }
+
+        @Override
+        public Long get(Long altDef){
+            return super.get(altDef);
         }
 
         @Override
@@ -165,6 +205,16 @@ public class SettingBoundVariable<T> implements VariableDelegator<T>{
 
         public ByteArraySetting(String name, byte[] def, boolean applyDefs){
             super(name, def, applyDefs);
+        }
+
+        @Override
+        public byte[] get(){
+            return super.get();
+        }
+
+        @Override
+        public byte[] get(byte[] altDef){
+            return super.get(altDef);
         }
 
         @Override

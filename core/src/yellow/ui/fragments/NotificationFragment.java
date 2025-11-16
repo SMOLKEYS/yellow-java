@@ -11,7 +11,6 @@ import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
-import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
@@ -174,9 +173,9 @@ public class NotificationFragment implements CommonFragment{
             t.tooltip("@yellow.notif-info", true);
             tr.hovered(() -> hovered(tr));
             tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(delayedExit(time(1f), width, t));
+                if(tr.getActions().isEmpty()) tr.actions(delayedExit(YellowSettingValues.notificationTime.get(), width, t));
             });
-            tr.actions(enterExit(time(1f), width, t));
+            tr.actions(enterExit(YellowSettingValues.notificationTime.get(), width, t));
         }
 
         t.row();
@@ -210,16 +209,12 @@ public class NotificationFragment implements CommonFragment{
             t.tooltip("@yellow.notif-info", true);
             tr.hovered(() -> hovered(tr));
             tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(delayedExit(time(1f), width, t));
+                if(tr.getActions().isEmpty()) tr.actions(delayedExit(YellowSettingValues.notificationTime.get(), width, t));
             });
-            tr.actions(enterExit(time(1f), width, t));
+            tr.actions(enterExit(YellowSettingValues.notificationTime.get(), width, t));
         }
 
         t.row();
-    }
-
-    float time(float divide){
-        return YellowVars.getNotificationTime() / divide;
     }
 
     Action stay(float width){
@@ -237,7 +232,8 @@ public class NotificationFragment implements CommonFragment{
 
     Action enterExit(float time, float width, Cell<Table> removed){
         return Actions.sequence(
-                Actions.delay(YellowVars.getNotificationTime()),
+                Actions.translateBy(-width, 0, enterExitTime, enterInterp),
+                Actions.delay(time),
                 Actions.translateBy(width, 0, enterExitTime, exitInterp),
                 Actions.run(() -> table.getCells().remove(removed)),
                 Actions.remove()

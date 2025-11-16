@@ -39,7 +39,7 @@ public class YellowLogic{
                         ).hitSize = 1.6f;
                     }
                 }, blk.plans.find(ul -> ul.unit == e.unit.type).requirements);
-            }else{
+            }else if(enableUnitDrops.get()){
                 Reconstructor rec = (Reconstructor) Vars.content.blocks().find(bl -> bl instanceof Reconstructor ul && ul.upgrades.contains(erk -> Structs.contains(erk, e.unit.type)));
                 if(rec != null){
                     Structs.each(itm -> {

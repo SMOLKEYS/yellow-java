@@ -10,9 +10,7 @@ import yellow.core.YellowEventType.*;
 import yellow.core.*;
 import yellow.cutscene.*;
 import yellow.entities.*;
-import yellow.gen.*;
 import yellow.graphics.*;
-import yellow.natives.*;
 import yellow.spec.*;
 import yellow.ui.*;
 import yellow.ui.OverlayPlayer.*;
@@ -168,14 +166,6 @@ public class YellowVars{
     public static Date installedAt(){
         if(date == null) return date = new Date(YellowSettingValues.installDate.get());
         return date;
-    }
-
-    public static float getNotificationTime(){
-        return YellowSettingValues.notificationTime.get();
-    }
-
-    public static void setNotificationTime(float time){
-        YellowSettingValues.notificationTime.set(time);
     }
 
     public static BuildType build(){

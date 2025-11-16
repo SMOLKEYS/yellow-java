@@ -27,4 +27,8 @@ public class CompiledScript implements Runnable{
     public void run(){
         exec();
     }
+
+    public static CompiledScript with(String script){
+        return new CompiledScript(script, null, null);
+    }
 }

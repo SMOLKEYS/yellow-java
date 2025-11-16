@@ -37,7 +37,7 @@ public class YellowSettings{
 
             seperatorPref(t, "yellow-general-section", (TextureRegionDrawable) Tex.alphaaaa, Icon.settings);
 
-            t.sliderPref("yellow-notification-time", 5, 3, 60, 1, s -> bundle.format("setting.yellow-notification-time.text", s));
+            floatSliderPref(t, "yellow-notification-time", 5, 3, 60, 1, s -> bundle.format("setting.yellow-notification-time.text", s));
 
             t.sliderPref("yellow-notification-length", 25, 25, 100, 1, s -> s + "%");
 
@@ -390,7 +390,7 @@ public class YellowSettings{
         public void add(SettingsTable table){
             Slider slider = new Slider(min, max, step, false);
 
-            slider.setValue(settings.getFloat(name));
+            slider.setValue(SafeSettings.getFloat(name, def));
 
             Label value = new Label("", Styles.outlineLabel);
             Table content = new Table();
