@@ -2,13 +2,9 @@
 
 ![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci)
 
-[![Downloads](https://img.shields.io/github/downloads/SMOLKEYS/yellow-java/total?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
+[![Static Badge](https://img.shields.io/badge/github_(main)-source-lightgray?style=for-the-badge&logo=github)](https://github.com/SMOLKEYS/yellow-java)
 
-[![Releases](https://img.shields.io/badge/Releases-Stable%3F%20I%20Think%20So%3F-green?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java/releases)
-
-[![Rapid Builds](https://img.shields.io/badge/Rapid%20Builds-Stable%3F%20Probably%20not.-orange?style=for-the-badge)](https://github.com/SMOLKEYS/yellow-java-builds/releases)
-
-![Stars](https://img.shields.io/github/stars/SMOLKEYS/yellow-java?style=for-the-badge)
+[![Codeberg](https://img.shields.io/badge/codeberg-source-blue?style=for-the-badge&logo=codeberg&logoColor=blue)](https://codeberg.org/smolkeys/yellow-java)
 
 
 A random piece of chaos I made. Mostly just a mod containing whatever comes in mind for me.
