@@ -194,15 +194,41 @@ project(":core"){
         doFirst{
             logger.lifecycle("Running `d8`.")
             providers.exec{
-                // Find Android SDK root.
-                val sdkRoot = File(
-                    OS.env("ANDROID_SDK_ROOT") ?: OS.env("ANDROID_HOME") ?:
-                    throw IllegalStateException("Neither `ANDROID_SDK_ROOT` nor `ANDROID_HOME` is set.")
-                )
+                // find Android SDK root.
+                fun findSdk(): String {
+                    // user defined SDK root (no validity, assume it just exists)
+                    val commandLineSpec = projParamOrNull("android.sdk-path") as String?
+                    if(commandLineSpec != null) return commandLineSpec
+
+                    // home directory
+                    val osHome = OS.env(if(OS.isWindows) "USERPROFILE" else "HOME")
+                    // check environment vars
+                    arrayOf("ANDROID_SDK_ROOT", "ANDROID_HOME").forEach{ envs ->
+                        try{
+                            if(File(OS.env(envs)).exists()) println("Found '$envs'. Using that directory.")
+                            return OS.env(envs)
+                        }catch(_: Exception){} // ignore those
+                    }
+                    println("Environment variables not found. Testing common home subdirectories...")
+                    // nothing there, so check the user home
+                    arrayOf("android", ".android", "androidSdk", ".androidSdk").forEach{ commons ->
+                        val file = File(osHome, commons)
+                        if(file.exists()){
+                            println("Found '$commons' in the user home. Using that directory.")
+                            // print to error output for emphasis
+                            System.err.println("[WARN] Add 'ANDROID_SDK_ROOT' or 'ANDROID_HOME' as an environment variable pointing to '${osHome.replace(Regex("[^\\/^\\\\]"), "*").replace("\\", "/")}/$commons'.")
+                            return "$osHome/$commons"
+                        }
+                    }
+                    // nothing found? well shit
+                    throw IllegalStateException("Environment variables 'ANDROID_SDK_ROOT' and 'ANDROID_HOME' not found, alongside the common SDK paths.\n\nRefer to the mod README for details on setting these up.")
+                }
+
+                val sdkRoot = File(findSdk())
 
                 // Find `d8`.
                 val d8 = File(sdkRoot, "build-tools/$androidBuildVersion/${if(OS.isWindows) "d8.bat" else "d8"}")
-                if(!d8.exists()) throw IllegalStateException("Android SDK `build-tools;$androidBuildVersion` isn't installed or is corrupted")
+                if(!d8.exists()) throw IllegalStateException("Android SDK `build-tools;$androidBuildVersion` isn't installed, is in the wrong directory or is corrupted\nShould be: <sdk root>/build-tools/$androidBuildVersion")
 
                 // Initialize a release build.
                 val input = desktopJar.get().asFile
@@ -215,7 +241,7 @@ project(":core"){
 
                 // Include Android platform as library.
                 val androidJar = File(sdkRoot, "platforms/android-$androidSdkVersion/android.jar")
-                if(!androidJar.exists()) throw IllegalStateException("Android SDK `platforms;android-$androidSdkVersion` isn't installed or is corrupted")
+                if(!androidJar.exists()) throw IllegalStateException("Android SDK `platforms;android-$androidSdkVersion` isn't installed, is in the wrong directory or is corrupted\nShould be: <sdk-root>/platforms/android-$androidSdkVersion")
 
                 command.addAll(arrayOf("--lib", "$androidJar"))
                 if(OS.isWindows) command.addAll(0, arrayOf("cmd", "/c").toList())

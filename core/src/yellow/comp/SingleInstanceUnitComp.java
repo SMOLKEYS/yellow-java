@@ -11,7 +11,7 @@ import yellow.gen.*;
 abstract class SingleInstanceUnitComp implements Unitc{
     @Import Team team;
 
-    boolean isClone;
+    public boolean isClone;
 
     @Override
     public void update(){
@@ -21,15 +21,5 @@ abstract class SingleInstanceUnitComp implements Unitc{
                 s.remove();
             }
         });
-    }
-
-    @Override
-    public void read(Reads read){
-        isClone = read.bool();
-    }
-
-    @Override
-    public void write(Writes write){
-        write.bool(isClone);
     }
 }

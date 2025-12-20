@@ -62,6 +62,10 @@ public class YellowSettingValues{
 
     // endregion menu renderer
 
+    // region chaos mode
+
+    public static final BooleanSetting chaosModeEnabled = new BooleanSetting(chaosMode("enabled"), false);
+
     public static void reset(){
         MiscUtils.eachClassField(false, YellowSettingValues.class, SettingBoundVariable.class, fl -> {
             try{
@@ -77,6 +81,10 @@ public class YellowSettingValues{
 
     private static String chaosRend(String n){
         return "yellow-chaos-renderer-" + n;
+    }
+
+    private static String chaosMode(String n){
+        return "yellow-chaos-mode-" + n;
     }
 
     private static String yellow(String n){

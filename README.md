@@ -1,119 +1,130 @@
-# Yellow
-
 ![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci)
 
 [![Static Badge](https://img.shields.io/badge/github_(main)-source-lightgray?style=for-the-badge&logo=github)](https://github.com/SMOLKEYS/yellow-java)
 
 [![Codeberg](https://img.shields.io/badge/codeberg-source-blue?style=for-the-badge&logo=codeberg&logoColor=blue)](https://codeberg.org/smolkeys/yellow-java)
 
+```
+######### INTRODUCTION
 
-A random piece of chaos I made. Mostly just a mod containing whatever comes in mind for me.
+A Mindustry mod I made as a joke, and now it's like this.
+God only knows why I did that.
 
-There's also the unmaintained [JS version](https://github.com/SMOLKEYS/yellow) if you need it for some reason.
-
-### Modules
-
-- `core` - Yellow's main source code
-- `native-loader` - Utility classes for loading native libraries in any platform, standalone
-
-When compiling Yellow, the final JAR should be located at `core/build/libs`, as either `coreDesktop.jar` (desktop-only), or `core.jar` (multiplatform) depending on what you choose.
-As for how to build, look below this text.
-
-# Building (Desktop-only)
-
-## Windows
-
-1. Install [Java 17+ (Select either regular EXE installer or MSI installer)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and Git/GH (Optional) through `winget install -e --id Git.Git`/`winget install -e --id GitHub.cli`.
-2. Download the source code through GitHub or clone the repository with `git clone https://github.com/SMOLKEYS/yellow-java` or `gh repo clone SMOLKEYS/yellow-java`.
-3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `core/build/libs`. Import it into the game.
-
-## Linux
-
-> <sub>The steps are practically the same for Windows, but you go with it differently. It's also assumed you know what you're doing since it's, well, Linux. But a step-by-step is still provided anyway.</sub>
-
-1. Install [Java 17+ (Mindustry is run using Java, so you probably already have it installed)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and Git/GH (Optional) through your package manager.
-2. Download the source code through GitHub or clone the repository with `git clone https://github.com/SMOLKEYS/yellow-java` or `gh repo clone SMOLKEYS/yellow-java`.
-3. Run `./gradlew jar` in the mod's root directory. This should download any needed dependencies and build a JAR file located in `core/build/libs`. Import it into the game.
-
-## Android
-
-> <sub>Yes, you can build on Android. This also applies for most java mods out there.</sub>
-
-1.  Install Termux through [F-Droid](https://f-droid.org/en/packages/com.termux/) or the [repositories releases section](https://github.com/termux/termux-app/releases). You're better off with the F-Droid one, as it automatically provides the correct APK for your device.
-2. Run `pkg update && pkg upgrade` to upgrade necessary packages.
-3. Install Java 17 through`pkg in openjdk-17` and Git/GH (Optional) through `pkg in git gh`.
-4. Download the source code through GitHub or clone the repository with `git clone https://github.com/SMOLKEYS/yellow-java` or `gh repo clone SMOLKEYS/yellow-java`.
-
-> [!WARNING]
-> Building the mod at this point is useless and not recommended, as you can't even import it into Mindustry. See what Warning 2 says below.
+#########
 
 ---
 
-> [!TIP]
-> **For Windows and Linux only.**
->
-> You can use the `./gradlew copy` task, so it builds the mod and copies it to Mindustry's mods directory.
+######### INSTALLING
 
-> [!WARNING]
-> The output JAR provided by building the mod in any of the first 2 ways is NOT compatible with Android. See Multiplatform section just below.
+Yellow is available through the in-game mod browser. For normal users, download it there.
 
+For compiling Yellow on your own, see the section below.
 
-# Building (Multiplatform)
-
-> [!WARNING]
-> Because of [limitations that Google applied to Android 14+](https://android.googlesource.com/platform/art/+/master/runtime/native/dalvik_system_DexFile.cc#380), **Mindustry v147 and beyond on such Android versions may fail loading Java mods entirely, depending on how OEMs implement said versions.**
->
-> **This is something us modders nor Anuke can fix.**
-> 
-> "Google, fuck you."
-
-> [!NOTE]
-> It is more than recommended to see how it works by following the steps above for the PC-only jar.
-
-
-
-Because Android's a piece of shit, this section has to exist.
-
-If you already have the necessary tools, you can skip the steps here and run `./gradlew deploy`.
-
-## Windows
-
-1. Run `setup-windows.bat`. This will download all necessary stuff needed to compile for Android.
-2. Restart the command line window you ran it on. If you ran it in an IDE, restart it, so it detects the changes.
-3. Go back to the mod directory and run `.\gradlew deploy`. This should build a multiplatform JAR compatible for both Android and Desktop.
-
-## Linux
-
-`//TODO: I don't know how real Linux works. Android Linux sucks.`
-
-## Android
-
-> <sub>Yes, you can build the mod for Android in Android.</sub>
-
-1.  Run `setup-android.sh` in the mod's root directory with `./setup-sdk.sh`. **This will only work in a Bash shell.**
-  1.5. If it returns a permission denied error, `chmod 755 setup-sdk.sh` then run it again.
-2. Restart Termux.
-3. Go back to the mod directory and run `./gradlew deploy`. This should build a multiplatform JAR compatible for both Android and Desktop. By getting this far you should at least know how to import it.
+#########
 
 ---
 
-> [!TIP]
-> **For Windows and Linux**: If you have access to ADB, you can connect your Android device to your machine either through USB or Wi-Fi and run `./gradlew androidCopy`. This builds the mod and copies it to Mindustry's mod directory in the device.
->
-> **For Android**: You can install ADB with `pkg in android-tools` and connect it to your device. Once you do that, you can use `./gradlew androidCopy` in Termux too!
->
-> **Any**: Providing `-Padb.quickstart=true` and/or `-Padb.useBE=true` after `./gradlew androidCopy` works. `adb.quickstart` tells it to open Mindustry after building the mod and copying it. `adb.useBE` tells it to copy the mod to the Mindustry BE mods directory instead. Using both in tandem will build the mod, then open Mindustry BE after copying it.
->
-> **NOTE: This only works if your device has Development settings enabled and either Wireless/USB debugging turned on.**
+######### COMPILING
 
+###### PREPARATIONS
 
-# Credits
+Before compiling, you'll need the following:
+- Java 17+ (https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+ * Since you already can play Mindustry, you most likely have Java installed at that point.
+   [!] HOWEVER, you might possibly have an older version of Java installed (check with `java -version`, should be 17.X.X)
+   [!] OR, you use the Itch.io or Steam builds of Mindustry, which package their own JRE.
+ * The link really is only relevant for limited knowledge Windows users and specific Linux users.
+ * If you use Linux, Java 17+ is probably available in your package store and/or package manager. Install it from there.
 
-- xzxADIxzx - Legacy contributor, made the first rudimentary weapon control ui
-- Mnemotechnician - Legacy contributor, provided basic functionality for the weapon controls
+######
 
+-
 
-| Links                                                            |
-|------------------------------------------------------------------|
-| [SMOLHome Discord Server](https://discord.gg/uAddT46bFx)         |
-| [ Original Repository (JS)](https://github.com/SMOLKEYS/yellow)  |
+###### THE COMPILING PART (DESKTOP-ONLY BUILD)
+
+1. Download the source code. See the green '<> Code' button? Click that and click on "Download ZIP".
+   1.2. Unzip the downloaded ZIP file somewhere comfortable to access.
+   [I] Alternatively, if you have 'git' installed, you can run 'git clone https://github.com/SMOLKEYS/yellow-java'
+       in a terminal window. This will clone the repository in your machine as a subdirectory of the current
+       directory you are in.
+
+2. Open a terminal window ('cmd' for Windows users), go to where you extracted the zip to with 'cd path/to/extracted/folder'.
+
+3. From there, run './gradlew jar' (remove the './' part if on Windows). Everything will be handled automatically,
+   leaving you with a 'coreDesktop.jar' file in the 'core/build/libs' directory, which you can then import into Mindustry.
+   [!] This JAR file cannot be imported to Android! Another task exists for that, and will require additional setup.
+   [I] On Linux, if you get a 'Permission denied' error, run 'chmod 755 ./gradlew'.
+
+######
+
+-
+
+###### PREPARATIONS FOR ANDROID/MULTIPLATFORM
+
+For Android, you'll need to do these first:
+1. Download the Android SDK command-line tools here: https://androidsdkmanager.azurewebsites.net/cmdline-tools.html
+   [I] The latest option will work. You should also download the one for your OS.
+   [I] Yes, the link does look a bit suspicious, but the links inside point to official Google download links.
+   
+2. Extract the tools somewhere, preferably in your home/user directory ('C:\Users\<user>\.android' for Windows,
+   or '~/.android' for Linux).
+   [I] This directory will also be used as your Android SDK root. See step 3.
+   [I] The directory also doesn't necessarily need to be named '.android', but it does make it easier to identify.
+   
+3. Add either 'ANDROID_SDK_ROOT' or 'ANDROID_HOME' as environment variables which point to your '.android' directory.
+   [I] The buildscript I use is customized to automatically detect these directories in your home/user directory:
+       - 'android'
+       - '.android'
+       - 'androidSdk'
+       - '.androidSdk'
+       Which makes things easier, notably on Linux where environment variables can be finicky to define globally.
+   [!] However, if applicable, you should still probably define environment variables instead.
+
+4. In a terminal window, go to your Android SDK root directory ('cd %USERPROFILE%/.android' for Windows,
+   'cd ~/.android' for Linux), then run these commands individually for your OS:
+   
+   [Windows] cmdline-tools\bin\sdkmanager.bat --sdk_root=%USERPROFILE%\.android "platforms;android-34"
+             cmdline-tools\bin\sdkmanager.bat --sdk_root=%USERPROFILE%\.android "build-tools;35.0.1"
+             
+   [Linux] ./cmdline-tools/bin/sdkmanager --sdk_root=$HOME/.android "platforms;android-34"
+           ./cmdline-tools/bin/sdkmanager --sdk_root=$HOME/.android "build-tools;35.0.1"
+           
+   [I] These commands can also be used to install other versions of 'platforms' and 'build-tools' for other mods you
+       may plan on compiling.
+       /--------------------------------------------------------------------------------------------\
+       | You can peek into their buildscripts (build.gradle/build.gradle.kts/gradle.properties),    |
+       | then look for numbers that resemble 'XX.X.X' (build-tools) and 'android-XX' (platforms).   |
+       | Upon finding those, rerun the commands above, but replace the versions accordingly.        |
+       | (This will not work if mods don't follow along with the conventional directory structure.) |
+       \--------------------------------------------------------------------------------------------/
+
+5. At this point, you should be done! Refer to the next section below for compiling.
+   [I] If you defined environment variables, and did *not* name the Android SDK root directory to something that
+       is auto-detected (ref: step 3), restart your apps or your PC in general, which allows the changes
+       to be reflected.
+
+######
+
+-
+
+###### THE COMPILING PART (MULTIPLATFORM BUILD)
+
+1. Follow the steps in 'THE COMPILING PART (DESKTOP-ONLY BUILD)'. Once done, refer to step 2 below.
+
+2. Run './gradlew dex' (remove the './' part if on Windows). If everything is configured correctly, then you will
+   end up with a 'core.jar' in the 'core/build/libs' directory, which will work for both Android and PC.
+
+######
+
+#########
+
+---
+
+######### CREDITS
+
+xzxADIxzx - Legacy contributor, made the first rudimentary weapon control UI
+Mnemotechnician - Legacy contributor, provided basic functionality for the weapon controls
+
+#########
+
+```

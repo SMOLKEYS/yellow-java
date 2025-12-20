@@ -41,8 +41,9 @@ abstract class ItemEntityComp implements PhysicsEntityc, Itemsc{
                 Fx.breakProp.at(x, y);
                 remove();
             }
+            float kx = x, ky = y;
+            Time.run(Mathf.random(5f), () -> Fx.itemTransfer.at(kx, ky, 0f, entity));
         }
-        Fx.itemTransfer.at(x, y, 0f, entity);
     }
 
     public boolean willGravitate(@Nullable Boolp extra){
