@@ -35,7 +35,7 @@ public class YellowAchievement{
     /** Required condition(s) to unlock this achievement. */
     public Boolp requiredCondition = () -> true;
     /** Unlock sound for this achievement. */
-    public Sound unlockSound = Sounds.message;
+    public Sound unlockSound = Sounds.uiNotify;
     /** If true, a notification popup will appear when unlocking this achievement. */
     public boolean notifyOnUnlock = true;
     /** Extra code to be executed upon unlocking this achievement. Posted on the {@link Application#post(Runnable) main loop thread}. */

@@ -40,7 +40,7 @@ public class YellowWeapons{
             velocityRnd = 0.9f;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.shootBig;
+            shootSound = Sounds.shootMeltdown;
 
             shoot.shots = 20;
             shoot.shotDelay = 2f;
@@ -109,7 +109,7 @@ public class YellowWeapons{
             ignoreRotation = true;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.missileLaunch;
+            shootSound = Sounds.shootMissile;
 
             shoot = new ShootSpread(15, 10);
 
@@ -163,8 +163,7 @@ public class YellowWeapons{
             y = 40f;
             minWarmup = 0.99f;
             shootWarmupSpeed = 0.05f;
-            chargeSound = Sounds.lasercharge;
-            shootSound = Sounds.laserblast;
+            shootSound = Sounds.shootFlamePlasma;
             visibility = WeaponVisibility.sandboxOnly;
 
             shoot = new ShootSpread(8, 5){{
@@ -328,7 +327,7 @@ public class YellowWeapons{
             predictTarget = false;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.pulse;
+            shootSound = Sounds.shoot;
 
             bullet = new ContinuousEqualityFlameBulletType(){{
                 recoil = 0.5f;
@@ -347,7 +346,7 @@ public class YellowWeapons{
 
             shoot = new ShootSpread(8, 45f);
 
-            shootSound = Sounds.laserblast;
+            shootSound = Sounds.shootMeltdown;
 
             bullet = new RotatingContinuousLaserBulletType(120f){{
                 length = 530f;
@@ -382,7 +381,7 @@ public class YellowWeapons{
 
             shoot = new ShootSpread(5, 5f);
 
-            shootSound = Sounds.bolt;
+            shootSound = Sounds.shootLaser;
 
             bullet = new EqualityBulletType(5f, 240f){{
                 lifetime = 60*5f;
@@ -432,7 +431,7 @@ public class YellowWeapons{
                     Mirror.ReflectProperty.flipY
             };
 
-            shootSound = Sounds.pulseBlast;
+            shootSound = Sounds.shootNavanax;
 
             bullet = new SpinSpearBulletType(){{
                 damage = 80f;
@@ -460,7 +459,7 @@ public class YellowWeapons{
             predictTarget = true;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.bolt;
+            shootSound = Sounds.shoot;
 
             bullet = new BasicEqualityBulletType(){{
                 damage = 48f;
@@ -484,7 +483,7 @@ public class YellowWeapons{
             shootCone = 5f;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.cannon;
+            shootSound = Sounds.none;
 
             bullet = new BasicEqualityBulletType(){{
                 speed = 40f;
@@ -496,7 +495,7 @@ public class YellowWeapons{
                 keepVelocity = false;
                 scaleLife = true;
 
-                despawnSound = Sounds.largeExplosion;
+                despawnSound = Sounds.explosionArtillery;
 
                 despawnEffect = new ExplosionEffect(){{
                     lifetime = 60*6;
@@ -530,7 +529,7 @@ public class YellowWeapons{
                     trailLength = 60;
                     trailWidth = 8*4f;
 
-                    despawnSound = Sounds.largeExplosion;
+                    despawnSound = Sounds.explosionArtilleryShock;
 
                     despawnEffect = new ExplosionEffect(){{
                         lifetime = 60*4;
@@ -554,7 +553,7 @@ public class YellowWeapons{
             x = y = 0f;
             visibility = WeaponVisibility.sandboxOnly;
 
-            shootSound = Sounds.laserbig;
+            shootSound = Sounds.shootLaser;
 
             bullet = new LaserBulletType(1000f){{
                 length = 3000f;

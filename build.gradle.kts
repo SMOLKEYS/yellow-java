@@ -216,7 +216,7 @@ project(":core"){
                         if(file.exists()){
                             println("Found '$commons' in the user home. Using that directory.")
                             // print to error output for emphasis
-                            System.err.println("[WARN] Add 'ANDROID_SDK_ROOT' or 'ANDROID_HOME' as an environment variable pointing to '${osHome.replace(Regex("[^\\/^\\\\]"), "*").replace("\\", "/")}/$commons'.")
+                            System.err.println("[WARN] Add 'ANDROID_SDK_ROOT' or 'ANDROID_HOME' as an environment variable pointing to '$osHome/$commons'.")
                             return "$osHome/$commons"
                         }
                     }
@@ -224,11 +224,24 @@ project(":core"){
                     throw IllegalStateException("Environment variables 'ANDROID_SDK_ROOT' and 'ANDROID_HOME' not found, alongside the common SDK paths.\n\nRefer to the mod README for details on setting these up.")
                 }
 
+                fun composeIncompleteToolkitError(missing: String): String {
+                    val sdkHome = findSdk()
+                    val seperator = if(OS.isWindows) " & " else "; "
+                    val execStyle = if(OS.isWindows) "cmdline-tools\\bin\\sdkmanager.bat" else "./cmdline-tools/bin/sdkmanager"
+
+                    return """
+                        To download the appropriate SDK tools (assuming you have the cmdline-tools), run the following command:
+                        
+                        cd "$sdkHome"${seperator}$execStyle --sdk_root="$sdkHome" "$missing"
+                        
+                    """.trimIndent()
+                }
+
                 val sdkRoot = File(findSdk())
 
                 // Find `d8`.
                 val d8 = File(sdkRoot, "build-tools/$androidBuildVersion/${if(OS.isWindows) "d8.bat" else "d8"}")
-                if(!d8.exists()) throw IllegalStateException("Android SDK `build-tools;$androidBuildVersion` isn't installed, is in the wrong directory or is corrupted\nShould be: <sdk root>/build-tools/$androidBuildVersion")
+                if(!d8.exists()) throw IllegalStateException("Android SDK `build-tools;$androidBuildVersion` isn't installed, is in the wrong directory or is corrupted\n${composeIncompleteToolkitError("build-tools;$androidBuildVersion")}")
 
                 // Initialize a release build.
                 val input = desktopJar.get().asFile
@@ -241,7 +254,7 @@ project(":core"){
 
                 // Include Android platform as library.
                 val androidJar = File(sdkRoot, "platforms/android-$androidSdkVersion/android.jar")
-                if(!androidJar.exists()) throw IllegalStateException("Android SDK `platforms;android-$androidSdkVersion` isn't installed, is in the wrong directory or is corrupted\nShould be: <sdk-root>/platforms/android-$androidSdkVersion")
+                if(!androidJar.exists()) throw IllegalStateException("Android SDK `platforms;android-$androidSdkVersion` isn't installed, is in the wrong directory or is corrupted\n${composeIncompleteToolkitError("platforms;android-$androidSdkVersion")}")
 
                 command.addAll(arrayOf("--lib", "$androidJar"))
                 if(OS.isWindows) command.addAll(0, arrayOf("cmd", "/c").toList())

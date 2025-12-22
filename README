@@ -1,14 +1,15 @@
-![CircleCI](https://img.shields.io/circleci/build/github/SMOLKEYS/yellow-java?style=for-the-badge&logo=circleci)
-
-[![Static Badge](https://img.shields.io/badge/github_(main)-source-lightgray?style=for-the-badge&logo=github)](https://github.com/SMOLKEYS/yellow-java)
-
-[![Codeberg](https://img.shields.io/badge/codeberg-source-blue?style=for-the-badge&logo=codeberg&logoColor=blue)](https://codeberg.org/smolkeys/yellow-java)
-
-```
 ######### INTRODUCTION
 
 A Mindustry mod I made as a joke, and now it's like this.
 God only knows why I did that.
+
+GitHub: https://github.com/SMOLKEYS/yellow-java
+Codeberg: https://codeberg.org/smolkeys/yellow-java
+
+Latest Release: https://github.com/SMOLKEYS/yellow-java/releases/latest
+Latest Bleeding-edge Build: https://github.com/yellow-java-builds/releases/latest
+CircleCI Build Status: https://app.circleci.com/pipelines/github/SMOLKEYS/yellow-java
+
 
 #########
 
@@ -126,5 +127,3 @@ xzxADIxzx - Legacy contributor, made the first rudimentary weapon control UI
 Mnemotechnician - Legacy contributor, provided basic functionality for the weapon controls
 
 #########
-
-```

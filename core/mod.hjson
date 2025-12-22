@@ -5,8 +5,8 @@ main: "yellow.Yellow"
 description: '''
 Another go, once more.
 '''
-version: 0.111
-minGameVersion: 153
+version: 0.112
+minGameVersion: 154
 java: true
 hideBrowser: false
 
