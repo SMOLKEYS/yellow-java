@@ -82,6 +82,8 @@ public class YellowSettings{
 
             seperatorPref(t, "yellow-chaos-renderer-section", Icon.warning, Icon.settings);
 
+            t.checkPref(form("enabled", false), false);
+
             buttonPref(t, form("shuffle-seed", false), YellowSettingValues::shuffleChaosRenderer);
 
             t.sliderPref(form("tex-count", false), 500, 100, 2000, 100, proc -> bundle.format(form("tex-count", true), proc));
@@ -163,7 +165,7 @@ public class YellowSettings{
                                 YellowVars.blankfrag.table.fill(p -> {
                                     p.center();
                                     p.defaults().center();
-                                    p.label(s::get).fontScale(4).get().setStyle(new LabelStyle(YellowFonts.gothic, Color.white));
+                                    p.label(s::get).fontScale(4).get().setStyle(new LabelStyle(YellowFonts.msGothic, Color.white));
 
                                     tbl.set(p);
                                 });

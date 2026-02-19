@@ -41,6 +41,8 @@ public class YellowSettingValues{
 
     // region menu renderer
 
+    /** enabled */
+    public static final BooleanSetting rendererEnabled = new BooleanSetting(chaosRend("enabled"), false);
     /** seed, can be changed directly or with {@link #shuffleChaosRenderer()} */
     public static final IntSetting rendererSeed = new IntSetting(chaosRend("seed"), 1937);
     /** whether the textures shuffle every set amount of seconds */

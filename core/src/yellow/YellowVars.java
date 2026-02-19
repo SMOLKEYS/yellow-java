@@ -54,9 +54,14 @@ public class YellowVars{
     }
 
     public static void preInitComponents(){
-        boolean freeze = YellowJVM.hasParameter("freeze");
+        boolean
+                freeze = YellowJVM.hasParameter("freeze"),
+                console = YellowJVM.hasParameter("console"),
+                noLoading = YellowJVM.hasParameter("no-culscr");
 
         Runnable input = () -> {
+            if(!console) return;
+            
             Scanner s = new Scanner(System.in);
             while(s.hasNext()){
                 String l = s.nextLine();
@@ -74,9 +79,9 @@ public class YellowVars{
             }
         };
 
-        if(!Vars.mobile){
+        if(!Vars.mobile && console){
             Thread th = new Thread(input, "JS Console");
-            if(YellowJVM.hasParameter("freeze")){
+            if(freeze){
                 Log.info("freeze console loaded, stop with 'console::close'");
                 Core.app.post(input);
             }else{
@@ -91,6 +96,7 @@ public class YellowVars{
         );
 
         Core.app.post(() -> {
+            if(noLoading) return;
             try{
                 loadRenderer = new YellowLoadRenderer();
                 if(loadRenderer.enabled.get(false)) SafeReflect.set(ClientLauncher.class, Vars.platform, "loader", loadRenderer);
@@ -135,7 +141,7 @@ public class YellowVars{
         overlayfrag = OverlayPlayer.make(overlayGroup);
         managefrag.build(Vars.ui.hudGroup);
 
-        SafeReflect.set(Vars.ui.menufrag, "renderer", menuRenderer = new YellowMenuRenderer());
+        if(YellowSettingValues.rendererEnabled.get()) SafeReflect.set(Vars.ui.menufrag, "renderer", menuRenderer = new YellowMenuRenderer());
 
         Events.fire(new YellowVarsPostInit());
     }

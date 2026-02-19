@@ -9,18 +9,25 @@ import mindustry.async.PhysicsProcess.*;
 import mindustry.async.PhysicsProcess.PhysicsWorld.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
+import yellow.util.*;
 
 /** Exact copy of {@link PhysicsProcess} for any entity that implements {@link Physicsc}. */
 @SuppressWarnings("FieldMayBeFinal")
 public class PhysicsHandler<T extends Physicsc> implements AsyncProcess{
     private PhysicsWorld physics;
+    private boolean useUnifiedWorld;
     private Seq<PhysicRef> refs = new Seq<>(false);
     private EntityGroup<T> group;
 
     public float collisionRadiusScale = 0.8f;
 
     public PhysicsHandler(EntityGroup<T> group){
+        this(group, false);
+    }
+
+    public PhysicsHandler(EntityGroup<T> group, boolean useUnifiedWorld){
         this.group = group;
+        this.useUnifiedWorld = useUnifiedWorld;
     }
 
     @Override
@@ -106,6 +113,8 @@ public class PhysicsHandler<T extends Physicsc> implements AsyncProcess{
     public void init(){
         reset();
 
-        physics = new PhysicsWorld(Vars.world.getQuadBounds(new Rect()));
+        PhysicsWorld common = useUnifiedWorld ? SafeReflect.get(Vars.asyncCore.processes.first(), "physics") : null;
+
+        physics = common != null ? common : new PhysicsWorld(Vars.world.getQuadBounds(new Rect()));
     }
 }

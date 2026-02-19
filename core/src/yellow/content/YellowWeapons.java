@@ -11,6 +11,7 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import yellow.entities.bullet.*;
+import yellow.entities.bullet.AreaEffectPulse.*;
 import yellow.math.*;
 import yellow.type.weapons.*;
 
@@ -18,7 +19,7 @@ public class YellowWeapons{
 
     // insane category
     public static ToggleWeapon
-            laserBarrage, bulletStorm, homingFlares, antiMothSpray, decimation, disruptor, ghostCall, ghostRain,
+            laserBarrage, homingFlares, antiMothSpray, decimation, disruptor, ghostCall, ghostRain,
             traversal, octa, energySpheres, spearCall;
 
     // less insane category
@@ -28,6 +29,10 @@ public class YellowWeapons{
     // "what the fuck" category
     public static ToggleWeapon
             gethsemane, contingency;
+
+    // bullet hell category
+    public static ToggleWeapon
+            card1;
 
     public static void load(){
         laserBarrage = new ToggleWeapon("laser-barrage"){{
@@ -67,7 +72,7 @@ public class YellowWeapons{
             }};
         }};
 
-        bulletStorm = new ToggleWeapon("bulletstorm"){{
+        card1 = new ToggleWeapon("card1"){{
             x = y = 0f;
             reload = 60*15;
             predictTarget = false;
@@ -77,18 +82,19 @@ public class YellowWeapons{
             shootSound = Sounds.none;
 
             shoot = new ShootSpread(){{
-                shotDelay = 1;
+                shotDelay = 0.2f;
                 spread = 25;
-                shots = 60*8;
+                shots = 250*8;
             }};
 
             bullet = new BasicEqualityBulletType(){{
                 damage = 95;
                 width = 12;
                 height = 12;
-                lifetime = 60*3;
-                speed = 6;
-                sprite = "yellow-old-flare";
+                lifetime = 60*6;
+                speed = 2.6f;
+                sprite = "yellow-java-old-flare";
+                despawnEffect = YellowFx.ghostDespawnMulti;
                 trailEffect = Fx.trailFade;
                 trailLength = 4;
                 shrinkX = shrinkY = 0;
@@ -245,32 +251,15 @@ public class YellowWeapons{
         }};
 
         disruptor = new ToggleWeapon("disruptor"){{
-            reload = 600f;
-            x = 0f;
-            y = 0f;
-            inaccuracy = 360f;
-            predictTarget = false;
-            ignoreRotation = true;
-            visibility = WeaponVisibility.sandboxOnly;
+            reload = 60*20f;
+            x = y = 0f;
 
-            shoot.shots = 350;
+            shootSound = Sounds.drillImpact;
 
-            bullet = new HarshPierceBulletType(15f, 130f, 10f){{
-                lifetime = 600f;
-                drag = 0.003f;
-                weaveMag = 3f;
-                weaveScale = 300f;
-                hitSize = 12f;
-                trailEffect = Fx.trailFade;
-                trailLength = 3;
-                pierceArmor = true;
-
-                parts.add(new FlarePart(){{
-                    followRotation = true;
-                    radius = 20f;
-                    sides = 4;
-                }});
-            }};
+            bullet = new AreaEffectPulse(8*40f,
+                    new AppliedAreaEffect(StatusEffects.unmoving, 60*5f, 60*7f),
+                    new AppliedAreaEffect(StatusEffects.disarmed, 60*2f, 60*5f)
+            );
         }};
 
         ghostCall = new ToggleWeapon("ghost-call"){{

@@ -1,6 +1,7 @@
 //could you SHUT UP ALREADY
 @file:Suppress("unused")
 
+import arc.files.Fi
 import arc.util.OS
 import arc.util.serialization.Jval
 import ent.EntityAnnoExtension
@@ -29,7 +30,8 @@ fun entity(module: String, entv: String = entVersion) = "com.github.GglLfr.Entit
 
 fun projParam(name: String, default: String = "") = projParamOrNull(name, default)
 
-fun projParamOrNull(name: String, default: String? = null) = if(project.hasProperty(name)) project.property(name) else default
+fun projParamOrNull(name: String, default: String? = null) = (if(project.hasProperty(name)) project.property(name) else default) as String?
+
 
 buildscript{
     repositories{
@@ -176,6 +178,7 @@ project(":core"){
                         jv.put("displayName", "Yellow RDB (Java)")
                         jv.appendString("description", "\n\n[RAPID DEVELOPMENT BUILD]")
                     }
+
                     return@use jv
                 }
 
@@ -197,7 +200,7 @@ project(":core"){
                 // find Android SDK root.
                 fun findSdk(): String {
                     // user defined SDK root (no validity, assume it just exists)
-                    val commandLineSpec = projParamOrNull("android.sdk-path") as String?
+                    val commandLineSpec = projParamOrNull("android.sdk-path")
                     if(commandLineSpec != null) return commandLineSpec
 
                     // home directory
@@ -265,20 +268,35 @@ project(":core"){
         }
     }
 
+    fun Project.startMindustry(data: String) {
+        val java = if(OS.isWindows) "java.exe" else "java"
+        val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
+        val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
+
+        if(jarFilePathString != null) exec {
+            val fJava = "$java -jar -Dmindustry.data.dir=$data $jarFilePathString $javaParams"
+            println("Java runtime cmdline: \"$fJava\"")
+
+            commandLine = fJava.split(' ')
+            standardOutput = System.out
+            errorOutput = System.err
+        }
+    }
+
     val copy = tasks.register("copy") {
         group = "copy"
         description = "Compiles a desktop-only jar and copies it to your Mindustry data directory."
         dependsOn(jar)
 
         val dir = OS.getAppDataDirectoryString("Mindustry")
-        val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
+        val dirC = projParamOrNull("copy.target")
 
         doLast {
             println("Copying mod...")
 
-            val fDir = if(project.hasProperty("copy.target")) dirC else dir
+            val fDir = dirC ?: dir
 
-            if(!fDir?.let {File(it).exists()}!!){
+            if(!fDir?.let {Fi(it).exists()}!!){
                 println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
                 if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
                 return@doLast
@@ -290,18 +308,9 @@ project(":core"){
                 include("${project.name}Desktop.jar")
             }
 
-            val java = if(OS.isWindows) "java.exe" else "java"
-            val jarFilePathString = if(project.hasProperty("game.path")) project.property("game.path").toString() else null
-            val javaParams = if(project.hasProperty("game.params")) project.property("game.params").toString() else ""
+            println("Mod copied.")
 
-            if(jarFilePathString != null) exec {
-                val fJava = "$java -jar -Dmindustry.data.dir=$fDir $jarFilePathString $javaParams"
-                println("Java runtime cmdline: \"$fJava\"")
-
-                commandLine = fJava.split(' ')
-                standardOutput = System.out
-                errorOutput = System.err
-            }
+            startMindustry(fDir)
         }
     }
 
@@ -310,15 +319,15 @@ project(":core"){
         description = "Compiles a multiplatform jar and copies it to your Mindustry data directory."
         dependsOn(dex)
 
-        val dir = if(OS.isWindows) "${System.getenv("APPDATA")}\\Mindustry" else "${System.getenv("HOME")}/.local/share/Mindustry"
-        val dirC = if(project.hasProperty("copy.target")) project.property("copy.target").toString() else null
+        val dir = OS.getAppDataDirectoryString("Mindustry")
+        val dirC = projParamOrNull("copy.target")
 
         doLast {
             println("Copying mod...")
 
-            val fDir = if(project.hasProperty("copy.target")) dirC else dir
+            val fDir = dirC ?: dir
 
-            if(!fDir?.let {File(it).exists()}!!){
+            if(!fDir?.let {Fi(it).exists()}!!){
                 println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
                 if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
                 return@doLast

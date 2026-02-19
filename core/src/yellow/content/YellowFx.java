@@ -7,6 +7,7 @@ import arc.util.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
+import yellow.entities.bullet.AreaEffectPulse.*;
 import yellow.entities.effect.*;
 import yellow.math.*;
 
@@ -122,5 +123,16 @@ public class YellowFx{
             Lines.line(e.x, e.y, e.x + x, e.y + y);
             Fill.circle(e.x + x, e.y + y, e.fout() * 20);
         });
+    });
+
+    public static final Effect areaEffectPulse = new Effect(60f, e -> {
+        if(e.data() instanceof AppliedAreaEffectData eff){
+            Draw.z(Layer.flyingUnit);
+            Draw.color(eff.color);
+
+            Lines.stroke(e.fout() * 20);
+            Lines.circle(e.x, e.y, e.finpow() * eff.size);
+            Lines.circle(e.x, e.y, e.finpow() * (eff.size / 2f));
+        }
     });
 }

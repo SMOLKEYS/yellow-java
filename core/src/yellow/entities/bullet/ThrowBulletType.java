@@ -32,6 +32,7 @@ public class ThrowBulletType extends BasicBulletType{
         if((b.vel().isZero(peakMinSpeed) || speed == peakMinSpeed) && b.fdata > 0f) b.fdata -= Time.delta;
         
         if(b.fdata <= 0f){
+            b.fdata = b.id * 90f;
             if(throwEffect != null) throwEffect.at(b.x, b.y);
             b.vel().trns(Angles.angle(b.x, b.y, b.aimX, b.aimY), throwForce);
         }

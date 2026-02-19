@@ -39,7 +39,6 @@ public class OverlayPlayer{
             try{
                 sfxprov.load(sfx);
             }catch(Exception e){
-                throw new RuntimeException(e);
             }
             sfxprov.play();
 

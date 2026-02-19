@@ -9,7 +9,7 @@ public class YellowStyles{
 
     public static void load(){
         gothicStyle = new LabelStyle(){{
-            font = YellowFonts.gothic;
+            font = YellowFonts.msGothic;
             fontColor = Color.white;
         }};
     }

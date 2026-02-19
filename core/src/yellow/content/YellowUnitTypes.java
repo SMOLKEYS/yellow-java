@@ -37,7 +37,7 @@ public class YellowUnitTypes{
 
                 Mirror.apply(weapons,
                         YellowWeapons.laserBarrage,
-                        YellowWeapons.bulletStorm,
+                        YellowWeapons.card1,
                         YellowWeapons.homingFlares,
                         YellowWeapons.antiMothSpray,
                         YellowWeapons.decimation,

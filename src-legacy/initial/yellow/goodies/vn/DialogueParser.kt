@@ -191,6 +191,7 @@ object DialogueParser {
                     var spaces = 0
                     var amount = ""
 
+                    // 2026-01-04 comment: what the fuck did i make here
                     p1.forEach p1@{c1 ->
                         if(index2 == 2) return@p1
 
