@@ -1,6 +1,8 @@
 package yellow.graphics;
 
 import arc.files.*;
+import arc.freetype.*;
+import arc.freetype.FreeTypeFontGenerator.*;
 import arc.func.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -29,9 +31,19 @@ public class YellowLoadRenderer extends LoadRenderer{
     private final StringBuilder assetText = new StringBuilder();
     private int lastLength;
     private final ObjectMap<String, TextureRegion> sprites = new ObjectMap<>();
+    private final Font goth;
 
     public YellowLoadRenderer(){
         super();
+
+        goth = new FreeTypeFontGenerator(Yellow.file("/fonts/msgothic.ttf")).generateFont(new FreeTypeFontParameter(){{
+            size = Vars.mobile ? size * 2 : size;
+            incremental = false;
+            kerning = false;
+            borderWidth = 1;
+            spaceX = -1;
+        }});
+        goth.getData().markupEnabled = true;
 
         sprites.put("yellow", makeOutline(new TextureRegion(new Texture(sprite("yellow")))));
     }
@@ -105,8 +117,7 @@ public class YellowLoadRenderer extends LoadRenderer{
                 f.draw(Vars.content.unitCommands().size + " Unit Commands", midw, midh - ((ofs + 280) * s), Align.center);
             }
 
-            f.draw("Yellow v" + mod().meta.version + (debug ? "\n[orange]Debug mode[]" : ""), w - (20f*s), 30f*s, Align.right);
-
+            f.draw((debug ? "[orange]Debug mode[]\n" : "") + "Yellow v" + mod().meta.version, w - (20f*s), 30f*s + (Yellow.debug ? (20f*s) : 0f), Align.right);
             f.draw(graphics.getFramesPerSecond() + " FPS", w - (20f*s), h - ((ofsH)*s), Align.right);
             f.draw(Version.combined() + " (" + Version.number + ")", w - (20f*s), h - ((ofsH+20)*s), Align.right);
         });
@@ -123,12 +134,15 @@ public class YellowLoadRenderer extends LoadRenderer{
     }
 
     private void fontDraw(String name, Cons<Font> ft){
-        if(assets.isLoaded(name)){
+
+        ft.get(goth);
+
+        /*if(assets.isLoaded(name)){
             Font f = assets.get(name);
             f.getData().markupEnabled = true;
 
             ft.get(f);
-        }
+        }*/
     }
 
     private TextureRegion makeOutline(TextureRegion region){

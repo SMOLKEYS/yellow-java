@@ -13,7 +13,7 @@ public class ItemEntitySpawner{
     public static ItemEntity spawn(Item item, int amount, int stackLimit, float x, float y, @Nullable Vec2 presetVelocity, float drag, @Nullable Building originBuilding, @Nullable Unit originUnit){
         ItemEntity en = ItemEntity.create();
         en.stack.item = item;
-        en.stack.amount = amount;
+        en.stack.amount = Math.min(amount, stackLimit);
         en.stackLimit(stackLimit);
         en.x(x);
         en.y(y);

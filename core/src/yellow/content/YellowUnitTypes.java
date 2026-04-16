@@ -50,7 +50,8 @@ public class YellowUnitTypes{
                         YellowWeapons.spearCall,
                         YellowWeapons.blasters,
                         YellowWeapons.gethsemane,
-                        YellowWeapons.contingency
+                        YellowWeapons.contingency,
+                        YellowWeapons.arbitrator
                 );
             }});
 

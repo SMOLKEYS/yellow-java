@@ -15,6 +15,7 @@ public class YellowFonts{
         if(isLoaded) return;
 
         msGothic = new FreeTypeFontGenerator(Vars.tree.get("fonts/msgothic.ttf")).generateFont(new FreeTypeFontParameter(){{
+            size = Vars.mobile ? size * 2 : size;
             incremental = true;
         }});
         msGothic.getData().markupEnabled = true;

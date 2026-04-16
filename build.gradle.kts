@@ -6,6 +6,11 @@ import arc.util.OS
 import arc.util.serialization.Jval
 import ent.EntityAnnoExtension
 import java.io.BufferedWriter
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 val arcVersion: String by project
 val mindustryVersion: String by project
@@ -32,6 +37,15 @@ fun projParam(name: String, default: String = "") = projParamOrNull(name, defaul
 
 fun projParamOrNull(name: String, default: String? = null) = (if(project.hasProperty(name)) project.property(name) else default) as String?
 
+fun RepositoryHandler.ivy(url: String = "https://github.com", patternLayout: String): IvyArtifactRepository = this.ivy {
+    setUrl(url)
+    patternLayout {
+        artifact(patternLayout)
+    }
+    metadataSources{
+        artifact()
+    }
+}
 
 buildscript{
     repositories{
@@ -71,6 +85,7 @@ allprojects {
             gradlePluginPortal()
             mavenCentral()
             maven("https://maven.xpdustry.com/mindustry")
+            maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
         }
     }
 
@@ -88,6 +103,7 @@ allprojects {
         maven("https://oss.sonatype.org/content/repositories/releases/")
         maven("https://raw.githubusercontent.com/GglLfr/EntityAnnoMaven/main")
         maven("https://maven.xpdustry.com/mindustry")
+        maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
         maven("https://jitpack.io")
     }
 
@@ -169,14 +185,32 @@ project(":core"){
                         return put(value, "$prm$append")
                     }
 
+                    fun String.abbreviate(): String{
+                        val sb = StringBuilder()
+                        this.split(' ').forEach { st ->
+                            sb.append(st[0])
+                        }
+                        return sb.toString()
+                    }
+
                     val jv = Jval.read(it)
 
                     val append = projParamOrNull("rapid.append-version")
+                    val releaseType = projParamOrNull("release.type")
+
+                    val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy_hh-mm-ss")
+                    val currentDate = Date()
+                    val localTz = TimeZone.getDefault()?.displayName ?: "Unidentifiable User Location"
+
+                    val dateIdentifier = "${simpleDateFormat.format(currentDate)}_${localTz.abbreviate()}"
 
                     if(append != null){
-                        jv.appendString("version", "-rapid-$append")
-                        jv.put("displayName", "Yellow RDB (Java)")
+                        jv.appendString("version", "-rapid-$append-$dateIdentifier")
+                        jv.appendString("displayName", " RDev Build")
                         jv.appendString("description", "\n\n[RAPID DEVELOPMENT BUILD]")
+                    } else when(releaseType){
+                        null -> jv.appendString("version", "-dev-$dateIdentifier")
+                        "release" -> {} // do nothing for release builds
                     }
 
                     return@use jv

@@ -57,14 +57,4 @@ abstract class GhostUnitComp implements Unitc, TimedKillc{
             ability.death(self());
         }
     }
-
-    @Override
-    public void read(Reads read){
-        lifetime = read.f();
-    }
-
-    @Override
-    public void write(Writes write){
-        write.f(lifetime);
-    }
 }

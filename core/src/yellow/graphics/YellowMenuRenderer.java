@@ -52,10 +52,4 @@ public class YellowMenuRenderer extends MenuRenderer{
     private static float div10(float f){
         return f / 10f;
     }
-
-
-    public static class ChaosRendererConfig{
-        ;
-
-    }
 }

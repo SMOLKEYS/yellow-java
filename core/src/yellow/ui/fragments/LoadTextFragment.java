@@ -81,7 +81,10 @@ public class LoadTextFragment implements CommonFragment{
         Table idt = wt.find("lt" + id);
         if(idt == null) return;
 
-        if(actions.length == 0) idt.remove();
+        if(actions.length == 0){
+            Time.runTask(delay, idt::remove);
+            return;
+        }
 
         idt.actions(Actions.delay(delay/60f), Actions.sequence(actions), Actions.remove());
     }
@@ -118,7 +121,7 @@ public class LoadTextFragment implements CommonFragment{
 
     public void hideAll(float delay, Action... actions){
         if(actions.length == 0){
-            removeAll();
+            Time.runTask(delay, this::removeAll);
             return;
         }
 

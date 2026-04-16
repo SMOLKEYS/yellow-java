@@ -5,6 +5,7 @@ import arc.scene.event.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;
 import mindustry.*;
+import yellow.Yellow.*;
 import yellow.async.*;
 import yellow.core.YellowEventType.*;
 import yellow.core.*;
@@ -34,6 +35,7 @@ public class YellowVars{
     public static DialogFragment dialogfrag;
     public static ManagerFragment managefrag;
     public static OverlayFragment overlayfrag;
+    public static StylePanelFragment stylefrag;
 
     public static Cutscenes cutscenes;
 
@@ -49,6 +51,7 @@ public class YellowVars{
         Chaos.init();
 
         preInitComponents();
+        Yellow.extras.each(ExtraAddition::varsPreInit);
 
         Events.fire(new YellowPostInit());
     }
@@ -120,6 +123,7 @@ public class YellowVars{
         notifrag = new NotificationFragment();
         dialogfrag = new DialogFragment();
         managefrag = new ManagerFragment();
+        stylefrag = new StylePanelFragment();
 
         cutscenes = new Cutscenes();
         cutscenes.init();
@@ -140,16 +144,18 @@ public class YellowVars{
         dialogfrag.build(overlayGroup);
         overlayfrag = OverlayPlayer.make(overlayGroup);
         managefrag.build(Vars.ui.hudGroup);
+        stylefrag.build(overlayGroup);
 
         if(YellowSettingValues.rendererEnabled.get()) SafeReflect.set(Vars.ui.menufrag, "renderer", menuRenderer = new YellowMenuRenderer());
+
+        Yellow.extras.each(ExtraAddition::varsInit);
 
         Events.fire(new YellowVarsPostInit());
     }
 
     public static void initNatives(){
-        /*
-        LibLoader l = new LibLoader();
-        AndroidLibLoader al = new AndroidLibLoader(Yellow.mod().root);
+        /*LibLoader l = new LibLoader();
+        AndroidLibLoader al = new AndroidLibLoader(Yellow.class);
 
         try{
             if(!Vars.mobile){
@@ -158,15 +164,16 @@ public class YellowVars{
                 //android dynamic code loading rules when i shove the library into /data/data
                 al.load("arc-box2d");
             }
-            Log.info("Box2D loaded.");
+            Log.info("Box2D loaded. @", new Physics(new Vec2(), true));
         }catch(Exception e){
             Log.err(e);
-        }
-         */
+        }*/
     }
 
     public static void onImport(){
         if(!YellowSettingValues.installDate.exists()) YellowSettingValues.installDate.set(System.currentTimeMillis());
+
+        Yellow.extras.each(ExtraAddition::onModImport);
     }
 
     public static Date installedAt(){

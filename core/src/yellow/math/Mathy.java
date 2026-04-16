@@ -23,7 +23,7 @@ public class Mathy{
     }
 
     public static float lerp(float fromValue, float toValue, float progress, float start, float peak){
-        return Mathf.lerp(fromValue, toValue, Math.max(start, progress) / peak);
+        return Mathf.lerp(fromValue, toValue, (start - Math.max(start, progress)) / peak);
     }
 
     public static float lerpc(float fromValue, float toValue, float progress, float peak){
@@ -31,6 +31,10 @@ public class Mathy{
     }
 
     public static float lerpc(float fromValue, float toValue, float progress, float start, float peak){
-        return Mathf.lerp(fromValue, toValue, Mathf.clamp(Math.max(start, progress) / peak));
+        return Mathf.lerp(fromValue, toValue, Mathf.clamp((start - Math.max(start, progress)) / start + peak));
+    }
+
+    public static boolean inRange(float value, float min, float max){
+        return value >= min && value <= max;
     }
 }

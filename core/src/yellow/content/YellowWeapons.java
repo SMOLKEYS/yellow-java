@@ -3,24 +3,30 @@ package yellow.content;
 import arc.*;
 import arc.graphics.*;
 import arc.math.*;
+import arc.util.*;
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
+import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import yellow.entities.bullet.*;
 import yellow.entities.bullet.AreaEffectPulse.*;
 import yellow.math.*;
 import yellow.type.weapons.*;
+import yellow.util.*;
 
 public class YellowWeapons{
+
+    private static final Deathcatcher<Healthc> deaths = new Deathcatcher<>();
+    private static final Timekeeper timer = Timekeeper.ofSeconds(2);
 
     // insane category
     public static ToggleWeapon
             laserBarrage, homingFlares, antiMothSpray, decimation, disruptor, ghostCall, ghostRain,
-            traversal, octa, energySpheres, spearCall;
+            traversal, octa, energySpheres, spearCall, arbitrator;
 
     // less insane category
     public static ToggleWeapon
@@ -69,42 +75,27 @@ public class YellowWeapons{
                 incendChance = 0.4f;
                 incendSpread = 5f;
                 incendAmount = 1;
-            }};
-        }};
 
-        card1 = new ToggleWeapon("card1"){{
-            x = y = 0f;
-            reload = 60*15;
-            predictTarget = false;
-            ignoreRotation = true;
-            visibility = WeaponVisibility.sandboxOnly;
+                fragBullets = 5;
+                fragRandomSpread = 0f;
+                fragSpread = 72f;
+                fragOnHit = false;
 
-            shootSound = Sounds.none;
+                fragBullet = new LaserBulletType(){{
+                    damage = 150f;
+                    length = 150f;
 
-            shoot = new ShootSpread(){{
-                shotDelay = 0.2f;
-                spread = 25;
-                shots = 250*8;
-            }};
+                    colors = new Color[]{Pal.accent, Pal.meltdownHit};
+                }};
+            }
 
-            bullet = new BasicEqualityBulletType(){{
-                damage = 95;
-                width = 12;
-                height = 12;
-                lifetime = 60*6;
-                speed = 2.6f;
-                sprite = "yellow-java-old-flare";
-                despawnEffect = YellowFx.ghostDespawnMulti;
-                trailEffect = Fx.trailFade;
-                trailLength = 4;
-                shrinkX = shrinkY = 0;
-                weaveMag = 1.205f;
-                pierce = true;
-                pierceBuilding = true;
-                buildingDamageMultiplier = 2.55f;
-                pierceCap = 35;
-                keepVelocity = false;
-            }};
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health){
+                    super.hitEntity(b, entity, health);
+
+                    if(entity instanceof Healthc h && h.dead()) YellowGameStyles.melted.spawn(null);
+                }
+            };
         }};
 
         homingFlares = new ToggleWeapon("homing-flares"){{
@@ -161,7 +152,22 @@ public class YellowWeapons{
                 width = 8f;
                 height = 8f;
                 knockback = 5f;
-            }};
+            }
+
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health){
+                    super.hitEntity(b, entity, health);
+
+                    if(died(entity)){
+                        Healthc h = (Healthc) entity;
+                        if(h.maxHealth() >= 2500f){
+                            YellowGameStyles.bigBugSpray.spawn(null);
+                        }else{
+                            YellowGameStyles.bugSpray.spawn(null);
+                        }
+                    }
+                }
+            };
         }};
 
         decimation = new ToggleWeapon("decimation"){{
@@ -325,7 +331,15 @@ public class YellowWeapons{
 
                 flareColor = Color.white;
                 colors = new Color[]{Color.white, Color.yellow, Color.orange, Color.black};
-            }};
+            }
+
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health){
+                    super.hitEntity(b, entity, health);
+
+                    if(entity instanceof Healthc h && h.dead()) YellowGameStyles.nyanCat.spawn(null);
+                }
+            };
         }};
 
         octa = new ToggleWeapon("octa"){{
@@ -403,7 +417,17 @@ public class YellowWeapons{
                     radius = 15f;
                     color = Pal.lancerLaser;
                 }});
-            }};
+            }
+
+                @Override
+                public void hitEntity(Bullet b, Hitboxc entity, float health){
+                    super.hitEntity(b, entity, health);
+
+                    if(died(entity)){
+                        YellowGameStyles.shocking.spawn(null);
+                    }
+                }
+            };
         }};
 
         spearCall = new ToggleWeapon("spear-call"){{
@@ -484,7 +508,7 @@ public class YellowWeapons{
                 keepVelocity = false;
                 scaleLife = true;
 
-                despawnSound = Sounds.explosionArtillery;
+                despawnSound = YellowSounds.gethsemaneExplosion;
 
                 despawnEffect = new ExplosionEffect(){{
                     lifetime = 60*6;
@@ -518,7 +542,7 @@ public class YellowWeapons{
                     trailLength = 60;
                     trailWidth = 8*4f;
 
-                    despawnSound = Sounds.explosionArtilleryShock;
+                    despawnSound = YellowSounds.gethsemaneExplosion;
 
                     despawnEffect = new ExplosionEffect(){{
                         lifetime = 60*4;
@@ -548,28 +572,95 @@ public class YellowWeapons{
                 length = 3000f;
                 width = 30f;
                 pierce = false;
+                fragOnHit = false;
 
                 fragBullets = 5;
                 fragBullet = new LaserBulletType(800f){{
                     length = 3000f;
                     width = 30f;
                     pierce = false;
+                    fragOnHit = false;
 
                     fragBullets = 5;
                     fragBullet = new LaserBulletType(600f){{
                         length = 3000f;
                         width = 30f;
                         pierce = false;
+                        fragOnHit = false;
 
                         fragBullets = 5;
                         fragBullet = new LaserBulletType(400f){{
                             length = 3000f;
                             width = 30f;
                             pierce = false;
+                            fragOnHit = false;
 
                             fragBullets = 5;
                         }};
                     }};
+                }};
+            }};
+        }};
+
+        card1 = new ToggleWeapon("card1"){{
+            x = y = 0f;
+            reload = 60*15;
+            predictTarget = false;
+            ignoreRotation = true;
+            visibility = WeaponVisibility.sandboxOnly;
+
+            shootSound = Sounds.none;
+
+            shoot = new ShootSpread(){{
+                shotDelay = 0.2f;
+                spread = 25;
+                shots = 250*8;
+            }};
+
+            bullet = new BasicEqualityBulletType(){{
+                damage = 95;
+                width = 12;
+                height = 12;
+                lifetime = 60*6;
+                speed = 2.6f;
+                sprite = "yellow-java-old-flare";
+                despawnEffect = YellowFx.ghostDespawnMulti;
+                trailEffect = Fx.trailFade;
+                trailLength = 4;
+                shrinkX = shrinkY = 0;
+                weaveMag = 1.205f;
+                pierce = true;
+                pierceBuilding = true;
+                buildingDamageMultiplier = 2.55f;
+                pierceCap = 35;
+                keepVelocity = false;
+            }};
+        }};
+
+        arbitrator = new ToggleWeapon("arbitrator"){{
+            x = y = 0f;
+            reload = 60*2f;
+            ignoreRotation = true;
+            visibility = WeaponVisibility.sandboxOnly;
+            shootSound = Sounds.shootEnergyField;
+
+            bullet = new BasicEqualityBulletType(){{
+                damage = 400f;
+                speed = 5.4f;
+                width = height = 20;
+                lifetime = 60*1.5f;
+
+                intervalBullets = 2;
+                intervalRandomSpread = 0f;
+                intervalSpread = 180f;
+                intervalDelay = 5f;
+
+                intervalBullet = new BasicEqualityBulletType(){{
+                    damage = 30f;
+                    speed = 3.5f;
+                    lifetime = 60*4f;
+                    circleShooter = true;
+                    circleShooterRadius = 8*10f;
                 }};
             }};
         }};
@@ -581,5 +672,17 @@ public class YellowWeapons{
         bul.load();
         ghostCall.bullet = bul;
         ghostCall.mirrored.bullet = bul;
+
+        Events.run(Trigger.update, () -> {
+            if(timer.poll()) deaths.clear();
+        });
+    }
+
+    private static boolean died(Entityc entity){
+        if(entity instanceof Healthc h && h.dead()){
+            // track the death, because hitEntity can call multiple times
+            return deaths.add(h);
+        }
+        return false;
     }
 }

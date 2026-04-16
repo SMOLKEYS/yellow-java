@@ -2,6 +2,7 @@ package yellow.equality;
 
 import arc.*;
 import arc.func.*;
+import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.ai.types.*;
@@ -9,8 +10,6 @@ import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import yellow.util.*;
-
-import java.util.*;
 
 public class EqualityDamage{
     static final EventType.UnitDamageEvent damageEvent = new EventType.UnitDamageEvent();
@@ -29,6 +28,10 @@ public class EqualityDamage{
     public static String[] eDamageEntries = {"excludeSeq", "queueExcludeRemoval", "excludeReAdd", "toRemove", "units", "damages"};
     //local Seq<T extends Entityc>
     public static String mockGOther = "added";
+    //static Seq<EmpathyDamage.EmpathyHolder>
+    public static String empathyHolder = "units";
+    //static IntMap<EmpathyDamage.EmpathyHolder>
+    public static String empathyHolderIDs = "empathyMap";
 
     public static boolean hasEntry(Object obj, String field){
         return SafeReflect.get(obj, field) != null;
@@ -38,19 +41,37 @@ public class EqualityDamage{
         return SafeSettings.getBool("yellow-equal-treatment", false, false);
     }
 
+    private static <T extends Entityc> void group(Cons<EntityGroup<T>> cons, String name){
+        Class<?> mockGroup = SafeReflect.clazz("flame.entities.MockGroup");
+        EntityGroup<T> grp = SafeReflect.get(mockGroup, name);
+        if(grp != null) cons.get(grp);
+    }
+
     /** Attempts to completely erase an entity. VERY aggressive. */
     public static void annihilate(Entityc target, boolean removeRemnants, boolean showDeathEffect, @Nullable Cons<Entityc> entityAfter, @Nullable Cons<Bullet> bulletAfter){
         target.remove();
         Groups.all.remove(target);
-        if(target instanceof Unit u) Groups.unit.remove(u);
-        if(target instanceof Bullet b) Groups.bullet.remove(b);
-        if(target instanceof Drawc d) Groups.draw.remove(d);
-        if(target instanceof Syncc s) Groups.sync.remove(s);
+        group(all -> all.remove(target), "all");
+        if(target instanceof Bullet b){
+            Groups.bullet.remove(b);
+            group(bullet -> bullet.remove(b), "bullet");
+
+        }
+        if(target instanceof Drawc d){
+            Groups.draw.remove(d);
+            group(draw -> draw.remove(d), "draw");
+
+        }
+        if(target instanceof Syncc s){
+            Groups.sync.remove(s);
+            group(sync -> sync.remove(s), "sync");
+        }
 
         Class<?> entClass = target.getClass();
 
         if(target instanceof Unit u){
             Groups.unit.remove(u);
+            group(unit -> unit.remove(u), "unit");
             u.health = u.maxHealth = u.shield = u.armor = 0f;
             u.dead = true;
             if(u instanceof TimedKillUnit tk) tk.lifetime = 0f;
@@ -60,33 +81,9 @@ public class EqualityDamage{
             u.team.data().updateCount(u.type, -1);
             u.controller().removed(u);
 
-            Structs.each(s -> {
-                if(hasEntry(target, s)){
-                    SafeReflect.set(target, s, 0f);
-                    SafeReflect.set(entClass, target, s, 0f);
-                }
-            }, ent);
+            reflect(target, entClass, ent, maxEnt);
 
-            Structs.each(s -> {
-                if(hasEntry(target, s)){
-                    SafeReflect.set(target, s, 0f);
-                    SafeReflect.set(entClass, target, s, 0f);
-                }
-            }, maxEnt);
-
-            Structs.each(s -> {
-                if(hasEntry(target, s)){
-                    SafeReflect.set(target, s, 0f);
-                    SafeReflect.set(entClass, target, s, 0f);
-                }
-            }, iframeEnt);
-
-            Structs.each(s -> {
-                if(hasEntry(target, s)){
-                    SafeReflect.set(target, s, 0f);
-                    SafeReflect.set(entClass, target, s, 0f);
-                }
-            }, dmgEnt);
+            reflect(target, entClass, iframeEnt, dmgEnt);
 
             //flameout handler
             //freaky ass code imna be 100.gov
@@ -106,16 +103,19 @@ public class EqualityDamage{
         }, mockGEntries);
         SafeReflect.invoke(EntityGroup.class, SafeReflect.get(mockGroup, mockGOther), "remove", new Entityc[]{target}, Entityc.class);
 
-        if(target instanceof Drawc d) Groups.draw.remove(d);
-        if(target instanceof Syncc s) Groups.sync.remove(s);
-
         if(removeRemnants){
             Groups.bullet.each(e -> {
                 if(e.owner == target){
                     Groups.all.remove(e);
+                    group(all -> all.remove(e), "all");
                     Groups.bullet.remove(e);
+                    group(bullet -> bullet.remove(e), "bullet");
                     Groups.draw.remove(e);
-                    if(e instanceof Syncc s) Groups.sync.remove(s);
+                    group(draw -> draw.remove(e), "draw");
+                    if(e instanceof Syncc s){
+                        Groups.sync.remove(s);
+                        group(sync -> sync.remove(s), "sync");
+                    }
                     if(bulletAfter != null) bulletAfter.get(e);
                 }
             });
@@ -127,9 +127,42 @@ public class EqualityDamage{
 
         if(entityAfter != null) entityAfter.get(target);
 
+        try{
+            if(target.getClass().getName().contains("EmpathyUnit")) handleEmpathy(target);
+        }catch(Exception e){
+            // shh
+        }
+
         if(showDeathEffect && target instanceof Unitc u && u.type() != null){
             u.type().deathExplosionEffect.at(u.x(), u.y(), u.bounds() / 2f / 8f);
+            u.type().deathSound.at(u);
         }
+    }
+
+    private static void handleEmpathy(Entityc target){
+        Class<?> eDamage = SafeReflect.clazz("flame.unit.empathy.EmpathyDamage"),
+        eUnit = SafeReflect.clazz("flame.unit.empathy.EmpathyUnit");
+        SafeReflect.invoke(eDamage, "removeEmpathy", new Entityc[]{target}, eUnit);
+        Seq<?> units = SafeReflect.get(eDamage, empathyHolder);
+        IntMap<?> map = SafeReflect.get(eDamage, empathyHolderIDs);
+        if(units != null) units.clear();
+        if(map != null) map.clear();
+    }
+
+    private static void reflect(Entityc target, Class<?> entClass, String[] ent, String[] maxEnt){
+        Structs.each(s -> {
+            if(hasEntry(target, s)){
+                SafeReflect.set(target, s, 0f);
+                SafeReflect.set(entClass, target, s, 0f);
+            }
+        }, ent);
+
+        Structs.each(s -> {
+            if(hasEntry(target, s)){
+                SafeReflect.set(target, s, 0f);
+                SafeReflect.set(entClass, target, s, 0f);
+            }
+        }, maxEnt);
     }
 
     public static void theSpeedOfA(float speed){

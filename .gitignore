@@ -159,6 +159,7 @@ gradle-app.setting
 /core/libs
 /libs
 /core/obj
+/core/cache
 
 ## OS Specific
 .DS_Store

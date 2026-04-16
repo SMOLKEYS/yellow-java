@@ -2,6 +2,7 @@ package yellow.type.weapons;
 
 import arc.*;
 import arc.func.*;
+import arc.input.*;
 import arc.struct.*;
 import mindustry.*;
 import mindustry.entities.*;
@@ -27,11 +28,14 @@ public class ToggleWeapon extends NamedWeapon{
     public WeaponVisibility visibility = WeaponVisibility.shown;
     /** Whether this weapon must be unlocked first. */
     public boolean requiresUnlock = false;
+    /** Alternate keybind for shooting this weapon. */
+    public final KeyBind key;
 
     public ToggleWeapon(String name){
         super(name);
         mountType = ToggleWeaponMount::new;
         mirror = false;
+        key = YellowKeyBind.add("shoot-" + name, KeyCode.unset, "weapons");
     }
 
     public ToggleWeapon copy(){
@@ -76,6 +80,8 @@ public class ToggleWeapon extends NamedWeapon{
 
     @Override
     public void update(Unit unit, WeaponMount mount){
+        if(Core.input.keyDown(key)) mount.shoot = true;
+
         if(mount instanceof ToggleWeaponMount t){
             if(isEnabled(t)) super.update(unit, mount);
             return;

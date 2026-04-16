@@ -2,6 +2,7 @@ package yellow.util.variable;
 
 import arc.func.*;
 
+/** Delegates the getter/setter logic of a variable to an external, often persistent source, like {@code Core.settings}. */
 public interface VariableDelegator<T>{
 
     T get();

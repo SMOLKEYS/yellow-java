@@ -21,6 +21,34 @@ public class Stringy{
         return null;
     }
 
+    public static boolean contains(String in, String... values){
+        for(String i: values){
+            if(in.contains(i)) return true;
+        }
+        return false;
+    }
+
+    public static String gradient(String in, Color... colors){
+        if(colors.length == 1) return "[#" + colors[0].toString().substring(0, 6) + "]" + in + "[]";
+
+        b.setLength(0);
+        b.trimToSize();
+        int length = in.length();
+        int spaces = 0;
+
+        for(int i = 0; i < length; i++){
+            char ind = in.charAt(i);
+            if(Character.isWhitespace(ind)){
+                spaces++;
+                b.append(' ');
+                continue;
+            }
+            b.append("[#").append(Tmp.c1.set(colors[0]).lerp(colors, (float) i / (length - spaces)).toString(), 0, 6).append("]").append(ind).append("[]");
+        }
+
+        return b.toString();
+    }
+
     /** Returns a random char from the inputted string. */
     public static char random(String input){
         return random(input, Mathf.rand);

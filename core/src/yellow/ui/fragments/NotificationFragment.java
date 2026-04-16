@@ -2,6 +2,7 @@ package yellow.ui.fragments;
 
 import arc.*;
 import arc.func.*;
+import arc.graphics.*;
 import arc.input.*;
 import arc.math.*;
 import arc.scene.*;
@@ -37,11 +38,16 @@ public class NotificationFragment implements CommonFragment{
             s.name = "notifications";
             s.visible(() -> true);
             s.top().right();
+            s.defaults().padBottom(5f);
             s.y = -100;
         });
         persistent = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.accent.cpy().a(0.55f));
         error = ((TextureRegionDrawable) Tex.whiteui).tint(Pal.remove.cpy().a(0.55f));
         lstyle = Styles.outlineLabel;
+    }
+
+    public void clear(){
+        table.clear();
     }
 
     public void showNotification(String message){
@@ -53,7 +59,7 @@ public class NotificationFragment implements CommonFragment{
     }
 
     public void showNotification(Drawable icon, String message){
-        showNotification(icon, message, () -> {});
+        showNotification(icon, message, null);
     }
 
     public void showNotification(Drawable icon, String message, Runnable clicked){
@@ -73,7 +79,7 @@ public class NotificationFragment implements CommonFragment{
     }
 
     public void showPersistentNotification(Drawable icon, String message){
-        showPersistentNotification(icon, message, () -> {});
+        showPersistentNotification(icon, message, null);
     }
 
     public void showPersistentNotification(Drawable icon, String message, Runnable clicked){
@@ -131,7 +137,10 @@ public class NotificationFragment implements CommonFragment{
         Table tr = t.get();
         t.right();
         tr.right();
-        tr.image(icon).size(32).scaling(Scaling.fit).pad(15).padLeft(20);
+        Image img = tr.image(icon).size(32).scaling(Scaling.fit).pad(15).padLeft(20).get();
+
+        if(clicked != null) img.actions(Actions.forever(Actions.sequence(Actions.color(Pal.logicBlocks, 0.7f), Actions.color(Color.white, 0.7f))));
+
         tr.labelWrap(message).style(lstyle).grow().pad(10).padRight(8);
         float width = Math.max(tr.getMinWidth(), (Core.graphics.getWidth() * (SafeSettings.getInt("yellow-notification-length", 20, 20) / 100f)) / Scl.scl());
         tr.setTranslation(width, 0);
@@ -166,16 +175,11 @@ public class NotificationFragment implements CommonFragment{
             ));
         });
 
-        if(persist){
+        if(persist || clicked != null){
             t.tooltip("@yellow.persnotif-info", true);
             tr.actions(stay(width));
         }else{
-            t.tooltip("@yellow.notif-info", true);
-            tr.hovered(() -> hovered(tr));
-            tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(delayedExit(YellowSettingValues.notificationTime.get(), width, t));
-            });
-            tr.actions(enterExit(YellowSettingValues.notificationTime.get(), width, t));
+            tooltip(t, tr, width);
         }
 
         t.row();
@@ -206,15 +210,19 @@ public class NotificationFragment implements CommonFragment{
             t.tooltip("@yellow.persnotif-info", Vars.mobile);
             tr.actions(stay(width));
         }else{
-            t.tooltip("@yellow.notif-info", true);
-            tr.hovered(() -> hovered(tr));
-            tr.exited(() -> {
-                if(tr.getActions().isEmpty()) tr.actions(delayedExit(YellowSettingValues.notificationTime.get(), width, t));
-            });
-            tr.actions(enterExit(YellowSettingValues.notificationTime.get(), width, t));
+            tooltip(t, tr, width);
         }
 
         t.row();
+    }
+
+    private void tooltip(Cell<Table> t, Table tr, float width){
+        t.tooltip("@yellow.notif-info", true);
+        tr.hovered(() -> hovered(tr));
+        tr.exited(() -> {
+            if(tr.getActions().isEmpty()) tr.actions(delayedExit(YellowSettingValues.notificationTime.get(), width, t));
+        });
+        tr.actions(enterExit(YellowSettingValues.notificationTime.get(), width, t));
     }
 
     Action stay(float width){

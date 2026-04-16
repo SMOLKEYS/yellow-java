@@ -5,9 +5,33 @@ import mindustry.*;
 
 import java.lang.reflect.*;
 
-/** Wrapper class for {@link Reflect} which returns nulls or refrains from throwing any exceptions. */
+/** Wrapper class for {@link Reflect} which returns nulls/defaults or refrains from throwing any exceptions. */
 @SuppressWarnings("UnusedReturnValue")
 public class SafeReflect{
+
+    public static <T> T get(Field field, T def){
+        try{
+            return Reflect.get(field);
+        }catch(Exception e){
+            return def;
+        }
+    }
+
+    public static <T> T get(Object object, Field field, T def){
+        try{
+            return Reflect.get(object, field);
+        }catch(Exception e){
+            return def;
+        }
+    }
+
+    public static <T> T get(Class<?> type, Object object, String name, T def){
+        try{
+            return Reflect.get(type, object, name);
+        }catch(Exception e){
+            return def;
+        }
+    }
 
     public static <T> T get(Field field){
         try{
@@ -49,19 +73,21 @@ public class SafeReflect{
         }
     }
 
-    public static void set(Class<?> type, Object object, String name, Object value){
+    public static boolean set(Class<?> type, Object object, String name, Object value){
         try{
             Reflect.set(type, object, name, value);
+            return true;
         }catch(Exception ignored){
-
+            return false;
         }
     }
 
-    public static void set(Object object, Field field, Object value){
+    public static boolean set(Object object, Field field, Object value){
         try{
             Reflect.set(object, field, value);
+            return true;
         }catch(Exception ignored){
-
+            return false;
         }
     }
 
@@ -73,11 +99,53 @@ public class SafeReflect{
         }
     }
 
-    public static void set(Class<?> type, String name, Object value){
+    public static boolean set(Class<?> type, String name, Object value){
         try{
             Reflect.set(type, name, value);
+            return true;
         }catch(Exception ignored){
+            return false;
+        }
+    }
 
+
+    public static <T> T invokeOr(Class<?> type, Object object, String name, T def, Object[] args, Class<?>... parameterTypes){
+        try{
+            return Reflect.invoke(type, object, name, args, parameterTypes);
+        }catch(Exception e){
+            return def;
+        }
+    }
+
+    public static <T> T invokeOr(Class<?> type, String name, T def, Object[] args, Class<?>... parameterTypes){
+        try{
+            return Reflect.invoke(type, name, args, parameterTypes);
+        }catch(Exception e){
+            return def;
+        }
+    }
+
+    public static <T> T invokeOr(Class<?> type, String name){
+        try{
+            return Reflect.invoke(type, name);
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    public static <T> T invokeOr(Object object, String name, T def, Object[] args, Class<?>... parameterTypes){
+        try{
+            return Reflect.invoke(object, name, args, parameterTypes);
+        }catch(Exception e){
+            return def;
+        }
+    }
+
+    public static <T> T invokeOr(Object object, String name, T def){
+        try{
+            return Reflect.invoke(object, name);
+        }catch(Exception e){
+            return def;
         }
     }
 
@@ -121,11 +189,20 @@ public class SafeReflect{
         }
     }
 
+
     public static Class<?> clazz(String name){
         try{
             return Class.forName(name, true, Vars.mods.mainLoader());
         }catch(Exception e){
             return null;
+        }
+    }
+
+    public static <T> T make(String type, T def){
+        try{
+            return Reflect.make(type);
+        }catch(Exception e){
+            return def;
         }
     }
 

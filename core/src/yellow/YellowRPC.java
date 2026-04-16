@@ -177,7 +177,7 @@ public class YellowRPC{
             presence.largeImageText = "Version " + Yellow.meta().version;
             presence.largeImageKey = "yellow";
             presence.label1 = "Repository (Star!)";
-            presence.url1 = "https://github.com/SMOLKEYS/yellow-rewritten";
+            presence.url1 = "https://github.com/SMOLKEYS/yellow-java";
 
             DiscordRPC.send(presence);
         }catch(Exception e){

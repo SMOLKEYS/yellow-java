@@ -54,6 +54,8 @@ Before compiling, you'll need the following:
 3. From there, run './gradlew jar' (remove the './' part if on Windows). Everything will be handled automatically,
    leaving you with a 'coreDesktop.jar' file in the 'core/build/libs' directory, which you can then import into Mindustry.
    [!] This JAR file cannot be imported to Android! Another task exists for that, and will require additional setup.
+   [I] By default, compiling the mod like this will mark the mod version with a date (i.e 'v0.2-dd-MM-yyyy_hh-mm-ss').
+       If you don't want this, run the above command with '-Prelease.type=release'.
    [I] On Linux, if you get a 'Permission denied' error, run 'chmod 755 ./gradlew'.
 
 ######

@@ -141,6 +141,8 @@ public class YellowSettings{
                 }).growX().row();
 
                 tb.table(buttons -> {
+                    // ALMOST incomprehensible, have a nice day
+                    // - SMOLKEYS
                     float[] fl = {0};
                     MiscUtils.apply(button(buttons, "yellow-source-code", () -> app.openURI("https://github.com/SMOLKEYS/yellow-java")).growX().uniformX().get(), cb -> {
                         boolean[] ticked = {false};
@@ -158,6 +160,7 @@ public class YellowSettings{
                                 fl[0] = -99999f;
                                 Chaos.kickFromSave();
                                 YellowVars.blankfrag.show();
+                                YellowVars.notifrag.clear();
                                 Chaos.hideAllDialogs(true);
                                 Chaos.stopAudioBus();
                                 AtomicReference<String> s = new AtomicReference<>("my brother in christ");

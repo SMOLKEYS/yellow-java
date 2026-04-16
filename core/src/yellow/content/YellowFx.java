@@ -3,6 +3,7 @@ package yellow.content;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.math.geom.Position;
 import arc.util.*;
 import mindustry.content.*;
 import mindustry.entities.*;
@@ -10,6 +11,8 @@ import mindustry.graphics.*;
 import yellow.entities.bullet.AreaEffectPulse.*;
 import yellow.entities.effect.*;
 import yellow.math.*;
+
+import javax.swing.text.*;
 
 
 public class YellowFx{
@@ -133,6 +136,13 @@ public class YellowFx{
             Lines.stroke(e.fout() * 20);
             Lines.circle(e.x, e.y, e.finpow() * eff.size);
             Lines.circle(e.x, e.y, e.finpow() * (eff.size / 2f));
+        }
+    });
+
+    public static final Effect quickKillTeleport = new Effect(30f, e -> {
+        if(e.data() instanceof Position pos){
+            Lines.stroke(e.fout() * 10);
+            Lines.dashLine(e.x, e.y, pos.getX(), pos.getY(), 10);
         }
     });
 }

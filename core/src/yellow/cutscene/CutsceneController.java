@@ -71,7 +71,7 @@ public abstract class CutsceneController<T> implements Pool.Poolable{
 
     }
 
-    /** Runs after {@link #init()}, {@link #receive(CutsceneController)} and {@link #reconfigure(Cutscenes)}. */
+    /** Is executed right after this controller finishes initializing all its properties. (After {@link #init()}, {@link #receive(CutsceneController)} and {@link #reconfigure(Cutscenes)}) */
     public void fire(){
     }
 

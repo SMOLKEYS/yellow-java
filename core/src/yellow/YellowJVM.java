@@ -15,13 +15,13 @@ public final class YellowJVM{
         source = newSource;
     }
 
-    static boolean hasParameter(String argument){
+    public static boolean hasParameter(String argument){
         if(Vars.mobile) return false; //ah, mobile
 
         try{
             String[] args = SafeReflect.get(Vars.platform, "args");
             if(args != null) for(String arg : args){
-                return Objects.equals(arg, "--" + argument);
+                if(Objects.equals(arg, "--" + argument)) return true;
             }
         }catch(Exception e){
             return System.getProperty(source, "none").contains("--" + argument);
@@ -30,15 +30,14 @@ public final class YellowJVM{
         return System.getProperty(source, "none").contains("--" + argument);
     }
 
-    static boolean hasParameter(String argument, Cons<String> ifDetected){
+    public static boolean hasParameter(String argument, Cons<String> ifDetected){
         boolean s = hasParameter(argument);
         if(s) ifDetected.get(argument);
         return s;
     }
 
-    static boolean hasParameter(String argument, Boolp alt, Cons<String> ifDetected){
-        boolean s = hasParameter(argument);
-        if(s) ifDetected.get(argument);
+    public static boolean hasParameter(String argument, Boolp alt, Cons<String> ifDetected){
+        boolean s = hasParameter(argument, ifDetected);
         if(!s && alt.get()) ifDetected.get("alt");
         return s || alt.get();
     }

@@ -3,10 +3,14 @@ name: "yellow-java"
 author: "SMOLKEYS"
 main: "yellow.Yellow"
 description: '''
-Another go, once more.
+Not affiliated with Undertale Yellow.
+
+This.
+
+This is what happens when you give an idiot like me general programming knowledge.
 '''
-version: 0.113
-minGameVersion: 155.4
+version: 0.2
+minGameVersion: 157.1
 java: true
 hideBrowser: false
 

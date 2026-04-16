@@ -14,7 +14,7 @@ public class FinalLazyVariable<T> implements VariableDelegator<T>{
         tProv = prov;
     }
 
-    /** Write once, write never.*/
+    /** Write once, and never again. */
     @Override
     public FinalLazyVariable<T> set(T value){
         if(t != null) return this;
