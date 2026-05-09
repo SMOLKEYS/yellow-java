@@ -417,6 +417,6 @@ project(":core"){
     }
 
     tasks.register("fullPackage"){
-        dependsOn("dex", ":experimental-video-player:jnigenWithNewNatives")
+        dependsOn("dex")
     }
 }

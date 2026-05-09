@@ -28,6 +28,16 @@ jobs:
             - v1-dependencies-
 
       - run:
+          name: "Download needed tools"
+          command: |
+             sudo apt install -y --force-yes meson
+             sudo apt install -y --force-yes gcc g++
+             sudo apt install -y --force-yes gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross
+             sudo apt install -y --force-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libc6-dev-armhf-cross
+             sudo apt install -y --force-yes gcc-riscv64-linux-gnu g++-riscv64-linux-gnu libc6-dev-riscv64-cross
+             sudo apt install -y --force-yes mingw-w64 lib32z1
+
+      - run:
           name: "Compile multiplatform"
           command: ./gradlew fullPackage -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
 

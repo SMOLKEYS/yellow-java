@@ -75,13 +75,18 @@ repositories {
 }
 
 
+tasks.named("jnigenBuildAllWindows"){
+    dependsOn("ffmpeg:buildFFmpegWindows64")
+}
+
+tasks.named("jnigenBuildAllLinux"){
+    dependsOn("ffmpeg:buildFFmpegLinux64")
+}
+
 tasks.register("postJnigen") {
     dependsOn("jnigen", "jnigenBuildAllWindows", /*"jnigenBuildAllAndroid",*/ "jnigenBuildAllLinux")
 }
 
-tasks.register("jnigenWithNewNatives") {
-    dependsOn("postJnigen", "ffmpeg:buildFFmpegLinux64", "ffmpeg:buildFFmpegWindows64")
-}
 
 val dir: String = jnigen.libsDir
 
