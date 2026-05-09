@@ -79,6 +79,10 @@ tasks.register("postJnigen") {
     dependsOn("jnigen", "jnigenBuildAllWindows", /*"jnigenBuildAllAndroid",*/ "jnigenBuildAllLinux")
 }
 
+tasks.register("jnigenWithNewNatives") {
+    dependsOn("postJnigen", "buildFFmpegLinux64", "buildFFmpegWindows64")
+}
+
 val dir: String = jnigen.libsDir
 
 tasks.named<Jar>("jar") {
