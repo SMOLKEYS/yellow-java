@@ -27,7 +27,7 @@ jobs:
 
       - run:
           name: "Compile multiplatform"
-          command: ./gradlew dex -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
+          command: ./gradlew fullPackage -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
 
       - save_cache:
           paths:
