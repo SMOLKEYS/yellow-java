@@ -56,7 +56,9 @@ jnigen {
     addLinux(x64, x86) {
         headerDirs += headers("linux64")
         libraries += libs("linux64")
-        linkerFlags += arrayOf("-Wl,-Bsymbolic", "-Wl,--no-undefined")
+        if(!OS.isLinux) {
+            compilerPrefix = "x86_64-linux-gnu-"
+        }
     }
     // TODO not used yet
     addMac(x64, x86)
