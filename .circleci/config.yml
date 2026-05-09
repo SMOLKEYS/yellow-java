@@ -17,6 +17,8 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
 
       # Download and cache dependencies
       - restore_cache:
