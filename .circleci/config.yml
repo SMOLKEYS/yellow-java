@@ -31,7 +31,7 @@ jobs:
           name: "Download needed tools"
           command: |
              sudo apt update
-             sudo apt install -y --force-yes meson
+             sudo apt install -y --force-yes meson nasm
              sudo apt install -y --force-yes gcc g++
              sudo apt install -y --force-yes gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev-arm64-cross
              sudo apt install -y --force-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libc6-dev-armhf-cross
