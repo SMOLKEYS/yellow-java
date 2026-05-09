@@ -76,11 +76,11 @@ repositories {
 
 
 tasks.named("jnigenBuildAllWindows"){
-    dependsOn("ffmpeg:buildFFmpegWindows64")
+    dependsOn("ffmpeg:buildFFmpegWindowsAll")
 }
 
 tasks.named("jnigenBuildAllLinux"){
-    dependsOn("ffmpeg:buildFFmpegLinux64")
+    dependsOn("ffmpeg:buildFFmpegLinuxAll")
 }
 
 tasks.register("postJnigen") {
