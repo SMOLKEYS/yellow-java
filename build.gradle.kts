@@ -418,5 +418,5 @@ project(":core"){
 }
 
 tasks.register("fullPackage"){
-    dependsOn("dex", "postJnigen", "buildFFmpegLinuxAll", "buildFFmpegWindowsAll")
+    dependsOn("dex", "postJnigen", "experimental-video-player:ffmpeg:buildFFmpegLinuxAll", "experimental-video-player:ffmpeg:buildFFmpegWindowsAll")
 }
