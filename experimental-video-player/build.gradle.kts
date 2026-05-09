@@ -80,7 +80,7 @@ tasks.register("postJnigen") {
 }
 
 tasks.register("jnigenWithNewNatives") {
-    dependsOn("postJnigen", ":ffmpeg:buildFFmpegLinux64", ":ffmpeg:buildFFmpegWindows64")
+    dependsOn("postJnigen", "ffmpeg:buildFFmpegLinux64", "ffmpeg:buildFFmpegWindows64")
 }
 
 val dir: String = jnigen.libsDir
