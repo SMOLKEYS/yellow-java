@@ -1,6 +1,7 @@
 package yellow.ui.fragments;
 
 import arc.*;
+import arc.audio.*;
 import arc.flabel.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -22,9 +23,10 @@ public class DialogFragment implements CommonFragment{
 
     private Table parent, box;
     private FLabel label;
-    private String[] activeSet;
+    private Cell<FLabel> labelCell;
+    private TextEntry[] activeSet;
     private int index, id;
-    private boolean active, initialized, locked = false;
+    private boolean active, initialized, locked = false, hideHint = true;
     private float boxWidth, boxHeight;
 
     private final Timekeeper timer = Timekeeper.ofSeconds(10f);
@@ -51,7 +53,7 @@ public class DialogFragment implements CommonFragment{
 
                 diag.margin(20f);
                 diag.top().left();
-                diag.add(label = new FLabel("")).style(Styles.outlineLabel).with(f -> {
+                labelCell = diag.add(label = new FLabel("")).style(Styles.outlineLabel).with(f -> {
                     f.setWrap(true);
 
                     f.update(() -> {
@@ -86,7 +88,7 @@ public class DialogFragment implements CommonFragment{
                     l.setText(atEnd() ? "[ END ]" : "[ NEXT ]");
                 });
                 diag.row();
-                diag.label(() -> Vars.mobile ? "@yellow.dialog-hint-mobile" : "@yellow.dialog-hint").visible(() -> timer.get() && !atEnd()).left().bottom().update(l -> l.color.set(Color.gray).lerp(Color.gray, Mathf.absin(Time.globalTime, 7f, 1f)));
+                diag.label(() -> Vars.mobile ? "@yellow.dialog-hint-mobile" : "@yellow.dialog-hint").visible(() -> timer.get() && !atEnd() && !hideHint).left().bottom().update(l -> l.color.set(Color.gray).lerp(Color.gray, Mathf.absin(Time.globalTime, 7f, 1f)));
             }).size(Vars.mobile ? boxWidth * 0.65f : boxWidth, boxHeight);
         });
 
@@ -108,7 +110,7 @@ public class DialogFragment implements CommonFragment{
             if(atEnd()){
                 stop();
             }else{
-                label.restart(activeSet[++index]);
+                label.restart(activeSet[++index].text);
                 timer.reset();
             }
         }else{
@@ -120,7 +122,7 @@ public class DialogFragment implements CommonFragment{
         if(!active || !initialized) return;
 
         if(label.hasEnded()){
-            label.restart(activeSet[--index]);
+            label.restart(activeSet[--index].text);
         }
     }
 
@@ -128,31 +130,31 @@ public class DialogFragment implements CommonFragment{
         locked = lock;
     }
 
-    public void initiate(String... set){
+    public void initiate(TextEntry... set){
         initiate(false, set);
     }
 
-    public void initiate(boolean lock, String... set){
+    public void initiate(boolean lock, TextEntry... set){
         if(active || !initialized) return;
         activeSet = set;
         active = true;
         locked = lock;
-        label.restart(activeSet[index]);
+        label.restart(activeSet[index].text);
         timer.reset();
         box.actions(Actions.translateBy(0f, calculateHeightTranslation(boxHeight), 0.5f, Interp.fade));
     }
 
-    public void reinitiate(String... set){
+    public void reinitiate(TextEntry... set){
         reinitiate(locked, set);
     }
 
-    public void reinitiate(boolean lock, String... set){
+    public void reinitiate(boolean lock, TextEntry... set){
         if(!active || !initialized) return;
         activeSet = set;
         locked = lock;
         index = 0;
         timer.reset();
-        label.restart(activeSet[index]);
+        label.restart(activeSet[index].text);
     }
 
     public void stop(){
@@ -175,8 +177,8 @@ public class DialogFragment implements CommonFragment{
 
     public void overwrite(String newValue){
         if(!active || !initialized) return;
-        activeSet[index] = newValue;
-        label.restart(activeSet[index]);
+        activeSet[index].text = newValue;
+        label.restart(activeSet[index].text);
     }
 
     public void setFont(Font font){
@@ -207,8 +209,77 @@ public class DialogFragment implements CommonFragment{
         box.actions(Actions.sizeTo(this.boxWidth, boxHeight, time, interpolation != null ? interpolation : Interp.linear));
     }
 
+    public void hideHint(boolean hideHint){
+        this.hideHint = hideHint;
+    }
+
+    public void setAlignment(int align){
+        label.setAlignment(align);
+        labelCell.align(align);
+    }
+
     private float calculateHeightTranslation(float h){
         return h * 1.9f;
     }
 
+
+    /**
+     * A dialogue box text entry. Contains extra listeners and parameters to precisely modify
+     * dialogue box behavior.
+     */
+    public static class TextEntry{
+        /** The name to be displayed. A null value automatically uses the last set name, for convenience purposes. */
+        public @Nullable String name;
+        /** The text to be typed out. A null value will reuse the last typed text. */
+        public @Nullable String text;
+        /** Sound played when this text is displayed. Useful for voiced dialogue. */
+        public @Nullable Sound sound;
+        /**
+         * Interrupt or "stutter" text which immediately replaces the existing text.
+         * You probably know what this does if you've played enough visual novels.
+         */
+        public @Nullable String[] interruptText;
+        /** The font used for this text. A null value automatically uses the last set font. */
+        public @Nullable Font font;
+        /** The font scaling of this text. */
+        public float scaling = 1f;
+        /** Delay before this text entry is automatically skipped. -1 to disable. */
+        public float autoProgress = -1f;
+        /** Alignment of the text, using bit flags. Use {@link Align} to find the preferred values. */
+        public int alignment = Align.topLeft;
+        /** Whether this text can be manually skipped with an enter click. */
+        public boolean canSkipByClick = true;
+        /**
+         * Whether this text can be automatically skipped when passed through during a continuous skip.
+         * Ignored when a choice menu is brought up.
+         */
+        public boolean canSkipBySkip = true;
+        /** Choices displayed to the player. Optional. */
+        public @Nullable EntrySelection selection;
+
+        /** Returns a simple text entry. */
+        public static TextEntry with(String tex){
+            return new TextEntry(){{
+                text = tex;
+            }};
+        }
+
+        /** Returns an array of text entries from a set of strings. */
+        public static TextEntry[] fromSimpleStrings(String... texts){
+            TextEntry[] set = new TextEntry[texts.length];
+            for(int i = 0; i < texts.length; i++){
+                int fi = i;
+                set[i] = new TextEntry(){{
+                    text = texts[fi];
+                }};
+            }
+            return set;
+        }
+
+        public static class EntrySelection extends ObjectMap<String, TextEntry[]>{
+            public void addEntry(String choice, TextEntry... follow){
+                put(choice, follow);
+            }
+        }
+    }
 }

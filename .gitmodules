@@ -1,0 +1,6 @@
+[submodule "experimental-video-player/ffmpeg/src/FFmpeg"]
+	path = experimental-video-player/ffmpeg/src/FFmpeg
+	url = https://github.com/FFmpeg/FFmpeg
+[submodule "experimental-video-player/ffmpeg/src/dav1d"]
+	path = experimental-video-player/ffmpeg/src/dav1d
+	url = https://code.videolan.org/videolan/dav1d

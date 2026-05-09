@@ -122,6 +122,8 @@ public class YellowSettings{
 
             t.checkPref("yellow-gravitate-items", true);
 
+            t.checkPref("yellow-item-drops-drown", false);
+
             seperatorPref(t, "yellow-info-section", Icon.info, Icon.github);
 
             tablePref(t, "yellow-info-table", tb -> {

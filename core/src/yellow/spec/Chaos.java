@@ -3,6 +3,7 @@ package yellow.spec;
 import arc.*;
 import arc.audio.*;
 import arc.func.*;
+import arc.math.geom.*;
 import arc.scene.*;
 import arc.scene.actions.*;
 import arc.scene.ui.*;
@@ -21,7 +22,6 @@ import yellow.util.variable.*;
 public class Chaos{
 
     private static final SettingBoundVariable<Integer> stage = new SettingBoundVariable<>("yellow-stage", 0, true);
-    private static final FinalLazyVariable<StageEntry> curStage = new FinalLazyVariable<>();
     private static final InputHandler nullInp = new NullInput();
     private static InputHandler lastInp;
     private static final Boolp b = () -> true;
@@ -200,6 +200,14 @@ public class Chaos{
         }
     }
 
+    public static void moveCamera(float x, float y){
+        Core.camera.position.set(x, y);
+    }
+
+    public static void moveCamera(Position pos){
+        moveCamera(pos.getX(), pos.getY());
+    }
+
     public static class NullInput extends InputHandler{
 
         @Override
@@ -211,5 +219,9 @@ public class Chaos{
         public void useSchematic(Schematic schem, boolean checkHidden){
 
         }
+    }
+
+    public static class Phase{
+        public Phase(){}
     }
 }

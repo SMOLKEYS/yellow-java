@@ -1,0 +1,10 @@
+Source code for the experimental port of the gdx-video API to Arc.
+
+All the classes and the 'jni' folder originate from that project, with changes to the classes to use Arc instead of libGDX.
+
+This is experimental and very likely, unstable. Use at your own risk.
+
+Some key differences:
+- The dav1d and FFmpeg sources are updated to their latest commits. I tried using the same commit tags as gdx-video, but it just consistently kept crashing.
+- iOS support is removed. This is primarily for Mindustry Java mods to use, and iOS doesn't support those.
+- Natives for 32-bit Windows/Linux and ARM64 Linux aren't included by default. (Mindustry dropped 32-bit support and Arc isn't being compiled for ARM64 Linux.)

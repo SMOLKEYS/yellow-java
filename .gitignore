@@ -166,5 +166,5 @@ gradle-app.setting
 Thumbs.db
 android/libs/
 
-## Development Quotas
-QUOTA*
+/experimental-video-player/build/
+/experimental-video-player/ffmpeg/build/

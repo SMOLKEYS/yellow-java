@@ -3,12 +3,13 @@ package yellow.comp;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.util.io.*;
 import ent.anno.Annotations.*;
 import mindustry.entities.abilities.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import yellow.gen.*;
+import yellow.graphics.*;
 import yellow.type.unit.*;
 
 @EntityComponent
@@ -41,6 +42,7 @@ abstract class GhostUnitComp implements Unitc, TimedKillc{
 
     @Override
     public void draw(){
+        Draw.z(Layer.flyingUnit + 3f);
         Fill.light(x, y, 10, Mathf.lerp(hitSize * 1.9f, hitSize * 0.9f, lifetimef()), Color.white, Color.clear);
     }
 

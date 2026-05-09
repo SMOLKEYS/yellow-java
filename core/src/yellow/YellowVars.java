@@ -3,6 +3,7 @@ package yellow;
 import arc.*;
 import arc.scene.event.*;
 import arc.scene.ui.layout.*;
+import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
 import yellow.Yellow.*;
@@ -12,6 +13,8 @@ import yellow.core.*;
 import yellow.cutscene.*;
 import yellow.entities.*;
 import yellow.graphics.*;
+import yellow.io.*;
+import yellow.natives.*;
 import yellow.spec.*;
 import yellow.ui.*;
 import yellow.ui.OverlayPlayer.*;
@@ -43,6 +46,8 @@ public class YellowVars{
 
     public static YellowMenuRenderer menuRenderer;
     public static YellowLoadRenderer loadRenderer;
+
+    public static ContextLoader nativesLoader;
 
     static Date date;
 
@@ -97,6 +102,8 @@ public class YellowVars{
         Vars.asyncCore.processes.add(
                 new PhysicsHandler<>(YellowGroups.physics)
         );
+
+        SmashKnockbackSaveChunk.init();
 
         Core.app.post(() -> {
             if(noLoading) return;
@@ -154,20 +161,13 @@ public class YellowVars{
     }
 
     public static void initNatives(){
-        /*LibLoader l = new LibLoader();
-        AndroidLibLoader al = new AndroidLibLoader(Yellow.class);
-
+        ContextLoader loader = new ContextLoader();
+        nativesLoader = loader;
         try{
-            if(!Vars.mobile){
-                l.load("arc-box2d");
-            }else{
-                //android dynamic code loading rules when i shove the library into /data/data
-                al.load("arc-box2d");
-            }
-            Log.info("Box2D loaded. @", new Physics(new Vec2(), true));
+            loader.load("yellow");
         }catch(Exception e){
             Log.err(e);
-        }*/
+        }
     }
 
     public static void onImport(){
@@ -187,5 +187,33 @@ public class YellowVars{
 
     public enum BuildType{
         unknown, release, rapid
+    }
+
+    public static class ContextLoader{
+        private final LibLoader desktopLoader;
+        private final AndroidLibLoader mobileLoader;
+        private final Seq<String> loaded = new Seq<>();
+
+        public ContextLoader(){
+            desktopLoader = new LibLoader();
+            mobileLoader = new AndroidLibLoader(Yellow.class);
+        }
+
+        public boolean load(String lib){
+            if(wasLoaded(lib)) return false;
+            if(Vars.mobile){
+                mobileLoader.load(lib);
+                Log.info("Loading library @ for Android", lib);
+            }else{
+                desktopLoader.load(lib);
+                Log.info("Loading library @", lib);
+            }
+            loaded.add(lib);
+            return true;
+        }
+
+        public boolean wasLoaded(String lib){
+            return loaded.contains(lib);
+        }
     }
 }

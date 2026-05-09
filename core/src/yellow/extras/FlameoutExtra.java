@@ -16,6 +16,7 @@ import yellow.Yellow.*;
 import yellow.*;
 import yellow.content.*;
 import yellow.spec.*;
+import yellow.ui.fragments.DialogFragment.*;
 import yellow.ui.scene.*;
 import yellow.util.*;
 
@@ -35,7 +36,7 @@ public class FlameoutExtra extends ExtraAddition{
                     ltfrag.reconfigure(id, "@yellow.salvation-pass", Icon.warning, false);
                     ltfrag.hide(id, 300f);
 
-                    dialogfrag.initiate(true, BundleUtils.getSequence("yellow.flame-extra-"));
+                    dialogfrag.initiate(true, TextEntry.fromSimpleStrings(BundleUtils.getSequence("yellow.flame-extra-")));
 
                     Seq<Element> tbl = new Seq<>();
 
@@ -61,7 +62,7 @@ public class FlameoutExtra extends ExtraAddition{
                         button.actions(Actions.alpha(0f), Actions.alpha(1f, 1.2f, Interp.fade));
                         salva.row();
                         TextButton other = salva.button("@yellow.salvation-option-2", Icon.bookOpen, () -> {
-                            dialogfrag.reinitiate(false, BundleUtils.getSequence("yellow.flame-extra-ignore-"));
+                            dialogfrag.reinitiate(false, TextEntry.fromSimpleStrings(BundleUtils.getSequence("yellow.flame-extra-ignore-")));
 
                             tbl.each(e -> {
                                 Vars.ui.menuGroup.removeChild(e);
@@ -96,7 +97,7 @@ public class FlameoutExtra extends ExtraAddition{
                 });
 
                 Time.runTask(60*5f, () -> {
-                    dialogfrag.initiate(true, "Ah, wait, wrong one. My apologies!");
+                    dialogfrag.initiate(true, TextEntry.with("Ah, wait, wrong one. My apologies!"));
                 });
 
                 Time.runTask(60*6.12f, () -> {

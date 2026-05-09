@@ -50,6 +50,7 @@ fun RepositoryHandler.ivy(url: String = "https://github.com", patternLayout: Str
 buildscript{
     repositories{
         gradlePluginPortal()
+        mavenLocal()
         mavenCentral()
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
         maven("https://oss.sonatype.org/content/repositories/releases/")
@@ -142,6 +143,7 @@ project(":core"){
 
         //experimental
         implementation(project(":native-loader"))
+        implementation(project(":experimental-video-player"))
         //implementation(arc(":box2d"))
         //implementation(arc(":natives-box2d-android"))
         //implementation(arc(":natives-box2d-desktop"))
@@ -413,4 +415,8 @@ project(":core"){
             }
         }
     }
+}
+
+tasks.register("fullPackage"){
+    dependsOn("jar", "postJnigen", "buildFFmpegLinuxAll", "buildFFmpegWindowsAll")
 }

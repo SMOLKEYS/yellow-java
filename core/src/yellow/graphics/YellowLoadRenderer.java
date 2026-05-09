@@ -6,6 +6,7 @@ import arc.freetype.FreeTypeFontGenerator.*;
 import arc.func.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.math.*;
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.*;
@@ -32,9 +33,12 @@ public class YellowLoadRenderer extends LoadRenderer{
     private int lastLength;
     private final ObjectMap<String, TextureRegion> sprites = new ObjectMap<>();
     private final Font goth;
+    private final SmoothFloat progressSmooth = new SmoothFloat();
 
     public YellowLoadRenderer(){
         super();
+        progressSmooth.speed(0.05f);
+        progressSmooth.interp = Interp.fastSlow;
 
         goth = new FreeTypeFontGenerator(Yellow.file("/fonts/msgothic.ttf")).generateFont(new FreeTypeFontParameter(){{
             size = Vars.mobile ? size * 2 : size;
@@ -71,7 +75,7 @@ public class YellowLoadRenderer extends LoadRenderer{
             lastLength = assets.getLoadedAssets();
         }
 
-        float w = graphics.getWidth(), h = graphics.getHeight(), s = Scl.scl(), progress = assets.getProgress(), midw = w / 2, midh = h / 2;
+        float w = graphics.getWidth(), h = graphics.getHeight(), s = Scl.scl(), rawProgress = assets.getProgress(), progress = rawProgress > 0.90f ? rawProgress : progressSmooth.target(rawProgress, true).get(), midw = w / 2, midh = h / 2;
         float ofs = 85f, ofsH = 20f;
 
         // note: in-code placement order MATTERS
@@ -96,6 +100,9 @@ public class YellowLoadRenderer extends LoadRenderer{
 
         Draw.color(Color.white);
         Draw.rect(sprites.get("yellow"), midw, midh, 120*s, 120*s);
+
+        Lines.stroke(4f);
+        Lines.arc(midw, midh, 140f*s, progress, Time.globalTime);
 
         fontDraw(f -> {
             f.draw( Strings.autoFixed(progress*100f, debug ? 6 : 2) + "%", midw, midh - (ofs*s), Align.center);
@@ -147,5 +154,27 @@ public class YellowLoadRenderer extends LoadRenderer{
 
     private TextureRegion makeOutline(TextureRegion region){
         return new TextureRegion(new Texture(region.texture.getTextureData().getPixmap().outline(Pal.darkerMetal, 3)));
+    }
+
+    private static class SmoothFloat{
+        private float from, to, progress, speed, peak;
+        public Interp interp = Interp.linear;
+
+        public float get(){
+            return Mathf.lerp(from, to, interp.apply(Mathf.clamp(progress += speed)));
+        }
+
+        public SmoothFloat speed(float speed){
+            this.speed = speed;
+            return this;
+        }
+
+        public SmoothFloat target(float target, boolean await){
+            if(await && Mathf.clamp(progress) != 1) return this;
+            from = to;
+            to = target;
+            progress = 0f;
+            return this;
+        }
     }
 }

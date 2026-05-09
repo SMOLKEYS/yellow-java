@@ -1,21 +1,25 @@
 package yellow.comp;
 
 import arc.*;
+import arc.graphics.g2d.*;
 import arc.input.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import ent.anno.Annotations.*;
+import mindustry.*;
 import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import mindustry.type.*;
+import mindustry.graphics.*;
 import yellow.*;
 import yellow.content.*;
 import yellow.equality.*;
 import yellow.gen.*;
 import yellow.math.*;
+import yellow.util.*;
+import yellow.util.Inputs.*;
 
 @EntityComponent
 @EntityDef({YellowUnitc.class, Unitc.class, WeaponMasterUnitc.class, SingleInstanceUnitc.class})
@@ -31,14 +35,17 @@ abstract class YellowUnitComp implements Unitc, WeaponMasterUnitc, SingleInstanc
 
     private float queuedKillCountdown = 30f;
     private boolean queuedKillTeleport = false;
-    private Unit queuedKill = null;
+    private transient Unit queuedKill = null;
 
     private transient Seq<Unit> bowled = new Seq<>(128);
+    private transient InputSequence discombobulation = Inputs.keySequence(30f, true, KeyCode.x, KeyCode.a, KeyCode.mouseRight);
+
 
     @Override
     public void update(){
         updateBowling();
         updateUnitKillers();
+        updateXAM2();
     }
 
     public void updateBowling(){
@@ -125,6 +132,17 @@ abstract class YellowUnitComp implements Unitc, WeaponMasterUnitc, SingleInstanc
         });
 
         queuedKillCountdown = 30f;
+    }
+
+    public void updateXAM2(){
+        if(
+                discombobulation.poll()
+                // if you know, you know
+                || Inputs.keyDown(KeyCode.controllerA, KeyCode.controllerY, KeyCode.controllerRBumper)
+        ){
+            destroy();
+            YellowSounds.bowlingStrike.play(3f);
+        }
     }
 
 }

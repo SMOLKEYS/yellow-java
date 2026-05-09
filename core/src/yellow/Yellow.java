@@ -14,8 +14,10 @@ import yellow.core.YellowEventType.*;
 import yellow.entities.*;
 import yellow.extras.*;
 import yellow.gen.*;
+import yellow.graphics.*;
 import yellow.js.*;
 import yellow.spec.*;
+import yellow.spec.phases.*;
 import yellow.ui.*;
 import yellow.util.variable.SettingBoundVariable.*;
 
@@ -35,9 +37,9 @@ public class Yellow extends Mod{
     });
 
     public Yellow(){
-        if(Vars.clientLoaded) YellowVars.onImport();
+        if(OS.isAndroid || OS.isMac) throw new RuntimeException("Cannot load this build of Yellow on Android/Mac platforms");
 
-        //Core.settings.put("flame-special", 2);
+        if(Vars.clientLoaded) YellowVars.onImport();
 
         if(!Vars.clientLoaded){
             BaseExtras.load();
@@ -48,10 +50,12 @@ public class Yellow extends Mod{
 
         Events.run(ClientLoadEvent.class, () -> {
             YellowVars.init();
+            YellowGraphics.init();
             YellowSettings.load();
             YellowFonts.load();
             YellowStyles.load();
             YellowGameStyles.load();
+            YellowCodes.load();
             Rhinor.importMainModPackages(this);
             Fi c = Core.files.cache("yellow-exports");
             if(c.exists()) c.emptyDirectory();
