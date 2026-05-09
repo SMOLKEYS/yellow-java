@@ -415,8 +415,8 @@ project(":core"){
             }
         }
     }
-}
 
-tasks.register("fullPackage"){
-    dependsOn("dex", "jnigenWithNewNatives")
+    tasks.register("fullPackage"){
+        dependsOn("dex", ":experimental-video-player:jnigenWithNewNatives")
+    }
 }
