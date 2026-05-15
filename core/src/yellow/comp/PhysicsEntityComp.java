@@ -1,6 +1,5 @@
 package yellow.comp;
 
-import arc.math.geom.*;
 import arc.util.io.*;
 import ent.anno.Annotations.*;
 import mindustry.gen.*;

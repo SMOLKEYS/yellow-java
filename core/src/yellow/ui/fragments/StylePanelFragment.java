@@ -1,7 +1,6 @@
 package yellow.ui.fragments;
 
 import arc.flabel.*;
-import arc.math.*;
 import arc.scene.*;
 import arc.scene.ui.layout.*;
 import arc.util.*;

@@ -3,7 +3,6 @@ package yellow.util;
 import arc.func.*;
 import arc.util.*;
 
-import java.lang.reflect.*;
 import java.util.*;
 
 public class Structsy{

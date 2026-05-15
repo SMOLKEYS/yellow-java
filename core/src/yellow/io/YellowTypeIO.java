@@ -4,7 +4,6 @@ import arc.util.io.*;
 import ent.anno.Annotations.*;
 import mindustry.entities.units.*;
 import yellow.entities.units.*;
-import yellow.gen.*;
 
 @TypeIOHandler
 public class YellowTypeIO{

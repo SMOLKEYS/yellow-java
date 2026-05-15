@@ -3,11 +3,9 @@ package yellow.comp;
 import arc.*;
 import arc.func.*;
 import arc.graphics.g2d.*;
-import arc.input.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
-import arc.util.io.*;
 import ent.anno.Annotations.*;
 import mindustry.content.*;
 import mindustry.entities.*;
@@ -16,9 +14,7 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import yellow.content.*;
-import yellow.entities.*;
 import yellow.gen.*;
-import yellow.math.*;
 
 import static yellow.YellowSettingValues.*;
 

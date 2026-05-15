@@ -27,14 +27,12 @@ jnigen {
     sharedLibName = "yellow"
     libsDir = "build/natives"
 
-    fun libs(buildName: String): String {
-        return "-Lffmpeg/build/$buildName/lib"
-        //return "-L${file("ffmpeg/build/$buildName").absolutePath}/lib"
+    fun libs(buildName: String, useAbsolute: Boolean = false): String {
+        return if(useAbsolute) "-L${file("ffmpeg/build/$buildName").absolutePath}/lib" else "-Lffmpeg/build/$buildName/lib"
     }
 
-    fun headers(buildName: String): Array<String> {
-        return arrayOf("ffmpeg/build/$buildName/include")
-        //return arrayOf("${file("ffmpeg/build/$buildName").absolutePath}/include")
+    fun headers(buildName: String, useAbsolute: Boolean = false): Array<String> {
+        return if(useAbsolute) arrayOf("${file("ffmpeg/build/$buildName/include").absolutePath}") else arrayOf("ffmpeg/build/$buildName/include")
     }
 
     all {
@@ -48,24 +46,21 @@ jnigen {
 
     addWindows(x64, x86){
         headerDirs += headers("windows64")
-        libraries = arrayOf(libs("windows64"), "-lbcrypt", "-lws2_32") + libraries
-        Log.info(libraries.contentDeepToString())
-        cppFlags += arrayOf("-DWIN32")
+        libraries += arrayOf(libs("windows64", true /* use absolute path */), "-lbcrypt", "-lws2_32")
+        linkerFlags = arrayOf("--verbose")
+        cFlags += arrayOf("--verbose")
+        cppFlags += arrayOf("-DWIN32", "--verbose")
     }
     addAndroid()
     addLinux(x64, x86) {
         headerDirs += headers("linux64")
         libraries += libs("linux64")
-        if(!OS.isLinux) {
-            compilerPrefix = "x86_64-linux-gnu-"
-        }
+        linkerFlags += "-Wl,-Bsymbolic"
     }
     // TODO not used yet
     addMac(x64, x86)
     addMac(x64, ARM)
 }
-
-val lwjglVersion = "3.4.1"
 
 repositories {
     gradlePluginPortal()
@@ -77,16 +72,16 @@ repositories {
 }
 
 
-tasks.named("jnigenBuildAllWindows"){
-    dependsOn("ffmpeg:buildFFmpegWindowsAll")
-}
-
-tasks.named("jnigenBuildAllLinux"){
-    dependsOn("ffmpeg:buildFFmpegLinuxAll")
-}
+//tasks.named("jnigenBuildAllWindows"){
+//    dependsOn("ffmpeg:buildFFmpegWindowsAll")
+//}
+//
+//tasks.named("jnigenBuildAllLinux"){
+//    dependsOn("ffmpeg:buildFFmpegLinuxAll")
+//}
 
 tasks.register("postJnigen") {
-    dependsOn("jnigen", "jnigenBuildAllWindows", /*"jnigenBuildAllAndroid",*/ "jnigenBuildAllLinux")
+    dependsOn("jnigen", /*"jnigenBuildAllWindows", "jnigenBuildAllAndroid",*/ "jnigenBuildAllLinux")
 }
 
 

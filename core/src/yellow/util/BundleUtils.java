@@ -2,8 +2,6 @@ package yellow.util;
 
 import arc.*;
 import arc.struct.*;
-import arc.util.*;
-import yellow.*;
 
 public class BundleUtils{
 

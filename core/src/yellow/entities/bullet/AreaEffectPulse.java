@@ -1,11 +1,10 @@
 package yellow.entities.bullet;
 
-import arc.graphics.Color;
+import arc.graphics.*;
 import arc.math.*;
 import arc.util.*;
-import arc.util.pooling.*;
 import arc.util.pooling.Pool.*;
-import mindustry.content.*;
+import arc.util.pooling.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.type.*;

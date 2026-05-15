@@ -22,5 +22,3 @@ rootProject.name = modName
 
 include("core")
 include("native-loader")
-include("experimental-video-player")
-include("experimental-video-player:ffmpeg")

@@ -1,18 +1,15 @@
 package yellow.comp;
 
 import arc.*;
-import arc.graphics.g2d.*;
 import arc.input.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import ent.anno.Annotations.*;
-import mindustry.*;
 import mindustry.entities.*;
 import mindustry.game.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
 import yellow.*;
 import yellow.content.*;
 import yellow.equality.*;

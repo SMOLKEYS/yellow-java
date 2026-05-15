@@ -8,7 +8,6 @@ import arc.util.serialization.*;
 import mindustry.*;
 import mindustry.gen.*;
 import yellow.YellowVars.*;
-import yellow.util.*;
 
 public class UpdateChecker{
 
@@ -16,7 +15,7 @@ public class UpdateChecker{
 
     public static boolean updateAvailable, updateQueued;
 
-    public static void checkUpdate(@Nullable ConsT<Http.HttpResponse, Exception> http, Cons2<Float, Float> found, Runnable notFound, Cons<Throwable> onErr){
+    public static void checkUpdate(@Nullable ConsT<Http.HttpResponse, Exception> http, Cons2<String, String> found, Runnable notFound, Cons<Throwable> onErr){
         if(YellowVars.build() == BuildType.rapid){
             Log.info("Using a rapid development build of Yellow. Skipping update check.");
             return;
@@ -30,6 +29,15 @@ public class UpdateChecker{
             String[] ver = new String[val.size];
             for(int r = 0; r < val.size; r++) ver[r] = val.get(r).getString("tag_name", "err");
 
+            String lat = ver[0];
+
+            if(version != lat){
+                found.get(version, lat);
+            }else{
+                notFound.run();
+            }
+
+            /*
             float cur = Stringy.handleNumber(version);
             float lat = Stringy.handleNumber(ver[0]);
 
@@ -38,6 +46,7 @@ public class UpdateChecker{
             }else{
                 notFound.run();
             }
+            */
         }, onErr);
     }
 

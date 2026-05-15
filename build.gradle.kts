@@ -2,15 +2,13 @@
 @file:Suppress("unused")
 
 import arc.files.Fi
+import arc.util.Log
 import arc.util.OS
 import arc.util.serialization.Jval
 import ent.EntityAnnoExtension
 import java.io.BufferedWriter
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
+import java.util.*
 
 val arcVersion: String by project
 val mindustryVersion: String by project
@@ -143,7 +141,6 @@ project(":core"){
 
         //experimental
         implementation(project(":native-loader"))
-        implementation(project(":experimental-video-player"))
         //implementation(arc(":box2d"))
         //implementation(arc(":natives-box2d-android"))
         //implementation(arc(":natives-box2d-desktop"))
@@ -187,9 +184,9 @@ project(":core"){
                         return put(value, "$prm$append")
                     }
 
-                    fun String.abbreviate(): String{
+                    fun String.abbreviate(char: Char = ' '): String{
                         val sb = StringBuilder()
-                        this.split(' ').forEach { st ->
+                        this.split(char).forEach { st ->
                             sb.append(st[0])
                         }
                         return sb.toString()
@@ -212,8 +209,32 @@ project(":core"){
                         jv.appendString("description", "\n\n[RAPID DEVELOPMENT BUILD]")
                     } else when(releaseType){
                         null -> jv.appendString("version", "-dev-$dateIdentifier")
-                        "release" -> {} // do nothing for release builds
+                        "release" -> {
+                            val releaseGroup = jv.getString("group")
+                            val releaseBuild = jv.getInt("build", 0)
+
+                            if(releaseGroup == null) throw IllegalStateException("No release group found in mod metadata.\nPlease specify one with 'group: <group>'.")
+
+                            jv.appendString("version", StringBuilder().apply{
+                                append("-$releaseGroup")
+                                if(releaseBuild != 0) append("-$releaseBuild")
+                            }.toString())
+                        }
                     }
+
+                    val filter = arrayOf(
+                        "displayName", "name", "author",
+                        "main", "description", "version",
+                        "minGameVersion", "java", "hideBrowser",
+                        "iosCompatible", "subtitle", "repo",
+                        "dependencies", "softDependencies",
+                        "texturescale", "pregenerated", "contentOrder",
+                        "legacyCompatible"
+                    )
+
+                    if(jv.asObject().removeAll { fil ->
+                        !filter.contains(fil.key)
+                    }) Log.info("Removed all unnecessary mod metadata symbols")
 
                     return@use jv
                 }
@@ -414,9 +435,5 @@ project(":core"){
                 errorOutput = System.err
             }
         }
-    }
-
-    tasks.register("fullPackage"){
-        dependsOn("dex")
     }
 }

@@ -3,7 +3,7 @@ package yellow.content;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.math.geom.Position;
+import arc.math.geom.*;
 import arc.util.*;
 import mindustry.content.*;
 import mindustry.entities.*;
@@ -11,8 +11,6 @@ import mindustry.graphics.*;
 import yellow.entities.bullet.AreaEffectPulse.*;
 import yellow.entities.effect.*;
 import yellow.math.*;
-
-import javax.swing.text.*;
 
 
 public class YellowFx{

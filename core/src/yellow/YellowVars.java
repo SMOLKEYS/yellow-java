@@ -163,11 +163,12 @@ public class YellowVars{
     public static void initNatives(){
         ContextLoader loader = new ContextLoader();
         nativesLoader = loader;
-        try{
+        /*try{
             loader.load("yellow");
         }catch(Exception e){
             Log.err(e);
         }
+         */
     }
 
     public static void onImport(){

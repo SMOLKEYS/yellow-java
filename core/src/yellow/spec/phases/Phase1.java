@@ -24,10 +24,13 @@ public class Phase1 extends Phase{
 
     private static final float[] decrements = {60f, 60f};
 
-    private static final boolean[] phases = {false, false};
+    private static final boolean[] phases = {
+            false, // phase end; crash the game
+            false
+    };
 
     private static final Seq<Unit> units = new Seq<>(Unit.class);
-    private static ObjectMap<Unit, Seq<WeaponMount>> mounts = new ObjectMap<>();
+    private static final ObjectMap<Unit, Seq<WeaponMount>> mounts = new ObjectMap<>();
     private static final Seq<StackTraceElement> stk = new Seq<>(StackTraceElement.class);
 
 
@@ -63,6 +66,11 @@ public class Phase1 extends Phase{
 
                 });
             }
+        });
+
+        Events.on(UnitSpawnEvent.class, sp -> {
+            units.add(sp.unit);
+            mounts.put(sp.unit, new Seq<>(sp.unit.mounts));
         });
     }
 

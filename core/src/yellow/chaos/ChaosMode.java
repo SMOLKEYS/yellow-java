@@ -4,7 +4,6 @@ import arc.func.*;
 import arc.struct.*;
 import mindustry.*;
 import mindustry.ui.dialogs.SettingsMenuDialog.*;
-import yellow.ui.*;
 
 public class ChaosMode{
     public static Seq<ChaosEvent> options = new Seq<>();

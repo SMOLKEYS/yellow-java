@@ -1,9 +1,7 @@
 package yellow.spec;
 
 import arc.func.*;
-import arc.struct.*;
 import arc.util.*;
-import yellow.*;
 
 public class StageEntry{
 

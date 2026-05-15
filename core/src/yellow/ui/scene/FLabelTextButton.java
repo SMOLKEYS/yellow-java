@@ -4,7 +4,6 @@ import arc.*;
 import arc.flabel.*;
 import arc.scene.ui.*;
 import arc.scene.ui.Label.*;
-import arc.scene.ui.layout.*;
 import arc.util.*;
 
 public class FLabelTextButton extends TextButton{

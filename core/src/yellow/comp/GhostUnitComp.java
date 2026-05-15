@@ -9,7 +9,6 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import yellow.gen.*;
-import yellow.graphics.*;
 import yellow.type.unit.*;
 
 @EntityComponent

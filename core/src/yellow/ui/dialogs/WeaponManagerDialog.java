@@ -1,8 +1,6 @@
 package yellow.ui.dialogs;
 
-import arc.graphics.*;
 import arc.math.*;
-import arc.scene.actions.*;
 import arc.scene.event.*;
 import arc.scene.ui.*;
 import arc.util.*;

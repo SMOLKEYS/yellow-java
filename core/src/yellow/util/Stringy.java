@@ -1,9 +1,7 @@
 package yellow.util;
 
 import arc.graphics.*;
-import arc.input.*;
 import arc.math.*;
-import arc.struct.*;
 import arc.util.*;
 import mindustry.world.meta.*;
 

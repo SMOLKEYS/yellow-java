@@ -6,20 +6,15 @@ import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.game.EventType.*;
-import mindustry.gen.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import yellow.content.*;
-import yellow.core.YellowEventType.*;
 import yellow.entities.*;
 import yellow.extras.*;
 import yellow.gen.*;
 import yellow.graphics.*;
 import yellow.js.*;
-import yellow.spec.*;
-import yellow.spec.phases.*;
 import yellow.ui.*;
-import yellow.util.variable.SettingBoundVariable.*;
 
 import java.io.*;
 import java.util.*;
@@ -37,8 +32,6 @@ public class Yellow extends Mod{
     });
 
     public Yellow(){
-        if(OS.isAndroid || OS.isMac) throw new RuntimeException("Cannot load this build of Yellow on Android/Mac platforms");
-
         if(Vars.clientLoaded) YellowVars.onImport();
 
         if(!Vars.clientLoaded){

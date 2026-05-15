@@ -1,12 +1,10 @@
 package yellow.ui;
 
-import arc.*;
 import arc.audio.*;
 import arc.files.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.scene.*;
-import arc.scene.style.*;
 import arc.scene.ui.layout.*;
 
 public class OverlayPlayer{

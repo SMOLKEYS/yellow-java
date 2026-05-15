@@ -2,7 +2,6 @@ package yellow.async;
 
 import arc.math.geom.*;
 import arc.struct.*;
-import arc.util.*;
 import mindustry.*;
 import mindustry.async.*;
 import mindustry.async.PhysicsProcess.*;

@@ -26,7 +26,7 @@ public class YellowWeapons{
     // insane category
     public static ToggleWeapon
             laserBarrage, homingFlares, antiMothSpray, decimation, disruptor, ghostCall, ghostRain,
-            traversal, octa, energySpheres, spearCall, arbitrator;
+            traversal, octa, energySpheres, spearCall;
 
     // less insane category
     public static ToggleWeapon
@@ -634,34 +634,6 @@ public class YellowWeapons{
                 buildingDamageMultiplier = 2.55f;
                 pierceCap = 35;
                 keepVelocity = false;
-            }};
-        }};
-
-        arbitrator = new ToggleWeapon("arbitrator"){{
-            x = y = 0f;
-            reload = 60*2f;
-            ignoreRotation = true;
-            visibility = WeaponVisibility.sandboxOnly;
-            shootSound = Sounds.shootEnergyField;
-
-            bullet = new BasicEqualityBulletType(){{
-                damage = 400f;
-                speed = 5.4f;
-                width = height = 20;
-                lifetime = 60*1.5f;
-
-                intervalBullets = 2;
-                intervalRandomSpread = 0f;
-                intervalSpread = 180f;
-                intervalDelay = 5f;
-
-                intervalBullet = new BasicEqualityBulletType(){{
-                    damage = 30f;
-                    speed = 3.5f;
-                    lifetime = 60*4f;
-                    circleShooter = true;
-                    circleShooterRadius = 8*10f;
-                }};
             }};
         }};
     }

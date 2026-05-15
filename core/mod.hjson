@@ -1,7 +1,11 @@
 displayName: "Yellow (Java)"
+
 name: "yellow-java"
+
 author: "SMOLKEYS"
+
 main: "yellow.Yellow"
+
 description: '''
 Not affiliated with Undertale Yellow.
 
@@ -9,8 +13,23 @@ This.
 
 This is what happens when you give an idiot like me general programming knowledge.
 '''
+
 version: 0.2
+
 minGameVersion: 157.1
+
 java: true
+
 hideBrowser: false
 
+# ALL VARIABLES BELOW ONLY EXIST DURING COMPILE TIME
+
+# target release group
+# prealpha - usable, unstable, but awaits community input
+# alpha - usable, features missing
+# beta - features implemented, bug testing at work
+# release - features implemented, all bugs are probably fixed
+# patch - resolve bugs and/or perform various tweaks after release build
+group: "prealpha"
+# build index, ignored for release groups
+build: 1

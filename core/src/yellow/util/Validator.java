@@ -1,10 +1,8 @@
 package yellow.util;
 
-import arc.func.*;
 import arc.util.*;
 import mindustry.gen.*;
 import yellow.entities.units.*;
-import yellow.equality.*;
 import yellow.gen.*;
 
 public class Validator{
