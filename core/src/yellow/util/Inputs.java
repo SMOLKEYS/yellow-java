@@ -74,7 +74,7 @@ public class Inputs{
             return index >= keys.length;
         }
 
-        /** @return true if the sequence was successfully completed since the last reset(); resets the listener if true, but only if {@link #repeat} is false. */
+        /** @return true if the sequence was successfully completed since the last reset(); resets the listener if true, but only if {@link #repeat} is also true. */
         public boolean poll(){
             boolean result = get();
             if(result && repeat) reset();

@@ -217,7 +217,7 @@ project(":core"){
 
                             jv.appendString("version", StringBuilder().apply{
                                 append("-$releaseGroup")
-                                if(releaseBuild != 0) append("-$releaseBuild")
+                                if(releaseBuild != 0 && releaseGroup != "release") append("-$releaseBuild")
                             }.toString())
                         }
                     }
@@ -354,8 +354,12 @@ project(":core"){
             val fDir = dirC ?: dir
 
             if(!fDir?.let {Fi(it).exists()}!!){
-                println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
-                if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
+                if(fDir != dir){
+                    println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
+                }else{
+                    println("WARN: No Mindustry data directory found. Skipping copy operation.")
+                }
+                println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
                 return@doLast
             }
 
@@ -385,8 +389,12 @@ project(":core"){
             val fDir = dirC ?: dir
 
             if(!fDir?.let {Fi(it).exists()}!!){
-                println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
-                if(dirC == null) println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
+                if(fDir != dir){
+                    println("WARN: Target copy directory ($fDir) does not exist. Skipping copy operation.")
+                }else{
+                    println("WARN: No Mindustry data directory found. Skipping copy operation.")
+                }
+                println("If you use a custom data directory, you may specify '-Pcopy.target=<path-to-mods-dir>'.")
                 return@doLast
             }
 

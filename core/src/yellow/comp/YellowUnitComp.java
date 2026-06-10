@@ -32,7 +32,7 @@ abstract class YellowUnitComp implements Unitc, WeaponMasterUnitc, SingleInstanc
 
     private float queuedKillCountdown = 30f;
     private boolean queuedKillTeleport = false;
-    private transient Unit queuedKill = null;
+    private Unit queuedKill = null;
 
     private transient Seq<Unit> bowled = new Seq<>(128);
     private transient InputSequence discombobulation = Inputs.keySequence(30f, true, KeyCode.x, KeyCode.a, KeyCode.mouseRight);

@@ -1,5 +1,6 @@
 package yellow.util;
 
+import arc.*;
 import arc.func.*;
 import arc.graphics.*;
 import arc.math.*;
@@ -47,5 +48,23 @@ public class MiscUtils{
         if(!deepSearch(label.getActions(), ColorAction.class) && !label.color.equals(col)){
             label.addAction(Actions.color(col, duration, interpolation));
         }
+    }
+
+
+    //raison d'etre
+    public static String jeho(String sula){
+        String[] splits = sula.split(" +");
+        for(int i = 0; i < splits.length; i++){
+            String workstr = splits[i];
+            if(workstr.isEmpty()) continue;
+            char last = workstr.charAt(workstr.length() - 1);
+
+            splits[i] =
+                    last == 'o' ? splits[i] + "sula"
+                            : last == 'j' ? splits[i] + "ehosula"
+                              : "aeiu".indexOf(last) != -1 ? splits[i] + "hosula"
+                                : splits[i] + "osula";
+        }
+        return String.join(" ", splits);
     }
 }

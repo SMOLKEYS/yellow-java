@@ -9,6 +9,9 @@ import mindustry.*;
 import mindustry.gen.*;
 import yellow.YellowVars.*;
 
+import java.util.*;
+import java.util.concurrent.atomic.*;
+
 public class UpdateChecker{
 
     private static final JsonReader reader = new JsonReader();
@@ -21,6 +24,8 @@ public class UpdateChecker{
             return;
         }
 
+        //TODO support for other mirrors (i.e codeberg and gitlab)
+        //microsoft on it's way to ruin absolutely everything again
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", upd -> {
             if(http != null) http.get(upd);
 
@@ -28,16 +33,36 @@ public class UpdateChecker{
             JsonValue val = reader.parse(upd.getResultAsStream());
             String[] ver = new String[val.size];
             for(int r = 0; r < val.size; r++) ver[r] = val.get(r).getString("tag_name", "err");
+            /*
+            TODO reimplement later
+            AtomicBoolean wasFound = new AtomicBoolean(false);
+            AtomicReference<String> selectVersion = new AtomicReference<>();
 
-            String lat = ver[0];
+            for(String s : ver){
+                if(Objects.equals(s, version)){
+                    wasFound.set(true);
+                    selectVersion.set(s);
+                }
+            }
 
+            if(wasFound.get()){
+                found.get(version, selectVersion.get());
+            }else{
+                notFound.run();
+            }
+             */
+
+            /*
+            TODO this works if the latest entry is listed as the latest correct version, but if not, it just doesn't
             if(version != lat){
                 found.get(version, lat);
             }else{
                 notFound.run();
             }
+             */
 
             /*
+            TODO this only works for version tags that only contain numbers and the dot symbol
             float cur = Stringy.handleNumber(version);
             float lat = Stringy.handleNumber(ver[0]);
 

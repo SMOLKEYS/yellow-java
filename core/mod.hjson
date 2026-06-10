@@ -16,7 +16,7 @@ This is what happens when you give an idiot like me general programming knowledg
 
 version: 0.2
 
-minGameVersion: 157.1
+minGameVersion: 158
 
 java: true
 
@@ -32,4 +32,4 @@ hideBrowser: false
 # patch - resolve bugs and/or perform various tweaks after release build
 group: "prealpha"
 # build index, ignored for release groups
-build: 1
+build: 2

@@ -3,6 +3,7 @@ package yellow;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
+import arc.util.*;
 import yellow.util.*;
 import yellow.util.variable.*;
 import yellow.util.variable.SettingBoundVariable.*;
@@ -73,6 +74,7 @@ public class YellowSettingValues{
             try{
                 ((SettingBoundVariable<?>)fl.get(null)).reset();
             }catch(Exception ignored){
+                Log.warn("Could not reset @ setting", fl.getName());
             }
         });
     }
