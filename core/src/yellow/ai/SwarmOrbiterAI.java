@@ -3,17 +3,19 @@ package yellow.ai;
 import arc.func.*;
 import arc.math.*;
 import arc.math.geom.*;
+import mindustry.entities.units.AIController;
 import mindustry.gen.*;
 import mindustry.world.blocks.storage.*;
 import yellow.gen.*;
 import yellow.math.*;
 
 /** An AI that orbits a target unit. If no target is found, defaults to the team core. If that is also not found (somehow), does nothing. */
-public class SwarmOrbiterAI extends OwnerAI{
+public class SwarmOrbiterAI extends AIController {
     public static float dstCap = 8*65f;
 
     /** The target unit type to scan for. */
     public Boolf<Unit> targetUnit = p -> false;
+    public Unit currentOwner;
 
     /** The target core building to orbit. */
     protected CoreBlock.CoreBuild core;
@@ -41,11 +43,10 @@ public class SwarmOrbiterAI extends OwnerAI{
 
     @Override
     public void updateMovement(){
-
-        if(owner == null){
-            owner = Groups.unit.find(e -> e.team == unit.team && targetUnit.get(e));
-        }else if(owner.team != unit.team || owner.dead() || !owner.isValid()){
-            owner = null;
+        if(currentOwner == null){
+            currentOwner = Groups.unit.find(e -> e.team == unit.team && targetUnit.get(e));
+        }else if(currentOwner.team != unit.team || currentOwner.dead() || !currentOwner.isValid()){
+            currentOwner = null;
         }
 
         if(core == null){
@@ -53,11 +54,11 @@ public class SwarmOrbiterAI extends OwnerAI{
         }
 
         //prefer unit
-        Position target = owner != null ? owner : core;
+        Position target = currentOwner != null ? currentOwner : core;
 
         float dMul = target != null ? Mathy.lerpc(1f, peakSpeedRD, Mathy.dstPos(unit, target) - dst, dstCap) : 0f;
         float fSpeed = unit.speed() * (dMul);
-        float fDst = unit instanceof GhostUnit gh ? Mathf.lerp(dst, 8*6f, gh.lifetimef()) : dst;
+        float fDst = unit instanceof Ghost gh ? Mathf.lerp(dst, 8*6f, gh.lifetimef()) : dst;
 
         if(target != null){
             if(useOpposite){

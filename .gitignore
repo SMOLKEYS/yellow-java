@@ -168,3 +168,5 @@ android/libs/
 
 /experimental-video-player/build/
 /experimental-video-player/ffmpeg/build/
+
+INDEV/**

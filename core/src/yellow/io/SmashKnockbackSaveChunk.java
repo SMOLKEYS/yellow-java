@@ -40,6 +40,7 @@ public class SmashKnockbackSaveChunk implements CustomChunk{
         });
 
         set.each((u, f) -> {
+            if(u == null) return; //yes, this can happen. apparently.
             if(u.dead || !u.isValid()) set.remove(u);
         });
     }

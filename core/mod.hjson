@@ -4,7 +4,7 @@ name: "yellow-java"
 
 author: "SMOLKEYS"
 
-main: "yellow.Yellow"
+main: "yellow.YellowM"
 
 description: '''
 Not affiliated with Undertale Yellow.
@@ -16,7 +16,7 @@ This is what happens when you give an idiot like me general programming knowledg
 
 version: 0.2
 
-minGameVersion: 158
+minGameVersion: 160.7
 
 java: true
 

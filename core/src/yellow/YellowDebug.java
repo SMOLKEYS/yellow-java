@@ -13,17 +13,15 @@ import mindustry.entities.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.mod.*;
 import mindustry.world.*;
-import rhino.*;
 import yellow.core.YellowEventType.*;
+import yellow.gen.Yellow;
 import yellow.spec.*;
-import yellow.util.*;
 import yellow.util.variable.SettingBoundVariable.*;
 
 import java.util.*;
 
-import static yellow.Yellow.*;
+import static yellow.YellowM.*;
 
 public class YellowDebug{
 
@@ -57,9 +55,9 @@ public class YellowDebug{
                     Icon.wrench,
                     Strings.format(
                             "Mod info:\n\nName: [gold]@[]\nMinimum version: [blue]@[]\nMod version: [green]@[]\nActive class: [magenta]@[]",
-                            Yellow.meta().internalName,
-                            Yellow.meta().minGameVersion,
-                            Yellow.meta().version,
+                            YellowM.meta().internalName,
+                            YellowM.meta().minGameVersion,
+                            YellowM.meta().version,
                             mod().main
                     )
             );
@@ -113,5 +111,9 @@ public class YellowDebug{
             if(!Structs.contains(whitelist, conc)) throw new RuntimeException(Strings.format("Attempt to execute method by '@.@' not allowed", stackTraceElement.getClassName(), stackTraceElement.getMethodName()));
         }
         return "good";
+    }
+
+    public static void showSampleChapter(){
+        YellowVars.chapterfrag.show("Chapter 1:", "Vessel");
     }
 }

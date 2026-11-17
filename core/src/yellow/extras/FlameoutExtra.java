@@ -13,7 +13,7 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.gen.*;
 import yellow.*;
-import yellow.Yellow.*;
+import yellow.YellowM.*;
 import yellow.content.*;
 import yellow.spec.*;
 import yellow.ui.fragments.DialogFragment.*;
@@ -55,7 +55,7 @@ public class FlameoutExtra extends ExtraAddition{
                             Chaos.stopSoundControl();
                             Chaos.eraseMenu();
                             salva.clearChildren();
-                            select(tbl, Mathf.chance(0.3) || Yellow.debug);
+                            select(tbl, Mathf.chance(0.3) || YellowM.debug);
                         });
                         salva.add(button).width(Core.graphics.getWidth() / 2f).center();
 

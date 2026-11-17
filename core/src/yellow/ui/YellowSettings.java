@@ -135,11 +135,11 @@ public class YellowSettings{
                 tb.table(text -> {
                     text.label(() -> bundle.format(
                             "yellow-version",
-                            Yellow.meta().version,
+                            YellowM.meta().version,
                             UpdateChecker.updateQueued ? "Waiting..." : UpdateChecker.updateAvailable ? bundle.get("yellow-update-available") : bundle.get("yellow-latest")
                     )).row();
                     text.add(bundle.format("yellow-install-date", YellowVars.installedAt())).row();
-                    if(Yellow.debug) text.add(bundle.get("yellow-debug-enabled")).row();
+                    if(YellowM.debug) text.add(bundle.get("yellow-debug-enabled")).row();
                 }).growX().row();
 
                 tb.table(buttons -> {
@@ -158,7 +158,7 @@ public class YellowSettings{
                                 fl[0] = 0f;
                             }
 
-                            if(fl[0] >= (Yellow.debug ? 35 : 60*10)){
+                            if(fl[0] >= (YellowM.debug ? 35 : 60*10)){
                                 fl[0] = -99999f;
                                 Chaos.kickFromSave();
                                 YellowVars.blankfrag.show();
@@ -195,7 +195,7 @@ public class YellowSettings{
                 }).growX().padTop(10f).row();
             });
 
-            if(Yellow.debug){
+            if(YellowM.debug){
                 seperatorPref(t, "yellow-debug-section", Icon.wrench, Icon.settings);
 
                 YellowDebugSettings.build(t);

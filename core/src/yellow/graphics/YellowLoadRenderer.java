@@ -19,7 +19,7 @@ import yellow.util.variable.*;
 import java.util.*;
 
 import static arc.Core.*;
-import static yellow.Yellow.*;
+import static yellow.YellowM.*;
 
 public class YellowLoadRenderer extends LoadRenderer{
 
@@ -40,7 +40,7 @@ public class YellowLoadRenderer extends LoadRenderer{
         progressSmooth.speed(0.05f);
         progressSmooth.interp = Interp.fastSlow;
 
-        goth = new FreeTypeFontGenerator(Yellow.file("/fonts/msgothic.ttf")).generateFont(new FreeTypeFontParameter(){{
+        goth = new FreeTypeFontGenerator(YellowM.file("/fonts/msgothic.ttf")).generateFont(new FreeTypeFontParameter(){{
             size = Vars.mobile ? size * 2 : size;
             incremental = false;
             kerning = false;
@@ -110,7 +110,7 @@ public class YellowLoadRenderer extends LoadRenderer{
             f.draw(Vars.mods.orderedMods().size + " mods loaded", midw, midh - ((ofs+40)*s), Align.center);
             f.draw(assets.getQueuedAssets() + " assets queued, " + assets.getLoadedAssets() + " assets loaded", midw, midh - ((ofs+60)*s), Align.center);
 
-            if(Yellow.debug){
+            if(YellowM.debug){
                 f.draw(Vars.content.blocks().size + " Blocks", midw, midh - ((ofs + 80) * s), Align.center);
                 f.draw(Vars.content.units().size + " Units", midw, midh - ((ofs + 100) * s), Align.center);
                 f.draw(Vars.content.items().size + " Items", midw, midh - ((ofs + 120) * s), Align.center);
@@ -124,7 +124,7 @@ public class YellowLoadRenderer extends LoadRenderer{
                 f.draw(Vars.content.unitCommands().size + " Unit Commands", midw, midh - ((ofs + 280) * s), Align.center);
             }
 
-            f.draw((debug ? "[orange]Debug mode[]\n" : "") + "Yellow v" + mod().meta.version, w - (20f*s), 30f*s + (Yellow.debug ? (20f*s) : 0f), Align.right);
+            f.draw((debug ? "[orange]Debug mode[]\n" : "") + "Yellow v" + mod().meta.version, w - (20f*s), 30f*s + (YellowM.debug ? (20f*s) : 0f), Align.right);
             f.draw(graphics.getFramesPerSecond() + " FPS", w - (20f*s), h - ((ofsH)*s), Align.right);
             f.draw(Version.combined() + " (" + Version.number + ")", w - (20f*s), h - ((ofsH+20)*s), Align.right);
         });

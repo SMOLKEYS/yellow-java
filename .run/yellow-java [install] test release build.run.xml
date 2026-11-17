@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="yellow-java [copy] test release build" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="yellow-java [install] test release build" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="copy" />
+          <option value="install" />
         </list>
       </option>
       <option name="vmOptions" />

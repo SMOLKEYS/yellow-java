@@ -45,7 +45,7 @@ public class GhostUnitType extends UnitType{
         }).growX().left();
         table.row();
 
-        if(unit instanceof GhostUnit ghost) table.table(bars -> {
+        if(unit instanceof Ghost ghost) table.table(bars -> {
             bars.defaults().growX().height(20f).pad(4);
 
             bars.add(new Bar("stat.health", Color.red, ghost::healthf));

@@ -6,8 +6,8 @@ import mindustry.gen.*;
 import yellow.gen.*;
 
 @EntityComponent
-@EntityDef({SingleInstanceUnitc.class, Unitc.class})
-abstract class SingleInstanceUnitComp implements Unitc{
+@EntityDef({SingleInstancec.class, Unitc.class})
+abstract class SingleInstanceComp implements Unitc{
     @Import Team team;
 
     public boolean isClone;
@@ -15,7 +15,7 @@ abstract class SingleInstanceUnitComp implements Unitc{
     @Override
     public void update(){
         Groups.unit.each(u -> u != self(), u -> {
-            if(u instanceof SingleInstanceUnitc s && u.team == team){
+            if(u instanceof SingleInstancec s && u.team == team){
                 s.isClone(true);
                 s.remove();
             }

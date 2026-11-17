@@ -19,8 +19,8 @@ import yellow.util.*;
 import yellow.util.Inputs.*;
 
 @EntityComponent
-@EntityDef({YellowUnitc.class, Unitc.class, WeaponMasterUnitc.class, SingleInstanceUnitc.class})
-abstract class YellowUnitComp implements Unitc, WeaponMasterUnitc, SingleInstanceUnitc{
+@EntityDef({Yellowc.class, Unitc.class, WeaponMasterc.class, SingleInstancec.class})
+abstract class YellowComp implements Unitc, WeaponMasterc, SingleInstancec{
 
     @Import float x, y, hitSize, rotation;
     @Import Team team;
@@ -90,7 +90,7 @@ abstract class YellowUnitComp implements Unitc, WeaponMasterUnitc, SingleInstanc
 
                 bowled.clear();
 
-                bowlingCooldown = Yellow.debug ? 60f : 60*10f;
+                bowlingCooldown = YellowM.debug ? 60f : 60*10f;
                 bowlingMode = false;
             }
         });

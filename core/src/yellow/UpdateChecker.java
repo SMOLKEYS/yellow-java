@@ -9,9 +9,6 @@ import mindustry.*;
 import mindustry.gen.*;
 import yellow.YellowVars.*;
 
-import java.util.*;
-import java.util.concurrent.atomic.*;
-
 public class UpdateChecker{
 
     private static final JsonReader reader = new JsonReader();
@@ -29,7 +26,7 @@ public class UpdateChecker{
         Http.get("https://api.github.com/repos/SMOLKEYS/yellow-java/releases", upd -> {
             if(http != null) http.get(upd);
 
-            String version = Vars.mods.getMod(Yellow.class).meta.version;
+            String version = Vars.mods.getMod(YellowM.class).meta.version;
             JsonValue val = reader.parse(upd.getResultAsStream());
             String[] ver = new String[val.size];
             for(int r = 0; r < val.size; r++) ver[r] = val.get(r).getString("tag_name", "err");

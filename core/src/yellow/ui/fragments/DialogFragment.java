@@ -26,7 +26,7 @@ public class DialogFragment implements CommonFragment{
     private Cell<FLabel> labelCell;
     private TextEntry[] activeSet;
     private int index, id;
-    private boolean active, initialized, locked = false, hideHint = true;
+    private boolean active, initialized, locked = false, hideHint = true,  clipPlayed;
     private float boxWidth, boxHeight;
 
     private final Timekeeper timer = Timekeeper.ofSeconds(10f);
@@ -74,6 +74,17 @@ public class DialogFragment implements CommonFragment{
                                 //image[0].setDrawable(Core.atlas.find("noveldustry-" + event.substring("face:".length())));
                             }
                         }
+
+                        @Override
+                        public void onChar(char ch) {
+                            if(activeSet != null && activeSet.length > 0 && activeSet.length > index)
+                                if(activeSet[index].soundClip != null){
+                                    if(clipPlayed) return;
+                                    activeSet[index].soundClip.play();
+                                    clipPlayed = true;
+                                }
+                                else if(activeSet[index].sound != null) activeSet[index].sound.play();
+                        }
                     });
                 }).labelAlign(Align.topLeft).top().left().grow();
 
@@ -106,6 +117,7 @@ public class DialogFragment implements CommonFragment{
 
         if(locked && atEnd()) return;
 
+        clipPlayed = false;
         if(label.hasEnded()){
             if(atEnd()){
                 stop();
@@ -232,8 +244,10 @@ public class DialogFragment implements CommonFragment{
         public @Nullable String name;
         /** The text to be typed out. A null value will reuse the last typed text. */
         public @Nullable String text;
-        /** Sound played when this text is displayed. Useful for voiced dialogue. */
+        /** Sound bite played when this text is typed out. */
         public @Nullable Sound sound;
+        /** Full sound clip played when this text is displayed. Useful for voiced dialogue. Takes priority. */
+        public @Nullable Sound soundClip;
         /**
          * Interrupt or "stutter" text which immediately replaces the existing text.
          * You probably know what this does if you've played enough visual novels.

@@ -34,7 +34,7 @@ public class ManagerFragment implements CommonFragment{
                     managerTable = main;
                     main.top();
                     main.button("@yellow.weapons", () -> YellowVars.weapons.show(player.unit().mounts)).growX().touchable(() -> player.unit() != null && player.unit().mounts.length != 0 ? Touchable.enabled : Touchable.disabled).row();
-                    if(Yellow.debug){
+                    if(YellowM.debug){
                         main.button("@yellow.weapons-debug", () -> {
                             for(WeaponMount mnt : player.unit().mounts()) mnt.reload = 0f;
                         }).growX().row();

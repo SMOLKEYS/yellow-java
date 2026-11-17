@@ -18,7 +18,7 @@ public class YellowFirstrun{
     }
 
     private static boolean delegateNotif(int input, String form){
-        if(Yellow.debug) Log.info("delegate notif @", input);
+        if(YellowM.debug) Log.info("delegate notif @", input);
         return switch(input){
             case 3 -> {
                 YellowVars.notifrag.showPersistentNotification(Core.bundle.get(form), () -> Vars.ui.showInfo(Core.bundle.format(form + "-1", Mathf.random(9000))));
@@ -38,7 +38,7 @@ public class YellowFirstrun{
         while(Core.bundle.has("yellow.notification-hint-" + i)){
             int ind = i++;
             Time.run(45f * (i * 0.7f), () -> {
-                if(Yellow.debug) Log.info("yellow notif @", ind);
+                if(YellowM.debug) Log.info("yellow notif @", ind);
 
                 if(delegateNotif(ind, "yellow.notification-hint-" + ind)) return;
                 YellowVars.notifrag.showPersistentNotification(Core.bundle.get("yellow.notification-hint-" + ind));

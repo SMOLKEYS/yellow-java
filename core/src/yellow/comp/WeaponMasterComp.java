@@ -6,12 +6,12 @@ import ent.anno.Annotations.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import yellow.entities.units.*;
-import yellow.gen.*;
+import yellow.gen.WeaponMasterc;
 import yellow.io.*;
 
 @EntityComponent
-@EntityDef({WeaponMasterUnitc.class, Unitc.class})
-abstract class WeaponMasterUnitComp implements Unitc{
+@EntityDef({WeaponMasterc.class, Unitc.class})
+abstract class WeaponMasterComp implements Unitc{
     @Import WeaponMount[] mounts;
     
     public void eachToggleMount(Cons<ToggleWeaponMount> cons){

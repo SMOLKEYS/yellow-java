@@ -174,7 +174,7 @@ public class YellowRPC{
                 presence.details = Structs.random(arrYellow);
             }
 
-            presence.largeImageText = "Version " + Yellow.meta().version;
+            presence.largeImageText = "Version " + YellowM.meta().version;
             presence.largeImageKey = "yellow";
             presence.label1 = "Repository (Star!)";
             presence.url1 = "https://github.com/SMOLKEYS/yellow-java";

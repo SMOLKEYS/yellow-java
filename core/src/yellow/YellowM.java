@@ -22,7 +22,7 @@ import java.util.*;
 import static yellow.YellowSettingValues.*;
 
 @SuppressWarnings({"unused", "SpellCheckingInspection"})
-public class Yellow extends Mod{
+public class YellowM extends Mod{
 
     public static final Seq<ExtraAddition> extras = new Seq<>();
 
@@ -31,7 +31,7 @@ public class Yellow extends Mod{
         YellowDebug.loadDebug();
     });
 
-    public Yellow(){
+    public YellowM(){
         if(Vars.clientLoaded) YellowVars.onImport();
 
         if(!Vars.clientLoaded){
@@ -60,17 +60,17 @@ public class Yellow extends Mod{
     }
 
     public static ModMeta meta(){
-        return Vars.mods.getMod(Yellow.class).meta;
+        return Vars.mods.getMod(YellowM.class).meta;
     }
 
     public static LoadedMod mod(){
-        return Vars.mods.getMod(Yellow.class);
+        return Vars.mods.getMod(YellowM.class);
     }
 
     /** Loads a file from Yellow's JAR archive to a cache file and returns that file.
      * Mostly for accessing internal files during the constructor initialization phase. */
     public static Fi file(String path){
-        try(InputStream stream = Yellow.class.getResourceAsStream(path)){
+        try(InputStream stream = YellowM.class.getResourceAsStream(path)){
             Fi child = Core.files.cache("yellow-exports").child(String.valueOf(System.currentTimeMillis()));
             child.write(stream, false);
             return child;
@@ -92,7 +92,7 @@ public class Yellow extends Mod{
         YellowWeapons.load();
         YellowUnitTypes.load();
         YellowWeapons.afterLoad();
-        Yellow.extras.each(ExtraAddition::loadContent);
+        YellowM.extras.each(ExtraAddition::loadContent);
     }
 
     public static class ExtraAddition{

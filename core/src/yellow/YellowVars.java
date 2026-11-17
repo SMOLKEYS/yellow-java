@@ -6,12 +6,10 @@ import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
-import yellow.Yellow.*;
-import yellow.async.*;
+import yellow.YellowM.*;
 import yellow.core.YellowEventType.*;
 import yellow.core.*;
 import yellow.cutscene.*;
-import yellow.entities.*;
 import yellow.graphics.*;
 import yellow.io.*;
 import yellow.natives.*;
@@ -39,6 +37,7 @@ public class YellowVars{
     public static ManagerFragment managefrag;
     public static OverlayFragment overlayfrag;
     public static StylePanelFragment stylefrag;
+    public static ChapterDisplayFragment chapterfrag;
 
     public static Cutscenes cutscenes;
 
@@ -56,7 +55,7 @@ public class YellowVars{
         Chaos.init();
 
         preInitComponents();
-        Yellow.extras.each(ExtraAddition::varsPreInit);
+        YellowM.extras.each(ExtraAddition::varsPreInit);
 
         Events.fire(new YellowPostInit());
     }
@@ -99,9 +98,7 @@ public class YellowVars{
             }
         }
 
-        Vars.asyncCore.processes.add(
-                new PhysicsHandler<>(YellowGroups.physics)
-        );
+        //PhysicsProcess proc = (PhysicsProcess) Vars.asyncCore.processes.find(t -> t instanceof PhysicsProcess);
 
         SmashKnockbackSaveChunk.init();
 
@@ -119,7 +116,7 @@ public class YellowVars{
     public static void init(){
         Events.fire(new YellowVarsPreInit());
 
-        build = Yellow.meta().version.contains("rapid") ? BuildType.rapid : BuildType.release;
+        build = YellowM.meta().version.contains("rapid") ? BuildType.rapid : BuildType.release;
 
         logic = new YellowLogic();
 
@@ -131,6 +128,7 @@ public class YellowVars{
         dialogfrag = new DialogFragment();
         managefrag = new ManagerFragment();
         stylefrag = new StylePanelFragment();
+        chapterfrag = new ChapterDisplayFragment();
 
         cutscenes = new Cutscenes();
         cutscenes.init();
@@ -152,10 +150,11 @@ public class YellowVars{
         overlayfrag = OverlayPlayer.make(overlayGroup);
         managefrag.build(Vars.ui.hudGroup);
         stylefrag.build(overlayGroup);
+        chapterfrag.build(overlayGroup);
 
         if(YellowSettingValues.rendererEnabled.get()) SafeReflect.set(Vars.ui.menufrag, "renderer", menuRenderer = new YellowMenuRenderer());
 
-        Yellow.extras.each(ExtraAddition::varsInit);
+        YellowM.extras.each(ExtraAddition::varsInit);
 
         Events.fire(new YellowVarsPostInit());
     }
@@ -174,7 +173,7 @@ public class YellowVars{
     public static void onImport(){
         if(!YellowSettingValues.installDate.exists()) YellowSettingValues.installDate.set(System.currentTimeMillis());
 
-        Yellow.extras.each(ExtraAddition::onModImport);
+        YellowM.extras.each(ExtraAddition::onModImport);
     }
 
     public static Date installedAt(){
@@ -197,7 +196,7 @@ public class YellowVars{
 
         public ContextLoader(){
             desktopLoader = new LibLoader();
-            mobileLoader = new AndroidLibLoader(Yellow.class);
+            mobileLoader = new AndroidLibLoader(YellowM.class);
         }
 
         public boolean load(String lib){

@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: "Compile multiplatform"
-          command: ./gradlew dex -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
+          command: ./gradlew deploy -Prapid.append-version=$(expr 1000 + <<pipeline.number>>)-<<pipeline.git.branch>>-$(git rev-parse --short HEAD)
 
       - save_cache:
           paths:
@@ -52,8 +52,8 @@ jobs:
           name: "Place jars in better location"
           command: |
             mkdir finals
-            mv ./core/build/libs/core.jar finals/yellow-java.jar
-            mv ./core/build/libs/coreDesktop.jar finals/yellow-java-desktop-only.jar
+            mv ./core/build/libs/yellow-java.jar finals/yellow-java.jar
+            mv ./core/build/libs/yellow-java.jar finals/yellow-java-desktop-only.jar
             mv ./native-loader/build/libs/native-loader.jar finals/
 
       - store_artifacts:

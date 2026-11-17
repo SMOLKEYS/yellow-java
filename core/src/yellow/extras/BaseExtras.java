@@ -5,6 +5,6 @@ import yellow.*;
 public class BaseExtras{
 
     public static void load(){
-        Yellow.extras.add(new FlameoutExtra());
+        YellowM.extras.add(new FlameoutExtra());
     }
 }

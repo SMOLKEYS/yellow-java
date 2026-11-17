@@ -8,12 +8,12 @@ import mindustry.entities.abilities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
-import yellow.gen.*;
+import yellow.gen.Ghostc;
 import yellow.type.unit.*;
 
 @EntityComponent
-@EntityDef({GhostUnitc.class, Unitc.class, TimedKillc.class})
-abstract class GhostUnitComp implements Unitc, TimedKillc{
+@EntityDef({Ghostc.class, Unitc.class, TimedKillc.class})
+abstract class GhostComp implements Unitc, TimedKillc{
     @Import float x, y, time, lifetime, hitSize;
     @Import Ability[] abilities;
     @Import UnitType type;

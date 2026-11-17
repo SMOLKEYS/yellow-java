@@ -1,5 +1,7 @@
 package yellow.content;
 
+import ent.anno.Annotations;
+import mindustry.gen.TimedKillc;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import yellow.ai.*;
@@ -10,11 +12,12 @@ import yellow.type.weapons.*;
 
 public class YellowUnitTypes{
 
-    public static UnitType yellow, ghostFlare;
+    public static @Annotations.EntityDef(value = {Yellowc.class, WeaponMasterc.class, SingleInstancec.class}) UnitType yellow;
+    public static @Annotations.EntityDef(value = {Ghostc.class, TimedKillc.class}) UnitType ghostFlare;
 
     public static void load(){
 
-        yellow = EntityRegistry.content("yellow", YellowUnit.class, name -> new YellowUnitType(name){
+        yellow = new YellowUnitType("yellow"){
             {
                 health = 2000f;
                 flying = true;
@@ -52,9 +55,9 @@ public class YellowUnitTypes{
                         YellowWeapons.gethsemane,
                         YellowWeapons.contingency
                 );
-            }});
+            }};
 
-        ghostFlare = EntityRegistry.content("ghost-flare", GhostUnit.class, name -> new GhostUnitType(name){{
+        ghostFlare = new GhostUnitType("ghost-flare"){{
             flying = true;
             health = 37.5f;
             armor = 5f;
@@ -69,6 +72,8 @@ public class YellowUnitTypes{
             controller = u -> new SwarmOrbiterAI(a -> a.type instanceof YellowUnitType);
 
             abilities.add(new HivemindAbility(-1, 25f, 10f, 20f));
-        }});
+        }};
+
+        EntityRegistry.registerUnits();
     }
 }
